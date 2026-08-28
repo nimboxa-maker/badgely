@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { signOut } from "@/app/auth/actions";
 
 const links = [
   { href: "/certifications", label: "Certifications" },
@@ -10,7 +11,11 @@ const links = [
   { href: "/career-paths", label: "Career Paths" },
 ];
 
-export function MobileNav() {
+type MobileNavProps = {
+  isAuthenticated: boolean;
+};
+
+export function MobileNav({ isAuthenticated }: MobileNavProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -43,20 +48,42 @@ export function MobileNav() {
               </Link>
             ))}
             <div className="my-2 border-t border-white/10" />
-            <Link
-              href="/sign-in"
-              className="rounded-xl px-4 py-3 font-medium text-slate-100 hover:bg-white/10"
-              onClick={() => setOpen(false)}
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/sign-up"
-              className="mt-1 rounded-xl bg-blue-600 px-4 py-3 text-center font-semibold text-white hover:bg-blue-500"
-              onClick={() => setOpen(false)}
-            >
-              Get started
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="rounded-xl px-4 py-3 font-medium text-slate-100 hover:bg-white/10"
+                  onClick={() => setOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <form action={signOut}>
+                  <button
+                    type="submit"
+                    className="mt-1 w-full rounded-xl border border-white/15 px-4 py-3 text-center font-semibold text-white hover:bg-white/10"
+                  >
+                    Sign out
+                  </button>
+                </form>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/sign-in"
+                  className="rounded-xl px-4 py-3 font-medium text-slate-100 hover:bg-white/10"
+                  onClick={() => setOpen(false)}
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/sign-up"
+                  className="mt-1 rounded-xl bg-blue-600 px-4 py-3 text-center font-semibold text-white hover:bg-blue-500"
+                  onClick={() => setOpen(false)}
+                >
+                  Get started
+                </Link>
+              </>
+            )}
           </nav>
         </div>
       ) : null}
