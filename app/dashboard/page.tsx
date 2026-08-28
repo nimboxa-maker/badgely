@@ -1,6 +1,4 @@
 import { redirect } from "next/navigation";
-import { signOut } from "@/app/auth/actions";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 
@@ -22,18 +20,12 @@ export default async function DashboardPage() {
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">Dashboard</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-            Welcome{profile?.display_name ? `, ${profile.display_name}` : ""}
-          </h1>
-          <p className="mt-2 text-slate-600">Your saved certifications, career paths, and study plans will appear here.</p>
-        </div>
-
-        <form action={signOut}>
-          <Button type="submit" variant="secondary">Sign out</Button>
-        </form>
+      <div className="mb-8">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">Dashboard</p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+          Welcome{profile?.display_name ? `, ${profile.display_name}` : ""}
+        </h1>
+        <p className="mt-2 text-slate-600">Your saved certifications, career paths, and study plans will appear here.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
