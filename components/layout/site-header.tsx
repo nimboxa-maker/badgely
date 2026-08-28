@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Award } from "lucide-react";
+import { signOut } from "@/app/auth/actions";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { createClient } from "@/lib/supabase/server";
 
 const links = [
   { href: "/certifications", label: "Certifications" },
@@ -8,7 +10,13 @@ const links = [
   { href: "/career-paths", label: "Career Paths" },
 ];
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const isAuthenticated = Boolean(user);
+
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -36,15 +44,42 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Link href="/sign-in" className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-200 hover:text-white">
-            Sign in
-          </Link>
-          <Link href="/sign-up" className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-500">
-            Get started
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link
+                href="/dashboard"
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-200 hover:text-white"
+              >
+                Dashboard
+              </Link>
+              <form action={signOut}>
+                <button
+                  type="submit"
+                  className="rounded-xl border border-white/15 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
+                >
+                  Sign out
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/sign-in"
+                className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-200 hover:text-white"
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/sign-up"
+                className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-500"
+              >
+                Get started
+              </Link>
+            </>
+          )}
         </div>
 
-        <MobileNav />
+        <MobileNav isAuthenticated={isAuthenticated} />
       </div>
     </header>
   );
