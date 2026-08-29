@@ -96,3 +96,51 @@ export async function updateExamDomain(formData: FormData) {
   revalidatePath("/certifications");
   redirect("/admin/exam-domains");
 }
+
+export async function deleteExamDomain(formData: FormData) {
+  const id = examDomainIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Unable to delete the exam domain.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: domain, error: domainError } = await supabase
+    .from("exam_domains")
+    .select("id, certification_id")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (domainError) {
+    throw new Error("Unable to delete the exam domain.");
+  }
+
+  if (!domain) {
+    throw new Error("Exam domain not found.");
+  }
+
+  const { data: certification } = await supabase
+    .from("certifications")
+    .select("slug")
+    .eq("id", domain.certification_id)
+    .maybeSingle();
+
+  const { data: deleted, error: deleteError } = await supabase
+    .from("exam_domains")
+    .delete()
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (deleteError || !deleted) {
+    throw new Error("Unable to delete the exam domain.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/exam-domains");
+  revalidatePath("/certifications");
+
+  if (certification?.slug) {
+    revalidatePath(`/certifications/${certification.slug}`);
+  }
+}
