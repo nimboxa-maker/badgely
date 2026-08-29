@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
+import { DeleteExamButton } from "@/app/admin/exams/delete-exam-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -186,71 +187,73 @@ export default async function AdminExamsPage({ searchParams }: AdminExamsPagePro
 
       {exams.length ? (
         <section className="grid gap-4 md:grid-cols-2" aria-label="Exam records">
-          {exams.map((exam) => (
-            <Card key={exam.id}>
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h2 className="text-lg font-bold text-slate-950">
-                    {exam.exam_name || exam.exam_code || "Unnamed exam"}
-                  </h2>
-                  <p className="mt-1 text-sm text-slate-500">
-                    {exam.exam_code || "No exam code"}
-                  </p>
-                </div>
-                {exam.certifications ? <Badge>{exam.certifications.status}</Badge> : null}
-              </div>
+          {exams.map((exam) => {
+            const examLabel = exam.exam_name || exam.exam_code || "this exam";
 
-              <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
-                <div className="sm:col-span-2">
-                  <dt className="font-semibold text-slate-500">Certification</dt>
-                  <dd className="mt-1 text-slate-900">
-                    {exam.certifications
-                      ? `${exam.certifications.providers?.name ?? "Unknown provider"} · ${exam.certifications.name}`
-                      : "Certification unavailable"}
-                  </dd>
+            return (
+              <Card key={exam.id}>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h2 className="text-lg font-bold text-slate-950">
+                      {exam.exam_name || exam.exam_code || "Unnamed exam"}
+                    </h2>
+                    <p className="mt-1 text-sm text-slate-500">
+                      {exam.exam_code || "No exam code"}
+                    </p>
+                  </div>
+                  {exam.certifications ? <Badge>{exam.certifications.status}</Badge> : null}
                 </div>
-                <div>
-                  <dt className="font-semibold text-slate-500">Duration</dt>
-                  <dd className="mt-1 text-slate-900">
-                    {exam.duration_minutes ? `${exam.duration_minutes} minutes` : "Not set"}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-slate-500">Questions</dt>
-                  <dd className="mt-1 text-slate-900">{exam.question_count_text || "Not set"}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-slate-500">Delivery</dt>
-                  <dd className="mt-1 text-slate-900">{exam.delivery_method || "Not set"}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-slate-500">Price</dt>
-                  <dd className="mt-1 text-slate-900">{exam.price_text || "Not set"}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-slate-500">Number of exams</dt>
-                  <dd className="mt-1 text-slate-900">{exam.number_of_exams ?? "Not set"}</dd>
-                </div>
-                <div>
-                  <dt className="font-semibold text-slate-500">Last verified</dt>
-                  <dd className="mt-1 text-slate-900">{verifiedLabel(exam.last_verified_date)}</dd>
-                </div>
-              </dl>
 
-              <div className="mt-5 flex flex-wrap items-center gap-3">
-                <Link
-                  href={`/admin/exams/${exam.id}/edit`}
-                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-                >
-                  <Pencil className="size-4" aria-hidden="true" />
-                  Edit exam
-                </Link>
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
-              </div>
-            </Card>
-          ))}
+                <dl className="mt-5 grid gap-3 text-sm sm:grid-cols-2">
+                  <div className="sm:col-span-2">
+                    <dt className="font-semibold text-slate-500">Certification</dt>
+                    <dd className="mt-1 text-slate-900">
+                      {exam.certifications
+                        ? `${exam.certifications.providers?.name ?? "Unknown provider"} · ${exam.certifications.name}`
+                        : "Certification unavailable"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-500">Duration</dt>
+                    <dd className="mt-1 text-slate-900">
+                      {exam.duration_minutes ? `${exam.duration_minutes} minutes` : "Not set"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-500">Questions</dt>
+                    <dd className="mt-1 text-slate-900">{exam.question_count_text || "Not set"}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-500">Delivery</dt>
+                    <dd className="mt-1 text-slate-900">{exam.delivery_method || "Not set"}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-500">Price</dt>
+                    <dd className="mt-1 text-slate-900">{exam.price_text || "Not set"}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-500">Number of exams</dt>
+                    <dd className="mt-1 text-slate-900">{exam.number_of_exams ?? "Not set"}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-500">Last verified</dt>
+                    <dd className="mt-1 text-slate-900">{verifiedLabel(exam.last_verified_date)}</dd>
+                  </div>
+                </dl>
+
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <Link
+                    href={`/admin/exams/${exam.id}/edit`}
+                    className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                  >
+                    <Pencil className="size-4" aria-hidden="true" />
+                    Edit exam
+                  </Link>
+                  <DeleteExamButton examId={exam.id} examLabel={examLabel} />
+                </div>
+              </Card>
+            );
+          })}
         </section>
       ) : (
         <Card>
