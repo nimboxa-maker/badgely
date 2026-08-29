@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Archive, ArrowLeft, Pencil, Plus, RotateCcw, Search } from "lucide-react";
 import { setProviderActive } from "@/app/admin/providers/actions";
+import { DeleteProviderButton } from "@/app/admin/providers/delete-provider-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -194,9 +195,12 @@ export default async function AdminProvidersPage({
                   </button>
                 </form>
 
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
+                {!provider.active ? (
+                  <DeleteProviderButton
+                    providerId={provider.id}
+                    providerName={provider.name}
+                  />
+                ) : null}
               </div>
             </Card>
           ))}
