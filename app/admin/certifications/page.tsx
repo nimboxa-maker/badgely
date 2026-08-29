@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
 import { setCertificationStatus } from "@/app/admin/certifications/actions";
+import { DeleteCertificationButton } from "@/app/admin/certifications/delete-certification-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -255,6 +256,12 @@ export default async function AdminCertificationsPage({
                     <Pencil className="size-4" aria-hidden="true" />
                     Edit certification
                   </Link>
+                  {certification.status === "Retired" ? (
+                    <DeleteCertificationButton
+                      certificationId={certification.id}
+                      certificationName={certification.name}
+                    />
+                  ) : null}
                 </div>
 
                 <form action={setCertificationStatus} className="flex flex-wrap items-end gap-3">
@@ -278,10 +285,6 @@ export default async function AdminCertificationsPage({
                     Update status
                   </button>
                 </form>
-
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
               </div>
             </Card>
           ))}
