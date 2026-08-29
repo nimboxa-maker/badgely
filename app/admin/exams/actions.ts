@@ -40,8 +40,10 @@ const examSchema = z.object({
   lastVerifiedDate: optionalDate,
 });
 
-export async function createExam(formData: FormData) {
-  const parsed = examSchema.safeParse({
+const examIdSchema = z.string().uuid();
+
+function examFormValues(formData: FormData) {
+  return {
     certificationId: formData.get("certificationId"),
     examName: formData.get("examName"),
     examCode: formData.get("examCode"),
@@ -53,26 +55,34 @@ export async function createExam(formData: FormData) {
     registrationUrl: formData.get("registrationUrl"),
     notes: formData.get("notes"),
     lastVerifiedDate: formData.get("lastVerifiedDate"),
-  });
+  };
+}
+
+function examPayload(parsed: z.infer<typeof examSchema>) {
+  return {
+    certification_id: parsed.certificationId,
+    exam_name: parsed.examName,
+    exam_code: parsed.examCode,
+    number_of_exams: parsed.numberOfExams,
+    duration_minutes: parsed.durationMinutes,
+    question_count_text: parsed.questionCountText,
+    delivery_method: parsed.deliveryMethod,
+    price_text: parsed.priceText,
+    registration_url: parsed.registrationUrl,
+    notes: parsed.notes,
+    last_verified_date: parsed.lastVerifiedDate,
+  };
+}
+
+export async function createExam(formData: FormData) {
+  const parsed = examSchema.safeParse(examFormValues(formData));
 
   if (!parsed.success) {
     throw new Error("Please check the exam details and try again.");
   }
 
   const { supabase } = await requireAdmin();
-  const { error } = await supabase.from("exams").insert({
-    certification_id: parsed.data.certificationId,
-    exam_name: parsed.data.examName,
-    exam_code: parsed.data.examCode,
-    number_of_exams: parsed.data.numberOfExams,
-    duration_minutes: parsed.data.durationMinutes,
-    question_count_text: parsed.data.questionCountText,
-    delivery_method: parsed.data.deliveryMethod,
-    price_text: parsed.data.priceText,
-    registration_url: parsed.data.registrationUrl,
-    notes: parsed.data.notes,
-    last_verified_date: parsed.data.lastVerifiedDate,
-  });
+  const { error } = await supabase.from("exams").insert(examPayload(parsed.data));
 
   if (error) {
     throw new Error("Unable to create the exam.");
@@ -80,6 +90,37 @@ export async function createExam(formData: FormData) {
 
   revalidatePath("/admin");
   revalidatePath("/admin/exams");
+  revalidatePath("/certifications");
+  redirect("/admin/exams");
+}
+
+export async function updateExam(formData: FormData) {
+  const id = examIdSchema.safeParse(formData.get("id"));
+  const parsed = examSchema.safeParse(examFormValues(formData));
+
+  if (!id.success || !parsed.success) {
+    throw new Error("Please check the exam details and try again.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data, error } = await supabase
+    .from("exams")
+    .update(examPayload(parsed.data))
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    throw new Error("Unable to update the exam.");
+  }
+
+  if (!data) {
+    throw new Error("Exam not found.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/exams");
+  revalidatePath(`/admin/exams/${id.data}/edit`);
   revalidatePath("/certifications");
   redirect("/admin/exams");
 }
