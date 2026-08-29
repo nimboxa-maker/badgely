@@ -16,7 +16,7 @@ const optionalText = (max: number) =>
     z.string().trim().max(max).nullable(),
   );
 
-const createProviderSchema = z.object({
+const providerFieldsSchema = z.object({
   name: z.string().trim().min(2).max(120),
   slug: z
     .string()
@@ -35,8 +35,12 @@ const createProviderSchema = z.object({
   active: z.boolean(),
 });
 
-export async function createProvider(formData: FormData) {
-  const parsed = createProviderSchema.safeParse({
+const updateProviderSchema = providerFieldsSchema.extend({
+  id: z.string().uuid(),
+});
+
+function providerFormValues(formData: FormData) {
+  return {
     name: formData.get("name"),
     slug: formData.get("slug"),
     websiteUrl: formData.get("websiteUrl"),
@@ -44,7 +48,11 @@ export async function createProvider(formData: FormData) {
     providerType: formData.get("providerType"),
     accentColor: formData.get("accentColor"),
     active: formData.get("active") === "on",
-  });
+  };
+}
+
+export async function createProvider(formData: FormData) {
+  const parsed = providerFieldsSchema.safeParse(providerFormValues(formData));
 
   if (!parsed.success) {
     throw new Error("Please check the provider details and try again.");
@@ -71,5 +79,43 @@ export async function createProvider(formData: FormData) {
 
   revalidatePath("/admin");
   revalidatePath("/admin/providers");
+  redirect("/admin/providers");
+}
+
+export async function updateProvider(formData: FormData) {
+  const parsed = updateProviderSchema.safeParse({
+    id: formData.get("id"),
+    ...providerFormValues(formData),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Please check the provider details and try again.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { error } = await supabase
+    .from("providers")
+    .update({
+      name: parsed.data.name,
+      slug: parsed.data.slug,
+      website_url: parsed.data.websiteUrl,
+      description: parsed.data.description,
+      provider_type: parsed.data.providerType,
+      accent_color: parsed.data.accentColor,
+      active: parsed.data.active,
+    })
+    .eq("id", parsed.data.id);
+
+  if (error) {
+    if (error.code === "23505") {
+      throw new Error("A provider with that name or slug already exists.");
+    }
+
+    throw new Error("Unable to update the provider.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/providers");
+  revalidatePath(`/admin/providers/${parsed.data.id}/edit`);
   redirect("/admin/providers");
 }
