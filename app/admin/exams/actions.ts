@@ -124,3 +124,51 @@ export async function updateExam(formData: FormData) {
   revalidatePath("/certifications");
   redirect("/admin/exams");
 }
+
+export async function deleteExam(formData: FormData) {
+  const id = examIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Unable to delete the exam.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: exam, error: examError } = await supabase
+    .from("exams")
+    .select("id, certification_id")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (examError) {
+    throw new Error("Unable to delete the exam.");
+  }
+
+  if (!exam) {
+    throw new Error("Exam not found.");
+  }
+
+  const { data: certification } = await supabase
+    .from("certifications")
+    .select("slug")
+    .eq("id", exam.certification_id)
+    .maybeSingle();
+
+  const { data: deleted, error: deleteError } = await supabase
+    .from("exams")
+    .delete()
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (deleteError || !deleted) {
+    throw new Error("Unable to delete the exam.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/exams");
+  revalidatePath("/certifications");
+
+  if (certification?.slug) {
+    revalidatePath(`/certifications/${certification.slug}`);
+  }
+}
