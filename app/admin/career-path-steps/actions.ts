@@ -165,3 +165,53 @@ export async function updateCareerPathStep(formData: FormData) {
 
   redirect("/admin/career-path-steps");
 }
+
+export async function deleteCareerPathStep(formData: FormData) {
+  const id = careerPathStepIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Invalid career path step.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: existingStep, error: existingStepError } = await supabase
+    .from("career_path_steps")
+    .select("career_path_id, career_paths(slug)")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (existingStepError) {
+    throw new Error("Unable to verify the career path step.");
+  }
+
+  if (!existingStep) {
+    throw new Error("Career path step not found.");
+  }
+
+  const { data: deletedStep, error: deleteError } = await supabase
+    .from("career_path_steps")
+    .delete()
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (deleteError) {
+    throw new Error("Unable to delete the career path step.");
+  }
+
+  if (!deletedStep) {
+    throw new Error("Career path step was not deleted.");
+  }
+
+  const relatedPath = Array.isArray(existingStep.career_paths)
+    ? existingStep.career_paths[0]
+    : existingStep.career_paths;
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/career-path-steps");
+  revalidatePath("/career-paths");
+
+  if (relatedPath?.slug) {
+    revalidatePath(`/career-paths/${relatedPath.slug}`);
+  }
+}
