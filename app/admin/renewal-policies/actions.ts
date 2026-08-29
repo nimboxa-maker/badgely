@@ -30,29 +30,41 @@ const renewalPolicySchema = z.object({
   lastVerifiedDate: optionalDate,
 });
 
-export async function createRenewalPolicy(formData: FormData) {
-  const parsed = renewalPolicySchema.safeParse({
+const renewalPolicyIdSchema = z.string().uuid();
+
+function renewalPolicyFormValues(formData: FormData) {
+  return {
     certificationId: formData.get("certificationId"),
     validityPeriodText: formData.get("validityPeriodText"),
     renewalMethod: formData.get("renewalMethod"),
     officialRenewalUrl: formData.get("officialRenewalUrl"),
     notes: formData.get("notes"),
     lastVerifiedDate: formData.get("lastVerifiedDate"),
-  });
+  };
+}
+
+function renewalPolicyPayload(parsed: z.infer<typeof renewalPolicySchema>) {
+  return {
+    certification_id: parsed.certificationId,
+    validity_period_text: parsed.validityPeriodText,
+    renewal_method: parsed.renewalMethod,
+    official_renewal_url: parsed.officialRenewalUrl,
+    notes: parsed.notes,
+    last_verified_date: parsed.lastVerifiedDate,
+  };
+}
+
+export async function createRenewalPolicy(formData: FormData) {
+  const parsed = renewalPolicySchema.safeParse(renewalPolicyFormValues(formData));
 
   if (!parsed.success) {
     throw new Error("Please check the renewal policy details and try again.");
   }
 
   const { supabase } = await requireAdmin();
-  const { error } = await supabase.from("renewal_policies").insert({
-    certification_id: parsed.data.certificationId,
-    validity_period_text: parsed.data.validityPeriodText,
-    renewal_method: parsed.data.renewalMethod,
-    official_renewal_url: parsed.data.officialRenewalUrl,
-    notes: parsed.data.notes,
-    last_verified_date: parsed.data.lastVerifiedDate,
-  });
+  const { error } = await supabase
+    .from("renewal_policies")
+    .insert(renewalPolicyPayload(parsed.data));
 
   if (error) {
     if (error.code === "23505") {
@@ -64,6 +76,41 @@ export async function createRenewalPolicy(formData: FormData) {
 
   revalidatePath("/admin");
   revalidatePath("/admin/renewal-policies");
+  revalidatePath("/certifications");
+  redirect("/admin/renewal-policies");
+}
+
+export async function updateRenewalPolicy(formData: FormData) {
+  const id = renewalPolicyIdSchema.safeParse(formData.get("id"));
+  const parsed = renewalPolicySchema.safeParse(renewalPolicyFormValues(formData));
+
+  if (!id.success || !parsed.success) {
+    throw new Error("Please check the renewal policy details and try again.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data, error } = await supabase
+    .from("renewal_policies")
+    .update(renewalPolicyPayload(parsed.data))
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    if (error.code === "23505") {
+      throw new Error("That certification already has a renewal policy.");
+    }
+
+    throw new Error("Unable to update the renewal policy.");
+  }
+
+  if (!data) {
+    throw new Error("Renewal policy not found.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/renewal-policies");
+  revalidatePath(`/admin/renewal-policies/${id.data}/edit`);
   revalidatePath("/certifications");
   redirect("/admin/renewal-policies");
 }
