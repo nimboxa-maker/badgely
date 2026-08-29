@@ -240,12 +240,42 @@ export async function deleteCertification(formData: FormData) {
     throw new Error("Retire the certification before deleting it.");
   }
 
-  const { error } = await supabase
+  const dependencyChecks = await Promise.all([
+    supabase.from("exams").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
+    supabase.from("exam_domains").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
+    supabase.from("renewal_policies").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
+    supabase.from("resources").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
+    supabase.from("career_path_steps").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
+    supabase
+      .from("certification_relations")
+      .select("id", { count: "exact", head: true })
+      .or(`source_certification_id.eq.${id.data},target_certification_id.eq.${id.data}`),
+    supabase
+      .from("user_saved_certifications")
+      .select("id", { count: "exact", head: true })
+      .eq("certification_id", id.data),
+    supabase
+      .from("user_study_plans")
+      .select("id", { count: "exact", head: true })
+      .eq("certification_id", id.data),
+  ]);
+
+  if (dependencyChecks.some((result) => result.error)) {
+    throw new Error("Unable to verify certification dependencies before deletion.");
+  }
+
+  if (dependencyChecks.some((result) => (result.count ?? 0) > 0)) {
+    throw new Error("Remove linked catalog and user records before deleting this certification.");
+  }
+
+  const { data: deleted, error: deleteError } = await supabase
     .from("certifications")
     .delete()
-    .eq("id", id.data);
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
 
-  if (error) {
+  if (deleteError || !deleted) {
     throw new Error("Unable to delete the certification.");
   }
 
