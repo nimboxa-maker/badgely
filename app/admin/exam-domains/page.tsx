@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
+import { DeleteExamDomainButton } from "@/app/admin/exam-domains/delete-exam-domain-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -208,9 +209,10 @@ export default async function AdminExamDomainsPage({
                   <Pencil className="size-4" aria-hidden="true" />
                   Edit exam domain
                 </Link>
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
+                <DeleteExamDomainButton
+                  examDomainId={domain.id}
+                  examDomainLabel={domain.domain_name}
+                />
               </div>
             </Card>
           ))}
