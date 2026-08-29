@@ -34,16 +34,20 @@ test("generated schedules never exceed the selected weekly study-hour limit", ()
   assert.equal(result.studyWeeks, 1);
   assert.ok(result.tasks.length > 1);
 
-  const weeklyTotals = new Map();
+  const weeklyTotalsInHundredths = new Map();
   for (const task of result.tasks) {
-    weeklyTotals.set(
+    const taskHundredths = Math.round(task.estimated_hours * 100);
+    weeklyTotalsInHundredths.set(
       task.week_number,
-      (weeklyTotals.get(task.week_number) ?? 0) + task.estimated_hours,
+      (weeklyTotalsInHundredths.get(task.week_number) ?? 0) + taskHundredths,
     );
   }
 
-  for (const total of weeklyTotals.values()) {
-    assert.ok(total <= 1, `Expected weekly total <= 1 hour, received ${total}`);
+  for (const totalHundredths of weeklyTotalsInHundredths.values()) {
+    assert.ok(
+      totalHundredths <= 100,
+      `Expected weekly total <= 1 hour, received ${totalHundredths / 100}`,
+    );
   }
 });
 
