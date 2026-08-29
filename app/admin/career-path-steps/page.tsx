@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
+import { DeleteCareerPathStepButton } from "@/app/admin/career-path-steps/delete-career-path-step-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -221,9 +222,7 @@ export default async function AdminCareerPathStepsPage({
                   <Pencil className="size-4" aria-hidden="true" />
                   Edit career path step
                 </Link>
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
+                <DeleteCareerPathStepButton stepId={step.id} stepTitle={step.title} />
               </div>
             </Card>
           ))}
