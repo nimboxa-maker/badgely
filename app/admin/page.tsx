@@ -9,7 +9,7 @@ const catalogAreas = [
   { name: "Exams", description: "Manage exam details, registration links, and verification dates.", href: "/admin/exams" },
   { name: "Exam domains", description: "Manage domain summaries, weights, and display order.", href: "/admin/exam-domains" },
   { name: "Renewal policies", description: "Manage renewal guidance, official sources, and verification dates.", href: "/admin/renewal-policies" },
-  { name: "Resources", description: "Manage official and community learning resources." },
+  { name: "Resources", description: "Manage official and community learning resources.", href: "/admin/resources" },
   { name: "Career paths", description: "Manage career-roadmap pages and SEO metadata." },
   { name: "Career path steps", description: "Manage ordered certifications and practical activities." },
   { name: "Certification relations", description: "Manage before, after, alternative, and specialization links." },
