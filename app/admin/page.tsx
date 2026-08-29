@@ -12,7 +12,7 @@ const catalogAreas = [
   { name: "Resources", description: "Manage official and community learning resources.", href: "/admin/resources" },
   { name: "Career paths", description: "Manage career-roadmap pages and SEO metadata.", href: "/admin/career-paths" },
   { name: "Career path steps", description: "Manage ordered certifications and practical activities.", href: "/admin/career-path-steps" },
-  { name: "Certification relations", description: "Manage before, after, alternative, and specialization links." },
+  { name: "Certification relations", description: "Manage before, after, alternative, and specialization links.", href: "/admin/certification-relations" },
 ] as const;
 
 export default async function AdminPage() {
