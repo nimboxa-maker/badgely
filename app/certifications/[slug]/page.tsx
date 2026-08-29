@@ -205,14 +205,23 @@ export default async function CertificationDetailPage({ params }: CertificationP
               Sign in to save
             </Link>
           )}
-          <button
-            type="button"
-            disabled
-            title="Study-plan creation will be enabled in Milestone 6."
-            className="min-h-11 rounded-xl border border-white/20 px-4 py-2.5 font-semibold text-white opacity-60"
-          >
-            Create study plan
-          </button>
+          {certification.status === "Active" ? (
+            <Link
+              href={`/study-plans/new?certification=${certification.slug}`}
+              className="inline-flex min-h-11 items-center rounded-xl border border-white/20 px-4 py-2.5 font-semibold text-white hover:bg-white/10"
+            >
+              Create study plan
+            </Link>
+          ) : (
+            <button
+              type="button"
+              disabled
+              title="Study plans are only available for active certifications."
+              className="min-h-11 rounded-xl border border-white/20 px-4 py-2.5 font-semibold text-white opacity-60"
+            >
+              Create study plan
+            </button>
+          )}
           {certification.official_certification_url ? (
             <a
               href={certification.official_certification_url}
