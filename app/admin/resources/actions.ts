@@ -47,6 +47,8 @@ const resourceSchema = z.object({
   lastVerifiedDate: optionalDate,
 });
 
+const resourceIdSchema = z.string().uuid();
+
 function resourceFormValues(formData: FormData) {
   return {
     certificationId: formData.get("certificationId"),
@@ -93,6 +95,37 @@ export async function createResource(formData: FormData) {
 
   revalidatePath("/admin");
   revalidatePath("/admin/resources");
+  revalidatePath("/certifications");
+  redirect("/admin/resources");
+}
+
+export async function updateResource(formData: FormData) {
+  const id = resourceIdSchema.safeParse(formData.get("id"));
+  const parsed = resourceSchema.safeParse(resourceFormValues(formData));
+
+  if (!id.success || !parsed.success) {
+    throw new Error("Please check the resource details and try again.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data, error } = await supabase
+    .from("resources")
+    .update(resourcePayload(parsed.data))
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    throw new Error("Unable to update the resource.");
+  }
+
+  if (!data) {
+    throw new Error("Resource not found.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/resources");
+  revalidatePath(`/admin/resources/${id.data}/edit`);
   revalidatePath("/certifications");
   redirect("/admin/resources");
 }
