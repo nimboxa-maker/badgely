@@ -44,6 +44,10 @@ const providerStatusSchema = z.object({
   active: z.enum(["true", "false"]).transform((value) => value === "true"),
 });
 
+const providerDeleteSchema = z.object({
+  id: z.string().uuid(),
+});
+
 function providerFormValues(formData: FormData) {
   return {
     name: formData.get("name"),
@@ -148,4 +152,54 @@ export async function setProviderActive(formData: FormData) {
   revalidatePath("/admin");
   revalidatePath("/admin/providers");
   revalidatePath(`/admin/providers/${parsed.data.id}/edit`);
+}
+
+export async function deleteProvider(formData: FormData) {
+  const parsed = providerDeleteSchema.safeParse({
+    id: formData.get("id"),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Unable to delete the provider.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: provider, error: providerError } = await supabase
+    .from("providers")
+    .select("id, active")
+    .eq("id", parsed.data.id)
+    .maybeSingle();
+
+  if (providerError || !provider) {
+    throw new Error("Provider not found.");
+  }
+
+  if (provider.active) {
+    throw new Error("Archive the provider before deleting it.");
+  }
+
+  const { count, error: certificationError } = await supabase
+    .from("certifications")
+    .select("id", { count: "exact", head: true })
+    .eq("provider_id", parsed.data.id);
+
+  if (certificationError) {
+    throw new Error("Unable to verify whether the provider is in use.");
+  }
+
+  if ((count ?? 0) > 0) {
+    throw new Error("This provider cannot be deleted while certifications are linked to it.");
+  }
+
+  const { error } = await supabase
+    .from("providers")
+    .delete()
+    .eq("id", parsed.data.id);
+
+  if (error) {
+    throw new Error("Unable to delete the provider.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/providers");
 }
