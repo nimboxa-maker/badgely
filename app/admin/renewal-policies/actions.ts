@@ -114,3 +114,51 @@ export async function updateRenewalPolicy(formData: FormData) {
   revalidatePath("/certifications");
   redirect("/admin/renewal-policies");
 }
+
+export async function deleteRenewalPolicy(formData: FormData) {
+  const id = renewalPolicyIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Unable to delete the renewal policy.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: policy, error: policyError } = await supabase
+    .from("renewal_policies")
+    .select("id, certification_id")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (policyError) {
+    throw new Error("Unable to delete the renewal policy.");
+  }
+
+  if (!policy) {
+    throw new Error("Renewal policy not found.");
+  }
+
+  const { data: certification } = await supabase
+    .from("certifications")
+    .select("slug")
+    .eq("id", policy.certification_id)
+    .maybeSingle();
+
+  const { data: deleted, error: deleteError } = await supabase
+    .from("renewal_policies")
+    .delete()
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (deleteError || !deleted) {
+    throw new Error("Unable to delete the renewal policy.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/renewal-policies");
+  revalidatePath("/certifications");
+
+  if (certification?.slug) {
+    revalidatePath(`/certifications/${certification.slug}`);
+  }
+}
