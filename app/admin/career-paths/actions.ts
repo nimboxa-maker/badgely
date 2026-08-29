@@ -120,3 +120,47 @@ export async function updateCareerPath(formData: FormData) {
   revalidatePath(`/career-paths/${parsed.data.slug}`);
   redirect("/admin/career-paths");
 }
+
+export async function deleteCareerPath(formData: FormData) {
+  const id = careerPathIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Invalid career path.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: existing, error: lookupError } = await supabase
+    .from("career_paths")
+    .select("id, slug")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (lookupError) {
+    throw new Error("Unable to verify the career path before deletion.");
+  }
+
+  if (!existing) {
+    throw new Error("Career path not found.");
+  }
+
+  const { data: deleted, error: deleteError } = await supabase
+    .from("career_paths")
+    .delete()
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (deleteError) {
+    throw new Error("Unable to delete the career path.");
+  }
+
+  if (!deleted) {
+    throw new Error("Career path deletion could not be verified.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/career-paths");
+  revalidatePath("/admin/career-path-steps");
+  revalidatePath("/career-paths");
+  revalidatePath(`/career-paths/${existing.slug}`);
+}
