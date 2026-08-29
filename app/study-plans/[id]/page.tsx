@@ -11,6 +11,7 @@ import {
 import { toggleStudyTaskCompletion } from "@/app/study-plans/actions";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { EditStudyTaskForm } from "@/features/study-plans/edit-task-form";
 import { createClient } from "@/lib/supabase/server";
 
 type StudyPlanDetailPageProps = {
@@ -298,6 +299,13 @@ export default async function StudyPlanDetailPage({
                               {task.completed ? "Mark incomplete" : "Mark complete"}
                             </button>
                           </form>
+
+                          <EditStudyTaskForm
+                            studyPlanId={studyPlan.id}
+                            studyWeeks={studyPlan.study_weeks}
+                            weeklyStudyHours={studyPlan.weekly_study_hours}
+                            task={task}
+                          />
                         </div>
                       </div>
                     </Card>
@@ -315,7 +323,7 @@ export default async function StudyPlanDetailPage({
 
       <Card className="mt-10 border-dashed">
         <p className="text-sm leading-6 text-slate-600">
-          Task editing, pause/resume, completion, and plan deletion controls are being connected in the next Milestone 6 steps.
+          Pause/resume, completion, and plan deletion controls are being connected in the next Milestone 6 steps.
         </p>
       </Card>
     </main>
