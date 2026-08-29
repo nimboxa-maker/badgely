@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
 
 const catalogAreas = [
-  { name: "Providers", description: "Manage certification providers and visibility." },
+  { name: "Providers", description: "Manage certification providers and visibility.", href: "/admin/providers" },
   { name: "Certifications", description: "Manage certification facts, status, SEO, and featured records." },
   { name: "Exams", description: "Manage exam details, registration links, and verification dates." },
   { name: "Exam domains", description: "Manage domain summaries, weights, and display order." },
@@ -57,7 +57,7 @@ export default async function AdminPage() {
           <p className="mt-3 text-sm font-semibold text-slate-500">Catalog areas</p>
           <p className="mt-1 text-xl font-bold text-slate-950">{catalogAreas.length}</p>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            CRUD screens will be added incrementally during Milestone 7.
+            CRUD screens are being added incrementally during Milestone 7.
           </p>
         </Card>
 
@@ -66,7 +66,7 @@ export default async function AdminPage() {
           <p className="mt-3 text-sm font-semibold text-slate-500">Needs Review</p>
           <p className="mt-1 text-xl font-bold text-slate-950">90-day review workflow</p>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Stale certification, exam, renewal, and resource records will be surfaced here next.
+            Stale certification, exam, renewal, and resource records will be surfaced here later in this milestone.
           </p>
         </Card>
       </section>
@@ -86,9 +86,19 @@ export default async function AdminPage() {
             <Card key={area.name}>
               <p className="text-lg font-bold text-slate-950">{area.name}</p>
               <p className="mt-2 text-sm leading-6 text-slate-600">{area.description}</p>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                Management screen coming in Milestone 7
-              </p>
+              {"href" in area ? (
+                <Link
+                  href={area.href}
+                  className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-600"
+                >
+                  Manage {area.name.toLowerCase()}
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              ) : (
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                  Management screen coming in Milestone 7
+                </p>
+              )}
             </Card>
           ))}
         </div>
