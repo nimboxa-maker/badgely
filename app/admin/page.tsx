@@ -11,7 +11,7 @@ const catalogAreas = [
   { name: "Renewal policies", description: "Manage renewal guidance, official sources, and verification dates.", href: "/admin/renewal-policies" },
   { name: "Resources", description: "Manage official and community learning resources.", href: "/admin/resources" },
   { name: "Career paths", description: "Manage career-roadmap pages and SEO metadata.", href: "/admin/career-paths" },
-  { name: "Career path steps", description: "Manage ordered certifications and practical activities." },
+  { name: "Career path steps", description: "Manage ordered certifications and practical activities.", href: "/admin/career-path-steps" },
   { name: "Certification relations", description: "Manage before, after, alternative, and specialization links." },
 ] as const;
 
