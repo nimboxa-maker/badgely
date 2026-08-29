@@ -42,15 +42,12 @@ export async function toggleSavedCareerPath(formData: FormData) {
       throw new Error("Unable to remove this saved career path.");
     }
   } else {
-    const { error } = await supabase.from("user_saved_career_paths").upsert(
-      {
-        user_id: user.id,
-        career_path_id: parsed.data.careerPathId,
-      },
-      { onConflict: "user_id,career_path_id" },
-    );
+    const { error } = await supabase.from("user_saved_career_paths").insert({
+      user_id: user.id,
+      career_path_id: parsed.data.careerPathId,
+    });
 
-    if (error) {
+    if (error && error.code !== "23505") {
       throw new Error("Unable to save this career path.");
     }
   }
