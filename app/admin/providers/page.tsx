@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
+import { Archive, ArrowLeft, Pencil, Plus, RotateCcw, Search } from "lucide-react";
+import { setProviderActive } from "@/app/admin/providers/actions";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -164,7 +165,7 @@ export default async function AdminProvidersPage({
                 </div>
               </dl>
 
-              <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <Link
                   href={`/admin/providers/${provider.id}/edit`}
                   className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
@@ -172,8 +173,29 @@ export default async function AdminProvidersPage({
                   <Pencil className="size-4" aria-hidden="true" />
                   Edit provider
                 </Link>
+
+                <form action={setProviderActive}>
+                  <input type="hidden" name="id" value={provider.id} />
+                  <input
+                    type="hidden"
+                    name="active"
+                    value={provider.active ? "false" : "true"}
+                  />
+                  <button
+                    type="submit"
+                    className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                  >
+                    {provider.active ? (
+                      <Archive className="size-4" aria-hidden="true" />
+                    ) : (
+                      <RotateCcw className="size-4" aria-hidden="true" />
+                    )}
+                    {provider.active ? "Archive" : "Restore"}
+                  </button>
+                </form>
+
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Archive and delete controls are next
+                  Delete control is next
                 </p>
               </div>
             </Card>
