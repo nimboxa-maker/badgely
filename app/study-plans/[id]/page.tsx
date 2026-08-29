@@ -11,6 +11,7 @@ import {
 import { toggleStudyTaskCompletion } from "@/app/study-plans/actions";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { DeleteStudyPlanForm } from "@/features/study-plans/delete-plan-form";
 import { EditStudyTaskForm } from "@/features/study-plans/edit-task-form";
 import { PlanStatusControls } from "@/features/study-plans/plan-status-controls";
 import { createClient } from "@/lib/supabase/server";
@@ -341,11 +342,21 @@ export default async function StudyPlanDetailPage({
         </div>
       </section>
 
-      <Card className="mt-10 border-dashed">
-        <p className="text-sm leading-6 text-slate-600">
-          Plan deletion with confirmation is being connected in the next Milestone 6 step.
-        </p>
-      </Card>
+      <section className="mt-10" aria-labelledby="delete-plan-heading">
+        <Card className="border-red-200 bg-red-50/40">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 id="delete-plan-heading" className="text-lg font-bold text-slate-950">
+                Delete study plan
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                Permanently remove this study plan and all of its tasks. This action cannot be undone.
+              </p>
+            </div>
+            <DeleteStudyPlanForm studyPlanId={studyPlan.id} />
+          </div>
+        </Card>
+      </section>
     </main>
   );
 }
