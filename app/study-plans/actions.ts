@@ -31,7 +31,7 @@ const updateStudyTaskSchema = z.object({
   title: z.string().trim().min(1).max(160),
   description: z.string().trim().max(2000),
   weekNumber: z.coerce.number().int().min(1).max(104),
-  estimatedHours: z.coerce.number().min(0.25).max(40),
+  estimatedHours: z.coerce.number().min(0.01).max(40),
   taskType: z.enum([
     "Read",
     "Lab",
