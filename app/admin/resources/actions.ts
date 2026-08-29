@@ -129,3 +129,57 @@ export async function updateResource(formData: FormData) {
   revalidatePath("/certifications");
   redirect("/admin/resources");
 }
+
+export async function deleteResource(formData: FormData) {
+  const id = resourceIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Invalid resource.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: existing, error: lookupError } = await supabase
+    .from("resources")
+    .select("id, certifications(slug)")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (lookupError) {
+    throw new Error("Unable to verify the resource before deletion.");
+  }
+
+  if (!existing) {
+    throw new Error("Resource not found.");
+  }
+
+  const { data: deleted, error: deleteError } = await supabase
+    .from("resources")
+    .delete()
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (deleteError) {
+    throw new Error("Unable to delete the resource.");
+  }
+
+  if (!deleted) {
+    throw new Error("Resource was not deleted.");
+  }
+
+  const certificationRelation = existing.certifications as
+    | { slug: string }
+    | { slug: string }[]
+    | null;
+  const certificationSlug = Array.isArray(certificationRelation)
+    ? certificationRelation[0]?.slug
+    : certificationRelation?.slug;
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/resources");
+  revalidatePath("/certifications");
+
+  if (certificationSlug) {
+    revalidatePath(`/certifications/${certificationSlug}`);
+  }
+}
