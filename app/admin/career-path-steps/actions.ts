@@ -27,6 +27,8 @@ const careerPathStepSchema = z.object({
   displayOrder: z.coerce.number().int().min(0).max(10000),
 });
 
+const careerPathStepIdSchema = z.string().uuid();
+
 function careerPathStepFormValues(formData: FormData) {
   return {
     careerPathId: formData.get("careerPathId"),
@@ -91,5 +93,75 @@ export async function createCareerPathStep(formData: FormData) {
   revalidatePath("/admin/career-path-steps");
   revalidatePath("/career-paths");
   revalidatePath(`/career-paths/${careerPath.slug}`);
+  redirect("/admin/career-path-steps");
+}
+
+export async function updateCareerPathStep(formData: FormData) {
+  const id = careerPathStepIdSchema.safeParse(formData.get("id"));
+  const parsed = careerPathStepSchema.safeParse(careerPathStepFormValues(formData));
+
+  if (!id.success || !parsed.success) {
+    throw new Error("Please check the career path step details and try again.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: existingStep, error: existingStepError } = await supabase
+    .from("career_path_steps")
+    .select("career_path_id")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (existingStepError) {
+    throw new Error("Unable to verify the career path step.");
+  }
+
+  if (!existingStep) {
+    throw new Error("Career path step not found.");
+  }
+
+  const pathIds = [...new Set([existingStep.career_path_id, parsed.data.careerPathId])];
+  const { data: careerPaths, error: careerPathsError } = await supabase
+    .from("career_paths")
+    .select("id, slug")
+    .in("id", pathIds);
+
+  if (careerPathsError) {
+    throw new Error("Unable to verify the selected career path.");
+  }
+
+  const selectedPath = careerPaths?.find((path) => path.id === parsed.data.careerPathId);
+
+  if (!selectedPath) {
+    throw new Error("Selected career path not found.");
+  }
+
+  const { data, error } = await supabase
+    .from("career_path_steps")
+    .update(careerPathStepPayload(parsed.data))
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    if (error.code === "23503") {
+      throw new Error("The selected career path or certification is no longer available.");
+    }
+
+    throw new Error("Unable to update the career path step.");
+  }
+
+  if (!data) {
+    throw new Error("Career path step not found.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/career-path-steps");
+  revalidatePath(`/admin/career-path-steps/${id.data}/edit`);
+  revalidatePath("/career-paths");
+
+  for (const path of careerPaths ?? []) {
+    revalidatePath(`/career-paths/${path.slug}`);
+  }
+
   redirect("/admin/career-path-steps");
 }
