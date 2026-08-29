@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ArrowRight, BookOpen, Route } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  BookOpenCheck,
+  CalendarDays,
+  Clock3,
+  Route,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import {
@@ -26,28 +33,39 @@ export default async function DashboardPage() {
     redirect("/sign-in?message=Please+sign+in+to+view+your+dashboard.");
   }
 
-  const [profileResult, savedCertificationsResult, savedCareerPathsResult] =
-    await Promise.all([
-      supabase
-        .from("profiles")
-        .select("display_name, role")
-        .eq("id", user.id)
-        .single(),
-      supabase
-        .from("user_saved_certifications")
-        .select(
-          "id, status, target_exam_date, saved_at, certifications(id, name, slug, category, level)",
-        )
-        .eq("user_id", user.id)
-        .order("saved_at", { ascending: false }),
-      supabase
-        .from("user_saved_career_paths")
-        .select(
-          "id, saved_at, career_paths(id, name, slug, target_role, audience_level)",
-        )
-        .eq("user_id", user.id)
-        .order("saved_at", { ascending: false }),
-    ]);
+  const [
+    profileResult,
+    savedCertificationsResult,
+    savedCareerPathsResult,
+    studyPlansResult,
+  ] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("display_name, role")
+      .eq("id", user.id)
+      .single(),
+    supabase
+      .from("user_saved_certifications")
+      .select(
+        "id, status, target_exam_date, saved_at, certifications(id, name, slug, category, level)",
+      )
+      .eq("user_id", user.id)
+      .order("saved_at", { ascending: false }),
+    supabase
+      .from("user_saved_career_paths")
+      .select(
+        "id, saved_at, career_paths(id, name, slug, target_role, audience_level)",
+      )
+      .eq("user_id", user.id)
+      .order("saved_at", { ascending: false }),
+    supabase
+      .from("user_study_plans")
+      .select(
+        "id, status, target_exam_date, weekly_study_hours, study_weeks, progress_percent, created_at, certifications(id, name, slug, category, level)",
+      )
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false }),
+  ]);
 
   if (savedCertificationsResult.error) {
     throw new Error("Unable to load your saved certifications.");
@@ -57,10 +75,36 @@ export default async function DashboardPage() {
     throw new Error("Unable to load your saved career paths.");
   }
 
+  if (studyPlansResult.error) {
+    throw new Error("Unable to load your study plans.");
+  }
+
   const profile = profileResult.data;
   const savedCertifications = savedCertificationsResult.data ?? [];
   const savedCareerPaths = savedCareerPathsResult.data ?? [];
-  const hasSavedItems = savedCertifications.length > 0 || savedCareerPaths.length > 0;
+  const studyPlans = studyPlansResult.data ?? [];
+  const studyPlanIds = studyPlans.map((plan) => plan.id);
+
+  const studyTasksResult = studyPlanIds.length
+    ? await supabase
+        .from("study_tasks")
+        .select(
+          "id, user_study_plan_id, title, task_type, week_number, estimated_hours, completed, display_order",
+        )
+        .in("user_study_plan_id", studyPlanIds)
+        .order("week_number", { ascending: true })
+        .order("display_order", { ascending: true })
+    : { data: [], error: null };
+
+  if (studyTasksResult.error) {
+    throw new Error("Unable to load your study-plan tasks.");
+  }
+
+  const studyTasks = studyTasksResult.data ?? [];
+  const hasDashboardItems =
+    savedCertifications.length > 0 ||
+    savedCareerPaths.length > 0 ||
+    studyPlans.length > 0;
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -72,7 +116,7 @@ export default async function DashboardPage() {
           Welcome{profile?.display_name ? `, ${profile.display_name}` : ""}
         </h1>
         <p className="mt-2 max-w-3xl text-slate-600">
-          Track the certifications and career paths you have saved. Study-plan progress arrives in the next milestone.
+          Track saved certifications, career paths, study-plan progress, and your next recommended task.
         </p>
       </div>
 
@@ -107,18 +151,26 @@ export default async function DashboardPage() {
 
         <Card>
           <p className="text-sm font-semibold text-slate-500">Study plans</p>
-          <p className="mt-2 text-3xl font-bold text-slate-950">—</p>
-          <p className="mt-3 text-sm text-slate-600">
-            Study-plan creation and progress tracking are part of Milestone 6.
+          <p className="mt-2 text-3xl font-bold text-slate-950">
+            {studyPlans.length}
           </p>
+          <Link
+            href="/study-plans/new"
+            className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-600"
+          >
+            Create a study plan
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
         </Card>
       </section>
 
-      {!hasSavedItems ? (
+      {!hasDashboardItems ? (
         <Card className="mt-8 border-dashed">
-          <h2 className="text-xl font-bold text-slate-950">Start building your Badgely dashboard</h2>
+          <h2 className="text-xl font-bold text-slate-950">
+            Start building your Badgely dashboard
+          </h2>
           <p className="mt-2 max-w-2xl leading-7 text-slate-600">
-            Save a certification or career path and it will appear here. You can then organize saved certifications by learning status.
+            Save a certification or career path, or create a study plan to start tracking your learning progress.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
@@ -137,7 +189,120 @@ export default async function DashboardPage() {
         </Card>
       ) : null}
 
-      <section className="mt-10" aria-labelledby="saved-certifications-heading">
+      <section className="mt-10" aria-labelledby="study-plans-heading">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+              <BookOpenCheck className="size-4" aria-hidden="true" />
+              Study progress
+            </div>
+            <h2
+              id="study-plans-heading"
+              className="mt-2 text-2xl font-bold tracking-tight text-slate-950"
+            >
+              Study plans
+            </h2>
+          </div>
+          <Link
+            href="/study-plans/new"
+            className="inline-flex min-h-10 items-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+          >
+            New study plan
+          </Link>
+        </div>
+
+        {studyPlans.length ? (
+          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+            {studyPlans.map((plan) => {
+              const planTasks = studyTasks.filter(
+                (task) => task.user_study_plan_id === plan.id,
+              );
+              const nextTask =
+                planTasks.find((task) => !task.completed) ?? null;
+
+              return (
+                <Card key={plan.id}>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <div className="flex flex-wrap gap-2">
+                        <Badge>{plan.status}</Badge>
+                        {plan.certifications?.category ? (
+                          <Badge>{plan.certifications.category}</Badge>
+                        ) : null}
+                      </div>
+                      <h3 className="mt-4 text-lg font-bold text-slate-950">
+                        {plan.certifications?.name ?? "Certification study plan"}
+                      </h3>
+                    </div>
+                    <span className="text-xl font-bold text-blue-700">
+                      {plan.progress_percent}%
+                    </span>
+                  </div>
+
+                  <div
+                    className="mt-4 h-2.5 overflow-hidden rounded-full bg-slate-200"
+                    role="progressbar"
+                    aria-label={`${plan.certifications?.name ?? "Study plan"} progress`}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={plan.progress_percent}
+                  >
+                    <div
+                      className="h-full rounded-full bg-blue-600"
+                      style={{ width: `${plan.progress_percent}%` }}
+                    />
+                  </div>
+
+                  <div className="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
+                    <div className="flex items-start gap-2">
+                      <CalendarDays className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                      <span>
+                        Target: {plan.target_exam_date ?? "Not set"}
+                      </span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <Clock3 className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+                      <span>
+                        {plan.weekly_study_hours} hrs/week · {plan.study_weeks} weeks
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 rounded-2xl bg-blue-50 px-4 py-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-blue-700">
+                      Next recommended task
+                    </p>
+                    <p className="mt-1 font-semibold text-slate-950">
+                      {nextTask?.title ?? "All generated tasks are complete"}
+                    </p>
+                    {nextTask ? (
+                      <p className="mt-1 text-sm text-slate-600">
+                        Week {nextTask.week_number} · {nextTask.task_type}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <Link
+                    href={`/study-plans/${plan.id}`}
+                    className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-600"
+                  >
+                    Open study plan
+                    <ArrowRight className="size-4" aria-hidden="true" />
+                  </Link>
+                </Card>
+              );
+            })}
+          </div>
+        ) : (
+          <Card className="mt-5 border-dashed">
+            <p className="text-slate-600">
+              You do not have a study plan yet. Open a certification and choose Create study plan to get started.
+            </p>
+          </Card>
+        )}
+      </section>
+
+      <section className="mt-12" aria-labelledby="saved-certifications-heading">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
@@ -155,10 +320,15 @@ export default async function DashboardPage() {
 
         <div className="mt-6 space-y-8">
           {certificationStatuses.map((status) => {
-            const items = savedCertifications.filter((item) => item.status === status);
+            const items = savedCertifications.filter(
+              (item) => item.status === status,
+            );
 
             return (
-              <section key={status} aria-labelledby={`status-${status.toLowerCase()}`}>
+              <section
+                key={status}
+                aria-labelledby={`status-${status.toLowerCase()}`}
+              >
                 <div className="flex items-center gap-2">
                   <h3
                     id={`status-${status.toLowerCase()}`}
@@ -196,7 +366,10 @@ export default async function DashboardPage() {
                         ) : null}
 
                         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end">
-                          <form action={updateSavedCertificationStatus} className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-end">
+                          <form
+                            action={updateSavedCertificationStatus}
+                            className="flex flex-1 flex-col gap-2 sm:flex-row sm:items-end"
+                          >
                             <input
                               type="hidden"
                               name="savedCertificationId"
@@ -295,7 +468,9 @@ export default async function DashboardPage() {
           </div>
         ) : (
           <Card className="mt-5 border-dashed">
-            <p className="text-slate-600">You have not saved a career path yet.</p>
+            <p className="text-slate-600">
+              You have not saved a career path yet.
+            </p>
           </Card>
         )}
       </section>
