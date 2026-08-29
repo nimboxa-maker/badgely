@@ -25,6 +25,23 @@ const toggleStudyTaskSchema = z.object({
   completed: z.enum(["true", "false"]),
 });
 
+const updateStudyTaskSchema = z.object({
+  taskId: z.string().uuid(),
+  studyPlanId: z.string().uuid(),
+  title: z.string().trim().min(1).max(160),
+  description: z.string().trim().max(2000),
+  weekNumber: z.coerce.number().int().min(1).max(104),
+  estimatedHours: z.coerce.number().min(0.25).max(40),
+  taskType: z.enum([
+    "Read",
+    "Lab",
+    "Video",
+    "Practice Questions",
+    "Review",
+    "Exam Booking",
+  ]),
+});
+
 export async function createStudyPlan(formData: FormData) {
   const parsed = createStudyPlanSchema.safeParse({
     certificationId: formData.get("certificationId"),
@@ -193,6 +210,85 @@ export async function toggleStudyTaskCompletion(formData: FormData) {
     .update({
       completed,
       completed_at: completed ? new Date().toISOString() : null,
+    })
+    .eq("id", parsed.data.taskId)
+    .eq("user_study_plan_id", studyPlan.id);
+
+  if (error) {
+    throw new Error("Unable to update this study task.");
+  }
+
+  revalidatePath(`/study-plans/${studyPlan.id}`);
+  revalidatePath("/dashboard");
+}
+
+export async function updateStudyTask(formData: FormData) {
+  const parsed = updateStudyTaskSchema.safeParse({
+    taskId: formData.get("taskId"),
+    studyPlanId: formData.get("studyPlanId"),
+    title: formData.get("title"),
+    description: formData.get("description") ?? "",
+    weekNumber: formData.get("weekNumber"),
+    estimatedHours: formData.get("estimatedHours"),
+    taskType: formData.get("taskType"),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Please check the task details and try again.");
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/sign-in?message=Please+sign+in+to+update+your+study+plan.");
+  }
+
+  const { data: studyPlan, error: studyPlanError } = await supabase
+    .from("user_study_plans")
+    .select("id, study_weeks, weekly_study_hours")
+    .eq("id", parsed.data.studyPlanId)
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (studyPlanError || !studyPlan) {
+    throw new Error("Unable to update this study task.");
+  }
+
+  if (parsed.data.weekNumber > studyPlan.study_weeks) {
+    throw new Error(`Week must be between 1 and ${studyPlan.study_weeks}.`);
+  }
+
+  const { data: weekTasks, error: weekTasksError } = await supabase
+    .from("study_tasks")
+    .select("id, estimated_hours")
+    .eq("user_study_plan_id", studyPlan.id)
+    .eq("week_number", parsed.data.weekNumber);
+
+  if (weekTasksError) {
+    throw new Error("Unable to validate the weekly study-hour limit.");
+  }
+
+  const otherTaskHours = (weekTasks ?? [])
+    .filter((task) => task.id !== parsed.data.taskId)
+    .reduce((total, task) => total + Number(task.estimated_hours ?? 0), 0);
+
+  if (otherTaskHours + parsed.data.estimatedHours > studyPlan.weekly_study_hours) {
+    throw new Error(
+      `This edit would exceed the ${studyPlan.weekly_study_hours}-hour weekly study limit.`,
+    );
+  }
+
+  const { error } = await supabase
+    .from("study_tasks")
+    .update({
+      title: parsed.data.title,
+      description: parsed.data.description || null,
+      week_number: parsed.data.weekNumber,
+      estimated_hours: parsed.data.estimatedHours,
+      task_type: parsed.data.taskType,
     })
     .eq("id", parsed.data.taskId)
     .eq("user_study_plan_id", studyPlan.id);
