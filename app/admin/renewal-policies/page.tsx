@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Plus, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -115,9 +115,18 @@ export default async function AdminRenewalPoliciesPage({
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
-            Showing <span className="font-bold text-slate-950">{policies.length}</span> of{" "}
-            <span className="font-bold text-slate-950">{allPolicies.length}</span> policies
+          <div className="flex flex-col gap-3 sm:items-end">
+            <Link
+              href="/admin/renewal-policies/new"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+            >
+              <Plus className="size-4" aria-hidden="true" />
+              Add renewal policy
+            </Link>
+            <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+              Showing <span className="font-bold text-slate-950">{policies.length}</span> of{" "}
+              <span className="font-bold text-slate-950">{allPolicies.length}</span> policies
+            </div>
           </div>
         </div>
       </div>
@@ -221,7 +230,7 @@ export default async function AdminRenewalPoliciesPage({
               ) : null}
 
               <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                Create and edit controls are next
+                Edit and delete controls are next
               </p>
             </Card>
           ))}
