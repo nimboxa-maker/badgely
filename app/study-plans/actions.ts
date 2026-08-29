@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { generateStudySchedule } from "@/features/study-plans/scheduling";
@@ -16,6 +17,12 @@ const createStudyPlanSchema = z.object({
   targetExamDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   weeklyStudyHours: z.coerce.number().int().min(1).max(40),
   includeLabs: z.boolean(),
+});
+
+const toggleStudyTaskSchema = z.object({
+  taskId: z.string().uuid(),
+  studyPlanId: z.string().uuid(),
+  completed: z.enum(["true", "false"]),
 });
 
 export async function createStudyPlan(formData: FormData) {
@@ -147,4 +154,53 @@ export async function createStudyPlan(formData: FormData) {
   }
 
   redirect(`/study-plans/${studyPlan.id}`);
+}
+
+export async function toggleStudyTaskCompletion(formData: FormData) {
+  const parsed = toggleStudyTaskSchema.safeParse({
+    taskId: formData.get("taskId"),
+    studyPlanId: formData.get("studyPlanId"),
+    completed: formData.get("completed"),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Unable to update this study task.");
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/sign-in?message=Please+sign+in+to+update+your+study+plan.");
+  }
+
+  const { data: studyPlan, error: studyPlanError } = await supabase
+    .from("user_study_plans")
+    .select("id")
+    .eq("id", parsed.data.studyPlanId)
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (studyPlanError || !studyPlan) {
+    throw new Error("Unable to update this study task.");
+  }
+
+  const completed = parsed.data.completed === "true";
+  const { error } = await supabase
+    .from("study_tasks")
+    .update({
+      completed,
+      completed_at: completed ? new Date().toISOString() : null,
+    })
+    .eq("id", parsed.data.taskId)
+    .eq("user_study_plan_id", studyPlan.id);
+
+  if (error) {
+    throw new Error("Unable to update this study task.");
+  }
+
+  revalidatePath(`/study-plans/${studyPlan.id}`);
+  revalidatePath("/dashboard");
 }
