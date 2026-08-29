@@ -5,7 +5,7 @@ import { requireAdmin } from "@/lib/auth/require-admin";
 
 const catalogAreas = [
   { name: "Providers", description: "Manage certification providers and visibility.", href: "/admin/providers" },
-  { name: "Certifications", description: "Manage certification facts, status, SEO, and featured records." },
+  { name: "Certifications", description: "Manage certification facts, status, SEO, and featured records.", href: "/admin/certifications" },
   { name: "Exams", description: "Manage exam details, registration links, and verification dates." },
   { name: "Exam domains", description: "Manage domain summaries, weights, and display order." },
   { name: "Renewal policies", description: "Manage renewal guidance, official sources, and verification dates." },
