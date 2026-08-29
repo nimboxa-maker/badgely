@@ -29,6 +29,8 @@ const careerPathSchema = z.object({
   seoDescription: optionalText(500),
 });
 
+const careerPathIdSchema = z.string().uuid();
+
 function careerPathFormValues(formData: FormData) {
   return {
     name: formData.get("name"),
@@ -80,5 +82,41 @@ export async function createCareerPath(formData: FormData) {
   revalidatePath("/admin");
   revalidatePath("/admin/career-paths");
   revalidatePath("/career-paths");
+  redirect("/admin/career-paths");
+}
+
+export async function updateCareerPath(formData: FormData) {
+  const id = careerPathIdSchema.safeParse(formData.get("id"));
+  const parsed = careerPathSchema.safeParse(careerPathFormValues(formData));
+
+  if (!id.success || !parsed.success) {
+    throw new Error("Please check the career path details and try again.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data, error } = await supabase
+    .from("career_paths")
+    .update(careerPathPayload(parsed.data))
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    if (error.code === "23505") {
+      throw new Error("That career path slug is already in use.");
+    }
+
+    throw new Error("Unable to update the career path.");
+  }
+
+  if (!data) {
+    throw new Error("Career path not found.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/career-paths");
+  revalidatePath(`/admin/career-paths/${id.data}/edit`);
+  revalidatePath("/career-paths");
+  revalidatePath(`/career-paths/${parsed.data.slug}`);
   redirect("/admin/career-paths");
 }
