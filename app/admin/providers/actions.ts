@@ -39,6 +39,11 @@ const updateProviderSchema = providerFieldsSchema.extend({
   id: z.string().uuid(),
 });
 
+const providerStatusSchema = z.object({
+  id: z.string().uuid(),
+  active: z.enum(["true", "false"]).transform((value) => value === "true"),
+});
+
 function providerFormValues(formData: FormData) {
   return {
     name: formData.get("name"),
@@ -118,4 +123,29 @@ export async function updateProvider(formData: FormData) {
   revalidatePath("/admin/providers");
   revalidatePath(`/admin/providers/${parsed.data.id}/edit`);
   redirect("/admin/providers");
+}
+
+export async function setProviderActive(formData: FormData) {
+  const parsed = providerStatusSchema.safeParse({
+    id: formData.get("id"),
+    active: formData.get("active"),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Unable to change the provider status.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { error } = await supabase
+    .from("providers")
+    .update({ active: parsed.data.active })
+    .eq("id", parsed.data.id);
+
+  if (error) {
+    throw new Error("Unable to change the provider status.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/providers");
+  revalidatePath(`/admin/providers/${parsed.data.id}/edit`);
 }
