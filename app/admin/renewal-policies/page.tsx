@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
+import { DeleteRenewalPolicyButton } from "@/app/admin/renewal-policies/delete-renewal-policy-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -237,9 +238,10 @@ export default async function AdminRenewalPoliciesPage({
                   <Pencil className="size-4" aria-hidden="true" />
                   Edit renewal policy
                 </Link>
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
+                <DeleteRenewalPolicyButton
+                  renewalPolicyId={policy.id}
+                  renewalPolicyLabel={policy.certifications?.name ?? "this certification"}
+                />
               </div>
             </Card>
           ))}
