@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
+import { DeleteResourceButton } from "@/app/admin/resources/delete-resource-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -274,9 +275,7 @@ export default async function AdminResourcesPage({ searchParams }: AdminResource
                   <Pencil className="size-4" aria-hidden="true" />
                   Edit resource
                 </Link>
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
+                <DeleteResourceButton resourceId={resource.id} resourceTitle={resource.title} />
               </div>
             </Card>
           ))}
