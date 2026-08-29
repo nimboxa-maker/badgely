@@ -42,6 +42,11 @@ const updateStudyTaskSchema = z.object({
   ]),
 });
 
+const updateStudyPlanStatusSchema = z.object({
+  studyPlanId: z.string().uuid(),
+  status: z.enum(["Active", "Paused", "Completed"]),
+});
+
 export async function createStudyPlan(formData: FormData) {
   const parsed = createStudyPlanSchema.safeParse({
     certificationId: formData.get("certificationId"),
@@ -295,6 +300,50 @@ export async function updateStudyTask(formData: FormData) {
 
   if (error) {
     throw new Error("Unable to update this study task.");
+  }
+
+  revalidatePath(`/study-plans/${studyPlan.id}`);
+  revalidatePath("/dashboard");
+}
+
+export async function updateStudyPlanStatus(formData: FormData) {
+  const parsed = updateStudyPlanStatusSchema.safeParse({
+    studyPlanId: formData.get("studyPlanId"),
+    status: formData.get("status"),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Unable to update this study plan.");
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/sign-in?message=Please+sign+in+to+update+your+study+plan.");
+  }
+
+  const { data: studyPlan, error: studyPlanError } = await supabase
+    .from("user_study_plans")
+    .select("id")
+    .eq("id", parsed.data.studyPlanId)
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (studyPlanError || !studyPlan) {
+    throw new Error("Unable to update this study plan.");
+  }
+
+  const { error } = await supabase
+    .from("user_study_plans")
+    .update({ status: parsed.data.status })
+    .eq("id", studyPlan.id)
+    .eq("user_id", user.id);
+
+  if (error) {
+    throw new Error("Unable to update this study plan.");
   }
 
   revalidatePath(`/study-plans/${studyPlan.id}`);
