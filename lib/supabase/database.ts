@@ -42,10 +42,41 @@ type SavedCertificationTable = {
   ];
 };
 
+type SavedCareerPathTable = {
+  Row: {
+    career_path_id: string;
+    id: string;
+    saved_at: string;
+    user_id: string;
+  };
+  Insert: {
+    career_path_id: string;
+    id?: string;
+    saved_at?: string;
+    user_id: string;
+  };
+  Update: {
+    career_path_id?: string;
+    id?: string;
+    saved_at?: string;
+    user_id?: string;
+  };
+  Relationships: [
+    {
+      foreignKeyName: "user_saved_career_paths_career_path_id_fkey";
+      columns: ["career_path_id"];
+      isOneToOne: false;
+      referencedRelation: "career_paths";
+      referencedColumns: ["id"];
+    },
+  ];
+};
+
 export type Database = Omit<GeneratedDatabase, "public"> & {
   public: Omit<GeneratedDatabase["public"], "Tables"> & {
     Tables: GeneratedDatabase["public"]["Tables"] & {
       user_saved_certifications: SavedCertificationTable;
+      user_saved_career_paths: SavedCareerPathTable;
     };
   };
 };
