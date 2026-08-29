@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Plus, Search } from "lucide-react";
+import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -266,9 +266,18 @@ export default async function AdminResourcesPage({ searchParams }: AdminResource
                 </a>
               ) : null}
 
-              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                Edit and delete controls are next
-              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <Link
+                  href={`/admin/resources/${resource.id}/edit`}
+                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                >
+                  <Pencil className="size-4" aria-hidden="true" />
+                  Edit resource
+                </Link>
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                  Delete control is next
+                </p>
+              </div>
             </Card>
           ))}
         </section>
