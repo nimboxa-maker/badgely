@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { BookOpenCheck, CalendarDays, Clock3, FlaskConical } from "lucide-react";
+import { createStudyPlan } from "@/app/study-plans/actions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -62,7 +63,7 @@ export default async function StudyPlanCreatorPage({
         </h1>
         <p className="mt-4 text-lg leading-8 text-slate-600">
           Choose a certification, tell Badgely how much time you have each week,
-          and set a target exam date. The next step will turn these settings into
+          and set a target exam date. Badgely will turn these settings into
           editable weekly tasks using the certification&apos;s stored domains and
           resources.
         </p>
@@ -70,7 +71,7 @@ export default async function StudyPlanCreatorPage({
 
       <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
         <Card>
-          <form className="space-y-6">
+          <form action={createStudyPlan} className="space-y-6">
             <div>
               <label
                 htmlFor="certificationId"
@@ -175,12 +176,10 @@ export default async function StudyPlanCreatorPage({
               </span>
             </label>
 
-            <Button type="submit" disabled>
-              Generate study plan
-            </Button>
+            <Button type="submit">Generate study plan</Button>
             <p className="text-sm leading-6 text-slate-500">
-              Plan generation will be enabled in the next Milestone 6 step after
-              the scheduling utility and secure server action are connected.
+              Your plan will be saved to your account and organized into weekly
+              study tasks based on the time available before your target exam date.
             </p>
           </form>
         </Card>
