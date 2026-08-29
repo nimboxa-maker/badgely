@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Plus, Search } from "lucide-react";
+import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -164,9 +164,18 @@ export default async function AdminProvidersPage({
                 </div>
               </dl>
 
-              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                Edit, archive, and delete controls are next
-              </p>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                <Link
+                  href={`/admin/providers/${provider.id}/edit`}
+                  className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                >
+                  <Pencil className="size-4" aria-hidden="true" />
+                  Edit provider
+                </Link>
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                  Archive and delete controls are next
+                </p>
+              </div>
             </Card>
           ))}
         </section>
