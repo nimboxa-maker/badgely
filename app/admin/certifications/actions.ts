@@ -213,3 +213,44 @@ export async function setCertificationStatus(formData: FormData) {
   revalidatePath("/certifications");
   revalidatePath(`/certifications/${data.slug}`);
 }
+
+export async function deleteCertification(formData: FormData) {
+  const id = certificationIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Unable to delete the certification.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: certification, error: lookupError } = await supabase
+    .from("certifications")
+    .select("id, slug, status")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (lookupError) {
+    throw new Error("Unable to verify the certification before deletion.");
+  }
+
+  if (!certification) {
+    throw new Error("Certification not found.");
+  }
+
+  if (certification.status !== "Retired") {
+    throw new Error("Retire the certification before deleting it.");
+  }
+
+  const { error } = await supabase
+    .from("certifications")
+    .delete()
+    .eq("id", id.data);
+
+  if (error) {
+    throw new Error("Unable to delete the certification.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/certifications");
+  revalidatePath("/certifications");
+  revalidatePath(`/certifications/${certification.slug}`);
+}
