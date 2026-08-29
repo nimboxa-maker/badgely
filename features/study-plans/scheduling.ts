@@ -50,10 +50,6 @@ export type StudyScheduleResult = {
   tasks: GeneratedStudyTask[];
 };
 
-function roundQuarterHour(value: number) {
-  return Math.max(0.25, Math.round(value * 4) / 4);
-}
-
 function calculateEstimatedStudyHours(
   minimum?: number | null,
   maximum?: number | null,
@@ -86,8 +82,19 @@ function distributeHoursAcrossTasks(
     return [];
   }
 
-  const perTask = Math.min(preferredHours, weeklyStudyHours / taskCount);
-  return Array.from({ length: taskCount }, () => roundQuarterHour(perTask));
+  const weeklyHundredths = Math.max(0, Math.floor(weeklyStudyHours * 100));
+  const preferredHundredths = Math.max(0, Math.floor(preferredHours * 100));
+  const targetHundredths = Math.min(
+    weeklyHundredths,
+    preferredHundredths * taskCount,
+  );
+  const baseHundredths = Math.floor(targetHundredths / taskCount);
+  const remainder = targetHundredths % taskCount;
+
+  return Array.from({ length: taskCount }, (_, index) => {
+    const hundredths = baseHundredths + (index < remainder ? 1 : 0);
+    return hundredths / 100;
+  });
 }
 
 function addTask(
@@ -249,7 +256,7 @@ export function generateStudySchedule(input: StudyScheduleInput): StudyScheduleR
     );
 
     weekTasks.forEach((task, index) => {
-      task.estimated_hours = hours[index] ?? 0.25;
+      task.estimated_hours = hours[index] ?? 0;
     });
   }
 
