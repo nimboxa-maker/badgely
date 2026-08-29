@@ -12,6 +12,7 @@ import { toggleStudyTaskCompletion } from "@/app/study-plans/actions";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { EditStudyTaskForm } from "@/features/study-plans/edit-task-form";
+import { PlanStatusControls } from "@/features/study-plans/plan-status-controls";
 import { createClient } from "@/lib/supabase/server";
 
 type StudyPlanDetailPageProps = {
@@ -142,6 +143,25 @@ export default async function StudyPlanDetailPage({
           </Link>
         ) : null}
       </header>
+
+      <section className="mt-6" aria-labelledby="plan-controls-heading">
+        <Card>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 id="plan-controls-heading" className="text-lg font-bold text-slate-950">
+                Plan controls
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-slate-600">
+                Pause your schedule when needed, resume it later, or mark the plan complete.
+              </p>
+            </div>
+            <PlanStatusControls
+              studyPlanId={studyPlan.id}
+              status={studyPlan.status as "Active" | "Paused" | "Completed"}
+            />
+          </div>
+        </Card>
+      </section>
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Study plan summary">
         <Card>
@@ -323,7 +343,7 @@ export default async function StudyPlanDetailPage({
 
       <Card className="mt-10 border-dashed">
         <p className="text-sm leading-6 text-slate-600">
-          Pause/resume, completion, and plan deletion controls are being connected in the next Milestone 6 steps.
+          Plan deletion with confirmation is being connected in the next Milestone 6 step.
         </p>
       </Card>
     </main>
