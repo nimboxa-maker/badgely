@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Plus, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -118,9 +118,18 @@ export default async function AdminCertificationsPage({
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
-            Showing <span className="font-bold text-slate-950">{certifications.length}</span> of{" "}
-            <span className="font-bold text-slate-950">{allCertifications.length}</span> certifications
+          <div className="flex flex-col gap-3 sm:items-end">
+            <Link
+              href="/admin/certifications/new"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+            >
+              <Plus className="size-4" aria-hidden="true" />
+              Add certification
+            </Link>
+            <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+              Showing <span className="font-bold text-slate-950">{certifications.length}</span> of{" "}
+              <span className="font-bold text-slate-950">{allCertifications.length}</span> certifications
+            </div>
           </div>
         </div>
       </div>
@@ -237,7 +246,7 @@ export default async function AdminCertificationsPage({
               </dl>
 
               <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                Create and edit controls are next
+                Edit, lifecycle, and delete controls are next
               </p>
             </Card>
           ))}
