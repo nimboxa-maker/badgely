@@ -63,6 +63,11 @@ const certificationSchema = z
 
 const certificationIdSchema = z.string().uuid();
 
+const certificationStatusSchema = z.object({
+  id: z.string().uuid(),
+  status: z.enum(["Active", "Retiring Soon", "Retired"]),
+});
+
 function certificationFormValues(formData: FormData) {
   return {
     providerId: formData.get("providerId"),
@@ -174,4 +179,37 @@ export async function updateCertification(formData: FormData) {
   revalidatePath("/certifications");
   revalidatePath(`/certifications/${parsed.data.slug}`);
   redirect("/admin/certifications");
+}
+
+export async function setCertificationStatus(formData: FormData) {
+  const parsed = certificationStatusSchema.safeParse({
+    id: formData.get("id"),
+    status: formData.get("status"),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Unable to change the certification status.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data, error } = await supabase
+    .from("certifications")
+    .update({ status: parsed.data.status })
+    .eq("id", parsed.data.id)
+    .select("id, slug")
+    .maybeSingle();
+
+  if (error) {
+    throw new Error("Unable to change the certification status.");
+  }
+
+  if (!data) {
+    throw new Error("Certification not found.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/certifications");
+  revalidatePath(`/admin/certifications/${parsed.data.id}/edit`);
+  revalidatePath("/certifications");
+  revalidatePath(`/certifications/${data.slug}`);
 }
