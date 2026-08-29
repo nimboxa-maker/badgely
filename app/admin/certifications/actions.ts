@@ -61,8 +61,10 @@ const certificationSchema = z
     { message: "Minimum study hours cannot exceed maximum study hours." },
   );
 
-export async function createCertification(formData: FormData) {
-  const parsed = certificationSchema.safeParse({
+const certificationIdSchema = z.string().uuid();
+
+function certificationFormValues(formData: FormData) {
+  return {
     providerId: formData.get("providerId"),
     name: formData.get("name"),
     slug: formData.get("slug"),
@@ -81,38 +83,48 @@ export async function createCertification(formData: FormData) {
     estimatedStudyHoursMax: formData.get("estimatedStudyHoursMax"),
     seoTitle: formData.get("seoTitle"),
     seoDescription: formData.get("seoDescription"),
-  });
+  };
+}
+
+function certificationPayload(parsed: z.infer<typeof certificationSchema>) {
+  const targetJobRoles = parsed.targetJobRoles
+    .split(",")
+    .map((role) => role.trim())
+    .filter(Boolean);
+
+  return {
+    provider_id: parsed.providerId,
+    name: parsed.name,
+    slug: parsed.slug,
+    category: parsed.category,
+    level: parsed.level,
+    vendor_type: parsed.vendorType,
+    short_summary: parsed.shortSummary,
+    full_summary: parsed.fullSummary,
+    target_job_roles: targetJobRoles,
+    recommended_experience: parsed.recommendedExperience,
+    official_certification_url: parsed.officialCertificationUrl,
+    status: parsed.status,
+    last_verified_date: parsed.lastVerifiedDate,
+    featured: parsed.featured,
+    estimated_study_hours_min: parsed.estimatedStudyHoursMin,
+    estimated_study_hours_max: parsed.estimatedStudyHoursMax,
+    seo_title: parsed.seoTitle,
+    seo_description: parsed.seoDescription,
+  };
+}
+
+export async function createCertification(formData: FormData) {
+  const parsed = certificationSchema.safeParse(certificationFormValues(formData));
 
   if (!parsed.success) {
     throw new Error("Please check the certification details and try again.");
   }
 
-  const targetJobRoles = parsed.data.targetJobRoles
-    .split(",")
-    .map((role) => role.trim())
-    .filter(Boolean);
-
   const { supabase } = await requireAdmin();
-  const { error } = await supabase.from("certifications").insert({
-    provider_id: parsed.data.providerId,
-    name: parsed.data.name,
-    slug: parsed.data.slug,
-    category: parsed.data.category,
-    level: parsed.data.level,
-    vendor_type: parsed.data.vendorType,
-    short_summary: parsed.data.shortSummary,
-    full_summary: parsed.data.fullSummary,
-    target_job_roles: targetJobRoles,
-    recommended_experience: parsed.data.recommendedExperience,
-    official_certification_url: parsed.data.officialCertificationUrl,
-    status: parsed.data.status,
-    last_verified_date: parsed.data.lastVerifiedDate,
-    featured: parsed.data.featured,
-    estimated_study_hours_min: parsed.data.estimatedStudyHoursMin,
-    estimated_study_hours_max: parsed.data.estimatedStudyHoursMax,
-    seo_title: parsed.data.seoTitle,
-    seo_description: parsed.data.seoDescription,
-  });
+  const { error } = await supabase
+    .from("certifications")
+    .insert(certificationPayload(parsed.data));
 
   if (error) {
     if (error.code === "23505") {
@@ -125,5 +137,41 @@ export async function createCertification(formData: FormData) {
   revalidatePath("/admin");
   revalidatePath("/admin/certifications");
   revalidatePath("/certifications");
+  redirect("/admin/certifications");
+}
+
+export async function updateCertification(formData: FormData) {
+  const id = certificationIdSchema.safeParse(formData.get("id"));
+  const parsed = certificationSchema.safeParse(certificationFormValues(formData));
+
+  if (!id.success || !parsed.success) {
+    throw new Error("Please check the certification details and try again.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data, error } = await supabase
+    .from("certifications")
+    .update(certificationPayload(parsed.data))
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    if (error.code === "23505") {
+      throw new Error("A certification with that slug already exists.");
+    }
+
+    throw new Error("Unable to update the certification.");
+  }
+
+  if (!data) {
+    throw new Error("Certification not found.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/certifications");
+  revalidatePath(`/admin/certifications/${id.data}/edit`);
+  revalidatePath("/certifications");
+  revalidatePath(`/certifications/${parsed.data.slug}`);
   redirect("/admin/certifications");
 }
