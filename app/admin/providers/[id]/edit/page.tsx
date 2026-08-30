@@ -83,7 +83,9 @@ export default async function EditProviderPage({ params }: EditProviderPageProps
                 defaultValue={provider.slug}
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
-              <p className="mt-1 text-xs text-slate-500">Lowercase letters, numbers, and hyphens only.</p>
+              <p className="mt-1 text-xs text-slate-500">
+                Lowercase letters, numbers, and hyphens only.
+              </p>
             </div>
           </div>
 

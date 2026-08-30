@@ -15,9 +15,7 @@ type StudyPlanCreatorPageProps = {
   searchParams: Promise<{ certification?: string }>;
 };
 
-export default async function StudyPlanCreatorPage({
-  searchParams,
-}: StudyPlanCreatorPageProps) {
+export default async function StudyPlanCreatorPage({ searchParams }: StudyPlanCreatorPageProps) {
   const params = await searchParams;
   const supabase = await createClient();
   const {
@@ -25,9 +23,7 @@ export default async function StudyPlanCreatorPage({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect(
-      "/sign-in?message=Please+sign+in+to+create+a+study+plan.",
-    );
+    redirect("/sign-in?message=Please+sign+in+to+create+a+study+plan.");
   }
 
   const { data: certifications, error } = await supabase
@@ -43,9 +39,7 @@ export default async function StudyPlanCreatorPage({
   }
 
   const selectedCertification =
-    certifications?.find(
-      (certification) => certification.slug === params.certification,
-    ) ?? null;
+    certifications?.find((certification) => certification.slug === params.certification) ?? null;
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -62,10 +56,9 @@ export default async function StudyPlanCreatorPage({
           Build a realistic study plan
         </h1>
         <p className="mt-4 text-lg leading-8 text-slate-600">
-          Choose a certification, tell Badgely how much time you have each week,
-          and set a target exam date. Badgely will turn these settings into
-          editable weekly tasks using the certification&apos;s stored domains and
-          resources.
+          Choose a certification, tell Badgely how much time you have each week, and set a target
+          exam date. Badgely will turn these settings into editable weekly tasks using the
+          certification&apos;s stored domains and resources.
         </p>
       </section>
 
@@ -73,10 +66,7 @@ export default async function StudyPlanCreatorPage({
         <Card>
           <form action={createStudyPlan} className="space-y-6">
             <div>
-              <label
-                htmlFor="certificationId"
-                className="text-sm font-semibold text-slate-800"
-              >
+              <label htmlFor="certificationId" className="text-sm font-semibold text-slate-800">
                 Certification
               </label>
               <select
@@ -92,9 +82,7 @@ export default async function StudyPlanCreatorPage({
                 {(certifications ?? []).map((certification) => (
                   <option key={certification.id} value={certification.id}>
                     {certification.name}
-                    {certification.providers?.name
-                      ? ` — ${certification.providers.name}`
-                      : ""}
+                    {certification.providers?.name ? ` — ${certification.providers.name}` : ""}
                   </option>
                 ))}
               </select>
@@ -123,10 +111,7 @@ export default async function StudyPlanCreatorPage({
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label
-                  htmlFor="targetExamDate"
-                  className="text-sm font-semibold text-slate-800"
-                >
+                <label htmlFor="targetExamDate" className="text-sm font-semibold text-slate-800">
                   Target exam date
                 </label>
                 <input
@@ -140,10 +125,7 @@ export default async function StudyPlanCreatorPage({
               </div>
 
               <div>
-                <label
-                  htmlFor="weeklyStudyHours"
-                  className="text-sm font-semibold text-slate-800"
-                >
+                <label htmlFor="weeklyStudyHours" className="text-sm font-semibold text-slate-800">
                   Weekly study hours
                 </label>
                 <input
@@ -167,9 +149,7 @@ export default async function StudyPlanCreatorPage({
                 className="mt-1 size-4 rounded border-slate-300"
               />
               <span>
-                <span className="block font-semibold text-slate-900">
-                  Include hands-on labs
-                </span>
+                <span className="block font-semibold text-slate-900">Include hands-on labs</span>
                 <span className="mt-1 block text-sm leading-6 text-slate-600">
                   Add practical lab tasks where they fit the selected certification.
                 </span>
@@ -178,8 +158,8 @@ export default async function StudyPlanCreatorPage({
 
             <Button type="submit">Generate study plan</Button>
             <p className="text-sm leading-6 text-slate-500">
-              Your plan will be saved to your account and organized into weekly
-              study tasks based on the time available before your target exam date.
+              Your plan will be saved to your account and organized into weekly study tasks based on
+              the time available before your target exam date.
             </p>
           </form>
         </Card>

@@ -13,15 +13,11 @@ type AdminProvidersPageProps = {
   }>;
 };
 
-export default async function AdminProvidersPage({
-  searchParams,
-}: AdminProvidersPageProps) {
+export default async function AdminProvidersPage({ searchParams }: AdminProvidersPageProps) {
   const { supabase } = await requireAdmin();
   const params = await searchParams;
   const query = params.q?.trim().toLowerCase() ?? "";
-  const status = params.status === "active" || params.status === "archived"
-    ? params.status
-    : "all";
+  const status = params.status === "active" || params.status === "archived" ? params.status : "all";
 
   const { data, error } = await supabase
     .from("providers")
@@ -69,7 +65,8 @@ export default async function AdminProvidersPage({
               Certification providers
             </h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search and review provider records before creating, editing, archiving, or deleting them.
+              Search and review provider records before creating, editing, archiving, or deleting
+              them.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:items-end">
@@ -154,9 +151,7 @@ export default async function AdminProvidersPage({
               <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                 <div>
                   <dt className="font-semibold text-slate-500">Provider type</dt>
-                  <dd className="mt-1 text-slate-900">
-                    {provider.provider_type || "Not set"}
-                  </dd>
+                  <dd className="mt-1 text-slate-900">{provider.provider_type || "Not set"}</dd>
                 </div>
                 <div>
                   <dt className="font-semibold text-slate-500">Website</dt>
@@ -177,11 +172,7 @@ export default async function AdminProvidersPage({
 
                 <form action={setProviderActive}>
                   <input type="hidden" name="id" value={provider.id} />
-                  <input
-                    type="hidden"
-                    name="active"
-                    value={provider.active ? "false" : "true"}
-                  />
+                  <input type="hidden" name="active" value={provider.active ? "false" : "true"} />
                   <button
                     type="submit"
                     className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
@@ -196,10 +187,7 @@ export default async function AdminProvidersPage({
                 </form>
 
                 {!provider.active ? (
-                  <DeleteProviderButton
-                    providerId={provider.id}
-                    providerName={provider.name}
-                  />
+                  <DeleteProviderButton providerId={provider.id} providerName={provider.name} />
                 ) : null}
               </div>
             </Card>

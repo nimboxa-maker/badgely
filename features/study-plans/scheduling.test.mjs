@@ -1,9 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import {
-  calculateStudyWeeks,
-  generateStudySchedule,
-} from "./scheduling.ts";
+import { calculateStudyWeeks, generateStudySchedule } from "./scheduling.ts";
 
 const fixedToday = new Date(2026, 7, 28, 12, 0, 0);
 
@@ -66,7 +63,10 @@ test("schedule warns when available study time is below the certification estima
   assert.equal(result.availableStudyHours, 1);
   assert.equal(result.estimatedStudyHours, 25);
   assert.equal(result.isTimeShort, true);
-  assert.match(result.warning ?? "", /Consider moving the exam date or increasing weekly study time/);
+  assert.match(
+    result.warning ?? "",
+    /Consider moving the exam date or increasing weekly study time/,
+  );
 });
 
 test("practice tasks explicitly avoid real, leaked, or proprietary exam questions", () => {
@@ -79,9 +79,7 @@ test("practice tasks explicitly avoid real, leaked, or proprietary exam question
     resources: [],
   });
 
-  const practiceTask = result.tasks.find(
-    (task) => task.task_type === "Practice Questions",
-  );
+  const practiceTask = result.tasks.find((task) => task.task_type === "Practice Questions");
 
   assert.ok(practiceTask);
   assert.match(

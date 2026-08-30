@@ -115,7 +115,8 @@ export default async function AdminExamsPage({ searchParams }: AdminExamsPagePro
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-slate-950">Exam records</h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search exam records, review delivery details, and inspect verification dates before making catalog changes.
+              Search exam records, review delivery details, and inspect verification dates before
+              making catalog changes.
             </p>
           </div>
 
@@ -237,7 +238,9 @@ export default async function AdminExamsPage({ searchParams }: AdminExamsPagePro
                   </div>
                   <div>
                     <dt className="font-semibold text-slate-500">Last verified</dt>
-                    <dd className="mt-1 text-slate-900">{verifiedLabel(exam.last_verified_date)}</dd>
+                    <dd className="mt-1 text-slate-900">
+                      {verifiedLabel(exam.last_verified_date)}
+                    </dd>
                   </div>
                 </dl>
 

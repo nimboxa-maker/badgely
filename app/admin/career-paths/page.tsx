@@ -26,9 +26,7 @@ type CareerPathRow = {
   seo_description: string | null;
 };
 
-export default async function AdminCareerPathsPage({
-  searchParams,
-}: AdminCareerPathsPageProps) {
+export default async function AdminCareerPathsPage({ searchParams }: AdminCareerPathsPageProps) {
   const { supabase } = await requireAdmin();
   const params = await searchParams;
   const query = params.q?.trim().toLowerCase() ?? "";
@@ -94,7 +92,8 @@ export default async function AdminCareerPathsPage({
               Career roadmap pages
             </h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search career paths, review audience and target-role details, and manage roadmap metadata.
+              Search career paths, review audience and target-role details, and manage roadmap
+              metadata.
             </p>
           </div>
 

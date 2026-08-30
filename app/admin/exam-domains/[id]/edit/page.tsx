@@ -13,18 +13,20 @@ export default async function EditExamDomainPage({ params }: EditExamDomainPageP
   const { supabase } = await requireAdmin();
   const { id } = await params;
 
-  const [{ data: domain, error: domainError }, { data: certifications, error: certificationsError }] =
-    await Promise.all([
-      supabase
-        .from("exam_domains")
-        .select("id, certification_id, domain_name, domain_weight_text, description, display_order")
-        .eq("id", id)
-        .maybeSingle(),
-      supabase
-        .from("certifications")
-        .select("id, name, status, providers(name)")
-        .order("name", { ascending: true }),
-    ]);
+  const [
+    { data: domain, error: domainError },
+    { data: certifications, error: certificationsError },
+  ] = await Promise.all([
+    supabase
+      .from("exam_domains")
+      .select("id, certification_id, domain_name, domain_weight_text, description, display_order")
+      .eq("id", id)
+      .maybeSingle(),
+    supabase
+      .from("certifications")
+      .select("id, name, status, providers(name)")
+      .order("name", { ascending: true }),
+  ]);
 
   if (domainError || certificationsError) {
     throw new Error("Unable to load the exam domain for editing.");
@@ -48,9 +50,7 @@ export default async function EditExamDomainPage({ params }: EditExamDomainPageP
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
           Admin · Exam domains
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-          Edit exam domain
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Edit exam domain</h1>
         <p className="mt-2 text-slate-600">
           Update the objective domain, weight, description, and ordering information.
         </p>

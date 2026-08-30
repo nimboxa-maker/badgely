@@ -23,7 +23,8 @@ export default function ErrorPage({ reset }: ErrorPageProps) {
           We could not load this page.
         </h1>
         <p className="mx-auto mt-4 max-w-xl leading-7 text-slate-600">
-          The problem may be temporary. Try loading the page again, or return to the Badgely home page.
+          The problem may be temporary. Try loading the page again, or return to the Badgely home
+          page.
         </p>
         <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
           <button

@@ -23,7 +23,10 @@ const optionalInteger = z.preprocess(
 
 const optionalDate = z.preprocess(
   (value) => (typeof value === "string" && value.trim() === "" ? null : value),
-  z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+  z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable(),
 );
 
 const certificationSchema = z
@@ -127,9 +130,7 @@ export async function createCertification(formData: FormData) {
   }
 
   const { supabase } = await requireAdmin();
-  const { error } = await supabase
-    .from("certifications")
-    .insert(certificationPayload(parsed.data));
+  const { error } = await supabase.from("certifications").insert(certificationPayload(parsed.data));
 
   if (error) {
     if (error.code === "23505") {
@@ -241,11 +242,26 @@ export async function deleteCertification(formData: FormData) {
   }
 
   const dependencyChecks = await Promise.all([
-    supabase.from("exams").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
-    supabase.from("exam_domains").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
-    supabase.from("renewal_policies").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
-    supabase.from("resources").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
-    supabase.from("career_path_steps").select("id", { count: "exact", head: true }).eq("certification_id", id.data),
+    supabase
+      .from("exams")
+      .select("id", { count: "exact", head: true })
+      .eq("certification_id", id.data),
+    supabase
+      .from("exam_domains")
+      .select("id", { count: "exact", head: true })
+      .eq("certification_id", id.data),
+    supabase
+      .from("renewal_policies")
+      .select("id", { count: "exact", head: true })
+      .eq("certification_id", id.data),
+    supabase
+      .from("resources")
+      .select("id", { count: "exact", head: true })
+      .eq("certification_id", id.data),
+    supabase
+      .from("career_path_steps")
+      .select("id", { count: "exact", head: true })
+      .eq("certification_id", id.data),
     supabase
       .from("certification_relations")
       .select("id", { count: "exact", head: true })

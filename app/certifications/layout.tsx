@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CertificationsLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function CertificationsLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return children;
 }

@@ -21,9 +21,7 @@ export default async function NewCareerPathPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
           Admin · Career paths
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-          Add career path
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Add career path</h1>
         <p className="mt-2 text-slate-600">
           Create a roadmap page for a target role or certification journey.
         </p>

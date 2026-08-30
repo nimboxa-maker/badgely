@@ -59,9 +59,7 @@ export default async function EditCareerPathPage({ params }: EditCareerPathPageP
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
           Admin · Career paths
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-          Edit career path
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Edit career path</h1>
         <p className="mt-2 text-slate-600">
           Update roadmap details, audience information, and SEO metadata.
         </p>

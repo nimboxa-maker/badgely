@@ -43,11 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   const [certificationsResult, careerPathsResult] = await Promise.all([
-    supabase
-      .from("certifications")
-      .select("slug, updated_at")
-      .eq("status", "Active")
-      .order("slug"),
+    supabase.from("certifications").select("slug, updated_at").eq("status", "Active").order("slug"),
     supabase.from("career_paths").select("slug, updated_at").order("slug"),
   ]);
 

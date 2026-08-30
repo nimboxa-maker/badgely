@@ -72,10 +72,7 @@ export default async function AdminCertificationsPage({
     ...new Map(
       allCertifications
         .filter((certification) => certification.providers)
-        .map((certification) => [
-          certification.providers!.slug,
-          certification.providers!.name,
-        ]),
+        .map((certification) => [certification.providers!.slug, certification.providers!.name]),
     ).entries(),
   ].sort((a, b) => a[1].localeCompare(b[1]));
 
@@ -90,8 +87,7 @@ export default async function AdminCertificationsPage({
       certification.providers?.name.toLowerCase().includes(query);
 
     const matchesStatus = status === "all" || certification.status === status;
-    const matchesProvider =
-      provider === "all" || certification.providers?.slug === provider;
+    const matchesProvider = provider === "all" || certification.providers?.slug === provider;
 
     return matchesQuery && matchesStatus && matchesProvider;
   });
@@ -116,7 +112,8 @@ export default async function AdminCertificationsPage({
               Certification records
             </h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search certification records, review lifecycle status, and inspect verification dates before making catalog changes.
+              Search certification records, review lifecycle status, and inspect verification dates
+              before making catalog changes.
             </p>
           </div>
 
@@ -130,7 +127,8 @@ export default async function AdminCertificationsPage({
             </Link>
             <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
               Showing <span className="font-bold text-slate-950">{certifications.length}</span> of{" "}
-              <span className="font-bold text-slate-950">{allCertifications.length}</span> certifications
+              <span className="font-bold text-slate-950">{allCertifications.length}</span>{" "}
+              certifications
             </div>
           </div>
         </div>
@@ -176,7 +174,10 @@ export default async function AdminCertificationsPage({
           </div>
 
           <div>
-            <label htmlFor="certification-provider" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="certification-provider"
+              className="text-sm font-semibold text-slate-700"
+            >
               Provider
             </label>
             <select
@@ -218,9 +219,7 @@ export default async function AdminCertificationsPage({
                 </div>
               </div>
 
-              <p className="mt-4 text-sm leading-6 text-slate-600">
-                {certification.short_summary}
-              </p>
+              <p className="mt-4 text-sm leading-6 text-slate-600">{certification.short_summary}</p>
 
               <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                 <div>

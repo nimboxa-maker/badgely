@@ -35,7 +35,8 @@ export default async function CareerPathsPage() {
           Turn certifications into a career direction
         </h1>
         <p className="mt-4 text-lg leading-8 text-slate-600">
-          Explore step-by-step learning paths for common IT roles. Each path combines certification guidance with practical activities so you can see what to learn next and why it matters.
+          Explore step-by-step learning paths for common IT roles. Each path combines certification
+          guidance with practical activities so you can see what to learn next and why it matters.
         </p>
       </section>
 
@@ -65,9 +66,7 @@ export default async function CareerPathsPage() {
                 {path.audience_level ? <Badge>{path.audience_level}</Badge> : null}
               </div>
 
-              <h3 className="mt-5 text-xl font-bold tracking-tight text-slate-950">
-                {path.name}
-              </h3>
+              <h3 className="mt-5 text-xl font-bold tracking-tight text-slate-950">{path.name}</h3>
 
               {path.target_role ? (
                 <p className="mt-2 text-sm font-semibold text-blue-700">
@@ -75,9 +74,7 @@ export default async function CareerPathsPage() {
                 </p>
               ) : null}
 
-              <p className="mt-4 flex-1 leading-7 text-slate-600">
-                {path.short_summary}
-              </p>
+              <p className="mt-4 flex-1 leading-7 text-slate-600">{path.short_summary}</p>
 
               {path.estimated_total_time_text ? (
                 <p className="mt-4 text-sm text-slate-500">

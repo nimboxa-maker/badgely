@@ -1,12 +1,7 @@
 import { differenceInCalendarDays, parseISO, startOfDay } from "date-fns";
 
 export type StudyTaskType =
-  | "Read"
-  | "Lab"
-  | "Video"
-  | "Practice Questions"
-  | "Review"
-  | "Exam Booking";
+  "Read" | "Lab" | "Video" | "Practice Questions" | "Review" | "Exam Booking";
 
 export type StudyDomain = {
   domain_name: string;
@@ -50,10 +45,7 @@ export type StudyScheduleResult = {
   tasks: GeneratedStudyTask[];
 };
 
-function calculateEstimatedStudyHours(
-  minimum?: number | null,
-  maximum?: number | null,
-) {
+function calculateEstimatedStudyHours(minimum?: number | null, maximum?: number | null) {
   if (minimum !== null && minimum !== undefined && maximum !== null && maximum !== undefined) {
     return Math.round((minimum + maximum) / 2);
   }
@@ -84,10 +76,7 @@ function distributeHoursAcrossTasks(
 
   const weeklyHundredths = Math.max(0, Math.floor(weeklyStudyHours * 100));
   const preferredHundredths = Math.max(0, Math.floor(preferredHours * 100));
-  const targetHundredths = Math.min(
-    weeklyHundredths,
-    preferredHundredths * taskCount,
-  );
+  const targetHundredths = Math.min(weeklyHundredths, preferredHundredths * taskCount);
   const baseHundredths = Math.floor(targetHundredths / taskCount);
   const remainder = targetHundredths % taskCount;
 
@@ -97,10 +86,7 @@ function distributeHoursAcrossTasks(
   });
 }
 
-function addTask(
-  tasks: GeneratedStudyTask[],
-  task: Omit<GeneratedStudyTask, "display_order">,
-) {
+function addTask(tasks: GeneratedStudyTask[], task: Omit<GeneratedStudyTask, "display_order">) {
   tasks.push({
     ...task,
     display_order: tasks.length + 1,
@@ -130,8 +116,7 @@ export function generateStudySchedule(input: StudyScheduleInput): StudyScheduleR
     input.estimatedStudyHoursMin,
     input.estimatedStudyHoursMax,
   );
-  const isTimeShort =
-    estimatedStudyHours !== null && availableStudyHours < estimatedStudyHours;
+  const isTimeShort = estimatedStudyHours !== null && availableStudyHours < estimatedStudyHours;
 
   const warning = isTimeShort
     ? `Your schedule provides about ${availableStudyHours} study hours, while this certification is estimated at about ${estimatedStudyHours} hours. Consider moving the exam date or increasing weekly study time.`
@@ -199,9 +184,7 @@ export function generateStudySchedule(input: StudyScheduleInput): StudyScheduleR
   resources.forEach((resource, index) => {
     const week = Math.min(studyWeeks, 1 + (index % studyWeeks));
     const normalizedType = resource.resource_type.toLowerCase();
-    const taskType: StudyTaskType = normalizedType.includes("video")
-      ? "Video"
-      : "Read";
+    const taskType: StudyTaskType = normalizedType.includes("video") ? "Video" : "Read";
 
     addTask(tasks, {
       title: `Use resource: ${resource.title}`,

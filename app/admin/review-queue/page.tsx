@@ -81,9 +81,7 @@ function daysSinceVerification(date: string | null) {
   return differenceInCalendarDays(new Date(), new Date(`${date}T00:00:00`));
 }
 
-export default async function AdminReviewQueuePage({
-  searchParams,
-}: AdminReviewQueuePageProps) {
+export default async function AdminReviewQueuePage({ searchParams }: AdminReviewQueuePageProps) {
   const { supabase } = await requireAdmin();
   const params = await searchParams;
   const query = params.q?.trim().toLowerCase() ?? "";
@@ -217,9 +215,7 @@ export default async function AdminReviewQueuePage({
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
             Admin · Review queue
           </p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-            Needs Review
-          </h1>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Needs Review</h1>
           <p className="mt-2 max-w-3xl text-slate-600">
             Review records with no verification date or a last verification date older than 90 days.
           </p>
@@ -310,7 +306,8 @@ export default async function AdminReviewQueuePage({
       <div className="mt-6 flex items-center justify-between gap-4">
         <p className="text-sm text-slate-600">
           Showing <span className="font-bold text-slate-950">{records.length}</span> of{" "}
-          <span className="font-bold text-slate-950">{allRecords.length}</span> records needing review
+          <span className="font-bold text-slate-950">{allRecords.length}</span> records needing
+          review
         </p>
         {(query || recordType !== "all" || status !== "all") && (
           <Link
@@ -374,7 +371,9 @@ export default async function AdminReviewQueuePage({
         </section>
       ) : (
         <Card className="mt-4">
-          <h2 className="text-lg font-bold text-slate-950">No review records match these filters</h2>
+          <h2 className="text-lg font-bold text-slate-950">
+            No review records match these filters
+          </h2>
           <p className="mt-2 text-sm text-slate-600">
             Clear the filters or choose a different record type or review status.
           </p>

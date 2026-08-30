@@ -11,10 +11,7 @@ const optionalText = (max: number) =>
     z.string().trim().max(max).nullable(),
   );
 
-const nonNegativeInteger = z.preprocess(
-  (value) => Number(value),
-  z.number().int().min(0),
-);
+const nonNegativeInteger = z.preprocess((value) => Number(value), z.number().int().min(0));
 
 const examDomainSchema = z.object({
   certificationId: z.string().uuid(),

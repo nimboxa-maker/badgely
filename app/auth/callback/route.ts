@@ -8,14 +8,18 @@ export async function GET(request: Request) {
   const next = nextParam?.startsWith("/") && !nextParam.startsWith("//") ? nextParam : "/dashboard";
 
   if (!code) {
-    return NextResponse.redirect(new URL("/sign-in?error=Missing+confirmation+code.", requestUrl.origin));
+    return NextResponse.redirect(
+      new URL("/sign-in?error=Missing+confirmation+code.", requestUrl.origin),
+    );
   }
 
   const supabase = await createClient();
   const { error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error) {
-    return NextResponse.redirect(new URL("/sign-in?error=Unable+to+confirm+your+email.", requestUrl.origin));
+    return NextResponse.redirect(
+      new URL("/sign-in?error=Unable+to+confirm+your+email.", requestUrl.origin),
+    );
   }
 
   return NextResponse.redirect(new URL(next, requestUrl.origin));

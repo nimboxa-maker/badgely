@@ -191,10 +191,7 @@ export async function deleteProvider(formData: FormData) {
     throw new Error("This provider cannot be deleted while certifications are linked to it.");
   }
 
-  const { error } = await supabase
-    .from("providers")
-    .delete()
-    .eq("id", parsed.data.id);
+  const { error } = await supabase.from("providers").delete().eq("id", parsed.data.id);
 
   if (error) {
     throw new Error("Unable to delete the provider.");

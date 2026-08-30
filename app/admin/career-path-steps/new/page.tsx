@@ -19,14 +19,16 @@ type CertificationOption = {
 export default async function NewCareerPathStepPage() {
   const { supabase } = await requireAdmin();
 
-  const [{ data: careerPaths, error: careerPathsError }, { data: certifications, error: certificationsError }] =
-    await Promise.all([
-      supabase.from("career_paths").select("id, name").order("name", { ascending: true }),
-      supabase
-        .from("certifications")
-        .select("id, name, status, providers(name)")
-        .order("name", { ascending: true }),
-    ]);
+  const [
+    { data: careerPaths, error: careerPathsError },
+    { data: certifications, error: certificationsError },
+  ] = await Promise.all([
+    supabase.from("career_paths").select("id, name").order("name", { ascending: true }),
+    supabase
+      .from("certifications")
+      .select("id, name, status, providers(name)")
+      .order("name", { ascending: true }),
+  ]);
 
   if (careerPathsError || certificationsError) {
     throw new Error("Unable to load career path step form options.");

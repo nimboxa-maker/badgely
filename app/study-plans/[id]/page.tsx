@@ -28,9 +28,7 @@ function formatHours(value: number | null) {
   return `${Number(value)} hr${Number(value) === 1 ? "" : "s"}`;
 }
 
-export default async function StudyPlanDetailPage({
-  params,
-}: StudyPlanDetailPageProps) {
+export default async function StudyPlanDetailPage({ params }: StudyPlanDetailPageProps) {
   const { id } = await params;
   const supabase = await createClient();
   const {
@@ -111,9 +109,7 @@ export default async function StudyPlanDetailPage({
             </Badge>
           ) : null}
           {studyPlan.certifications?.level ? (
-            <Badge className="bg-white/10 text-slate-100">
-              {studyPlan.certifications.level}
-            </Badge>
+            <Badge className="bg-white/10 text-slate-100">{studyPlan.certifications.level}</Badge>
           ) : null}
         </div>
 
@@ -130,9 +126,7 @@ export default async function StudyPlanDetailPage({
         </div>
 
         {studyPlan.generated_plan_text ? (
-          <p className="mt-5 max-w-4xl leading-7 text-slate-300">
-            {studyPlan.generated_plan_text}
-          </p>
+          <p className="mt-5 max-w-4xl leading-7 text-slate-300">{studyPlan.generated_plan_text}</p>
         ) : null}
 
         {studyPlan.certifications?.slug ? (
@@ -164,7 +158,10 @@ export default async function StudyPlanDetailPage({
         </Card>
       </section>
 
-      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" aria-label="Study plan summary">
+      <section
+        className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        aria-label="Study plan summary"
+      >
         <Card>
           <div className="flex items-center gap-2 text-sm font-semibold text-slate-500">
             <CalendarDays className="size-4" aria-hidden="true" />
@@ -217,9 +214,7 @@ export default async function StudyPlanDetailPage({
                 Progress updates automatically as study tasks are completed.
               </p>
             </div>
-            <span className="text-2xl font-bold text-blue-700">
-              {studyPlan.progress_percent}%
-            </span>
+            <span className="text-2xl font-bold text-blue-700">{studyPlan.progress_percent}%</span>
           </div>
 
           <div
@@ -248,7 +243,8 @@ export default async function StudyPlanDetailPage({
           </h2>
           {nextTask ? (
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Week {nextTask.week_number} · {nextTask.task_type} · {formatHours(nextTask.estimated_hours)}
+              Week {nextTask.week_number} · {nextTask.task_type} ·{" "}
+              {formatHours(nextTask.estimated_hours)}
             </p>
           ) : null}
         </Card>
@@ -259,7 +255,10 @@ export default async function StudyPlanDetailPage({
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
             Weekly schedule
           </p>
-          <h2 id="weekly-plan-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
+          <h2
+            id="weekly-plan-heading"
+            className="mt-2 text-2xl font-bold tracking-tight text-slate-950"
+          >
             Your {studyPlan.study_weeks}-week plan
           </h2>
           <p className="mt-2 text-slate-600">
@@ -274,9 +273,7 @@ export default async function StudyPlanDetailPage({
                 <h3 id={`week-${week.weekNumber}`} className="text-xl font-bold text-slate-950">
                   Week {week.weekNumber}
                 </h3>
-                <Badge>
-                  {week.estimatedHours.toFixed(2).replace(/\.00$/, "")} planned hours
-                </Badge>
+                <Badge>{week.estimatedHours.toFixed(2).replace(/\.00$/, "")} planned hours</Badge>
               </div>
 
               {week.tasks.length ? (
@@ -350,7 +347,8 @@ export default async function StudyPlanDetailPage({
                 Delete study plan
               </h2>
               <p className="mt-1 text-sm leading-6 text-slate-600">
-                Permanently remove this study plan and all of its tasks. This action cannot be undone.
+                Permanently remove this study plan and all of its tasks. This action cannot be
+                undone.
               </p>
             </div>
             <DeleteStudyPlanForm studyPlanId={studyPlan.id} />

@@ -5,15 +5,60 @@ import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
 
 const catalogAreas = [
-  { key: "providers", name: "Providers", description: "Manage certification providers and visibility.", href: "/admin/providers" },
-  { key: "certifications", name: "Certifications", description: "Manage certification facts, status, SEO, and featured records.", href: "/admin/certifications" },
-  { key: "exams", name: "Exams", description: "Manage exam details, registration links, and verification dates.", href: "/admin/exams" },
-  { key: "examDomains", name: "Exam domains", description: "Manage domain summaries, weights, and display order.", href: "/admin/exam-domains" },
-  { key: "renewalPolicies", name: "Renewal policies", description: "Manage renewal guidance, official sources, and verification dates.", href: "/admin/renewal-policies" },
-  { key: "resources", name: "Resources", description: "Manage official and community learning resources.", href: "/admin/resources" },
-  { key: "careerPaths", name: "Career paths", description: "Manage career-roadmap pages and SEO metadata.", href: "/admin/career-paths" },
-  { key: "careerPathSteps", name: "Career path steps", description: "Manage ordered certifications and practical activities.", href: "/admin/career-path-steps" },
-  { key: "certificationRelations", name: "Certification relations", description: "Manage before, after, alternative, and specialization links.", href: "/admin/certification-relations" },
+  {
+    key: "providers",
+    name: "Providers",
+    description: "Manage certification providers and visibility.",
+    href: "/admin/providers",
+  },
+  {
+    key: "certifications",
+    name: "Certifications",
+    description: "Manage certification facts, status, SEO, and featured records.",
+    href: "/admin/certifications",
+  },
+  {
+    key: "exams",
+    name: "Exams",
+    description: "Manage exam details, registration links, and verification dates.",
+    href: "/admin/exams",
+  },
+  {
+    key: "examDomains",
+    name: "Exam domains",
+    description: "Manage domain summaries, weights, and display order.",
+    href: "/admin/exam-domains",
+  },
+  {
+    key: "renewalPolicies",
+    name: "Renewal policies",
+    description: "Manage renewal guidance, official sources, and verification dates.",
+    href: "/admin/renewal-policies",
+  },
+  {
+    key: "resources",
+    name: "Resources",
+    description: "Manage official and community learning resources.",
+    href: "/admin/resources",
+  },
+  {
+    key: "careerPaths",
+    name: "Career paths",
+    description: "Manage career-roadmap pages and SEO metadata.",
+    href: "/admin/career-paths",
+  },
+  {
+    key: "careerPathSteps",
+    name: "Career path steps",
+    description: "Manage ordered certifications and practical activities.",
+    href: "/admin/career-path-steps",
+  },
+  {
+    key: "certificationRelations",
+    name: "Certification relations",
+    description: "Manage before, after, alternative, and specialization links.",
+    href: "/admin/certification-relations",
+  },
 ] as const;
 
 export default async function AdminPage() {
@@ -105,14 +150,13 @@ export default async function AdminPage() {
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
-            Admin
-          </p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">Admin</p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
             Catalog management
           </h1>
           <p className="mt-2 max-w-3xl text-slate-600">
-            Signed in as {profile.display_name || "an administrator"}. Manage Badgely catalog content and keep verification data current.
+            Signed in as {profile.display_name || "an administrator"}. Manage Badgely catalog
+            content and keep verification data current.
           </p>
         </div>
 
@@ -149,7 +193,8 @@ export default async function AdminPage() {
           <p className="mt-3 text-sm font-semibold text-slate-500">Needs Review</p>
           <p className="mt-1 text-xl font-bold text-slate-950">{needsReviewCount}</p>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Certification, exam, renewal, and resource records with no verification date or a date older than 90 days.
+            Certification, exam, renewal, and resource records with no verification date or a date
+            older than 90 days.
           </p>
           <Link
             href="/admin/review-queue"
@@ -167,7 +212,8 @@ export default async function AdminPage() {
             Catalog management areas
           </h2>
           <p className="mt-1 text-sm text-slate-600">
-            Search, filter, create, edit, and safely remove catalog records from each protected admin area.
+            Search, filter, create, edit, and safely remove catalog records from each protected
+            admin area.
           </p>
         </div>
 

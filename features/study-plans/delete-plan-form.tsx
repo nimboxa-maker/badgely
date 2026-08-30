@@ -7,9 +7,7 @@ type DeleteStudyPlanFormProps = {
   studyPlanId: string;
 };
 
-export function DeleteStudyPlanForm({
-  studyPlanId,
-}: DeleteStudyPlanFormProps) {
+export function DeleteStudyPlanForm({ studyPlanId }: DeleteStudyPlanFormProps) {
   const [confirming, setConfirming] = useState(false);
 
   if (!confirming) {
@@ -29,9 +27,7 @@ export function DeleteStudyPlanForm({
       <p className="text-sm font-semibold text-red-900">
         Delete this study plan and all of its tasks?
       </p>
-      <p className="mt-1 text-sm leading-6 text-red-700">
-        This action cannot be undone.
-      </p>
+      <p className="mt-1 text-sm leading-6 text-red-700">This action cannot be undone.</p>
 
       <div className="mt-4 flex flex-wrap gap-3">
         <button

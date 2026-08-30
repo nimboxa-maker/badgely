@@ -13,20 +13,19 @@ export default async function EditCertificationPage({ params }: EditCertificatio
   const { id } = await params;
   const { supabase } = await requireAdmin();
 
-  const [{ data: certification, error: certificationError }, { data: providers, error: providersError }] =
-    await Promise.all([
-      supabase
-        .from("certifications")
-        .select(
-          "id, provider_id, name, slug, category, level, vendor_type, short_summary, full_summary, target_job_roles, recommended_experience, official_certification_url, status, last_verified_date, featured, estimated_study_hours_min, estimated_study_hours_max, seo_title, seo_description",
-        )
-        .eq("id", id)
-        .maybeSingle(),
-      supabase
-        .from("providers")
-        .select("id, name, active")
-        .order("name", { ascending: true }),
-    ]);
+  const [
+    { data: certification, error: certificationError },
+    { data: providers, error: providersError },
+  ] = await Promise.all([
+    supabase
+      .from("certifications")
+      .select(
+        "id, provider_id, name, slug, category, level, vendor_type, short_summary, full_summary, target_job_roles, recommended_experience, official_certification_url, status, last_verified_date, featured, estimated_study_hours_min, estimated_study_hours_max, seo_title, seo_description",
+      )
+      .eq("id", id)
+      .maybeSingle(),
+    supabase.from("providers").select("id, name, active").order("name", { ascending: true }),
+  ]);
 
   if (certificationError || providersError) {
     throw new Error("Unable to load certification details for editing.");
@@ -76,7 +75,8 @@ export default async function EditCertificationPage({ params }: EditCertificatio
               >
                 {(providers ?? []).map((provider) => (
                   <option key={provider.id} value={provider.id}>
-                    {provider.name}{provider.active ? "" : " (Archived)"}
+                    {provider.name}
+                    {provider.active ? "" : " (Archived)"}
                   </option>
                 ))}
               </select>
@@ -101,7 +101,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="text-sm font-semibold text-slate-700">Certification name</label>
+              <label htmlFor="name" className="text-sm font-semibold text-slate-700">
+                Certification name
+              </label>
               <input
                 id="name"
                 name="name"
@@ -114,7 +116,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
             </div>
 
             <div>
-              <label htmlFor="slug" className="text-sm font-semibold text-slate-700">Slug</label>
+              <label htmlFor="slug" className="text-sm font-semibold text-slate-700">
+                Slug
+              </label>
               <input
                 id="slug"
                 name="slug"
@@ -125,13 +129,17 @@ export default async function EditCertificationPage({ params }: EditCertificatio
                 defaultValue={certification.slug}
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
-              <p className="mt-1 text-xs text-slate-500">Lowercase letters, numbers, and hyphens only.</p>
+              <p className="mt-1 text-xs text-slate-500">
+                Lowercase letters, numbers, and hyphens only.
+              </p>
             </div>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-3">
             <div>
-              <label htmlFor="category" className="text-sm font-semibold text-slate-700">Category</label>
+              <label htmlFor="category" className="text-sm font-semibold text-slate-700">
+                Category
+              </label>
               <input
                 id="category"
                 name="category"
@@ -144,7 +152,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
             </div>
 
             <div>
-              <label htmlFor="level" className="text-sm font-semibold text-slate-700">Level</label>
+              <label htmlFor="level" className="text-sm font-semibold text-slate-700">
+                Level
+              </label>
               <input
                 id="level"
                 name="level"
@@ -157,7 +167,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
             </div>
 
             <div>
-              <label htmlFor="vendorType" className="text-sm font-semibold text-slate-700">Vendor type</label>
+              <label htmlFor="vendorType" className="text-sm font-semibold text-slate-700">
+                Vendor type
+              </label>
               <select
                 id="vendorType"
                 name="vendorType"
@@ -171,7 +183,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
           </div>
 
           <div>
-            <label htmlFor="shortSummary" className="text-sm font-semibold text-slate-700">Short summary</label>
+            <label htmlFor="shortSummary" className="text-sm font-semibold text-slate-700">
+              Short summary
+            </label>
             <textarea
               id="shortSummary"
               name="shortSummary"
@@ -184,7 +198,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
           </div>
 
           <div>
-            <label htmlFor="fullSummary" className="text-sm font-semibold text-slate-700">Full summary</label>
+            <label htmlFor="fullSummary" className="text-sm font-semibold text-slate-700">
+              Full summary
+            </label>
             <textarea
               id="fullSummary"
               name="fullSummary"
@@ -197,7 +213,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="targetJobRoles" className="text-sm font-semibold text-slate-700">Target job roles</label>
+              <label htmlFor="targetJobRoles" className="text-sm font-semibold text-slate-700">
+                Target job roles
+              </label>
               <input
                 id="targetJobRoles"
                 name="targetJobRoles"
@@ -210,7 +228,12 @@ export default async function EditCertificationPage({ params }: EditCertificatio
             </div>
 
             <div>
-              <label htmlFor="recommendedExperience" className="text-sm font-semibold text-slate-700">Recommended experience</label>
+              <label
+                htmlFor="recommendedExperience"
+                className="text-sm font-semibold text-slate-700"
+              >
+                Recommended experience
+              </label>
               <textarea
                 id="recommendedExperience"
                 name="recommendedExperience"
@@ -224,7 +247,12 @@ export default async function EditCertificationPage({ params }: EditCertificatio
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="officialCertificationUrl" className="text-sm font-semibold text-slate-700">Official certification URL</label>
+              <label
+                htmlFor="officialCertificationUrl"
+                className="text-sm font-semibold text-slate-700"
+              >
+                Official certification URL
+              </label>
               <input
                 id="officialCertificationUrl"
                 name="officialCertificationUrl"
@@ -236,7 +264,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
             </div>
 
             <div>
-              <label htmlFor="lastVerifiedDate" className="text-sm font-semibold text-slate-700">Last verified date</label>
+              <label htmlFor="lastVerifiedDate" className="text-sm font-semibold text-slate-700">
+                Last verified date
+              </label>
               <input
                 id="lastVerifiedDate"
                 name="lastVerifiedDate"
@@ -249,7 +279,12 @@ export default async function EditCertificationPage({ params }: EditCertificatio
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="estimatedStudyHoursMin" className="text-sm font-semibold text-slate-700">Minimum study hours</label>
+              <label
+                htmlFor="estimatedStudyHoursMin"
+                className="text-sm font-semibold text-slate-700"
+              >
+                Minimum study hours
+              </label>
               <input
                 id="estimatedStudyHoursMin"
                 name="estimatedStudyHoursMin"
@@ -262,7 +297,12 @@ export default async function EditCertificationPage({ params }: EditCertificatio
             </div>
 
             <div>
-              <label htmlFor="estimatedStudyHoursMax" className="text-sm font-semibold text-slate-700">Maximum study hours</label>
+              <label
+                htmlFor="estimatedStudyHoursMax"
+                className="text-sm font-semibold text-slate-700"
+              >
+                Maximum study hours
+              </label>
               <input
                 id="estimatedStudyHoursMax"
                 name="estimatedStudyHoursMax"
@@ -277,7 +317,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="seoTitle" className="text-sm font-semibold text-slate-700">SEO title</label>
+              <label htmlFor="seoTitle" className="text-sm font-semibold text-slate-700">
+                SEO title
+              </label>
               <input
                 id="seoTitle"
                 name="seoTitle"
@@ -289,7 +331,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
             </div>
 
             <div>
-              <label htmlFor="seoDescription" className="text-sm font-semibold text-slate-700">SEO description</label>
+              <label htmlFor="seoDescription" className="text-sm font-semibold text-slate-700">
+                SEO description
+              </label>
               <textarea
                 id="seoDescription"
                 name="seoDescription"
@@ -309,7 +353,9 @@ export default async function EditCertificationPage({ params }: EditCertificatio
               className="mt-1 size-4 rounded border-slate-300"
             />
             <span>
-              <span className="block text-sm font-semibold text-slate-900">Featured certification</span>
+              <span className="block text-sm font-semibold text-slate-900">
+                Featured certification
+              </span>
               <span className="mt-1 block text-sm text-slate-600">
                 Featured records may receive priority placement in the public catalog.
               </span>

@@ -8,10 +8,7 @@ type DeleteProviderButtonProps = {
   providerName: string;
 };
 
-export function DeleteProviderButton({
-  providerId,
-  providerName,
-}: DeleteProviderButtonProps) {
+export function DeleteProviderButton({ providerId, providerName }: DeleteProviderButtonProps) {
   return (
     <form
       action={deleteProvider}

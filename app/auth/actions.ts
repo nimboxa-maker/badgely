@@ -27,7 +27,13 @@ export async function signIn(formData: FormData) {
   });
 
   if (!parsed.success) {
-    redirect(withMessage("/sign-in", "error", parsed.error.issues[0]?.message ?? "Check your details and try again."));
+    redirect(
+      withMessage(
+        "/sign-in",
+        "error",
+        parsed.error.issues[0]?.message ?? "Check your details and try again.",
+      ),
+    );
   }
 
   const supabase = await createClient();
@@ -48,7 +54,13 @@ export async function signUp(formData: FormData) {
   });
 
   if (!parsed.success) {
-    redirect(withMessage("/sign-up", "error", parsed.error.issues[0]?.message ?? "Check your details and try again."));
+    redirect(
+      withMessage(
+        "/sign-up",
+        "error",
+        parsed.error.issues[0]?.message ?? "Check your details and try again.",
+      ),
+    );
   }
 
   const supabase = await createClient();
@@ -70,7 +82,13 @@ export async function signUp(formData: FormData) {
     redirect("/dashboard");
   }
 
-  redirect(withMessage("/sign-in", "message", "Account created. Check your email to confirm your address, then sign in."));
+  redirect(
+    withMessage(
+      "/sign-in",
+      "message",
+      "Account created. Check your email to confirm your address, then sign in.",
+    ),
+  );
 }
 
 export async function signOut() {

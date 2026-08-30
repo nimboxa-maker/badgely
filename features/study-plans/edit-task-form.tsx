@@ -14,14 +14,7 @@ type EditStudyTaskFormProps = {
   };
 };
 
-const taskTypes = [
-  "Read",
-  "Lab",
-  "Video",
-  "Practice Questions",
-  "Review",
-  "Exam Booking",
-] as const;
+const taskTypes = ["Read", "Lab", "Video", "Practice Questions", "Review", "Exam Booking"] as const;
 
 export function EditStudyTaskForm({
   studyPlanId,
@@ -31,9 +24,7 @@ export function EditStudyTaskForm({
 }: EditStudyTaskFormProps) {
   return (
     <details className="w-full rounded-xl border border-slate-200 bg-white p-3 sm:w-80">
-      <summary className="cursor-pointer text-sm font-semibold text-blue-700">
-        Edit task
-      </summary>
+      <summary className="cursor-pointer text-sm font-semibold text-blue-700">Edit task</summary>
 
       <form action={updateStudyTask} className="mt-4 space-y-4">
         <input type="hidden" name="taskId" value={task.id} />

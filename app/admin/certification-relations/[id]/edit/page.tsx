@@ -45,9 +45,7 @@ export default async function EditCertificationRelationPage({
   ] = await Promise.all([
     supabase
       .from("certification_relations")
-      .select(
-        "id, source_certification_id, target_certification_id, relation_type, explanation",
-      )
+      .select("id, source_certification_id, target_certification_id, relation_type, explanation")
       .eq("id", id)
       .maybeSingle(),
     supabase

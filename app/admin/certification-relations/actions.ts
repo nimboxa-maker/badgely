@@ -50,19 +50,14 @@ function certificationRelationPayload(parsed: z.infer<typeof certificationRelati
 }
 
 export async function createCertificationRelation(formData: FormData) {
-  const parsed = certificationRelationSchema.safeParse(
-    certificationRelationFormValues(formData),
-  );
+  const parsed = certificationRelationSchema.safeParse(certificationRelationFormValues(formData));
 
   if (!parsed.success) {
     throw new Error("Please check the certification relation details and try again.");
   }
 
   const { supabase } = await requireAdmin();
-  const certificationIds = [
-    parsed.data.sourceCertificationId,
-    parsed.data.targetCertificationId,
-  ];
+  const certificationIds = [parsed.data.sourceCertificationId, parsed.data.targetCertificationId];
 
   const { data: certifications, error: certificationError } = await supabase
     .from("certifications")
@@ -106,9 +101,7 @@ export async function createCertificationRelation(formData: FormData) {
 
 export async function updateCertificationRelation(formData: FormData) {
   const id = certificationRelationIdSchema.safeParse(formData.get("id"));
-  const parsed = certificationRelationSchema.safeParse(
-    certificationRelationFormValues(formData),
-  );
+  const parsed = certificationRelationSchema.safeParse(certificationRelationFormValues(formData));
 
   if (!id.success || !parsed.success) {
     throw new Error("Please check the certification relation details and try again.");

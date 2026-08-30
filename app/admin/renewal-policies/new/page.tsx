@@ -14,14 +14,16 @@ type CertificationRow = {
 export default async function NewRenewalPolicyPage() {
   const { supabase } = await requireAdmin();
 
-  const [{ data: certifications, error: certificationsError }, { data: policies, error: policiesError }] =
-    await Promise.all([
-      supabase
-        .from("certifications")
-        .select("id, name, status, providers(name)")
-        .order("name", { ascending: true }),
-      supabase.from("renewal_policies").select("certification_id"),
-    ]);
+  const [
+    { data: certifications, error: certificationsError },
+    { data: policies, error: policiesError },
+  ] = await Promise.all([
+    supabase
+      .from("certifications")
+      .select("id, name, status, providers(name)")
+      .order("name", { ascending: true }),
+    supabase.from("renewal_policies").select("certification_id"),
+  ]);
 
   if (certificationsError || policiesError) {
     throw new Error("Unable to load certifications for renewal policy creation.");
@@ -89,7 +91,10 @@ export default async function NewRenewalPolicyPage() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="validityPeriodText" className="text-sm font-semibold text-slate-700">
+                <label
+                  htmlFor="validityPeriodText"
+                  className="text-sm font-semibold text-slate-700"
+                >
                   Validity period
                 </label>
                 <input
@@ -174,7 +179,9 @@ export default async function NewRenewalPolicyPage() {
           </form>
         ) : (
           <div>
-            <h2 className="text-lg font-bold text-slate-950">Every certification has a renewal policy</h2>
+            <h2 className="text-lg font-bold text-slate-950">
+              Every certification has a renewal policy
+            </h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
               Edit an existing policy instead of creating a duplicate record.
             </p>

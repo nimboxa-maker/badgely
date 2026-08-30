@@ -32,8 +32,5 @@ test("certification filters are read from URL query parameters", () => {
 });
 
 test("certification sorting defaults to featured when no sort value is provided", () => {
-  assert.match(
-    pageSource,
-    /const sort = firstParam\(params\.sort\) \|\| "featured";/,
-  );
+  assert.match(pageSource, /const sort = firstParam\(params\.sort\) \|\| "featured";/);
 });

@@ -30,20 +30,22 @@ export default async function EditResourcePage({ params }: EditResourcePageProps
   const { supabase } = await requireAdmin();
   const { id } = await params;
 
-  const [{ data: resource, error: resourceError }, { data: certifications, error: certificationsError }] =
-    await Promise.all([
-      supabase
-        .from("resources")
-        .select(
-          "id, certification_id, title, description, resource_type, url, provider_name, is_official, cost_type, featured, last_verified_date",
-        )
-        .eq("id", id)
-        .maybeSingle(),
-      supabase
-        .from("certifications")
-        .select("id, name, status, providers(name)")
-        .order("name", { ascending: true }),
-    ]);
+  const [
+    { data: resource, error: resourceError },
+    { data: certifications, error: certificationsError },
+  ] = await Promise.all([
+    supabase
+      .from("resources")
+      .select(
+        "id, certification_id, title, description, resource_type, url, provider_name, is_official, cost_type, featured, last_verified_date",
+      )
+      .eq("id", id)
+      .maybeSingle(),
+    supabase
+      .from("certifications")
+      .select("id, name, status, providers(name)")
+      .order("name", { ascending: true }),
+  ]);
 
   if (resourceError || certificationsError) {
     throw new Error("Unable to load the resource for editing.");

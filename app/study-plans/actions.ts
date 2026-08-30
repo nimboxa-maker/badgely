@@ -8,12 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 
 const createStudyPlanSchema = z.object({
   certificationId: z.string().uuid(),
-  currentExperienceLevel: z.enum([
-    "Beginner",
-    "Some experience",
-    "Intermediate",
-    "Advanced",
-  ]),
+  currentExperienceLevel: z.enum(["Beginner", "Some experience", "Intermediate", "Advanced"]),
   targetExamDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   weeklyStudyHours: z.coerce.number().int().min(1).max(40),
   includeLabs: z.boolean(),
@@ -32,14 +27,7 @@ const updateStudyTaskSchema = z.object({
   description: z.string().trim().max(2000),
   weekNumber: z.coerce.number().int().min(1).max(104),
   estimatedHours: z.coerce.number().min(0.01).max(40),
-  taskType: z.enum([
-    "Read",
-    "Lab",
-    "Video",
-    "Practice Questions",
-    "Review",
-    "Exam Booking",
-  ]),
+  taskType: z.enum(["Read", "Lab", "Video", "Practice Questions", "Review", "Exam Booking"]),
 });
 
 const updateStudyPlanStatusSchema = z.object({
@@ -80,9 +68,7 @@ export async function createStudyPlan(formData: FormData) {
   const [certificationResult, domainsResult, resourcesResult] = await Promise.all([
     supabase
       .from("certifications")
-      .select(
-        "id, name, estimated_study_hours_min, estimated_study_hours_max, status",
-      )
+      .select("id, name, estimated_study_hours_min, estimated_study_hours_max, status")
       .eq("id", parsed.data.certificationId)
       .maybeSingle(),
     supabase
@@ -113,10 +99,8 @@ export async function createStudyPlan(formData: FormData) {
     targetExamDate: parsed.data.targetExamDate,
     weeklyStudyHours: parsed.data.weeklyStudyHours,
     includeLabs: parsed.data.includeLabs,
-    estimatedStudyHoursMin:
-      certificationResult.data.estimated_study_hours_min,
-    estimatedStudyHoursMax:
-      certificationResult.data.estimated_study_hours_max,
+    estimatedStudyHoursMin: certificationResult.data.estimated_study_hours_min,
+    estimatedStudyHoursMax: certificationResult.data.estimated_study_hours_max,
     domains: domainsResult.data ?? [],
     resources: resourcesResult.data ?? [],
   });
@@ -166,11 +150,7 @@ export async function createStudyPlan(formData: FormData) {
   );
 
   if (tasksError) {
-    await supabase
-      .from("user_study_plans")
-      .delete()
-      .eq("id", studyPlan.id)
-      .eq("user_id", user.id);
+    await supabase.from("user_study_plans").delete().eq("id", studyPlan.id).eq("user_id", user.id);
 
     throw new Error("Unable to save the generated study tasks.");
   }

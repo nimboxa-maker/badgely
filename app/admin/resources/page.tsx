@@ -123,7 +123,8 @@ export default async function AdminResourcesPage({ searchParams }: AdminResource
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-slate-950">Learning resources</h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search certification learning resources, inspect source details, and review verification dates before making catalog changes.
+              Search certification learning resources, inspect source details, and review
+              verification dates before making catalog changes.
             </p>
           </div>
 
@@ -166,7 +167,10 @@ export default async function AdminResourcesPage({ searchParams }: AdminResource
           </div>
 
           <div>
-            <label htmlFor="resource-certification" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="resource-certification"
+              className="text-sm font-semibold text-slate-700"
+            >
               Certification
             </label>
             <select
@@ -247,7 +251,9 @@ export default async function AdminResourcesPage({ searchParams }: AdminResource
                 </div>
                 <div>
                   <dt className="font-semibold text-slate-500">Last verified</dt>
-                  <dd className="mt-1 text-slate-900">{verifiedLabel(resource.last_verified_date)}</dd>
+                  <dd className="mt-1 text-slate-900">
+                    {verifiedLabel(resource.last_verified_date)}
+                  </dd>
                 </div>
               </dl>
 

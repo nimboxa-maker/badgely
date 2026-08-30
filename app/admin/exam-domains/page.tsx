@@ -29,9 +29,7 @@ type ExamDomainRow = {
   } | null;
 };
 
-export default async function AdminExamDomainsPage({
-  searchParams,
-}: AdminExamDomainsPageProps) {
+export default async function AdminExamDomainsPage({ searchParams }: AdminExamDomainsPageProps) {
   const { supabase } = await requireAdmin();
   const params = await searchParams;
   const query = params.q?.trim().toLowerCase() ?? "";
@@ -98,7 +96,8 @@ export default async function AdminExamDomainsPage({
               Exam domain records
             </h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search certification exam domains, review weights, and verify their display order before making catalog changes.
+              Search certification exam domains, review weights, and verify their display order
+              before making catalog changes.
             </p>
           </div>
 

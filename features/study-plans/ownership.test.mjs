@@ -29,10 +29,7 @@ test("study-task mutations verify the signed-in user owns the parent study plan"
     ownerChecks.length >= 3,
     `Expected at least 3 explicit study-plan owner checks, found ${ownerChecks.length}`,
   );
-  assert.match(
-    actionsSource,
-    /\.eq\("user_study_plan_id", studyPlan\.id\)/,
-  );
+  assert.match(actionsSource, /\.eq\("user_study_plan_id", studyPlan\.id\)/);
 });
 
 test("study-plan deletion requires both the plan id and signed-in user id", () => {

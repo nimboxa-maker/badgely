@@ -23,7 +23,10 @@ const optionalPositiveInteger = z.preprocess(
 
 const optionalDate = z.preprocess(
   (value) => (typeof value === "string" && value.trim() === "" ? null : value),
-  z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+  z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable(),
 );
 
 const examSchema = z.object({

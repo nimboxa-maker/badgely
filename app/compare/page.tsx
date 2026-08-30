@@ -27,7 +27,7 @@ interface ComparePageProps {
 }
 
 function firstParam(value: string | string[] | undefined) {
-  return Array.isArray(value) ? value[0] ?? "" : value ?? "";
+  return Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
 }
 
 function repeatedParam(value: string | string[] | undefined) {
@@ -104,7 +104,9 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
   const allCertifications = certificationData ?? [];
   const selectedCertifications = selectedSlugs
     .map((slug) => allCertifications.find((certification) => certification.slug === slug))
-    .filter((certification): certification is NonNullable<typeof certification> => Boolean(certification));
+    .filter((certification): certification is NonNullable<typeof certification> =>
+      Boolean(certification),
+    );
 
   const selectedIds = selectedCertifications.map((certification) => certification.id);
 
@@ -215,7 +217,8 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
           Compare certifications side by side
         </h1>
         <p className="mt-4 text-lg leading-8 text-slate-600">
-          Search and select up to three certifications. Your selections stay in the URL, so the comparison can be bookmarked or shared.
+          Search and select up to three certifications. Your selections stay in the URL, so the
+          comparison can be bookmarked or shared.
         </p>
       </div>
 
@@ -226,9 +229,7 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
               <h2 id="select-heading" className="text-xl font-bold text-slate-950">
                 Select certifications
               </h2>
-              <p className="mt-1 text-sm text-slate-600">
-                {selectedSlugs.length}/3 selected
-              </p>
+              <p className="mt-1 text-sm text-slate-600">{selectedSlugs.length}/3 selected</p>
             </div>
             {selectedSlugs.length ? (
               <Link
@@ -366,10 +367,16 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                <ComparisonRow label="Provider" values={compared.map((item) => item.providers?.name ?? VERIFY_TEXT)} />
+                <ComparisonRow
+                  label="Provider"
+                  values={compared.map((item) => item.providers?.name ?? VERIFY_TEXT)}
+                />
                 <ComparisonRow label="Category" values={compared.map((item) => item.category)} />
                 <ComparisonRow label="Level" values={compared.map((item) => item.level)} />
-                <ComparisonRow label="Vendor type" values={compared.map((item) => item.vendor_type)} />
+                <ComparisonRow
+                  label="Vendor type"
+                  values={compared.map((item) => item.vendor_type)}
+                />
                 <ComparisonRow
                   label="Target job roles"
                   values={compared.map((item) =>
@@ -471,26 +478,49 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
                     <MobileDetail label="Vendor type" value={item.vendor_type} />
                     <MobileDetail
                       label="Target job roles"
-                      value={item.target_job_roles.length ? item.target_job_roles.join(", ") : VERIFY_TEXT}
+                      value={
+                        item.target_job_roles.length
+                          ? item.target_job_roles.join(", ")
+                          : VERIFY_TEXT
+                      }
                     />
-                    <MobileDetail label="Recommended experience" value={displayValue(item.recommended_experience)} />
+                    <MobileDetail
+                      label="Recommended experience"
+                      value={displayValue(item.recommended_experience)}
+                    />
                     <MobileDetail
                       label="Estimated study hours"
-                      value={studyHours(item.estimated_study_hours_min, item.estimated_study_hours_max)}
+                      value={studyHours(
+                        item.estimated_study_hours_min,
+                        item.estimated_study_hours_max,
+                      )}
                     />
                     <MobileDetail label="Exam code" value={displayValue(item.exam?.exam_code)} />
-                    <MobileDetail label="Number of exams" value={displayValue(item.exam?.number_of_exams)} />
+                    <MobileDetail
+                      label="Number of exams"
+                      value={displayValue(item.exam?.number_of_exams)}
+                    />
                     <MobileDetail
                       label="Duration"
-                      value={item.exam?.duration_minutes ? `${item.exam.duration_minutes} minutes` : VERIFY_TEXT}
+                      value={
+                        item.exam?.duration_minutes
+                          ? `${item.exam.duration_minutes} minutes`
+                          : VERIFY_TEXT
+                      }
                     />
-                    <MobileDetail label="Delivery method" value={displayValue(item.exam?.delivery_method)} />
+                    <MobileDetail
+                      label="Delivery method"
+                      value={displayValue(item.exam?.delivery_method)}
+                    />
                     <MobileDetail label="Price" value={displayValue(item.exam?.price_text)} />
                     <MobileDetail
                       label="Renewal"
                       value={renewalParts.length ? renewalParts.join(" · ") : VERIFY_TEXT}
                     />
-                    <MobileDetail label="Last verified" value={formatDate(item.last_verified_date)} />
+                    <MobileDetail
+                      label="Last verified"
+                      value={formatDate(item.last_verified_date)}
+                    />
                   </dl>
                   {item.official_certification_url ? (
                     <a
@@ -513,7 +543,8 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
         <Card className="mt-10 text-center">
           <h2 className="text-xl font-bold text-slate-950">Start your comparison</h2>
           <p className="mx-auto mt-2 max-w-2xl text-slate-600">
-            Add at least one certification above. Select two or three to see meaningful side-by-side differences.
+            Add at least one certification above. Select two or three to see meaningful side-by-side
+            differences.
           </p>
         </Card>
       )}
@@ -525,18 +556,23 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
               Which should I choose?
             </h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Use these neutral observations as prompts, not as a ranking. They are based only on attributes stored in Badgely.
+              Use these neutral observations as prompts, not as a ranking. They are based only on
+              attributes stored in Badgely.
             </p>
             <ul className="mt-4 space-y-3 text-slate-700">
               {guidance.map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-blue-700" />
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 size-1.5 shrink-0 rounded-full bg-blue-700"
+                  />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
             <p className="mt-5 text-sm leading-6 text-slate-600">
-              Certifications can support learning and job readiness, but they do not guarantee employment or a particular salary outcome.
+              Certifications can support learning and job readiness, but they do not guarantee
+              employment or a particular salary outcome.
             </p>
           </Card>
         </section>
@@ -550,7 +586,10 @@ function ComparisonRow({ label, values }: { label: string; values: string[] }) {
     <tr>
       <th className="px-5 py-4 text-sm font-semibold text-slate-600 align-top">{label}</th>
       {values.map((value, index) => (
-        <td key={`${label}-${index}`} className="px-5 py-4 text-sm leading-6 text-slate-700 align-top">
+        <td
+          key={`${label}-${index}`}
+          className="px-5 py-4 text-sm leading-6 text-slate-700 align-top"
+        >
           {value}
         </td>
       ))}

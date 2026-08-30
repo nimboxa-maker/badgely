@@ -18,7 +18,10 @@ const optionalUrl = z.preprocess(
 
 const optionalDate = z.preprocess(
   (value) => (typeof value === "string" && value.trim() === "" ? null : value),
-  z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+  z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable(),
 );
 
 const optionalCostType = z.preprocess(
@@ -168,9 +171,7 @@ export async function deleteResource(formData: FormData) {
   }
 
   const certificationRelation = existing.certifications as
-    | { slug: string }
-    | { slug: string }[]
-    | null;
+    { slug: string } | { slug: string }[] | null;
   const certificationSlug = Array.isArray(certificationRelation)
     ? certificationRelation[0]?.slug
     : certificationRelation?.slug;

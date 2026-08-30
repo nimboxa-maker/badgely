@@ -31,7 +31,7 @@ interface CertificationsPageProps {
 }
 
 function firstParam(value: string | string[] | undefined) {
-  return Array.isArray(value) ? value[0] ?? "" : value ?? "";
+  return Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
 }
 
 function studyHours(certification: CertificationRow) {
@@ -94,17 +94,21 @@ export default async function CertificationsPage({ searchParams }: Certification
   const allCertifications = (data ?? []) as CertificationRow[];
 
   const categories = [...new Set(allCertifications.map((item) => item.category))].sort();
-  const providers = [...new Map(
-    allCertifications
-      .filter((item) => item.providers)
-      .map((item) => [item.providers!.slug, item.providers!.name]),
-  ).entries()].sort((a, b) => a[1].localeCompare(b[1]));
+  const providers = [
+    ...new Map(
+      allCertifications
+        .filter((item) => item.providers)
+        .map((item) => [item.providers!.slug, item.providers!.name]),
+    ).entries(),
+  ].sort((a, b) => a[1].localeCompare(b[1]));
   const levels = [...new Set(allCertifications.map((item) => item.level))].sort(
     (a, b) => (levelRank[a] ?? 99) - (levelRank[b] ?? 99) || a.localeCompare(b),
   );
   const vendorTypes = [...new Set(allCertifications.map((item) => item.vendor_type))].sort();
   const statuses = [...new Set(allCertifications.map((item) => item.status))].sort();
-  const targetRoles = [...new Set(allCertifications.flatMap((item) => item.target_job_roles))].sort();
+  const targetRoles = [
+    ...new Set(allCertifications.flatMap((item) => item.target_job_roles)),
+  ].sort();
 
   const normalizedQuery = query.toLowerCase();
 
@@ -135,7 +139,9 @@ export default async function CertificationsPage({ searchParams }: Certification
     })
     .sort((a, b) => {
       if (sort === "beginner") {
-        return (levelRank[a.level] ?? 99) - (levelRank[b.level] ?? 99) || a.name.localeCompare(b.name);
+        return (
+          (levelRank[a.level] ?? 99) - (levelRank[b.level] ?? 99) || a.name.localeCompare(b.name)
+        );
       }
 
       if (sort === "verified") {
@@ -149,8 +155,7 @@ export default async function CertificationsPage({ searchParams }: Certification
       if (sort === "study") {
         return (
           (a.estimated_study_hours_min ?? Number.MAX_SAFE_INTEGER) -
-            (b.estimated_study_hours_min ?? Number.MAX_SAFE_INTEGER) ||
-          a.name.localeCompare(b.name)
+            (b.estimated_study_hours_min ?? Number.MAX_SAFE_INTEGER) || a.name.localeCompare(b.name)
         );
       }
 
@@ -158,7 +163,14 @@ export default async function CertificationsPage({ searchParams }: Certification
     });
 
   const hasFilters = Boolean(
-    query || category || provider || level || vendorType || status || targetRole || sort !== "featured",
+    query ||
+    category ||
+    provider ||
+    level ||
+    vendorType ||
+    status ||
+    targetRole ||
+    sort !== "featured",
   );
 
   return (
@@ -171,7 +183,8 @@ export default async function CertificationsPage({ searchParams }: Certification
           Explore IT certifications
         </h1>
         <p className="mt-4 text-lg leading-8 text-slate-600">
-          Search and filter certifications across cloud, cybersecurity, networking, Linux, data, and other IT career areas.
+          Search and filter certifications across cloud, cybersecurity, networking, Linux, data, and
+          other IT career areas.
         </p>
       </div>
 
@@ -209,7 +222,11 @@ export default async function CertificationsPage({ searchParams }: Certification
               className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
             >
               <option value="">All categories</option>
-              {categories.map((value) => <option key={value} value={value}>{value}</option>)}
+              {categories.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -221,7 +238,11 @@ export default async function CertificationsPage({ searchParams }: Certification
               className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
             >
               <option value="">All providers</option>
-              {providers.map(([slug, name]) => <option key={slug} value={slug}>{name}</option>)}
+              {providers.map(([slug, name]) => (
+                <option key={slug} value={slug}>
+                  {name}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -233,7 +254,11 @@ export default async function CertificationsPage({ searchParams }: Certification
               className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
             >
               <option value="">All levels</option>
-              {levels.map((value) => <option key={value} value={value}>{value}</option>)}
+              {levels.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -245,7 +270,11 @@ export default async function CertificationsPage({ searchParams }: Certification
               className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
             >
               <option value="">All vendor types</option>
-              {vendorTypes.map((value) => <option key={value} value={value}>{value}</option>)}
+              {vendorTypes.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -257,7 +286,11 @@ export default async function CertificationsPage({ searchParams }: Certification
               className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
             >
               <option value="">All statuses</option>
-              {statuses.map((value) => <option key={value} value={value}>{value}</option>)}
+              {statuses.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -269,7 +302,11 @@ export default async function CertificationsPage({ searchParams }: Certification
               className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
             >
               <option value="">All job roles</option>
-              {targetRoles.map((value) => <option key={value} value={value}>{value}</option>)}
+              {targetRoles.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -311,7 +348,9 @@ export default async function CertificationsPage({ searchParams }: Certification
           <span className="font-semibold text-slate-950">{certifications.length}</span>{" "}
           {certifications.length === 1 ? "certification" : "certifications"}
         </p>
-        <p className="text-sm text-slate-500">Search and filter state is preserved in the page URL.</p>
+        <p className="text-sm text-slate-500">
+          Search and filter state is preserved in the page URL.
+        </p>
       </div>
 
       {certifications.length ? (
@@ -348,7 +387,9 @@ export default async function CertificationsPage({ searchParams }: Certification
                   </div>
                   <div>
                     <dt className="font-semibold text-slate-500">Last verified</dt>
-                    <dd className="mt-1 text-slate-800">{verifiedDate(certification.last_verified_date)}</dd>
+                    <dd className="mt-1 text-slate-800">
+                      {verifiedDate(certification.last_verified_date)}
+                    </dd>
                   </div>
                 </div>
               </dl>
@@ -371,9 +412,14 @@ export default async function CertificationsPage({ searchParams }: Certification
         </div>
       ) : (
         <Card className="mt-8 text-center">
-          <h2 className="text-xl font-semibold text-slate-950">No certifications match those filters.</h2>
+          <h2 className="text-xl font-semibold text-slate-950">
+            No certifications match those filters.
+          </h2>
           <p className="mt-2 text-slate-600">Try a broader search or clear one or more filters.</p>
-          <Link href="/certifications" className="mt-5 inline-flex font-semibold text-blue-700 hover:text-blue-600">
+          <Link
+            href="/certifications"
+            className="mt-5 inline-flex font-semibold text-blue-700 hover:text-blue-600"
+          >
             Clear all filters
           </Link>
         </Card>

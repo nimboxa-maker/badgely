@@ -8,10 +8,7 @@ type DeleteResourceButtonProps = {
   resourceTitle: string;
 };
 
-export function DeleteResourceButton({
-  resourceId,
-  resourceTitle,
-}: DeleteResourceButtonProps) {
+export function DeleteResourceButton({ resourceId, resourceTitle }: DeleteResourceButtonProps) {
   return (
     <form
       action={deleteResource}

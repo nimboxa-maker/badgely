@@ -112,7 +112,8 @@ export default async function AdminRenewalPoliciesPage({
               Renewal policy records
             </h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search certification renewal guidance, review official sources, and inspect verification dates before making catalog changes.
+              Search certification renewal guidance, review official sources, and inspect
+              verification dates before making catalog changes.
             </p>
           </div>
 
@@ -207,7 +208,9 @@ export default async function AdminRenewalPoliciesPage({
                 </div>
                 <div>
                   <dt className="font-semibold text-slate-500">Last verified</dt>
-                  <dd className="mt-1 text-slate-900">{verifiedLabel(policy.last_verified_date)}</dd>
+                  <dd className="mt-1 text-slate-900">
+                    {verifiedLabel(policy.last_verified_date)}
+                  </dd>
                 </div>
                 <div className="sm:col-span-2">
                   <dt className="font-semibold text-slate-500">Renewal method</dt>
@@ -248,7 +251,9 @@ export default async function AdminRenewalPoliciesPage({
         </section>
       ) : (
         <Card>
-          <h2 className="text-lg font-bold text-slate-950">No renewal policies match these filters</h2>
+          <h2 className="text-lg font-bold text-slate-950">
+            No renewal policies match these filters
+          </h2>
           <p className="mt-2 text-sm text-slate-600">
             Clear the search or choose a different certification filter.
           </p>

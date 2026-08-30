@@ -8,17 +8,12 @@ type DeleteCareerPathStepButtonProps = {
   stepTitle: string;
 };
 
-export function DeleteCareerPathStepButton({
-  stepId,
-  stepTitle,
-}: DeleteCareerPathStepButtonProps) {
+export function DeleteCareerPathStepButton({ stepId, stepTitle }: DeleteCareerPathStepButtonProps) {
   return (
     <form
       action={deleteCareerPathStep}
       onSubmit={(event) => {
-        const confirmed = window.confirm(
-          `Permanently delete ${stepTitle}? This cannot be undone.`,
-        );
+        const confirmed = window.confirm(`Permanently delete ${stepTitle}? This cannot be undone.`);
 
         if (!confirmed) {
           event.preventDefault();

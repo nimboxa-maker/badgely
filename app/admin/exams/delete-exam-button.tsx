@@ -13,9 +13,7 @@ export function DeleteExamButton({ examId, examLabel }: DeleteExamButtonProps) {
     <form
       action={deleteExam}
       onSubmit={(event) => {
-        const confirmed = window.confirm(
-          `Permanently delete ${examLabel}? This cannot be undone.`,
-        );
+        const confirmed = window.confirm(`Permanently delete ${examLabel}? This cannot be undone.`);
 
         if (!confirmed) {
           event.preventDefault();

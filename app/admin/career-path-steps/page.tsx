@@ -100,11 +100,10 @@ export default async function AdminCareerPathStepsPage({
         </p>
         <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-slate-950">
-              Career path steps
-            </h1>
+            <h1 className="text-3xl font-bold tracking-tight text-slate-950">Career path steps</h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search roadmap steps, review linked certifications and practical activities, and manage their order.
+              Search roadmap steps, review linked certifications and practical activities, and
+              manage their order.
             </p>
           </div>
 
@@ -127,7 +126,10 @@ export default async function AdminCareerPathStepsPage({
       <Card className="mb-6">
         <form className="grid gap-4 lg:grid-cols-[1fr_300px_auto]" method="get">
           <div>
-            <label htmlFor="career-path-step-search" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="career-path-step-search"
+              className="text-sm font-semibold text-slate-700"
+            >
               Search steps
             </label>
             <div className="relative mt-1">
@@ -208,9 +210,7 @@ export default async function AdminCareerPathStepsPage({
                 </div>
                 <div className="sm:col-span-2">
                   <dt className="font-semibold text-slate-500">Practical activity</dt>
-                  <dd className="mt-1 text-slate-900">
-                    {step.practical_activity || "Not set"}
-                  </dd>
+                  <dd className="mt-1 text-slate-900">{step.practical_activity || "Not set"}</dd>
                 </div>
               </dl>
 
@@ -229,7 +229,9 @@ export default async function AdminCareerPathStepsPage({
         </section>
       ) : (
         <Card>
-          <h2 className="text-lg font-bold text-slate-950">No career path steps match these filters</h2>
+          <h2 className="text-lg font-bold text-slate-950">
+            No career path steps match these filters
+          </h2>
           <p className="mt-2 text-sm text-slate-600">
             Clear the search or choose a different career path filter.
           </p>

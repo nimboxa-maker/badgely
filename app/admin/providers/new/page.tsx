@@ -61,7 +61,9 @@ export default async function NewProviderPage() {
                 placeholder="example-certification-group"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
-              <p className="mt-1 text-xs text-slate-500">Lowercase letters, numbers, and hyphens only.</p>
+              <p className="mt-1 text-xs text-slate-500">
+                Lowercase letters, numbers, and hyphens only.
+              </p>
             </div>
           </div>
 
@@ -136,7 +138,8 @@ export default async function NewProviderPage() {
             <span>
               <span className="block text-sm font-semibold text-slate-900">Active provider</span>
               <span className="mt-1 block text-sm text-slate-600">
-                Active providers may be visible in the public catalog when they have published content.
+                Active providers may be visible in the public catalog when they have published
+                content.
               </span>
             </span>
           </label>

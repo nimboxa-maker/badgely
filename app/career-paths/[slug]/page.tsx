@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  BookOpen,
-  Bookmark,
-  CheckCircle2,
-  Route,
-} from "lucide-react";
+import { ArrowLeft, BookOpen, Bookmark, CheckCircle2, Route } from "lucide-react";
 import { toggleSavedCareerPath } from "@/app/career-paths/actions";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -50,9 +44,7 @@ async function getCareerPath(slug: string) {
   };
 }
 
-export async function generateMetadata({
-  params,
-}: CareerPathDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: CareerPathDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const record = await getCareerPath(slug);
 
@@ -65,14 +57,11 @@ export async function generateMetadata({
 
   return {
     title: record.careerPath.seo_title ?? `${record.careerPath.name} | Badgely`,
-    description:
-      record.careerPath.seo_description ?? record.careerPath.short_summary,
+    description: record.careerPath.seo_description ?? record.careerPath.short_summary,
   };
 }
 
-export default async function CareerPathDetailPage({
-  params,
-}: CareerPathDetailPageProps) {
+export default async function CareerPathDetailPage({ params }: CareerPathDetailPageProps) {
   const { slug } = await params;
   const record = await getCareerPath(slug);
 
@@ -121,9 +110,7 @@ export default async function CareerPathDetailPage({
             </Badge>
           ) : null}
           {careerPath.audience_level ? (
-            <Badge className="bg-white/10 text-slate-100">
-              {careerPath.audience_level}
-            </Badge>
+            <Badge className="bg-white/10 text-slate-100">{careerPath.audience_level}</Badge>
           ) : null}
         </div>
 
@@ -150,8 +137,7 @@ export default async function CareerPathDetailPage({
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-slate-400">Estimated path time</p>
             <p className="mt-1 font-semibold text-white">
-              {careerPath.estimated_total_time_text ??
-                "Varies by experience and study pace"}
+              {careerPath.estimated_total_time_text ?? "Varies by experience and study pace"}
             </p>
           </div>
         </div>
@@ -159,11 +145,7 @@ export default async function CareerPathDetailPage({
         <form action={toggleSavedCareerPath} className="mt-6">
           <input type="hidden" name="careerPathId" value={careerPath.id} />
           <input type="hidden" name="slug" value={careerPath.slug} />
-          <input
-            type="hidden"
-            name="intent"
-            value={isSaved ? "remove" : "save"}
-          />
+          <input type="hidden" name="intent" value={isSaved ? "remove" : "save"} />
           <button
             type="submit"
             className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 py-2.5 font-semibold text-slate-950 hover:bg-slate-100"
@@ -177,10 +159,7 @@ export default async function CareerPathDetailPage({
       <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="space-y-8">
           <section aria-labelledby="overview-heading">
-            <h2
-              id="overview-heading"
-              className="text-2xl font-bold tracking-tight text-slate-950"
-            >
+            <h2 id="overview-heading" className="text-2xl font-bold tracking-tight text-slate-950">
               Path overview
             </h2>
             <Card className="mt-4">
@@ -193,10 +172,7 @@ export default async function CareerPathDetailPage({
           <section aria-labelledby="steps-heading">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
-                <h2
-                  id="steps-heading"
-                  className="text-2xl font-bold tracking-tight text-slate-950"
-                >
+                <h2 id="steps-heading" className="text-2xl font-bold tracking-tight text-slate-950">
                   Step-by-step path
                 </h2>
                 <p className="mt-2 text-slate-600">
@@ -216,19 +192,13 @@ export default async function CareerPathDetailPage({
 
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-lg font-bold text-slate-950">
-                          {step.title}
-                        </h3>
+                        <h3 className="text-lg font-bold text-slate-950">{step.title}</h3>
                         {step.is_optional ? <Badge>Optional</Badge> : null}
-                        {step.practical_activity ? (
-                          <Badge>Practical activity</Badge>
-                        ) : null}
+                        {step.practical_activity ? <Badge>Practical activity</Badge> : null}
                       </div>
 
                       {step.explanation ? (
-                        <p className="mt-3 leading-7 text-slate-600">
-                          {step.explanation}
-                        </p>
+                        <p className="mt-3 leading-7 text-slate-600">{step.explanation}</p>
                       ) : null}
 
                       {step.certifications ? (
@@ -255,9 +225,7 @@ export default async function CareerPathDetailPage({
                               aria-hidden="true"
                             />
                             <div>
-                              <p className="font-semibold text-emerald-950">
-                                Practical activity
-                              </p>
+                              <p className="font-semibold text-emerald-950">Practical activity</p>
                               <p className="mt-1 leading-6 text-emerald-900">
                                 {step.practical_activity}
                               </p>
@@ -272,9 +240,7 @@ export default async function CareerPathDetailPage({
 
               {!steps.length ? (
                 <Card>
-                  <p className="text-slate-700">
-                    This career path does not have any steps yet.
-                  </p>
+                  <p className="text-slate-700">This career path does not have any steps yet.</p>
                 </Card>
               ) : null}
             </div>
@@ -285,16 +251,16 @@ export default async function CareerPathDetailPage({
           <Card>
             <h2 className="font-semibold text-slate-950">How to use this path</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Use the certifications as learning checkpoints and complete the practical activities to reinforce the knowledge with hands-on work.
+              Use the certifications as learning checkpoints and complete the practical activities
+              to reinforce the knowledge with hands-on work.
             </p>
           </Card>
 
           <Card>
-            <h2 className="font-semibold text-slate-950">
-              Certification details can change
-            </h2>
+            <h2 className="font-semibold text-slate-950">Certification details can change</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Always verify current exam requirements, pricing, prerequisites, and availability with the official certification provider before making scheduling or purchasing decisions.
+              Always verify current exam requirements, pricing, prerequisites, and availability with
+              the official certification provider before making scheduling or purchasing decisions.
             </p>
           </Card>
         </aside>

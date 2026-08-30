@@ -30,9 +30,7 @@ export default async function NewCertificationPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
           Admin · Certifications
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-          Add certification
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Add certification</h1>
         <p className="mt-2 text-slate-600">
           Create a certification record using factual, original, and verifiable information.
         </p>
@@ -57,7 +55,8 @@ export default async function NewCertificationPage() {
                 </option>
                 {(providers ?? []).map((provider) => (
                   <option key={provider.id} value={provider.id}>
-                    {provider.name}{provider.active ? "" : " (Archived)"}
+                    {provider.name}
+                    {provider.active ? "" : " (Archived)"}
                   </option>
                 ))}
               </select>
@@ -110,7 +109,9 @@ export default async function NewCertificationPage() {
                 placeholder="badgely-test-certification"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
-              <p className="mt-1 text-xs text-slate-500">Lowercase letters, numbers, and hyphens only.</p>
+              <p className="mt-1 text-xs text-slate-500">
+                Lowercase letters, numbers, and hyphens only.
+              </p>
             </div>
           </div>
 
@@ -207,7 +208,10 @@ export default async function NewCertificationPage() {
             </div>
 
             <div>
-              <label htmlFor="recommendedExperience" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="recommendedExperience"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Recommended experience
               </label>
               <textarea
@@ -223,7 +227,10 @@ export default async function NewCertificationPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="officialCertificationUrl" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="officialCertificationUrl"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Official certification URL
               </label>
               <input
@@ -251,7 +258,10 @@ export default async function NewCertificationPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="estimatedStudyHoursMin" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="estimatedStudyHoursMin"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Minimum study hours
               </label>
               <input
@@ -265,7 +275,10 @@ export default async function NewCertificationPage() {
             </div>
 
             <div>
-              <label htmlFor="estimatedStudyHoursMax" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="estimatedStudyHoursMax"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Maximum study hours
               </label>
               <input
@@ -314,7 +327,9 @@ export default async function NewCertificationPage() {
               className="mt-1 size-4 rounded border-slate-300"
             />
             <span>
-              <span className="block text-sm font-semibold text-slate-900">Featured certification</span>
+              <span className="block text-sm font-semibold text-slate-900">
+                Featured certification
+              </span>
               <span className="mt-1 block text-sm text-slate-600">
                 Featured records may receive priority placement in the public catalog.
               </span>

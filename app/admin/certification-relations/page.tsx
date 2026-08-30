@@ -96,7 +96,8 @@ export default async function AdminCertificationRelationsPage({
               Certification relations
             </h1>
             <p className="mt-2 max-w-3xl text-slate-600">
-              Search certification relationships and review recommended sequencing, alternatives, and specializations.
+              Search certification relationships and review recommended sequencing, alternatives,
+              and specializations.
             </p>
           </div>
 
@@ -119,7 +120,10 @@ export default async function AdminCertificationRelationsPage({
       <Card className="mb-6">
         <form className="grid gap-4 lg:grid-cols-[1fr_260px_auto]" method="get">
           <div>
-            <label htmlFor="certification-relation-search" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="certification-relation-search"
+              className="text-sm font-semibold text-slate-700"
+            >
               Search relations
             </label>
             <div className="relative mt-1">
@@ -139,7 +143,10 @@ export default async function AdminCertificationRelationsPage({
           </div>
 
           <div>
-            <label htmlFor="certification-relation-type" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="certification-relation-type"
+              className="text-sm font-semibold text-slate-700"
+            >
               Relation type
             </label>
             <select
@@ -242,7 +249,9 @@ export default async function AdminCertificationRelationsPage({
         </section>
       ) : (
         <Card>
-          <h2 className="text-lg font-bold text-slate-950">No certification relations match these filters</h2>
+          <h2 className="text-lg font-bold text-slate-950">
+            No certification relations match these filters
+          </h2>
           <p className="mt-2 text-sm text-slate-600">
             Clear the search or choose a different relation type.
           </p>

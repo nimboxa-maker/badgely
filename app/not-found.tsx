@@ -15,7 +15,8 @@ export default function NotFoundPage() {
           We couldn&apos;t find that page.
         </h1>
         <p className="mx-auto mt-4 max-w-xl leading-7 text-slate-600">
-          The page may have moved, the link may be outdated, or the certification or career path may no longer be available.
+          The page may have moved, the link may be outdated, or the certification or career path may
+          no longer be available.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
