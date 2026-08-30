@@ -1,13 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { signIn } from "@/app/auth/actions";
+import { requestPasswordReset } from "@/app/auth/actions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
-type SignInPageProps = {
+export const metadata: Metadata = {
+  title: "Reset Password",
+  description: "Request a Badgely password reset link by email.",
+};
+
+type ForgotPasswordPageProps = {
   searchParams: Promise<{ error?: string; message?: string }>;
 };
 
-export default async function SignInPage({ searchParams }: SignInPageProps) {
+export default async function ForgotPasswordPage({ searchParams }: ForgotPasswordPageProps) {
   const params = await searchParams;
 
   return (
@@ -15,11 +21,12 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
       <Card className="w-full max-w-md">
         <div className="mb-6 space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
-            Welcome back
+            Account recovery
           </p>
-          <h1 className="text-3xl font-bold tracking-tight">Sign in to Badgely</h1>
-          <p className="text-sm text-slate-600">
-            Continue building your certification and career roadmap.
+          <h1 className="text-3xl font-bold tracking-tight">Reset your password</h1>
+          <p className="text-sm leading-6 text-slate-600">
+            Enter the email address connected to your Badgely account. We&apos;ll send a link you can
+            use to choose a new password.
           </p>
         </div>
 
@@ -33,12 +40,15 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
         ) : null}
 
         {params.message ? (
-          <div className="mb-5 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+          <div
+            role="status"
+            className="mb-5 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700"
+          >
             {params.message}
           </div>
         ) : null}
 
-        <form action={signIn} className="space-y-4">
+        <form action={requestPasswordReset} className="space-y-4">
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-semibold text-slate-800">
               Email
@@ -53,37 +63,15 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
             />
           </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between gap-3">
-              <label htmlFor="password" className="text-sm font-semibold text-slate-800">
-                Password
-              </label>
-              <Link
-                href="/forgot-password"
-                className="text-sm font-semibold text-blue-600 hover:text-blue-500"
-              >
-                Forgot password?
-              </Link>
-            </div>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              className="min-h-11 w-full rounded-xl border border-slate-300 px-3 py-2 text-slate-950 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-            />
-          </div>
-
           <Button type="submit" className="w-full">
-            Sign in
+            Send reset link
           </Button>
         </form>
 
         <p className="mt-6 text-center text-sm text-slate-600">
-          New to Badgely?{" "}
-          <Link href="/sign-up" className="font-semibold text-blue-600 hover:text-blue-500">
-            Create an account
+          Remembered your password?{" "}
+          <Link href="/sign-in" className="font-semibold text-blue-600 hover:text-blue-500">
+            Back to sign in
           </Link>
         </p>
       </Card>
