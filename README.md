@@ -1,24 +1,21 @@
 # Badgely
 
-Badgely is an independent IT certification discovery, comparison, career-roadmap, and study-planning platform. It is designed to help learners understand certification options and build realistic learning plans without implying provider endorsement.
-
-## Milestone 1 status
-
-This repository currently contains the production foundation: Next.js App Router, strict TypeScript, Tailwind CSS, reusable UI primitives, responsive navigation/footer, project-wide styling, environment-variable template, and setup documentation.
-
-Database, authentication, catalog data, and protected application features intentionally begin in later milestones.
+Badgely is an independent IT certification discovery, comparison, career-roadmap, and study-planning platform. It helps learners research certifications, compare options, save career paths, and build realistic study plans without implying provider endorsement.
 
 ## Stack
 
 - Next.js App Router
-- React + TypeScript (strict mode)
+- React + TypeScript in strict mode
 - Tailwind CSS
 - Accessible reusable React components
-- Supabase (Postgres, Auth, RLS) — configured in later milestones
-- Vercel deployment
-- GitHub source control
-- Zod and React Hook Form for validated forms
+- Supabase Postgres, Auth, and Row Level Security
+- Zod validation
+- React Hook Form where useful
 - Lucide icons
+- GitHub Actions CI
+- Vercel deployment target
+
+Server Components are the default. Client Components are limited to interactions that require browser state or event handlers.
 
 ## Local development
 
@@ -38,89 +35,152 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+On Windows PowerShell, use this instead of `cp`:
 
-## Quality commands
-
-```bash
-npm run lint
-npm run typecheck
-npm run format:check
-npm run build
+```powershell
+Copy-Item .env.example .env.local
 ```
 
-Run these before merging major changes.
+Open `http://localhost:3000`.
 
 ## Environment variables
 
-Copy `.env.example` to `.env.local`. Never commit `.env.local` or real credentials.
+Badgely currently requires only these application environment variables:
 
 ```text
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
 NEXT_PUBLIC_SITE_URL=
 ```
 
-`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` are intentionally public browser configuration. `SUPABASE_SERVICE_ROLE_KEY` is privileged and must never be exposed to browser code or placed in a `NEXT_PUBLIC_` variable.
+For local development, set `NEXT_PUBLIC_SITE_URL=http://localhost:3000`.
+
+`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` are intentionally public browser configuration. Do not place secrets or privileged credentials in any `NEXT_PUBLIC_` variable. Badgely does not require a Supabase service-role key for normal application operation.
+
+Never commit `.env.local` or any real credential.
 
 ## Project structure
 
 ```text
-app/          App Router pages and layouts
+app/          App Router pages, server actions, layouts, metadata, sitemap, and robots
 components/   Shared layout and accessible UI components
-features/     Feature-owned UI, validation, and domain logic
-lib/          Shared utilities and service clients
+features/     Feature-owned UI, validation, tests, and domain logic
+lib/          Shared utilities, authorization, and Supabase clients
 types/        Shared TypeScript types
-supabase/     SQL migrations, seed data, and Supabase configuration
+supabase/     SQL migrations and seed data
 public/       Static public assets
+.github/      GitHub Actions workflows
 ```
-
-Server Components are the default. Client Components should be limited to interactive behavior that requires browser state or event handlers.
 
 ## Supabase setup
 
-Supabase integration begins in Milestone 2. When configured:
-
-1. Create a Supabase project.
+1. Create or select the Supabase project.
 2. Add the project URL and publishable key to `.env.local`.
-3. Keep the service-role key server-only.
-4. Apply migrations from `supabase/migrations`.
-5. Enable and verify Row Level Security for all private/user-owned tables.
+3. Apply the SQL migrations in `supabase/migrations` in order.
+4. Apply the seed files as needed; they are designed to avoid duplicate catalog data.
+5. Confirm Row Level Security is enabled for user-owned and protected data.
+6. Configure Supabase Auth URL settings for the site URL used by the environment.
+
+Admin access is intentionally not self-service. Assign the `admin` role only through a trusted database/admin workflow. There is no public route or action that promotes a user to admin.
+
+## Quality commands
+
+Run these before major changes and before deployment:
+
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
+
+Optional formatting check:
+
+```bash
+npm run format:check
+```
+
+The automated test suite covers study-plan scheduling, user ownership boundaries, admin authorization boundaries, and certification search/filter query parsing.
+
+## Manual test checklist
+
+Complete this checklist before a production release:
+
+- [ ] Unauthenticated visitors can browse public certification and career-path pages.
+- [ ] Sign up, sign in, and sign out work correctly.
+- [ ] One user cannot view or mutate another user's saved data or study plans.
+- [ ] Saving and removing a certification works.
+- [ ] Creating, viewing, updating, and deleting a study plan works for its owner.
+- [ ] Mobile navigation opens, closes, and navigates correctly.
+- [ ] Keyboard users can reach and use the `Skip to main content` link.
+- [ ] A normal authenticated user is denied access to `/admin`.
+- [ ] An admin can use the catalog content-management flows.
+- [ ] The admin review queue filters and links to edit pages correctly.
+- [ ] `/sitemap.xml` loads and contains public routes.
+- [ ] `/robots.txt` loads and blocks private application areas.
+- [ ] An invalid URL shows the custom Not Found page.
+
+## GitHub Actions CI
+
+`.github/workflows/ci.yml` runs on pushes to `main` and pull requests. It executes:
+
+```text
+npm ci
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
+
+No deployment secrets are stored in the workflow or repository.
 
 ## Vercel deployment
 
-1. Import this GitHub repository into Vercel.
-2. Use the detected Next.js framework settings.
-3. Add the environment variables from `.env.example` in Vercel Project Settings.
-4. Never commit deployment secrets to GitHub.
-5. Set `NEXT_PUBLIC_SITE_URL` to the production URL after the domain is assigned.
+Badgely is structured for Vercel's Next.js deployment flow.
 
-## GitHub workflow
-
-Use small, reviewable commits with conventional messages such as:
+1. In Vercel, create a new project and import `nimboxa-maker/badgely` from GitHub.
+2. Keep the detected framework as Next.js and use the repository root as the project root.
+3. In Vercel Project Settings, add these environment variables for Production and any Preview environments that should connect to Supabase:
 
 ```text
-feat: add certification directory
-fix: enforce study plan ownership
-chore: configure Supabase clients
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+NEXT_PUBLIC_SITE_URL
 ```
 
-GitHub Actions CI is scheduled for the final quality/deployment milestone after the application test suite is established.
+4. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS production origin, for example `https://your-domain.example`, with no path suffix.
+5. In Supabase Auth URL configuration, set the production site URL to the same production origin and allow the application's auth callback URL for that domain.
+6. Do not add a service-role key or other privileged secret to a `NEXT_PUBLIC_` variable.
+7. Deploy from the `main` branch.
+8. After deployment, verify the home page, authentication, dashboard, admin authorization, `sitemap.xml`, and `robots.txt` using the production URL.
+9. If a custom domain is added later, update `NEXT_PUBLIC_SITE_URL` and the matching Supabase Auth URL configuration, then redeploy.
+
+## SEO and error handling
+
+Badgely includes:
+
+- site-wide metadata defaults
+- metadata for public directory, comparison, certification, and career-path pages
+- dynamic `sitemap.xml`
+- `robots.txt`
+- custom Not Found handling
+- a reusable application error boundary
+- semantic navigation landmarks and keyboard skip navigation
 
 ## Content and legal guardrails
 
-Badgely must use original educational wording. Do not copy provider training materials, exam objectives, paid content, real exam questions, leaked questions, or exam dumps. Unknown or unverified official facts should be displayed as `Verify with official provider.`
+Badgely uses original educational wording. Do not copy provider training materials, exam objectives, paid content, real exam questions, leaked questions, or exam dumps. Unknown or unverified official facts should display `Verify with official provider.`
 
 Global disclaimer:
 
 > Badgely is an independent educational resource and is not affiliated with, endorsed by, or sponsored by any certification provider. Certification names and logos may be trademarks of their respective owners.
 
-## Architecture notes
+## Architecture and security notes
 
-- Public catalog content will use server-rendered data access where possible.
-- Secure mutations will use server actions or route handlers with Zod validation.
-- Supabase browser and server clients will be separate.
-- Authorization will always be checked server-side; UI visibility is not a security boundary.
-- User-owned and private tables will use Row Level Security.
-- The admin role model and role-assignment process will be documented when implemented in the admin/auth milestones.
+- Public catalog content uses server-rendered data access where practical.
+- Secure mutations use server actions with server-side authorization and validation.
+- Supabase browser and server clients are separate.
+- UI visibility is never treated as an authorization boundary.
+- User-owned data is protected by ownership checks and Row Level Security.
+- Admin mutations call the shared server-side admin authorization helper and are backed by database policies.
+- Private/admin routes are excluded from search-engine crawling.
