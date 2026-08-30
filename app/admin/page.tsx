@@ -151,6 +151,13 @@ export default async function AdminPage() {
           <p className="mt-2 text-sm leading-6 text-slate-600">
             Certification, exam, renewal, and resource records with no verification date or a date older than 90 days.
           </p>
+          <Link
+            href="/admin/review-queue"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-600"
+          >
+            Open review queue
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
         </Card>
       </section>
 
