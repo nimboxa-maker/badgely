@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Career Paths | Badgely",
+  title: "Career Paths",
   description:
     "Explore structured IT career paths that connect certifications, practical activities, and role-focused progression.",
 };

@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Create Study Plan | Badgely",
+  title: "Create Study Plan",
   description:
     "Create a personalized certification study plan based on your experience, target date, available weekly hours, and lab preference.",
 };

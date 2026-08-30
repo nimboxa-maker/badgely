@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
-  title: "Compare IT Certifications | Badgely",
+  title: "Compare IT Certifications",
   description:
     "Compare up to three IT certifications side by side using provider, level, exam, study-time, renewal, and other stored attributes.",
 };

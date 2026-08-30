@@ -50,13 +50,15 @@ export async function generateMetadata({ params }: CareerPathDetailPageProps): P
 
   if (!record) {
     return {
-      title: "Career path not found | Badgely",
+      title: "Career path not found",
       description: "The requested Badgely career path could not be found.",
     };
   }
 
   return {
-    title: record.careerPath.seo_title ?? `${record.careerPath.name} | Badgely`,
+    title: record.careerPath.seo_title
+      ? { absolute: record.careerPath.seo_title }
+      : record.careerPath.name,
     description: record.careerPath.seo_description ?? record.careerPath.short_summary,
   };
 }

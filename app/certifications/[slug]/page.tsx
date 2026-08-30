@@ -105,13 +105,15 @@ export async function generateMetadata({ params }: CertificationPageProps): Prom
 
   if (!record) {
     return {
-      title: "Certification not found | Badgely",
+      title: "Certification not found",
       description: "The requested certification could not be found in the Badgely catalog.",
     };
   }
 
   return {
-    title: record.certification.seo_title ?? `${record.certification.name} | Badgely`,
+    title: record.certification.seo_title
+      ? { absolute: record.certification.seo_title }
+      : record.certification.name,
     description: record.certification.seo_description ?? record.certification.short_summary,
   };
 }
