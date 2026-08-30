@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test": "node --test features/study-plans/scheduling.test.mjs features/study-plans/ownership.test.mjs app/admin/admin-security.test.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
