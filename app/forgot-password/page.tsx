@@ -25,8 +25,8 @@ export default async function ForgotPasswordPage({ searchParams }: ForgotPasswor
           </p>
           <h1 className="text-3xl font-bold tracking-tight">Reset your password</h1>
           <p className="text-sm leading-6 text-slate-600">
-            Enter the email address connected to your Badgely account. We&apos;ll send a link you can
-            use to choose a new password.
+            Enter the email address connected to your Badgely account. We&apos;ll send a link you
+            can use to choose a new password.
           </p>
         </div>
 
