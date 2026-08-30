@@ -3,13 +3,29 @@ import "./globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
+const siteDescription =
+  "Explore IT certifications, compare options, follow career roadmaps, and build a practical study plan.";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  applicationName: "Badgely",
   title: {
     default: "Badgely | IT certification paths made clearer",
     template: "%s | Badgely",
   },
-  description:
-    "Explore IT certifications, compare options, follow career roadmaps, and build a practical study plan.",
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    siteName: "Badgely",
+    title: "Badgely | IT certification paths made clearer",
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary",
+    title: "Badgely | IT certification paths made clearer",
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
