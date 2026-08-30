@@ -7,7 +7,7 @@ const pageSource = await readFile(new URL("./page.tsx", import.meta.url), "utf8"
 test("certification query parsing uses the first value when a query parameter repeats", () => {
   assert.match(
     pageSource,
-    /function firstParam\(value: string \| string\[\] \| undefined\) \{[\s\S]*?Array\.isArray\(value\) \? value\[0\] \?\? "" : value \?\? "";/,
+    /function firstParam\(value: string \| string\[\] \| undefined\) \{[\s\S]*?Array\.isArray\(value\) \? \(?value\[0\] \?\? ""\)? : \(?value \?\? ""\)?;/,
   );
 });
 
