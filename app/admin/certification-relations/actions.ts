@@ -193,3 +193,62 @@ export async function updateCertificationRelation(formData: FormData) {
 
   redirect("/admin/certification-relations");
 }
+
+export async function deleteCertificationRelation(formData: FormData) {
+  const id = certificationRelationIdSchema.safeParse(formData.get("id"));
+
+  if (!id.success) {
+    throw new Error("Invalid certification relation.");
+  }
+
+  const { supabase } = await requireAdmin();
+  const { data: existingRelation, error: existingError } = await supabase
+    .from("certification_relations")
+    .select("source_certification_id, target_certification_id")
+    .eq("id", id.data)
+    .maybeSingle();
+
+  if (existingError) {
+    throw new Error("Unable to verify the certification relation before deletion.");
+  }
+
+  if (!existingRelation) {
+    throw new Error("Certification relation not found.");
+  }
+
+  const certificationIds = [
+    existingRelation.source_certification_id,
+    existingRelation.target_certification_id,
+  ];
+  const { data: certifications, error: certificationError } = await supabase
+    .from("certifications")
+    .select("id, slug")
+    .in("id", certificationIds);
+
+  if (certificationError) {
+    throw new Error("Unable to verify linked certifications before deletion.");
+  }
+
+  const { data: deleted, error: deleteError } = await supabase
+    .from("certification_relations")
+    .delete()
+    .eq("id", id.data)
+    .select("id")
+    .maybeSingle();
+
+  if (deleteError) {
+    throw new Error("Unable to delete the certification relation.");
+  }
+
+  if (!deleted) {
+    throw new Error("Certification relation deletion could not be verified.");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/admin/certification-relations");
+  revalidatePath("/certifications");
+
+  for (const certification of certifications ?? []) {
+    revalidatePath(`/certifications/${certification.slug}`);
+  }
+}
