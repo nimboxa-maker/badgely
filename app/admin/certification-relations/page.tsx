@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, Pencil, Plus, Search } from "lucide-react";
+import { DeleteCertificationRelationButton } from "@/app/admin/certification-relations/delete-certification-relation-button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -229,9 +230,12 @@ export default async function AdminCertificationRelationsPage({
                   <Pencil className="size-4" aria-hidden="true" />
                   Edit certification relation
                 </Link>
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                  Delete control is next
-                </p>
+                <DeleteCertificationRelationButton
+                  relationId={relation.id}
+                  sourceName={relation.source_certification?.name ?? "source certification"}
+                  targetName={relation.target_certification?.name ?? "target certification"}
+                  relationType={relation.relation_type}
+                />
               </div>
             </Card>
           ))}
