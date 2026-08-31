@@ -34,8 +34,9 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="bg-slate-950 text-white">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+      <section className="relative overflow-hidden border-b border-blue-900 bg-slate-950 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.3),transparent_38%)]" />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
           <Badge className="bg-blue-500/15 text-blue-200 ring-1 ring-inset ring-blue-400/30">
             Independent IT certification guidance
           </Badge>
