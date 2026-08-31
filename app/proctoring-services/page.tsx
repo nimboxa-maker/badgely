@@ -13,7 +13,7 @@ import { Card } from "@/components/ui/card";
 export const metadata: Metadata = {
   title: "IT Proctoring Services | Badgely",
   description:
-    "Find the testing and proctoring providers used by major IT certification programs, including Pearson VUE, PSI, Kryterion, PeopleCert, Certiport, Red Hat, and Prometric.",
+    "Find the testing and proctoring providers used by major IT certification programs, including Pearson VUE, PSI, PeopleCert, Certiport, Red Hat, and Prometric.",
 };
 
 type DeliveryMode = "Test center" | "Remote" | "Program dependent" | "Vendor testing station";
@@ -189,15 +189,6 @@ const services = [
     href: "https://www.psiexams.com/test-takers/",
   },
   {
-    name: "Kryterion / Webassessor",
-    platform: "Webassessor + Kryterion online proctoring",
-    summary:
-      "A certification testing platform used by several technology vendors for registration, scheduling and online proctored exams.",
-    examples: "Databricks and Mandiant Academy are current IT examples.",
-    modes: "Commonly remote online proctoring; test-center availability depends on the program.",
-    href: "https://www.kryterion.com/test-taker/",
-  },
-  {
     name: "PeopleCert",
     platform: "PeopleCert Online Proctoring + ExamShield",
     summary:
@@ -285,9 +276,8 @@ export default function ProctoringServicesPage() {
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
               Badgely maps certification owners to the testing and proctoring services candidates
-              actually use. Compare Pearson VUE, PSI, Kryterion, PeopleCert, Certiport, Red Hat,
-              Prometric and vendor-specific delivery without confusing the exam owner with the exam
-              platform.
+              actually use. Compare Pearson VUE, PSI, PeopleCert, Certiport, Red Hat, Prometric and
+              vendor-specific delivery without confusing the exam owner with the exam platform.
             </p>
           </div>
 
