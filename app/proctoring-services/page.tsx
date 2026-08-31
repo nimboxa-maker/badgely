@@ -274,6 +274,22 @@ function deliveryIcon(mode: DeliveryMode) {
   return Building2;
 }
 
+function deliveryBadgeClass(mode: DeliveryMode) {
+  if (mode === "Remote") {
+    return "bg-blue-50 text-blue-700 ring-blue-100";
+  }
+
+  if (mode === "Vendor testing station") {
+    return "bg-violet-50 text-violet-700 ring-violet-100";
+  }
+
+  if (mode === "Program dependent") {
+    return "bg-amber-50 text-amber-800 ring-amber-100";
+  }
+
+  return "bg-emerald-50 text-emerald-700 ring-emerald-100";
+}
+
 export default function ProctoringServicesPage() {
   return (
     <main>
@@ -372,12 +388,12 @@ export default function ProctoringServicesPage() {
       </section>
 
       <section className="border-y border-slate-200 bg-slate-50">
-        <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+            <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-800 ring-1 ring-inset ring-blue-200">
               Certification mapping
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
               IT certification owner → actual testing provider
             </h2>
             <p className="mt-4 leading-7 text-slate-600">
@@ -386,63 +402,81 @@ export default function ProctoringServicesPage() {
             </p>
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[920px] border-collapse text-center">
-                <thead className="bg-slate-950 text-white">
-                  <tr>
-                    <th className="px-5 py-4 text-sm font-semibold">Certification owner</th>
-                    <th className="px-5 py-4 text-sm font-semibold">Examples</th>
-                    <th className="px-5 py-4 text-sm font-semibold">Testing provider</th>
-                    <th className="px-5 py-4 text-sm font-semibold">Delivery</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200">
-                  {certificationMappings.map((mapping) => (
-                    <tr key={`${mapping.owner}-${mapping.provider}`} className="align-middle">
-                      <td className="px-5 py-5 font-bold text-slate-950">{mapping.owner}</td>
-                      <td className="max-w-md px-5 py-5 text-sm leading-6 text-slate-600">
-                        {mapping.exams}
-                        {mapping.note ? (
-                          <p className="mt-2 text-xs font-medium leading-5 text-amber-800">
-                            {mapping.note}
-                          </p>
-                        ) : null}
-                      </td>
-                      <td className="px-5 py-5 font-semibold">
-                        <a
-                          href={providerLinks[mapping.provider]}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-blue-700 underline-offset-4 transition hover:text-blue-600 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                        >
-                          {mapping.provider}
-                        </a>
-                      </td>
-                      <td className="px-5 py-5">
-                        <div className="mx-auto flex max-w-xs flex-wrap justify-center gap-2">
-                          {mapping.delivery.map((mode) => {
-                            const Icon = deliveryIcon(mode);
-                            return (
-                              <span
-                                key={mode}
-                                className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700"
-                              >
-                                <Icon className="size-3.5" aria-hidden="true" />
-                                {mode}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      </td>
+          <div className="mt-10 rounded-[28px] bg-gradient-to-br from-blue-200 via-slate-100 to-blue-100 p-px shadow-xl shadow-slate-200/70">
+            <div className="overflow-hidden rounded-[27px] bg-white">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[960px] border-collapse text-center">
+                  <thead className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white">
+                    <tr>
+                      <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                        Certification owner
+                      </th>
+                      <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                        Certification examples
+                      </th>
+                      <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                        Testing provider
+                      </th>
+                      <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                        Delivery options
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200">
+                    {certificationMappings.map((mapping) => (
+                      <tr
+                        key={`${mapping.owner}-${mapping.provider}`}
+                        className="group align-middle transition-colors odd:bg-white even:bg-slate-50/70 hover:bg-blue-50/70"
+                      >
+                        <td className="px-6 py-6">
+                          <span className="inline-flex min-w-32 justify-center rounded-xl border border-blue-100 bg-blue-50 px-4 py-2.5 text-sm font-bold text-slate-950 shadow-sm transition group-hover:border-blue-200 group-hover:bg-white">
+                            {mapping.owner}
+                          </span>
+                        </td>
+                        <td className="max-w-md px-6 py-6 text-sm leading-6 text-slate-600">
+                          <p className="font-medium text-slate-700">{mapping.exams}</p>
+                          {mapping.note ? (
+                            <p className="mx-auto mt-3 max-w-sm rounded-xl border border-amber-100 bg-amber-50 px-3 py-2 text-xs font-medium leading-5 text-amber-900">
+                              {mapping.note}
+                            </p>
+                          ) : null}
+                        </td>
+                        <td className="px-6 py-6">
+                          <a
+                            href={providerLinks[mapping.provider]}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-500 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                          >
+                            {mapping.provider}
+                            <ArrowRight className="size-3.5" aria-hidden="true" />
+                          </a>
+                        </td>
+                        <td className="px-6 py-6">
+                          <div className="mx-auto flex max-w-xs flex-wrap justify-center gap-2">
+                            {mapping.delivery.map((mode) => {
+                              const Icon = deliveryIcon(mode);
+                              return (
+                                <span
+                                  key={mode}
+                                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ring-inset ${deliveryBadgeClass(mode)}`}
+                                >
+                                  <Icon className="size-3.5" aria-hidden="true" />
+                                  {mode}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
-          <p className="mt-4 text-center text-sm leading-6 text-slate-500">
+          <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-6 text-slate-500">
             This directory focuses on mainstream IT and technology certification programs. Testing
             relationships change, and individual exams within the same vendor may use different
             delivery rules.
