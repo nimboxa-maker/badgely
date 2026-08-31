@@ -174,256 +174,263 @@ export default async function CertificationsPage({ searchParams }: Certification
   );
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-          Certification directory
-        </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-          Explore IT certifications
-        </h1>
-        <p className="mt-4 text-lg leading-8 text-slate-600">
-          Search and filter certifications across cloud, cybersecurity, networking, Linux, data, and
-          other IT career areas.
-        </p>
-      </div>
-
-      <form
-        method="get"
-        action="/certifications"
-        className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5"
-      >
-        <div>
-          <label htmlFor="q" className="text-sm font-semibold text-slate-900">
-            Search certifications
-          </label>
-          <div className="relative mt-2">
-            <Search
-              className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400"
-              aria-hidden="true"
-            />
-            <input
-              id="q"
-              name="q"
-              type="search"
-              defaultValue={query}
-              placeholder="Search Security+, CCNA, AWS, cloud, SOC analyst…"
-              className="min-h-11 w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-slate-950 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
-            />
+    <main>
+      <section className="relative overflow-hidden border-b border-blue-900 bg-slate-950 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.3),transparent_38%)]" />
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-300">
+              Certification directory
+            </p>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Explore IT certifications
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-slate-300">
+              Search and filter certifications across cloud, cybersecurity, networking, Linux, data,
+              and other IT career areas.
+            </p>
           </div>
         </div>
+      </section>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <label className="text-sm font-semibold text-slate-900">
-            Category
-            <select
-              name="category"
-              defaultValue={category}
-              className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
-            >
-              <option value="">All categories</option>
-              {categories.map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </label>
+      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <form
+          method="get"
+          action="/certifications"
+          className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+        >
+          <div>
+            <label htmlFor="q" className="text-sm font-semibold text-slate-900">
+              Search certifications
+            </label>
+            <div className="relative mt-2">
+              <Search
+                className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400"
+                aria-hidden="true"
+              />
+              <input
+                id="q"
+                name="q"
+                type="search"
+                defaultValue={query}
+                placeholder="Search Security+, CCNA, AWS, cloud, SOC analyst…"
+                className="min-h-11 w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-slate-950 outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+              />
+            </div>
+          </div>
 
-          <label className="text-sm font-semibold text-slate-900">
-            Provider
-            <select
-              name="provider"
-              defaultValue={provider}
-              className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
-            >
-              <option value="">All providers</option>
-              {providers.map(([slug, name]) => (
-                <option key={slug} value={slug}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <label className="text-sm font-semibold text-slate-900">
+              Category
+              <select
+                name="category"
+                defaultValue={category}
+                className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+              >
+                <option value="">All categories</option>
+                {categories.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-          <label className="text-sm font-semibold text-slate-900">
-            Level
-            <select
-              name="level"
-              defaultValue={level}
-              className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
-            >
-              <option value="">All levels</option>
-              {levels.map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </label>
+            <label className="text-sm font-semibold text-slate-900">
+              Provider
+              <select
+                name="provider"
+                defaultValue={provider}
+                className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+              >
+                <option value="">All providers</option>
+                {providers.map(([slug, name]) => (
+                  <option key={slug} value={slug}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-          <label className="text-sm font-semibold text-slate-900">
-            Vendor type
-            <select
-              name="vendorType"
-              defaultValue={vendorType}
-              className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
-            >
-              <option value="">All vendor types</option>
-              {vendorTypes.map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </label>
+            <label className="text-sm font-semibold text-slate-900">
+              Level
+              <select
+                name="level"
+                defaultValue={level}
+                className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+              >
+                <option value="">All levels</option>
+                {levels.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-          <label className="text-sm font-semibold text-slate-900">
-            Active status
-            <select
-              name="status"
-              defaultValue={status}
-              className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
-            >
-              <option value="">All statuses</option>
-              {statuses.map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </label>
+            <label className="text-sm font-semibold text-slate-900">
+              Vendor type
+              <select
+                name="vendorType"
+                defaultValue={vendorType}
+                className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+              >
+                <option value="">All vendor types</option>
+                {vendorTypes.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-          <label className="text-sm font-semibold text-slate-900">
-            Target job role
-            <select
-              name="targetRole"
-              defaultValue={targetRole}
-              className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
-            >
-              <option value="">All job roles</option>
-              {targetRoles.map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </label>
+            <label className="text-sm font-semibold text-slate-900">
+              Active status
+              <select
+                name="status"
+                defaultValue={status}
+                className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+              >
+                <option value="">All statuses</option>
+                {statuses.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-          <label className="text-sm font-semibold text-slate-900 sm:col-span-2">
-            Sort
-            <select
-              name="sort"
-              defaultValue={sort}
-              className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+            <label className="text-sm font-semibold text-slate-900">
+              Target job role
+              <select
+                name="targetRole"
+                defaultValue={targetRole}
+                className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+              >
+                <option value="">All job roles</option>
+                {targetRoles.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="text-sm font-semibold text-slate-900 sm:col-span-2">
+              Sort
+              <select
+                name="sort"
+                defaultValue={sort}
+                className="mt-2 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 font-normal"
+              >
+                <option value="featured">Featured / Popular</option>
+                <option value="beginner">Beginner friendly</option>
+                <option value="verified">Recently verified</option>
+                <option value="study">Shortest estimated study time</option>
+              </select>
+            </label>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-3">
+            <button
+              type="submit"
+              className="inline-flex min-h-11 items-center justify-center rounded-xl bg-blue-600 px-5 py-2.5 font-semibold text-white hover:bg-blue-500"
             >
-              <option value="featured">Featured / Popular</option>
-              <option value="beginner">Beginner friendly</option>
-              <option value="verified">Recently verified</option>
-              <option value="study">Shortest estimated study time</option>
-            </select>
-          </label>
+              Apply search and filters
+            </button>
+            {hasFilters ? (
+              <Link
+                href="/certifications"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-700 hover:bg-slate-100"
+              >
+                Clear filters
+              </Link>
+            ) : null}
+          </div>
+        </form>
+
+        <div className="mt-8 flex items-center justify-between gap-4 border-y border-slate-200 py-4">
+          <p className="text-sm text-slate-600">
+            <span className="font-semibold text-slate-950">{certifications.length}</span>{" "}
+            {certifications.length === 1 ? "certification" : "certifications"}
+          </p>
+          <p className="text-sm text-slate-500">
+            Search and filter state is preserved in the page URL.
+          </p>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-3">
-          <button
-            type="submit"
-            className="inline-flex min-h-11 items-center justify-center rounded-xl bg-blue-600 px-5 py-2.5 font-semibold text-white hover:bg-blue-500"
-          >
-            Apply search and filters
-          </button>
-          {hasFilters ? (
-            <Link
-              href="/certifications"
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-2.5 font-semibold text-slate-700 hover:bg-slate-100"
-            >
-              Clear filters
-            </Link>
-          ) : null}
-        </div>
-      </form>
-
-      <div className="mt-8 flex items-center justify-between gap-4 border-y border-slate-200 py-4">
-        <p className="text-sm text-slate-600">
-          <span className="font-semibold text-slate-950">{certifications.length}</span>{" "}
-          {certifications.length === 1 ? "certification" : "certifications"}
-        </p>
-        <p className="text-sm text-slate-500">
-          Search and filter state is preserved in the page URL.
-        </p>
-      </div>
-
-      {certifications.length ? (
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {certifications.map((certification) => (
-            <Card key={certification.id} className="flex h-full flex-col">
-              <div className="flex flex-wrap gap-2">
-                {certification.providers ? <Badge>{certification.providers.name}</Badge> : null}
-                <Badge className="bg-slate-100 text-slate-700">{certification.category}</Badge>
-                <Badge className="bg-slate-100 text-slate-700">{certification.level}</Badge>
-                {certification.status !== "Active" ? (
-                  <Badge className="bg-amber-50 text-amber-800">{certification.status}</Badge>
-                ) : null}
-              </div>
-
-              <h2 className="mt-5 text-xl font-bold tracking-tight text-slate-950">
-                {certification.name}
-              </h2>
-              <p className="mt-3 leading-7 text-slate-600">{certification.short_summary}</p>
-
-              <dl className="mt-5 grid gap-3 text-sm">
-                <div>
-                  <dt className="font-semibold text-slate-500">Target job roles</dt>
-                  <dd className="mt-1 text-slate-800">
-                    {certification.target_job_roles.length
-                      ? certification.target_job_roles.join(", ")
-                      : "Verify with official provider."}
-                  </dd>
+        {certifications.length ? (
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {certifications.map((certification) => (
+              <Card key={certification.id} className="flex h-full flex-col">
+                <div className="flex flex-wrap gap-2">
+                  {certification.providers ? <Badge>{certification.providers.name}</Badge> : null}
+                  <Badge className="bg-slate-100 text-slate-700">{certification.category}</Badge>
+                  <Badge className="bg-slate-100 text-slate-700">{certification.level}</Badge>
+                  {certification.status !== "Active" ? (
+                    <Badge className="bg-amber-50 text-amber-800">{certification.status}</Badge>
+                  ) : null}
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+
+                <h2 className="mt-5 text-xl font-bold tracking-tight text-slate-950">
+                  {certification.name}
+                </h2>
+                <p className="mt-3 leading-7 text-slate-600">{certification.short_summary}</p>
+
+                <dl className="mt-5 grid gap-3 text-sm">
                   <div>
-                    <dt className="font-semibold text-slate-500">Study time</dt>
-                    <dd className="mt-1 text-slate-800">{studyHours(certification)}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-slate-500">Last verified</dt>
+                    <dt className="font-semibold text-slate-500">Target job roles</dt>
                     <dd className="mt-1 text-slate-800">
-                      {verifiedDate(certification.last_verified_date)}
+                      {certification.target_job_roles.length
+                        ? certification.target_job_roles.join(", ")
+                        : "Verify with official provider."}
                     </dd>
                   </div>
-                </div>
-              </dl>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <dt className="font-semibold text-slate-500">Study time</dt>
+                      <dd className="mt-1 text-slate-800">{studyHours(certification)}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-semibold text-slate-500">Last verified</dt>
+                      <dd className="mt-1 text-slate-800">
+                        {verifiedDate(certification.last_verified_date)}
+                      </dd>
+                    </div>
+                  </div>
+                </dl>
 
-              <div className="mt-auto pt-5">
-                <div className="mb-4 flex flex-wrap gap-x-5 gap-y-1 border-t border-slate-100 pt-4 text-sm text-slate-500">
-                  <span>{certification.vendor_type}</span>
-                  <span>{certification.status}</span>
+                <div className="mt-auto pt-5">
+                  <div className="mb-4 flex flex-wrap gap-x-5 gap-y-1 border-t border-slate-100 pt-4 text-sm text-slate-500">
+                    <span>{certification.vendor_type}</span>
+                    <span>{certification.status}</span>
+                  </div>
+                  <Link
+                    href={`/certifications/${certification.slug}`}
+                    className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                  >
+                    View certification
+                    <ArrowRight className="size-4" aria-hidden="true" />
+                  </Link>
                 </div>
-                <Link
-                  href={`/certifications/${certification.slug}`}
-                  className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                >
-                  View certification
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <Card className="mt-8 text-center">
-          <h2 className="text-xl font-semibold text-slate-950">
-            No certifications match those filters.
-          </h2>
-          <p className="mt-2 text-slate-600">Try a broader search or clear one or more filters.</p>
-          <Link
-            href="/certifications"
-            className="mt-5 inline-flex font-semibold text-blue-700 hover:text-blue-600"
-          >
-            Clear all filters
-          </Link>
-        </Card>
-      )}
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <Card className="mt-8 text-center">
+            <h2 className="text-xl font-semibold text-slate-950">
+              No certifications match those filters.
+            </h2>
+            <p className="mt-2 text-slate-600">Try a broader search or clear one or more filters.</p>
+            <Link
+              href="/certifications"
+              className="mt-5 inline-flex font-semibold text-blue-700 hover:text-blue-600"
+            >
+              Clear all filters
+            </Link>
+          </Card>
+        )}
+      </section>
     </main>
   );
 }
