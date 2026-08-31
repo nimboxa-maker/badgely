@@ -333,34 +333,32 @@ export default function ProctoringServicesPage() {
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
-            <Card key={service.name} className="flex h-full flex-col">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.12em] text-blue-700">
-                    Testing service
-                  </p>
-                  <h3 className="mt-2 text-2xl font-bold text-slate-950">{service.name}</h3>
-                </div>
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+            <Card key={service.name} className="flex h-full flex-col items-center text-center">
+              <div className="flex flex-col items-center">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                   <Monitor className="size-5" aria-hidden="true" />
                 </span>
+                <p className="mt-4 text-sm font-semibold uppercase tracking-[0.12em] text-blue-700">
+                  Testing service
+                </p>
+                <h3 className="mt-2 text-2xl font-bold text-slate-950">{service.name}</h3>
               </div>
               <p className="mt-3 text-sm font-semibold text-slate-700">{service.platform}</p>
               <p className="mt-4 leading-7 text-slate-600">{service.summary}</p>
 
-              <div className="mt-5 rounded-xl bg-slate-50 p-4">
+              <div className="mt-5 w-full rounded-xl bg-slate-50 p-4 text-center">
                 <p className="text-sm font-semibold text-slate-900">IT programs</p>
                 <p className="mt-1 text-sm leading-6 text-slate-600">{service.examples}</p>
               </div>
 
               <p className="mt-4 text-sm leading-6 text-slate-600">{service.modes}</p>
 
-              <div className="mt-auto pt-5">
+              <div className="mt-auto flex w-full justify-center pt-5">
                 <a
                   href={service.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
                 >
                   Official testing information
                   <ArrowRight className="size-4" aria-hidden="true" />
@@ -453,13 +451,13 @@ export default function ProctoringServicesPage() {
 
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
           {roles.map(({ icon: Icon, title, description, example }) => (
-            <Card key={title} className="h-full">
+            <Card key={title} className="flex h-full flex-col items-center text-center">
               <span className="flex size-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                 <Icon className="size-5" aria-hidden="true" />
               </span>
               <h3 className="mt-5 text-xl font-bold text-slate-950">{title}</h3>
               <p className="mt-3 leading-7 text-slate-600">{description}</p>
-              <p className="mt-4 border-t border-slate-100 pt-4 text-sm font-medium text-slate-700">
+              <p className="mt-4 w-full border-t border-slate-100 pt-4 text-sm font-medium text-slate-700">
                 {example}
               </p>
             </Card>
