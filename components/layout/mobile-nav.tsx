@@ -10,6 +10,7 @@ const links = [
   { href: "/compare", label: "Compare" },
   { href: "/career-paths", label: "Career Paths" },
   { href: "/proctoring-services", label: "Proctoring Services" },
+  { href: "/study-store", label: "Study Store" },
 ];
 
 type MobileNavProps = {
