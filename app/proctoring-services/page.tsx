@@ -168,6 +168,18 @@ const certificationMappings: CertificationMapping[] = [
   },
 ];
 
+const providerLinks: Record<string, string> = {
+  "Pearson VUE / OnVUE": "https://www.pearsonvue.com/us/en/test-takers/onvue-online-proctoring.html",
+  "Pearson VUE": "https://www.pearsonvue.com/us/en/test-takers.html",
+  PSI: "https://www.psiexams.com/test-takers/",
+  "Kryterion / Webassessor": "https://www.kryterion.com/test-taker/",
+  "PeopleCert Online Proctoring / ExamShield":
+    "https://www.peoplecert.org/Partners/digital-services/peoplecert-online-proctoring",
+  Certiport: "https://certiport.pearsonvue.com/",
+  "Red Hat": "https://www.redhat.com/en/services/certification/ways-to-test",
+  "Prometric / ProProctor": "https://www.prometric.com/exams/",
+};
+
 const services = [
   {
     name: "Pearson VUE",
@@ -361,7 +373,7 @@ export default function ProctoringServicesPage() {
 
       <section className="border-y border-slate-200 bg-slate-50">
         <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
               Certification mapping
             </p>
@@ -376,7 +388,7 @@ export default function ProctoringServicesPage() {
 
           <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[920px] border-collapse text-left">
+              <table className="w-full min-w-[920px] border-collapse text-center">
                 <thead className="bg-slate-950 text-white">
                   <tr>
                     <th className="px-5 py-4 text-sm font-semibold">Certification owner</th>
@@ -387,7 +399,7 @@ export default function ProctoringServicesPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-200">
                   {certificationMappings.map((mapping) => (
-                    <tr key={`${mapping.owner}-${mapping.provider}`} className="align-top">
+                    <tr key={`${mapping.owner}-${mapping.provider}`} className="align-middle">
                       <td className="px-5 py-5 font-bold text-slate-950">{mapping.owner}</td>
                       <td className="max-w-md px-5 py-5 text-sm leading-6 text-slate-600">
                         {mapping.exams}
@@ -397,9 +409,18 @@ export default function ProctoringServicesPage() {
                           </p>
                         ) : null}
                       </td>
-                      <td className="px-5 py-5 font-semibold text-blue-700">{mapping.provider}</td>
+                      <td className="px-5 py-5 font-semibold">
+                        <a
+                          href={providerLinks[mapping.provider]}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-blue-700 underline-offset-4 transition hover:text-blue-600 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        >
+                          {mapping.provider}
+                        </a>
+                      </td>
                       <td className="px-5 py-5">
-                        <div className="flex max-w-xs flex-wrap gap-2">
+                        <div className="mx-auto flex max-w-xs flex-wrap justify-center gap-2">
                           {mapping.delivery.map((mode) => {
                             const Icon = deliveryIcon(mode);
                             return (
@@ -421,7 +442,7 @@ export default function ProctoringServicesPage() {
             </div>
           </div>
 
-          <p className="mt-4 text-sm leading-6 text-slate-500">
+          <p className="mt-4 text-center text-sm leading-6 text-slate-500">
             This directory focuses on mainstream IT and technology certification programs. Testing
             relationships change, and individual exams within the same vendor may use different
             delivery rules.
