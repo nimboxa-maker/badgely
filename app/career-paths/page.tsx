@@ -25,22 +25,30 @@ export default async function CareerPathsPage() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <section className="max-w-3xl">
-        <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-          <Route className="size-4" aria-hidden="true" />
-          Career paths
+    <main>
+      <section className="relative overflow-hidden border-b border-blue-900 bg-slate-950 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.3),transparent_38%)]" />
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-blue-300">
+              <Route className="size-4" aria-hidden="true" />
+              Career paths
+            </div>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Turn certifications into a career direction
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-slate-300">
+              Explore step-by-step learning paths for common IT roles. Each path combines certification
+              guidance with practical activities so you can see what to learn next and why it matters.
+            </p>
+          </div>
         </div>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-          Turn certifications into a career direction
-        </h1>
-        <p className="mt-4 text-lg leading-8 text-slate-600">
-          Explore step-by-step learning paths for common IT roles. Each path combines certification
-          guidance with practical activities so you can see what to learn next and why it matters.
-        </p>
       </section>
 
-      <section className="mt-10" aria-labelledby="paths-heading">
+      <section
+        className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
+        aria-labelledby="paths-heading"
+      >
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 id="paths-heading" className="text-2xl font-bold tracking-tight text-slate-950">
