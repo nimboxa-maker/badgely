@@ -8,6 +8,7 @@ const links = [
   { href: "/certifications", label: "Certifications" },
   { href: "/compare", label: "Compare" },
   { href: "/career-paths", label: "Career Paths" },
+  { href: "/proctoring-services", label: "Proctoring Services" },
 ];
 
 export async function SiteHeader() {
