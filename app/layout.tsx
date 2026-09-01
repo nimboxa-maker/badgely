@@ -5,7 +5,8 @@ import { SiteHeader } from "@/components/layout/site-header";
 
 const siteDescription =
   "Explore IT certifications, compare options, follow career roadmaps, and build a practical study plan.";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -28,9 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          {...{
+            name: "impact-site-verification",
+            value: "35d5e660-9b71-4e05-bdca-89cb01b788c0",
+          }}
+        />
+      </head>
+
       <body className="min-h-screen bg-slate-50 text-slate-950 antialiased">
         <a
           href="#main-content"
@@ -38,11 +50,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to main content
         </a>
+
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
+
           <main id="main-content" className="flex-1" tabIndex={-1}>
             {children}
           </main>
+
           <SiteFooter />
         </div>
       </body>
