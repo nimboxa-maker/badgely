@@ -70,8 +70,7 @@ const foundations = [
     href: "/certifications",
     cardClass:
       "border-blue-300 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 text-white shadow-lg shadow-blue-100",
-    iconClass:
-      "bg-white/20 text-white ring-1 ring-white/30",
+    iconClass: "bg-white/20 text-white ring-1 ring-white/30",
     eyebrowClass: "text-blue-100",
   },
   {
@@ -83,8 +82,7 @@ const foundations = [
     href: "/certifications?sort=verified",
     cardClass:
       "border-emerald-300 bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-400 text-white shadow-lg shadow-emerald-100",
-    iconClass:
-      "bg-white/20 text-white ring-1 ring-white/30",
+    iconClass: "bg-white/20 text-white ring-1 ring-white/30",
     eyebrowClass: "text-emerald-100",
   },
   {
@@ -96,8 +94,7 @@ const foundations = [
     href: "/career-paths",
     cardClass:
       "border-violet-300 bg-gradient-to-br from-violet-600 via-purple-500 to-fuchsia-400 text-white shadow-lg shadow-violet-100",
-    iconClass:
-      "bg-white/20 text-white ring-1 ring-white/30",
+    iconClass: "bg-white/20 text-white ring-1 ring-white/30",
     eyebrowClass: "text-violet-100",
   },
 ];
@@ -117,31 +114,37 @@ export default async function HomePage() {
     ...(featuredCertifications ?? []),
   ].sort(
     (a, b) =>
-      featuredOrder.indexOf(a.slug) -
-      featuredOrder.indexOf(b.slug),
+      featuredOrder.indexOf(a.slug) - featuredOrder.indexOf(b.slug),
   );
 
   return (
     <>
       <section className="relative overflow-hidden border-b border-blue-900 bg-slate-950 text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.3),transparent_38%)]" />
+
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
           <Badge className="bg-blue-500/15 text-blue-200 ring-1 ring-inset ring-blue-400/30">
             Independent IT certification guidance
           </Badge>
+
           <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
             Find the right IT certification path.
           </h1>
+
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Compare certifications, explore career roadmaps, and build a plan for your next IT role.
+            Compare certifications, explore career roadmaps, and build a plan
+            for your next IT role.
           </p>
+
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/certifications"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
             >
-              Explore certifications <ArrowRight className="size-4" aria-hidden="true" />
+              Explore certifications
+              <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
+
             <Link
               href="/career-paths"
               className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
@@ -163,8 +166,8 @@ export default async function HomePage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-            Explore your options, understand the details, and turn
-            your next certification goal into a clear plan.
+            Explore your options, understand the details, and turn your next
+            certification goal into a clear plan.
           </p>
         </div>
 
@@ -191,10 +194,7 @@ export default async function HomePage() {
                   <div
                     className={`flex size-14 items-center justify-center rounded-2xl backdrop-blur ${iconClass}`}
                   >
-                    <Icon
-                      className="size-7"
-                      aria-hidden="true"
-                    />
+                    <Icon className="size-7" aria-hidden="true" />
                   </div>
 
                   <p
@@ -241,9 +241,8 @@ export default async function HomePage() {
             </h2>
 
             <p className="mt-3 max-w-2xl leading-7 text-slate-600">
-              Explore widely recognized certifications across
-              cybersecurity, cloud, networking, architecture, and
-              project management.
+              Explore widely recognized certifications across cybersecurity,
+              cloud, networking, architecture, and project management.
             </p>
 
             <Link
@@ -252,94 +251,90 @@ export default async function HomePage() {
             >
               Browse all certifications
 
-              <ArrowRight
-                className="size-4"
-                aria-hidden="true"
-              />
+              <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </div>
 
           {orderedFeaturedCertifications.length > 0 ? (
             <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {orderedFeaturedCertifications.map(
-                (certification) => {
-                  const iconPath =
-                    certificationIcons[certification.slug];
+              {orderedFeaturedCertifications.map((certification) => {
+                const iconPath = certificationIcons[certification.slug];
 
-                  return (
-                    <Card
-                      key={certification.id}
-                      className="flex h-full flex-col items-center text-center"
-                    >
-                      {iconPath ? (
-                        <div className="mb-5 flex min-h-28 w-full items-center justify-center rounded-xl border border-slate-100 bg-white p-3">
-                          <Image
-                            src={iconPath}
-                            alt={`${certification.name} certification logo`}
-                            width={120}
-                            height={120}
-                            className="max-h-24 w-auto object-contain"
+                return (
+                  <Card
+                    key={certification.id}
+                    className="flex h-full flex-col items-center text-center"
+                  >
+                    {iconPath ? (
+                      <div className="mb-5 flex min-h-28 w-full items-center justify-center rounded-xl border border-slate-100 bg-white p-3">
+                        <Image
+                          src={iconPath}
+                          alt={`${certification.name} certification logo`}
+                          width={120}
+                          height={120}
+                          className="max-h-24 w-auto object-contain"
+                        />
+                      </div>
+                    ) : null}
+
+                    <div className="flex flex-wrap items-center justify-center gap-2">
+                      <Badge>{certification.level}</Badge>
+
+                      <span className="text-sm font-medium text-slate-500">
+                        {certification.category}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-4 text-xl font-semibold text-slate-950">
+                      {certification.name}
+                    </h3>
+
+                    <p className="mt-1 text-sm font-medium text-slate-500">
+                      {certification.provider?.name ??
+                        "Certification provider"}
+                    </p>
+
+                    <p className="mt-4 line-clamp-3 leading-7 text-slate-600">
+                      {certification.short_summary}
+                    </p>
+
+                    <div className="mt-auto flex justify-center pt-7">
+                      {certification.official_certification_url ? (
+                        <a
+                          href={certification.official_certification_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        >
+                          Official provider page
+
+                          <ExternalLink
+                            className="size-4"
+                            aria-hidden="true"
                           />
-                        </div>
+                        </a>
                       ) : null}
-
-                      <div className="flex flex-wrap items-center justify-center gap-2">
-                        <Badge>
-                          {certification.level}
-                        </Badge>
-
-                        <span className="text-sm font-medium text-slate-500">
-                          {certification.category}
-                        </span>
-                      </div>
-
-                      <h3 className="mt-4 text-xl font-semibold text-slate-950">
-                        {certification.name}
-                      </h3>
-
-                      <p className="mt-1 text-sm font-medium text-slate-500">
-                        {certification.provider?.name ??
-                          "Certification provider"}
-                      </p>
-
-                      <p className="mt-4 line-clamp-3 leading-7 text-slate-600">
-                        {certification.short_summary}
-                      </p>
-
-                      <div className="mt-auto flex justify-center pt-7">
-                        {certification.official_certification_url ? (
-                          <a
-                            href={
-                              certification.official_certification_url
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                          >
-                            Official provider page
-
-                            <ExternalLink
-                              className="size-4"
-                              aria-hidden="true"
-                            />
-                          </a>
-                        ) : null}
-                      </div>
-                    </Card>
-                  );
-                },
-              )}
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           ) : (
             <Card className="mt-8 text-center">
               <p className="text-slate-600">
-                Featured certifications will appear here as the
-                catalog is published.
+                Featured certifications will appear here as the catalog is
+                published.
               </p>
             </Card>
           )}
         </div>
       </section>
+
+      <p className="py-2 text-center text-xs text-slate-400">
+        Impact-Site-Verification:
+        {" "}
+        35d5e660-9b71-4e05-bdca-89cb01b788c0
+      </p>
     </>
   );
 }
