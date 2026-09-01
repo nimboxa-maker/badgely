@@ -189,7 +189,7 @@ const storePrinciples = [
 
 export default function StudyStorePage() {
   return (
-    <main>
+    <main className="text-center">
       <section className="relative overflow-hidden border-b border-blue-900 bg-slate-950 text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.3),transparent_38%)]" />
         <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-20">
@@ -205,7 +205,7 @@ export default function StudyStorePage() {
               learning from multiple trusted publishers—all organized around the IT credential or
               skill you are working toward.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a
                 href="#featured-resources"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
@@ -255,7 +255,7 @@ export default function StudyStorePage() {
 
       <section id="featured-resources" className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
               Featured shelf
             </p>
@@ -352,27 +352,27 @@ export default function StudyStorePage() {
 
           <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {certificationShelves.map((shelf) => (
-              <Card key={shelf.title} className="group h-full transition hover:border-blue-200 hover:shadow-md">
-                <div className="flex items-start gap-4">
+              <Card key={shelf.title} className="group h-full p-4 transition hover:border-blue-200 hover:shadow-md">
+                <div className="flex flex-col items-center gap-3 text-center">
                   <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
                     <Library className="size-5" aria-hidden="true" />
                   </span>
                   <div>
                     <h3 className="text-xl font-bold text-slate-950">{shelf.title}</h3>
-                    <p className="mt-2 leading-7 text-slate-600">{shelf.description}</p>
+                    <p className="mt-1 leading-6 text-slate-600">{shelf.description}</p>
                   </div>
                 </div>
-                <div className="mt-5 rounded-xl bg-slate-50 p-4">
+                <div className="mt-2 rounded-xl bg-slate-50 p-2.5">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
                     Publishers to compare
                   </p>
-                  <p className="mt-2 text-sm font-semibold leading-6 text-slate-800">
+                  <p className="mt-1 text-sm font-semibold leading-5 text-slate-800">
                     {shelf.publishers}
                   </p>
                 </div>
                 <a
                   href="#publishers"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
+                  className="mt-2 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
                 >
                   Compare publisher options
                   <ArrowRight className="size-4" aria-hidden="true" />
@@ -384,7 +384,7 @@ export default function StudyStorePage() {
       </section>
 
       <section id="publishers" className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
             Publisher marketplace
           </p>
@@ -486,3 +486,9 @@ export default function StudyStorePage() {
     </main>
   );
 }
+
+
+
+
+
+
