@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookOpen, Bookmark, CheckCircle2, Route } from "lucide-react";
-import { toggleSavedCareerPath } from "@/app/career-paths/actions";
+import { ArrowLeft, BookOpen, CheckCircle2, Route } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -72,27 +71,6 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
   }
 
   const { careerPath, steps } = record;
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  let isSaved = false;
-
-  if (user) {
-    const { data: savedPath, error: savedPathError } = await supabase
-      .from("user_saved_career_paths")
-      .select("id")
-      .eq("user_id", user.id)
-      .eq("career_path_id", careerPath.id)
-      .maybeSingle();
-
-    if (savedPathError) {
-      throw new Error("Unable to load your saved career path state.");
-    }
-
-    isSaved = Boolean(savedPath);
-  }
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -144,18 +122,7 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
           </div>
         </div>
 
-        <form action={toggleSavedCareerPath} className="mt-6">
-          <input type="hidden" name="careerPathId" value={careerPath.id} />
-          <input type="hidden" name="slug" value={careerPath.slug} />
-          <input type="hidden" name="intent" value={isSaved ? "remove" : "save"} />
-          <button
-            type="submit"
-            className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-4 py-2.5 font-semibold text-slate-950 hover:bg-slate-100"
-          >
-            <Bookmark className="size-4" aria-hidden="true" />
-            {isSaved ? "Remove saved path" : "Save career path"}
-          </button>
-        </form>
+
       </header>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">

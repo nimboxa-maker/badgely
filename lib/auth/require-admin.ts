@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 
 export async function requireAdmin() {
   const supabase = await createClient();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -18,7 +19,8 @@ export async function requireAdmin() {
     .maybeSingle();
 
   if (error || !profile || profile.role !== "admin") {
-    redirect("/dashboard?message=Admin+access+required.");
+    await supabase.auth.signOut();
+    redirect("/sign-in?error=Admin+access+required.");
   }
 
   return { supabase, user, profile };

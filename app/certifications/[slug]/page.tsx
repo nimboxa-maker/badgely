@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink } from "lucide-react";
-import { toggleSavedCertification } from "@/app/certifications/actions";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -137,27 +136,6 @@ export default async function CertificationDetailPage({ params }: CertificationP
     relatedCertifications,
   } = record;
 
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  let isSaved = false;
-
-  if (user) {
-    const { data: savedCertification, error: savedCertificationError } = await supabase
-      .from("user_saved_certifications")
-      .select("id")
-      .eq("user_id", user.id)
-      .eq("certification_id", certification.id)
-      .maybeSingle();
-
-    if (savedCertificationError) {
-      throw new Error("Unable to load saved certification status.");
-    }
-
-    isSaved = Boolean(savedCertification);
-  }
 
   const studyHours =
     certification.estimated_study_hours_min !== null &&
@@ -209,47 +187,6 @@ export default async function CertificationDetailPage({ params }: CertificationP
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          {user ? (
-            <form action={toggleSavedCertification}>
-              <input type="hidden" name="certificationId" value={certification.id} />
-              <input type="hidden" name="slug" value={certification.slug} />
-              <input type="hidden" name="intent" value={isSaved ? "remove" : "save"} />
-              <button
-                type="submit"
-                className={
-                  isSaved
-                    ? "min-h-11 rounded-xl border border-emerald-300/40 bg-emerald-400/10 px-4 py-2.5 font-semibold text-emerald-100 hover:bg-emerald-400/20"
-                    : "min-h-11 rounded-xl bg-blue-600 px-4 py-2.5 font-semibold text-white hover:bg-blue-500"
-                }
-              >
-                {isSaved ? "Remove saved" : "Save certification"}
-              </button>
-            </form>
-          ) : (
-            <Link
-              href="/sign-in"
-              className="inline-flex min-h-11 items-center rounded-xl bg-blue-600 px-4 py-2.5 font-semibold text-white hover:bg-blue-500"
-            >
-              Sign in to save
-            </Link>
-          )}
-          {certification.status === "Active" ? (
-            <Link
-              href={`/study-plans/new?certification=${certification.slug}`}
-              className="inline-flex min-h-11 items-center rounded-xl border border-white/20 px-4 py-2.5 font-semibold text-white hover:bg-white/10"
-            >
-              Create study plan
-            </Link>
-          ) : (
-            <button
-              type="button"
-              disabled
-              title="Study plans are only available for active certifications."
-              className="min-h-11 rounded-xl border border-white/20 px-4 py-2.5 font-semibold text-white opacity-60"
-            >
-              Create study plan
-            </button>
-          )}
           {certification.official_certification_url ? (
             <a
               href={certification.official_certification_url}

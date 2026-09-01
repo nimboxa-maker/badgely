@@ -9,13 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [
         "/admin/",
-        "/auth/",
-        "/dashboard",
-        "/forgot-password",
         "/sign-in",
-        "/sign-up",
-        "/study-plans/",
-        "/update-password",
       ],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
