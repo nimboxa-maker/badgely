@@ -29,9 +29,10 @@ const courseProviders = [
       "Large catalog of self-paced IT certification courses from independent instructors.",
     bestFor: "CompTIA, AWS, Azure, Cisco, Linux and general IT skills",
     features: ["Video courses", "Self-paced", "One-time purchases"],
-    href: "https://www.udemy.com/courses/it-and-software/it-certification/",
+    href: "https://trk.udemy.com/c/7711424/3193860/39854",
     accent: "from-violet-700 to-purple-500",
     official: false,
+    affiliate: true,
   },
   {
     name: "Coursera",
@@ -423,7 +424,11 @@ export default function CoursesPage() {
                 <a
                   href={provider.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel={
+                    provider.affiliate
+                      ? "sponsored noopener noreferrer"
+                      : "noopener noreferrer"
+                  }
                   className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600"
                 >
                   Visit {provider.name}
