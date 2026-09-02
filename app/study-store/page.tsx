@@ -7,13 +7,18 @@ import {
   ExternalLink,
   GraduationCap,
   Library,
-  Search,
   ShieldCheck,
   ShoppingBag,
   Sparkles,
+  Star,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import {
+  HeroOption,
+  HeroPanel,
+  MarketingHero,
+} from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
   title: "Study Store | Badgely",
@@ -189,108 +194,88 @@ const storePrinciples = [
 
 export default function StudyStorePage() {
   return (
-    <main className="text-center">
-      <section className="relative overflow-hidden border-b border-blue-900 bg-slate-950 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.3),transparent_38%)]" />
-        <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-20">
-          <div>
-            <Badge className="bg-blue-500/15 text-blue-200 ring-1 ring-inset ring-blue-400/30">
-              Badgely Study Store
-            </Badge>
-            <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Find the right study material without searching every publisher separately.
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-              Browse certification books, official guides, practice resources, eBooks, and technical
-              learning from multiple trusted publishers—all organized around the IT credential or
-              skill you are working toward.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a
-                href="#featured-resources"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
-              >
-                Browse featured resources
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </a>
-              <a
-                href="#publishers"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
-              >
-                Browse publishers
-              </a>
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur sm:p-6">
+    <main>
+      <MarketingHero
+        aside={
+          <HeroPanel>
             <div className="flex items-center gap-3">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-blue-600 text-white">
-                <Search className="size-5" aria-hidden="true" />
+              <span className="flex size-11 items-center justify-center rounded-2xl bg-blue-500/15 text-blue-200 ring-1 ring-inset ring-blue-300/25">
+                <Star className="size-5" aria-hidden="true" />
               </span>
               <div>
-                <p className="font-semibold text-white">Shop by what you&apos;re studying</p>
-                <p className="text-sm text-slate-400">Certification first. Publisher second.</p>
+                <h2 className="text-xl font-bold text-white">Featured resources</h2>
+                <p className="mt-1 text-sm text-slate-300">Top picks to help you prepare.</p>
               </div>
             </div>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {["Security+", "CCNA", "CISSP", "AWS", "Azure", "Linux+"].map((item) => (
-                <a
-                  key={item}
-                  href="#certification-shelves"
-                  className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-center text-sm font-semibold text-slate-200 transition hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-white"
-                >
-                  {item}
+
+            <div className="mt-5 space-y-3">
+              {featuredResources.slice(0, 3).map((resource, index) => (
+                <a key={resource.title} href={resource.href} target="_blank" rel="noopener noreferrer" className="block">
+                  <HeroOption className="flex items-center gap-4">
+                    <span
+                      className={`flex size-12 shrink-0 items-center justify-center rounded-2xl text-xs font-black text-white ${
+                        index === 0 ? "bg-blue-600" : index === 1 ? "bg-violet-600" : "bg-emerald-600"
+                      }`}
+                    >
+                      {resource.cover}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="line-clamp-1 font-bold text-white">{resource.title}</p>
+                      <p className="mt-1 text-sm text-slate-300">{resource.publisher}</p>
+                    </div>
+                    <ArrowRight className="size-5 shrink-0 text-blue-200" aria-hidden="true" />
+                  </HeroOption>
                 </a>
               ))}
             </div>
-            <div className="mt-5 rounded-2xl bg-blue-600/15 p-4 ring-1 ring-inset ring-blue-400/20">
-              <p className="text-sm leading-6 text-blue-100">
-                Badgely does not process these purchases. You&apos;ll always see the publisher or
-                external store before opening a shopping link.
-              </p>
-            </div>
-          </div>
+          </HeroPanel>
+        }
+      >
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Study Store</p>
+
+        <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          Find study resources
+          <span className="block bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 bg-clip-text text-transparent">
+            that fit your certification goal.
+          </span>
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+          Discover official guides, study books, practice material, and trusted publishers without searching every storefront separately.
+        </p>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#featured-resources" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">
+            Shop study resources <ArrowRight className="size-4" aria-hidden="true" />
+          </a>
+          <a href="#publishers" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/25 bg-white/[0.03] px-5 py-3 font-semibold text-white transition hover:bg-white/10">
+            Explore publishers
+          </a>
         </div>
-      </section>
+
+        <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-300">
+          <span className="inline-flex items-center gap-2"><BadgeCheck className="size-4 text-blue-300" /> Official resources identified</span>
+          <span className="inline-flex items-center gap-2"><ShieldCheck className="size-4 text-blue-300" /> Independent curation</span>
+          <span className="inline-flex items-center gap-2"><ShoppingBag className="size-4 text-blue-300" /> Buy from the source</span>
+        </div>
+      </MarketingHero>
 
       <section id="featured-resources" className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-              Featured shelf
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              Certification resources worth finding quickly.
-            </h2>
-            <p className="mt-4 leading-7 text-slate-600">
-              A curated starting shelf from established IT publishers. Pricing and availability are
-              controlled by the external publisher and may change.
-            </p>
-          </div>
-          <span className="inline-flex items-center gap-2 self-start rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800 md:self-auto">
-            <Sparkles className="size-4" aria-hidden="true" />
-            Curated by Badgely
-          </span>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Popular study resources</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Certification resources worth finding quickly.</h2>
+          <p className="mt-4 leading-7 text-slate-600">A curated starting shelf from established IT publishers. Pricing and availability remain with the external publisher and may change.</p>
         </div>
 
         <div className="mt-9 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {featuredResources.map((resource) => (
-            <Card
-              key={resource.title}
-              className="group flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
-            >
+            <Card key={resource.title} className="group flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
               <div className="p-5 pb-0">
-                <div
-                  className={`relative mx-auto flex aspect-[3/4] w-full max-w-[210px] flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${resource.accent} p-5 text-white shadow-lg`}
-                >
+                <div className={`relative mx-auto flex aspect-[3/4] w-full max-w-[210px] flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${resource.accent} p-5 text-white shadow-lg`}>
                   <div className="flex items-center justify-between gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80">
-                    <span>Badgely pick</span>
-                    <BookOpen className="size-4" aria-hidden="true" />
+                    <span>Badgely pick</span><BookOpen className="size-4" aria-hidden="true" />
                   </div>
-                  <div>
-                    <p className="text-3xl font-black tracking-tight">{resource.cover}</p>
-                    <p className="mt-2 text-sm font-semibold text-white/80">Study resource</p>
-                  </div>
+                  <div><p className="text-3xl font-black tracking-tight">{resource.cover}</p><p className="mt-2 text-sm font-semibold text-white/80">Study resource</p></div>
                   <p className="text-xs font-medium text-white/75">{resource.publisher}</p>
                 </div>
               </div>
@@ -298,39 +283,18 @@ export default function StudyStorePage() {
               <div className="flex flex-1 flex-col p-5">
                 <div className="flex flex-wrap justify-center gap-2">
                   <Badge>{resource.certification}</Badge>
-                  {resource.official ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800">
-                      <BadgeCheck className="size-3.5" aria-hidden="true" />
-                      Official
-                    </span>
-                  ) : null}
+                  {resource.official ? <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800"><BadgeCheck className="size-3.5" aria-hidden="true" />Official</span> : null}
                 </div>
-                <h3 className="mt-4 text-center text-lg font-bold leading-6 text-slate-950">
-                  {resource.title}
-                </h3>
-                <p className="mt-2 text-center text-sm font-semibold text-blue-700">
-                  {resource.publisher}
-                </p>
-                <p className="mt-4 text-center text-sm leading-6 text-slate-600">
-                  {resource.description}
-                </p>
+                <h3 className="mt-4 text-center text-lg font-bold leading-6 text-slate-950">{resource.title}</h3>
+                <p className="mt-2 text-center text-sm font-semibold text-blue-700">{resource.publisher}</p>
+                <p className="mt-4 text-center text-sm leading-6 text-slate-600">{resource.description}</p>
                 <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs font-semibold text-slate-600">
                   <span className="rounded-full bg-slate-100 px-2.5 py-1">{resource.type}</span>
                   <span className="rounded-full bg-slate-100 px-2.5 py-1">{resource.formats}</span>
                 </div>
                 <div className="mt-auto pt-6">
-                  <a
-                    href={resource.href}
-                    target="_blank"
-                    rel={
-                      "affiliate" in resource && resource.affiliate
-                        ? "sponsored noopener noreferrer"
-                        : "noopener noreferrer"
-                    }
-                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                  >
-                    View at publisher
-                    <ExternalLink className="size-4" aria-hidden="true" />
+                  <a href={resource.href} target="_blank" rel={"affiliate" in resource && resource.affiliate ? "sponsored noopener noreferrer" : "noopener noreferrer"} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500">
+                    View at publisher <ExternalLink className="size-4" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -342,45 +306,22 @@ export default function StudyStorePage() {
       <section id="certification-shelves" className="border-y border-slate-200 bg-slate-50">
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-              Shop by certification
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              Start with the credential, then compare publishers.
-            </h2>
-            <p className="mt-4 leading-7 text-slate-600">
-              This keeps Badgely useful even when the same certification has strong resources from
-              several different publishers.
-            </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Shop by certification</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Start with the credential, then review publishers.</h2>
+            <p className="mt-4 leading-7 text-slate-600">See which established publishers cover the certification or technical area you are working toward.</p>
           </div>
 
           <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {certificationShelves.map((shelf) => (
-              <Card key={shelf.title} className="group h-full p-4 transition hover:border-blue-200 hover:shadow-md">
-                <div className="flex flex-col items-center gap-3 text-center">
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
-                    <Library className="size-5" aria-hidden="true" />
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-950">{shelf.title}</h3>
-                    <p className="mt-1 leading-6 text-slate-600">{shelf.description}</p>
-                  </div>
+              <Card key={shelf.title} className="group h-full p-4 text-center transition hover:border-blue-200 hover:shadow-md">
+                <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white"><Library className="size-5" aria-hidden="true" /></span>
+                <h3 className="mt-4 text-xl font-bold text-slate-950">{shelf.title}</h3>
+                <p className="mt-2 leading-6 text-slate-600">{shelf.description}</p>
+                <div className="mt-4 rounded-xl bg-white p-3 ring-1 ring-inset ring-slate-200">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Publishers to review</p>
+                  <p className="mt-1 text-sm font-semibold leading-5 text-slate-800">{shelf.publishers}</p>
                 </div>
-                <div className="mt-2 rounded-xl bg-slate-50 p-2.5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                    Publishers to compare
-                  </p>
-                  <p className="mt-1 text-sm font-semibold leading-5 text-slate-800">
-                    {shelf.publishers}
-                  </p>
-                </div>
-                <a
-                  href="#publishers"
-                  className="mt-2 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
-                >
-                  Compare publisher options
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </a>
+                <a href="#publishers" className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600">Browse publisher options <ArrowRight className="size-4" aria-hidden="true" /></a>
               </Card>
             ))}
           </div>
@@ -389,55 +330,24 @@ export default function StudyStorePage() {
 
       <section id="publishers" className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-            Publisher marketplace
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            One storefront. Many trusted learning publishers.
-          </h2>
-          <p className="mt-4 leading-7 text-slate-600">
-            Badgely stays independent: each publisher gets a clear identity, specialty list, and
-            direct outbound shopping link rather than being blended into one anonymous catalog.
-          </p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Trusted publishers</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">One storefront directory. Many trusted learning publishers.</h2>
+          <p className="mt-4 leading-7 text-slate-600">Each publisher keeps a clear identity, specialty list, and direct outbound link rather than being blended into one anonymous catalog.</p>
         </div>
 
         <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {publishers.map((publisher) => (
             <Card key={publisher.name} className="flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-0.5 hover:shadow-lg">
               <div className={`bg-gradient-to-r ${publisher.accent} p-5 text-white`}>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-white/15 text-sm font-black tracking-wide ring-1 ring-inset ring-white/20">
-                    {publisher.mark}
-                  </span>
-                  <Boxes className="size-5 text-white/75" aria-hidden="true" />
-                </div>
+                <div className="flex items-center justify-between gap-4"><span className="flex size-12 items-center justify-center rounded-2xl bg-white/15 text-sm font-black tracking-wide ring-1 ring-inset ring-white/20">{publisher.mark}</span><Boxes className="size-5 text-white/75" aria-hidden="true" /></div>
                 <h3 className="mt-5 text-2xl font-bold">{publisher.name}</h3>
               </div>
               <div className="flex flex-1 flex-col p-5">
                 <p className="leading-7 text-slate-600">{publisher.description}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {publisher.specialties.map((specialty) => (
-                    <span
-                      key={specialty}
-                      className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-800"
-                    >
-                      {specialty}
-                    </span>
-                  ))}
-                </div>
+                <div className="mt-5 flex flex-wrap gap-2">{publisher.specialties.map((specialty) => <span key={specialty} className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-800">{specialty}</span>)}</div>
                 <div className="mt-auto pt-6">
-                  <a
-                    href={publisher.href}
-                    target="_blank"
-                    rel={
-                      "affiliate" in publisher && publisher.affiliate
-                        ? "sponsored noopener noreferrer"
-                        : "noopener noreferrer"
-                    }
-                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 font-semibold text-blue-800 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
-                  >
-                    Shop {publisher.name}
-                    <ExternalLink className="size-4" aria-hidden="true" />
+                  <a href={publisher.href} target="_blank" rel={"affiliate" in publisher && publisher.affiliate ? "sponsored noopener noreferrer" : "noopener noreferrer"} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 font-semibold text-blue-800 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white">
+                    Visit {publisher.name} <ExternalLink className="size-4" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -449,19 +359,13 @@ export default function StudyStorePage() {
       <section className="border-y border-slate-200 bg-blue-50/60">
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-              The Badgely difference
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              A study marketplace should help you choose, not just sell.
-            </h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">The Badgely difference</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">A study marketplace should help you choose, not just sell.</h2>
           </div>
           <div className="mt-9 grid gap-5 lg:grid-cols-3">
             {storePrinciples.map(({ icon: Icon, title, description }) => (
               <Card key={title} className="flex h-full flex-col items-center text-center">
-                <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm"><Icon className="size-5" aria-hidden="true" /></span>
                 <h3 className="mt-5 text-xl font-bold text-slate-950">{title}</h3>
                 <p className="mt-3 leading-7 text-slate-600">{description}</p>
               </Card>
@@ -473,20 +377,11 @@ export default function StudyStorePage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <Card className="overflow-hidden border-amber-200 bg-amber-50 p-0">
           <div className="grid gap-0 lg:grid-cols-[auto_1fr]">
-            <div className="flex items-center justify-center bg-amber-100 p-6 text-amber-800 lg:w-28">
-              <GraduationCap className="size-9" aria-hidden="true" />
-            </div>
+            <div className="flex items-center justify-center bg-amber-100 p-6 text-amber-800 lg:w-28"><GraduationCap className="size-9" aria-hidden="true" /></div>
             <div className="p-6 sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-amber-800">
-                Affiliate disclosure
-              </p>
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-amber-800">Affiliate disclosure</p>
               <h2 className="mt-2 text-xl font-bold text-slate-950">Badgely may earn from qualifying purchases.</h2>
-              <p className="mt-3 max-w-4xl leading-7 text-slate-700">
-                Badgely may use affiliate links for some shopping resources. If you purchase through
-                an eligible affiliate link, Badgely may receive a commission at no additional cost to
-                you. A publisher&apos;s inclusion does not mean it paid for placement, and affiliate
-                status does not determine whether a resource is recommended.
-              </p>
+              <p className="mt-3 max-w-4xl leading-7 text-slate-700">Badgely may use affiliate links for some shopping resources. If you purchase through an eligible affiliate link, Badgely may receive a commission at no additional cost to you. A publisher&apos;s inclusion does not mean it paid for placement, and affiliate status does not determine whether a resource is recommended.</p>
             </div>
           </div>
         </Card>
@@ -494,9 +389,3 @@ export default function StudyStorePage() {
     </main>
   );
 }
-
-
-
-
-
-
