@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BadgeCheck,
   BookOpen,
+  Building2,
   ExternalLink,
   GraduationCap,
   Laptop,
@@ -10,9 +11,15 @@ import {
   ShieldCheck,
   Sparkles,
   Target,
+  Users,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import {
+  HeroOption,
+  HeroPanel,
+  MarketingHero,
+} from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
   title: "Courses | Badgely",
@@ -187,149 +194,159 @@ const courseTypes = [
 ];
 
 export default function CoursesPage() {
+  const spotlight = courseProviders.find((provider) => provider.name === "AWS Skill Builder")!;
+
   return (
-    <main className="text-center">
-      <section className="relative overflow-hidden border-b border-blue-900 bg-slate-950 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.3),transparent_38%)]" />
-
-        <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <div className="mx-auto max-w-4xl">
-            <Badge className="bg-blue-500/15 text-blue-200 ring-1 ring-inset ring-blue-400/30">
-              Badgely Courses
-            </Badge>
-
-            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Compare courses before choosing where to learn.
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-              Discover IT certification courses, learning paths, labs,
-              practice resources, and official vendor training from
-              multiple learning platforms in one place.
-            </p>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a
-                href="#providers"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-500"
-              >
-                Browse course providers
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </a>
-
-              <a
-                href="#certification-courses"
-                className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/20 px-5 py-3 font-semibold text-white transition hover:bg-white/10"
-              >
-                Browse by certification
-              </a>
+    <main>
+      <MarketingHero
+        aside={
+          <HeroPanel>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-300">
+                Popular provider categories
+              </p>
+              <h2 className="mt-2 text-xl font-bold text-white">Explore top destinations for IT pros.</h2>
             </div>
 
-            <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
-              {["Courses", "Labs", "Exam Prep", "Official Training"].map(
-                (item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-sm font-semibold text-slate-200"
-                  >
-                    {item}
+            <div className="mt-5 space-y-3">
+              <a href="#providers" className="block">
+                <HeroOption className="flex items-center gap-4">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white">
+                    <Building2 className="size-5" aria-hidden="true" />
+                  </span>
+                  <div className="flex-1">
+                    <p className="font-bold text-white">Official vendor training</p>
+                    <p className="mt-1 text-sm text-slate-300">Learn directly from the creators of the technology.</p>
                   </div>
-                ),
-              )}
+                  <ArrowRight className="size-5 text-blue-200" aria-hidden="true" />
+                </HeroOption>
+              </a>
+
+              <a href="#providers" className="block">
+                <HeroOption className="flex items-center gap-4">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-violet-600 text-white">
+                    <Users className="size-5" aria-hidden="true" />
+                  </span>
+                  <div className="flex-1">
+                    <p className="font-bold text-white">Industry-leading platforms</p>
+                    <p className="mt-1 text-sm text-slate-300">Broad catalogs with flexible learning formats.</p>
+                  </div>
+                  <ArrowRight className="size-5 text-blue-200" aria-hidden="true" />
+                </HeroOption>
+              </a>
+
+              <a href="#certification-courses" className="block">
+                <HeroOption className="flex items-center gap-4">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white">
+                    <Target className="size-5" aria-hidden="true" />
+                  </span>
+                  <div className="flex-1">
+                    <p className="font-bold text-white">Specialized & niche training</p>
+                    <p className="mt-1 text-sm text-slate-300">Focused preparation for deeper technical skills.</p>
+                  </div>
+                  <ArrowRight className="size-5 text-blue-200" aria-hidden="true" />
+                </HeroOption>
+              </a>
             </div>
-          </div>
+
+            <div className="mt-5 border-t border-white/10 pt-5">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-300">Provider spotlight</p>
+              <a
+                href={spotlight.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 flex items-center gap-4 rounded-2xl bg-white/[0.055] p-4 transition hover:bg-blue-500/10"
+              >
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-white">AWS</span>
+                <div className="flex-1">
+                  <p className="font-bold text-white">AWS Skill Builder</p>
+                  <p className="mt-1 text-sm text-slate-300">Free and paid official AWS digital learning.</p>
+                </div>
+                <ExternalLink className="size-4 text-blue-200" aria-hidden="true" />
+              </a>
+            </div>
+          </HeroPanel>
+        }
+      >
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">
+          Independent IT certification guidance
+        </p>
+
+        <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          Compare IT certification
+          <span className="block bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 bg-clip-text text-transparent">
+            courses and training providers.
+          </span>
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+          Find the right training for your goals. Review official and trusted providers side by side to learn, practice, and prepare with confidence.
+        </p>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#providers"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
+          >
+            Browse all providers <ArrowRight className="size-4" aria-hidden="true" />
+          </a>
+          <a
+            href="#certification-courses"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/25 bg-white/[0.03] px-5 py-3 font-semibold text-white transition hover:bg-white/10"
+          >
+            Browse by certification
+          </a>
         </div>
-      </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-300">
+          <span className="inline-flex items-center gap-2"><ShieldCheck className="size-4 text-blue-300" /> Independent & unbiased</span>
+          <span className="inline-flex items-center gap-2"><BadgeCheck className="size-4 text-blue-300" /> Official options identified</span>
+          <span className="inline-flex items-center gap-2"><Laptop className="size-4 text-blue-300" /> Multiple learning formats</span>
+        </div>
+      </MarketingHero>
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-14 text-center sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-            Choose how you learn
-          </p>
-
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            More than just video courses.
-          </h2>
-
-          <p className="mt-4 leading-7 text-slate-600">
-            Different learners need different tools. Badgely helps you
-            identify what each learning platform actually provides.
-          </p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Choose how you learn</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">More than just video courses.</h2>
+          <p className="mt-4 leading-7 text-slate-600">Different learners need different tools. Badgely helps you identify what each learning platform actually provides.</p>
         </div>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {courseTypes.map(({ icon: Icon, title, description }) => (
-            <Card key={title} className="h-full p-5 text-center">
+            <Card key={title} className="h-full p-5 text-center transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
               <div className="mx-auto flex size-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                 <Icon className="size-5" aria-hidden="true" />
               </div>
-
-              <h3 className="mt-4 text-lg font-bold text-slate-950">
-                {title}
-              </h3>
-
-              <p className="mt-2 text-sm leading-6 text-slate-600">
-                {description}
-              </p>
+              <h3 className="mt-4 text-lg font-bold text-slate-950">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
             </Card>
           ))}
         </div>
       </section>
 
-      <section
-        id="certification-courses"
-        className="border-y border-slate-200 bg-slate-50"
-      >
-        <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <section id="certification-courses" className="border-y border-slate-200 bg-slate-50">
+        <div className="mx-auto w-full max-w-7xl px-4 py-14 text-center sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-              Browse by certification
-            </p>
-
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              Start with what you want to earn.
-            </h2>
-
-            <p className="mt-4 leading-7 text-slate-600">
-              Compare learning platforms that cover the certification
-              or technical area you are working toward.
-            </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Browse by certification</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Start with what you want to earn.</h2>
+            <p className="mt-4 leading-7 text-slate-600">Review learning platforms that cover the certification or technical area you are working toward.</p>
           </div>
 
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {certificationTracks.map((track) => (
-              <Card
-                key={track.title}
-                className="flex h-full flex-col items-center p-5 text-center transition hover:border-blue-200 hover:shadow-md"
-              >
+              <Card key={track.title} className="flex h-full flex-col items-center p-5 text-center transition hover:border-blue-200 hover:shadow-md">
                 <div className="flex size-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                   <GraduationCap className="size-5" aria-hidden="true" />
                 </div>
-
-                <h3 className="mt-4 text-xl font-bold text-slate-950">
-                  {track.title}
-                </h3>
-
-                <p className="mt-2 leading-6 text-slate-600">
-                  {track.description}
-                </p>
-
+                <h3 className="mt-4 text-xl font-bold text-slate-950">{track.title}</h3>
+                <p className="mt-2 leading-6 text-slate-600">{track.description}</p>
                 <div className="mt-3 w-full rounded-xl bg-slate-50 p-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                    Platforms to compare
-                  </p>
-
-                  <p className="mt-1 text-sm font-semibold leading-5 text-slate-800">
-                    {track.providers}
-                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Platforms to review</p>
+                  <p className="mt-1 text-sm font-semibold leading-5 text-slate-800">{track.providers}</p>
                 </div>
-
-                <a
-                  href="#providers"
-                  className="mt-3 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
-                >
-                  Compare course providers
-                  <ArrowRight className="size-4" aria-hidden="true" />
+                <a href="#providers" className="mt-3 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600">
+                  Browse course providers <ArrowRight className="size-4" aria-hidden="true" />
                 </a>
               </Card>
             ))}
@@ -337,112 +354,54 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <section
-        id="providers"
-        className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8"
-      >
-        <div className="mx-auto max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-            Course marketplace
-          </p>
-
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            One place to compare trusted learning platforms.
-          </h2>
-
-          <p className="mt-4 leading-7 text-slate-600">
-            Badgely helps you discover the platform. Course enrollment,
-            pricing, subscriptions, refunds, and access remain with the
-            external training provider.
-          </p>
+      <section id="providers" className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Course marketplace</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Top IT training providers.</h2>
+          <p className="mt-4 leading-7 text-slate-600">Badgely helps you discover the platform. Enrollment, pricing, subscriptions, refunds, and access remain with the external training provider.</p>
         </div>
 
         <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {courseProviders.map((provider) => (
-            <Card
-              key={provider.name}
-              className="group flex h-full flex-col items-center overflow-hidden p-0 text-center transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
-            >
-              <div
-                className={`flex w-full items-center justify-center bg-gradient-to-br ${provider.accent} px-5 py-7 text-white`}
-              >
-                <div className="flex size-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-xl font-black shadow-lg backdrop-blur">
-                  {provider.mark}
-                </div>
+            <Card key={provider.name} className="group flex h-full flex-col items-center overflow-hidden p-0 text-center transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
+              <div className={`flex w-full items-center justify-center bg-gradient-to-br ${provider.accent} px-5 py-7 text-white`}>
+                <div className="flex size-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-xl font-black shadow-lg backdrop-blur">{provider.mark}</div>
               </div>
 
               <div className="flex h-full w-full flex-col items-center p-5">
                 <div className="flex flex-wrap justify-center gap-2">
-                  <Badge className="bg-slate-100 text-slate-700">
-                    {provider.type}
-                  </Badge>
-
+                  <Badge className="bg-slate-100 text-slate-700">{provider.type}</Badge>
                   {provider.official ? (
-                    <Badge className="bg-emerald-50 text-emerald-800">
-                      <BadgeCheck
-                        className="mr-1 size-3.5"
-                        aria-hidden="true"
-                      />
-                      Official
-                    </Badge>
+                    <Badge className="bg-emerald-50 text-emerald-800"><BadgeCheck className="mr-1 size-3.5" aria-hidden="true" />Official</Badge>
                   ) : (
-                    <Badge className="bg-blue-50 text-blue-700">
-                      Third-party
-                    </Badge>
+                    <Badge className="bg-blue-50 text-blue-700">Third-party</Badge>
                   )}
-
                   {provider.affiliate ? (
-                    <Badge className="bg-amber-50 text-amber-800">
-                      <Sparkles
-                        className="mr-1 size-3.5"
-                        aria-hidden="true"
-                      />
-                      Affiliate
-                    </Badge>
+                    <Badge className="bg-amber-50 text-amber-800"><Sparkles className="mr-1 size-3.5" aria-hidden="true" />Affiliate</Badge>
                   ) : null}
                 </div>
 
-                <h3 className="mt-4 text-xl font-bold text-slate-950">
-                  {provider.name}
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {provider.summary}
-                </p>
+                <h3 className="mt-4 text-xl font-bold text-slate-950">{provider.name}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{provider.summary}</p>
 
                 <div className="mt-4 w-full rounded-xl bg-slate-50 p-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
-                    Best for
-                  </p>
-
-                  <p className="mt-1 text-sm font-medium leading-5 text-slate-800">
-                    {provider.bestFor}
-                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Best for</p>
+                  <p className="mt-1 text-sm font-medium leading-5 text-slate-800">{provider.bestFor}</p>
                 </div>
 
                 <div className="mt-3 flex flex-wrap justify-center gap-2">
                   {provider.features.map((feature) => (
-                    <span
-                      key={feature}
-                      className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700"
-                    >
-                      {feature}
-                    </span>
+                    <span key={feature} className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700">{feature}</span>
                   ))}
                 </div>
 
                 <a
                   href={provider.href}
                   target="_blank"
-                  rel={
-                    provider.affiliate
-                      ? "sponsored noopener noreferrer"
-                      : "noopener noreferrer"
-                  }
-                  className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600"
+                  rel={provider.affiliate ? "sponsored noopener noreferrer" : "noopener noreferrer"}
+                  className="mt-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-600"
                 >
-                  Visit {provider.name}
-                  <ExternalLink className="size-4" aria-hidden="true" />
+                  Visit {provider.name} <ExternalLink className="size-4" aria-hidden="true" />
                 </a>
               </div>
             </Card>
@@ -455,29 +414,11 @@ export default function CoursesPage() {
           <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
             <ShieldCheck className="size-6" aria-hidden="true" />
           </div>
-
-          <h2 className="mt-4 text-2xl font-bold text-slate-950">
-            Independent recommendations
-          </h2>
-
-          <p className="mx-auto mt-3 max-w-3xl leading-7 text-slate-600">
-            Badgely is independent from the course providers listed
-            here. Course availability, pricing, subscriptions, and
-            certification alignment may change, so always verify
-            details with the training provider before enrolling.
-          </p>
-
+          <h2 className="mt-4 text-2xl font-bold text-slate-950">Independent recommendations</h2>
+          <p className="mx-auto mt-3 max-w-3xl leading-7 text-slate-600">Badgely is independent from the course providers listed here. Course availability, pricing, subscriptions, and certification alignment may change, so always verify details with the training provider before enrolling.</p>
           <div className="mx-auto mt-5 max-w-3xl rounded-2xl border border-amber-200 bg-amber-50 p-4">
-            <div className="flex items-center justify-center gap-2 font-semibold text-amber-900">
-              <Sparkles className="size-4" aria-hidden="true" />
-              Affiliate disclosure
-            </div>
-
-            <p className="mt-2 text-sm leading-6 text-amber-800">
-              Some links on this page are affiliate links. If you use
-              one of these links to make a qualifying purchase, Badgely
-              may earn a commission at no additional cost to you.
-            </p>
+            <div className="flex items-center justify-center gap-2 font-semibold text-amber-900"><Sparkles className="size-4" aria-hidden="true" />Affiliate disclosure</div>
+            <p className="mt-2 text-sm leading-6 text-amber-800">Some links on this page are affiliate links. If you use one of these links to make a qualifying purchase, Badgely may earn a commission at no additional cost to you.</p>
           </div>
         </div>
       </section>
