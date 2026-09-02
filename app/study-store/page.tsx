@@ -474,10 +474,10 @@ export default function StudyStorePage() {
               </p>
               <h2 className="mt-2 text-xl font-bold text-slate-950">Badgely may earn from qualifying purchases.</h2>
               <p className="mt-3 max-w-4xl leading-7 text-slate-700">
-                Some outbound shopping links may become affiliate links. If you purchase through an
-                eligible link, Badgely may receive a commission at no additional cost to you. A
-                publisher&apos;s inclusion does not mean it paid for placement, and affiliate status
-                does not determine whether a resource is recommended.
+                Badgely may use affiliate links for some shopping resources. If you purchase through
+                an eligible affiliate link, Badgely may receive a commission at no additional cost to
+                you. A publisher&apos;s inclusion does not mean it paid for placement, and affiliate
+                status does not determine whether a resource is recommended.
               </p>
             </div>
           </div>
