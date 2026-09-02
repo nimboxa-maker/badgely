@@ -4,24 +4,24 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
 const siteDescription =
-  "Explore IT certifications, follow career roadmaps, find trusted study resources, and choose the right training for your next IT role.";
+  "Compare IT certifications, explore career roadmaps, find study resources, and review exams, requirements, costs, and renewal details in one place.";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "Badgely",
-  title: "Badgely | IT certification paths made clearer",
+  title: "Badgely | IT Certifications, Career Paths & Study Resources",
   description: siteDescription,
   openGraph: {
     type: "website",
     siteName: "Badgely",
-    title: "Badgely | IT certification paths made clearer",
+    title: "Badgely | IT Certifications, Career Paths & Study Resources",
     description: siteDescription,
   },
   twitter: {
     card: "summary",
-    title: "Badgely | IT certification paths made clearer",
+    title: "Badgely | IT Certifications, Career Paths & Study Resources",
     description: siteDescription,
   },
 };
