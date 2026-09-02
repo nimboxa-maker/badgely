@@ -464,9 +464,9 @@ export default function CoursesPage() {
             </div>
 
             <p className="mt-2 text-sm leading-6 text-amber-800">
-              Badgely may use affiliate links in the future. When an
-              affiliate link is used, it will be disclosed and Badgely
-              may earn a commission at no additional cost to the user.
+              Some links on this page are affiliate links. If you use
+              one of these links to make a qualifying purchase, Badgely
+              may earn a commission at no additional cost to you.
             </p>
           </div>
         </div>
