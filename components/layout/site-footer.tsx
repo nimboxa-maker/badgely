@@ -1,9 +1,6 @@
 export function SiteFooter() {
   return (
-    <footer
-      className="border-t border-white/10 text-white"
-      style={{ backgroundColor: "#1E40AF" }}
-    >
+    <footer className="border-t border-white/10 bg-[linear-gradient(90deg,#0b2d77_0%,#153d9d_50%,#123fb8_100%)] text-white">
       <div className="mx-auto max-w-7xl px-4 py-6 text-center sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
           <p className="text-lg font-bold">Badgely</p>
