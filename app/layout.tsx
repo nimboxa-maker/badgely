@@ -11,10 +11,7 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "Badgely",
-  title: {
-    default: "Badgely | IT certification paths made clearer",
-    template: "%s | Badgely",
-  },
+  title: "Badgely | IT certification paths made clearer",
   description: siteDescription,
   openGraph: {
     type: "website",
