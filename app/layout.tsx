@@ -29,6 +29,28 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Badgely",
+  url: siteUrl,
+  logo: `${siteUrl.replace(/\/$/, "")}/brand/badgely-logo.png`,
+  description: siteDescription,
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Badgely",
+  url: siteUrl,
+  description: siteDescription,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${siteUrl.replace(/\/$/, "")}/certifications?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -40,6 +62,14 @@ export default function RootLayout({
             name: "impact-site-verification",
             value: "35d5e660-9b71-4e05-bdca-89cb01b788c0",
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
 
