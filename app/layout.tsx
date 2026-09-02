@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
 const siteDescription =
-  "Explore IT certifications, compare options, follow career roadmaps, and build a practical study plan.";
+  "Explore IT certifications, follow career roadmaps, find trusted study resources, and choose the right training for your next IT role.";
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
