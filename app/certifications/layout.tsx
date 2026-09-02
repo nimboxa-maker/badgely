@@ -4,7 +4,7 @@ const description =
   "Explore IT certifications across cybersecurity, cloud, networking, Linux, data, project management, and more with verified exam and career guidance.";
 
 export const metadata: Metadata = {
-  title: "IT Certifications Directory",
+  title: "IT Certifications Directory | Badgely",
   description,
   alternates: {
     canonical: "/certifications",
