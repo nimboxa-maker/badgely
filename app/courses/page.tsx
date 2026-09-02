@@ -390,6 +390,16 @@ export default function CoursesPage() {
                       Third-party
                     </Badge>
                   )}
+
+                  {provider.affiliate ? (
+                    <Badge className="bg-amber-50 text-amber-800">
+                      <Sparkles
+                        className="mr-1 size-3.5"
+                        aria-hidden="true"
+                      />
+                      Affiliate
+                    </Badge>
+                  ) : null}
                 </div>
 
                 <h3 className="mt-4 text-xl font-bold text-slate-950">
