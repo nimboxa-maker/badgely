@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
 
 const description =
-  "Explore IT certifications across cloud, cybersecurity, networking, Linux, data, and other career areas with searchable, role-focused guidance.";
+  "Explore IT certifications across cybersecurity, cloud, networking, Linux, data, project management, and more with verified exam and career guidance.";
 
 export const metadata: Metadata = {
-  title: "IT Certifications",
+  title: "IT Certifications Directory",
   description,
+  alternates: {
+    canonical: "/certifications",
+  },
   openGraph: {
-    title: "IT Certifications | Badgely",
+    title: "IT Certifications Directory | Badgely",
     description,
+    url: "/certifications",
+    type: "website",
   },
   twitter: {
     card: "summary",
-    title: "IT Certifications | Badgely",
+    title: "IT Certifications Directory | Badgely",
     description,
   },
 };
