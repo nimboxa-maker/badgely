@@ -16,9 +16,9 @@ import {
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata = {
-  title: "Career Paths",
+  title: "IT Career Paths & Certification Roadmaps",
   description:
-    "Explore structured IT career paths that connect certifications, practical activities, and role-focused progression.",
+    "Explore IT career paths for cloud, cybersecurity, networking, DevOps, support, GRC, and more with recommended certifications and practical next steps.",
 };
 
 const pathIcons = [Cloud, ShieldCheck, Network];
