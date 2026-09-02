@@ -322,7 +322,11 @@ export default function StudyStorePage() {
                   <a
                     href={resource.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel={
+                      "affiliate" in resource && resource.affiliate
+                        ? "sponsored noopener noreferrer"
+                        : "noopener noreferrer"
+                    }
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                   >
                     View at publisher
@@ -425,7 +429,11 @@ export default function StudyStorePage() {
                   <a
                     href={publisher.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel={
+                      "affiliate" in publisher && publisher.affiliate
+                        ? "sponsored noopener noreferrer"
+                        : "noopener noreferrer"
+                    }
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 font-semibold text-blue-800 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
                   >
                     Shop {publisher.name}
