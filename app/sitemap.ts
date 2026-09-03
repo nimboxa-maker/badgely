@@ -37,6 +37,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${siteUrl}/guides`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/guides/is-security-plus-worth-it`,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = certificationCategories.map((category) => ({
