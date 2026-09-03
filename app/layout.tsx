@@ -5,8 +5,8 @@ import { SiteHeader } from "@/components/layout/site-header";
 
 const siteDescription =
   "Compare IT certifications, explore career roadmaps, find study resources, and review exams, requirements, costs, and renewal details in one place.";
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://badgely-alpha.vercel.app").replace(/\/$/, "");
+const socialImageUrl = `${siteUrl}/opengraph-image`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,13 +16,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Badgely",
+    url: siteUrl,
     title: "Badgely | IT Certifications, Career Paths & Study Resources",
     description: siteDescription,
+    images: [
+      {
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "Badgely — IT certifications, career paths, and study resources",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Badgely | IT Certifications, Career Paths & Study Resources",
     description: siteDescription,
+    images: [socialImageUrl],
   },
 };
 
@@ -31,7 +41,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Badgely",
   url: siteUrl,
-  logo: `${siteUrl.replace(/\/$/, "")}/brand/badgely-logo.png`,
+  logo: `${siteUrl}/brand/badgely-logo.png`,
   description: siteDescription,
 };
 
@@ -43,7 +53,7 @@ const websiteSchema = {
   description: siteDescription,
   potentialAction: {
     "@type": "SearchAction",
-    target: `${siteUrl.replace(/\/$/, "")}/certifications?q={search_term_string}`,
+    target: `${siteUrl}/certifications?q={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
 };
