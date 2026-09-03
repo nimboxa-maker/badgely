@@ -25,6 +25,21 @@ const categoryRoutes: Record<string, string> = {
   "Project Management": "project-management",
 };
 
+const guideByCertificationSlug: Record<string, { href: string; label: string }> = {
+  "comptia-security-plus": {
+    href: "/guides/is-security-plus-worth-it",
+    label: "Is Security+ worth it in 2026?",
+  },
+  "cisco-ccna": {
+    href: "/guides/ccna-vs-network-plus",
+    label: "CCNA vs Network+: which should you choose?",
+  },
+  "comptia-network-plus": {
+    href: "/guides/ccna-vs-network-plus",
+    label: "CCNA vs Network+: which should you choose?",
+  },
+};
+
 const getCertification = cache(async (slug: string) => {
   const supabase = await createClient();
   const { data } = await supabase
@@ -116,7 +131,7 @@ export default async function CertificationLayout({
   const categoryHref = categoryRoute
     ? `/certifications/${categoryRoute}`
     : `/certifications?category=${encodeURIComponent(certification.category)}`;
-  const hasSecurityPlusGuide = certification.slug === "comptia-security-plus";
+  const guide = guideByCertificationSlug[certification.slug];
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -193,13 +208,13 @@ export default async function CertificationLayout({
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {hasSecurityPlusGuide ? (
+            {guide ? (
               <Link
-                href="/guides/is-security-plus-worth-it"
+                href={guide.href}
                 className="rounded-2xl border border-blue-200 bg-blue-50 p-4 transition hover:border-blue-400 hover:bg-blue-100"
               >
                 <p className="text-sm font-semibold text-blue-700">Badgely Guide</p>
-                <p className="mt-1 font-bold text-slate-950">Is Security+ worth it in 2026?</p>
+                <p className="mt-1 font-bold text-slate-950">{guide.label}</p>
               </Link>
             ) : null}
 
