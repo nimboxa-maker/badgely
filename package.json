@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test features/study-plans/scheduling.test.mjs features/study-plans/ownership.test.mjs app/admin/admin-security.test.mjs app/certifications/query-parsing.test.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
