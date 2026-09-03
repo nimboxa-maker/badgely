@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { createClient } from "@supabase/supabase-js";
+import { certificationCategories } from "@/lib/certification-categories";
 import type { Database } from "@/lib/supabase/database";
 
 const siteUrl = "https://badgely-alpha.vercel.app";
@@ -38,11 +39,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const categoryRoutes: MetadataRoute.Sitemap = certificationCategories.map((category) => ({
+    url: `${siteUrl}/certifications/${category.slug}`,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  const fallbackRoutes = [...staticRoutes, ...categoryRoutes];
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabasePublishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
   if (!supabaseUrl || !supabasePublishableKey) {
-    return staticRoutes;
+    return fallbackRoutes;
   }
 
   try {
@@ -63,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]);
 
     if (certificationsResult.error || careerPathsResult.error) {
-      return staticRoutes;
+      return fallbackRoutes;
     }
 
     const certificationRoutes: MetadataRoute.Sitemap = (certificationsResult.data ?? []).map(
@@ -82,8 +90,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-    return [...staticRoutes, ...certificationRoutes, ...careerPathRoutes];
+    return [
+      ...staticRoutes,
+      ...categoryRoutes,
+      ...certificationRoutes,
+      ...careerPathRoutes,
+    ];
   } catch {
-    return staticRoutes;
+    return fallbackRoutes;
   }
 }
