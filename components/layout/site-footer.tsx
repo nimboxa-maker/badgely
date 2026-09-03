@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-[linear-gradient(90deg,#0b2d77_0%,#153d9d_50%,#123fb8_100%)] text-white">
@@ -9,6 +11,12 @@ export function SiteFooter() {
             Clearer certification information, career paths, and
             practical study planning for IT professionals.
           </p>
+
+          <div className="mt-3">
+            <Link href="/guides" className="text-sm font-semibold text-white hover:text-blue-100">
+              Badgely Guides
+            </Link>
+          </div>
         </div>
 
         <div className="mt-5 border-t border-white/10 pt-4">
