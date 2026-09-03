@@ -1,0 +1,43 @@
+name: Submit initial IndexNow URLs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/indexnow-initial.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Submit Milestone 12 URLs
+        run: >-
+          node scripts/submit-indexnow.mjs
+          /
+          /certifications
+          /certifications/cybersecurity
+          /certifications/cloud
+          /certifications/networking
+          /certifications/devops
+          /certifications/data
+          /certifications/grc-and-audit
+          /certifications/it-support
+          /certifications/linux
+          /certifications/infrastructure
+          /certifications/project-management
+          /career-paths
+          /courses
+          /study-store
