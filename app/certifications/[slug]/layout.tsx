@@ -159,7 +159,19 @@ export default async function CertificationLayout({
   const categoryHref = categoryRoute
     ? `/certifications/${categoryRoute}`
     : `/certifications?category=${encodeURIComponent(certification.category)}`;
-  const guides = guidesByCertificationSlug[certification.slug] ?? [];
+  const categoryGuides =
+    certification.category === "Cybersecurity"
+      ? [
+          {
+            href: "/guides/best-cybersecurity-certifications",
+            label: "Best cybersecurity certifications in 2026",
+          },
+        ]
+      : [];
+  const guides = [
+    ...(guidesByCertificationSlug[certification.slug] ?? []),
+    ...categoryGuides,
+  ];
 
   const structuredData = {
     "@context": "https://schema.org",
