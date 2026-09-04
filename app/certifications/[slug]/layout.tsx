@@ -68,6 +68,21 @@ const guidesByCertificationSlug: Record<string, Array<{ href: string; label: str
   ],
 };
 
+const categoryGuidesByCategory: Record<string, Array<{ href: string; label: string }>> = {
+  Cybersecurity: [
+    {
+      href: "/guides/best-cybersecurity-certifications",
+      label: "Best cybersecurity certifications in 2026",
+    },
+  ],
+  Cloud: [
+    {
+      href: "/guides/best-cloud-certifications",
+      label: "Best cloud certifications in 2026",
+    },
+  ],
+};
+
 const getCertification = cache(async (slug: string) => {
   const supabase = await createClient();
   const { data } = await supabase
@@ -159,18 +174,9 @@ export default async function CertificationLayout({
   const categoryHref = categoryRoute
     ? `/certifications/${categoryRoute}`
     : `/certifications?category=${encodeURIComponent(certification.category)}`;
-  const categoryGuides =
-    certification.category === "Cybersecurity"
-      ? [
-          {
-            href: "/guides/best-cybersecurity-certifications",
-            label: "Best cybersecurity certifications in 2026",
-          },
-        ]
-      : [];
   const guides = [
     ...(guidesByCertificationSlug[certification.slug] ?? []),
-    ...categoryGuides,
+    ...(categoryGuidesByCategory[certification.category] ?? []),
   ];
 
   const structuredData = {
