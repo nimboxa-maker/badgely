@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Compass, Network, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Compass, Network, Scale, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { HeroOption, HeroPanel, MarketingHero } from "@/components/layout/marketing-hero";
 
@@ -119,6 +119,28 @@ export default function GuidesPage() {
             </p>
             <Link
               href="/guides/ccna-vs-network-plus"
+              className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
+            >
+              Read comparison <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </Card>
+
+          <Card className="p-6">
+            <div className="flex items-center gap-3">
+              <span className="flex size-11 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
+                <Scale className="size-5" aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-blue-700">Cybersecurity comparison</p>
+                <h3 className="text-xl font-bold text-slate-950">Security+ vs SSCP: Which should you choose?</h3>
+              </div>
+            </div>
+            <p className="mt-4 leading-7 text-slate-600">
+              Compare a broad foundational security credential with a practitioner-oriented certification that includes
+              an experience requirement for full certification.
+            </p>
+            <Link
+              href="/guides/security-plus-vs-sscp"
               className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
             >
               Read comparison <ArrowRight className="size-4" aria-hidden="true" />
