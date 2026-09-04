@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, BriefcaseBusiness, Compass, Network, Scale, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  BriefcaseBusiness,
+  Cloud,
+  Compass,
+  Network,
+  Scale,
+  ShieldCheck,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { HeroOption, HeroPanel, MarketingHero } from "@/components/layout/marketing-hero";
 
@@ -95,10 +104,7 @@ export default function GuidesPage() {
               A balanced look at who Security+ fits, the current SY0-701 exam, study expectations, and the career paths
               it can support.
             </p>
-            <Link
-              href="/guides/is-security-plus-worth-it"
-              className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
-            >
+            <Link href="/guides/is-security-plus-worth-it" className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600">
               Read guide <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Card>
@@ -117,10 +123,7 @@ export default function GuidesPage() {
               Compare vendor-neutral breadth with deeper Cisco-oriented networking and decide which certification best
               matches your starting point and career goal.
             </p>
-            <Link
-              href="/guides/ccna-vs-network-plus"
-              className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
-            >
+            <Link href="/guides/ccna-vs-network-plus" className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600">
               Read comparison <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Card>
@@ -139,10 +142,7 @@ export default function GuidesPage() {
               Compare a broad foundational security credential with a practitioner-oriented certification that includes
               an experience requirement for full certification.
             </p>
-            <Link
-              href="/guides/security-plus-vs-sscp"
-              className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
-            >
+            <Link href="/guides/security-plus-vs-sscp" className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600">
               Read comparison <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Card>
@@ -161,10 +161,7 @@ export default function GuidesPage() {
               Compare broad security leadership and architecture coverage with a credential focused more directly on
               governance, risk, security programs, and management responsibilities.
             </p>
-            <Link
-              href="/guides/cissp-vs-cism"
-              className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
-            >
+            <Link href="/guides/cissp-vs-cism" className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600">
               Read comparison <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Card>
@@ -183,10 +180,26 @@ export default function GuidesPage() {
               Explore cybersecurity certifications by goal, from first-step foundations and SOC work to penetration
               testing, cloud security, and advanced architecture or leadership.
             </p>
-            <Link
-              href="/guides/best-cybersecurity-certifications"
-              className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
-            >
+            <Link href="/guides/best-cybersecurity-certifications" className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600">
+              Read guide <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </Card>
+
+          <Card className="p-6">
+            <div className="flex items-center gap-3">
+              <span className="flex size-11 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
+                <Cloud className="size-5" aria-hidden="true" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-blue-700">Cloud roundup</p>
+                <h3 className="text-xl font-bold text-slate-950">Best cloud certifications in 2026</h3>
+              </div>
+            </div>
+            <p className="mt-4 leading-7 text-slate-600">
+              Explore cloud certifications by career goal, from first-step cloud fundamentals to engineering,
+              architecture, operations, and advanced hybrid-cloud networking.
+            </p>
+            <Link href="/guides/best-cloud-certifications" className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600">
               Read guide <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </Card>
