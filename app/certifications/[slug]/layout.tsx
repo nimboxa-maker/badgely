@@ -54,6 +54,18 @@ const guidesByCertificationSlug: Record<string, Array<{ href: string; label: str
       label: "CCNA vs Network+: which should you choose?",
     },
   ],
+  "isc2-cissp": [
+    {
+      href: "/guides/cissp-vs-cism",
+      label: "CISSP vs CISM: which should you choose?",
+    },
+  ],
+  "isaca-cism": [
+    {
+      href: "/guides/cissp-vs-cism",
+      label: "CISSP vs CISM: which should you choose?",
+    },
+  ],
 };
 
 const getCertification = cache(async (slug: string) => {
