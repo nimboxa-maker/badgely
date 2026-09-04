@@ -57,6 +57,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    {
+      url: `${siteUrl}/guides/cissp-vs-cism`,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = certificationCategories.map((category) => ({
