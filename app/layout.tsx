@@ -4,33 +4,37 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
 const siteDescription =
-  "Compare IT certifications, explore career roadmaps, find study resources, and review exams, requirements, costs, and renewal details in one place.";
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://badgely-alpha.vercel.app").replace(/\/$/, "");
+  "Learn it. Earn it. Prove it. Explore IT certifications, career paths, study resources, exams, requirements, costs, and renewal details in one place.";
+
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://badgely-alpha.vercel.app"
+).replace(/\/$/, "");
+
 const socialImageUrl = `${siteUrl}/opengraph-image`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: "Badgely",
-  title: "Badgely | IT Certifications, Career Paths & Study Resources",
+  applicationName: "ThirdBadge",
+  title: "ThirdBadge | Learn it. Earn it. Prove it.",
   description: siteDescription,
   openGraph: {
     type: "website",
-    siteName: "Badgely",
+    siteName: "ThirdBadge",
     url: siteUrl,
-    title: "Badgely | IT Certifications, Career Paths & Study Resources",
+    title: "ThirdBadge | Learn it. Earn it. Prove it.",
     description: siteDescription,
     images: [
       {
         url: socialImageUrl,
         width: 1200,
         height: 630,
-        alt: "Badgely — IT certifications, career paths, and study resources",
+        alt: "ThirdBadge — Learn it. Earn it. Prove it.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Badgely | IT Certifications, Career Paths & Study Resources",
+    title: "ThirdBadge | Learn it. Earn it. Prove it.",
     description: siteDescription,
     images: [socialImageUrl],
   },
@@ -39,7 +43,7 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Badgely",
+  name: "ThirdBadge",
   url: siteUrl,
   logo: `${siteUrl}/brand/badgely-logo.png`,
   description: siteDescription,
@@ -48,7 +52,7 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Badgely",
+  name: "ThirdBadge",
   url: siteUrl,
   description: siteDescription,
   potentialAction: {
@@ -70,13 +74,19 @@ export default function RootLayout({
             value: "35d5e660-9b71-4e05-bdca-89cb01b788c0",
           }}
         />
+
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
         />
+
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
         />
       </head>
 

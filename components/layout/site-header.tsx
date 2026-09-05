@@ -18,13 +18,13 @@ export function SiteHeader() {
         <Link
           href="/"
           className="inline-flex items-center gap-2 rounded-lg font-bold tracking-tight text-white focus-visible:outline-2 focus-visible:outline-white"
-          aria-label="Badgely home"
+          aria-label="ThirdBadge home"
         >
           <span className="flex size-9 items-center justify-center rounded-xl bg-white/15 ring-1 ring-inset ring-white/10">
             <Award className="size-5" aria-hidden="true" />
           </span>
 
-          <span className="text-xl">Badgely</span>
+          <span className="text-xl">ThirdBadge</span>
         </Link>
 
         <nav

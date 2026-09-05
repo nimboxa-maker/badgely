@@ -1,4 +1,4 @@
--- Badgely idempotent seed data.
+-- ThirdBadge idempotent seed data.
 -- Milestone 3: providers and certification catalog.
 
 insert into public.providers (
@@ -172,7 +172,8 @@ select
   'Active',
   certification_seed.featured
 from certification_seed
-join public.providers on providers.slug = certification_seed.provider_slug
+join public.providers
+  on providers.slug = certification_seed.provider_slug
 on conflict (slug) do update
 set
   provider_id = excluded.provider_id,

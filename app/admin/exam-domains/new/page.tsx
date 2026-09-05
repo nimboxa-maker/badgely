@@ -13,7 +13,9 @@ export default async function NewExamDomainPage() {
     .order("name", { ascending: true });
 
   if (error) {
-    throw new Error("Unable to load certifications for exam domain creation.");
+    throw new Error(
+      "Unable to load certifications for exam domain creation.",
+    );
   }
 
   return (
@@ -30,18 +32,27 @@ export default async function NewExamDomainPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
           Admin · Exam domains
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Add exam domain</h1>
+
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+          Add exam domain
+        </h1>
+
         <p className="mt-2 text-slate-600">
-          Add an exam objective domain and connect it to the correct certification.
+          Add an exam objective domain and connect it to the correct
+          certification.
         </p>
       </div>
 
       <Card className="mt-8">
         <form action={createExamDomain} className="space-y-6">
           <div>
-            <label htmlFor="certificationId" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="certificationId"
+              className="text-sm font-semibold text-slate-700"
+            >
               Certification
             </label>
+
             <select
               id="certificationId"
               name="certificationId"
@@ -52,16 +63,24 @@ export default async function NewExamDomainPage() {
               <option value="" disabled>
                 Select a certification
               </option>
+
               {(certifications ?? []).map((certification) => {
-                const provider = Array.isArray(certification.providers)
+                const provider = Array.isArray(
+                  certification.providers,
+                )
                   ? certification.providers[0]?.name
                   : certification.providers?.name;
 
                 return (
-                  <option key={certification.id} value={certification.id}>
+                  <option
+                    key={certification.id}
+                    value={certification.id}
+                  >
                     {provider ? `${provider} · ` : ""}
                     {certification.name}
-                    {certification.status === "Active" ? "" : ` (${certification.status})`}
+                    {certification.status === "Active"
+                      ? ""
+                      : ` (${certification.status})`}
                   </option>
                 );
               })}
@@ -70,9 +89,13 @@ export default async function NewExamDomainPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="domainName" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="domainName"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Domain name
               </label>
+
               <input
                 id="domainName"
                 name="domainName"
@@ -80,15 +103,19 @@ export default async function NewExamDomainPage() {
                 required
                 minLength={2}
                 maxLength={200}
-                placeholder="Badgely Test Domain"
+                placeholder="ThirdBadge Test Domain"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
             <div>
-              <label htmlFor="domainWeightText" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="domainWeightText"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Domain weight
               </label>
+
               <input
                 id="domainWeightText"
                 name="domainWeightText"
@@ -101,9 +128,13 @@ export default async function NewExamDomainPage() {
           </div>
 
           <div>
-            <label htmlFor="displayOrder" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="displayOrder"
+              className="text-sm font-semibold text-slate-700"
+            >
               Display order
             </label>
+
             <input
               id="displayOrder"
               name="displayOrder"
@@ -114,15 +145,20 @@ export default async function NewExamDomainPage() {
               required
               className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             />
+
             <p className="mt-1 text-xs text-slate-500">
               Lower numbers appear earlier in the domain list.
             </p>
           </div>
 
           <div>
-            <label htmlFor="description" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="description"
+              className="text-sm font-semibold text-slate-700"
+            >
               Description
             </label>
+
             <textarea
               id="description"
               name="description"
@@ -140,6 +176,7 @@ export default async function NewExamDomainPage() {
             >
               Cancel
             </Link>
+
             <button
               type="submit"
               className="min-h-11 rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"

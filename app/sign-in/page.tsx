@@ -6,7 +6,9 @@ type SignInPageProps = {
   searchParams: Promise<{ error?: string; message?: string }>;
 };
 
-export default async function SignInPage({ searchParams }: SignInPageProps) {
+export default async function SignInPage({
+  searchParams,
+}: SignInPageProps) {
   const params = await searchParams;
 
   return (
@@ -18,7 +20,7 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
           </p>
 
           <h1 className="text-3xl font-bold tracking-tight">
-            Badgely Admin Sign In
+            ThirdBadge Admin Sign In
           </h1>
 
           <p className="text-sm leading-6 text-slate-600">

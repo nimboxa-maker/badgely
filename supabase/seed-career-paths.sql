@@ -1,4 +1,4 @@
--- Badgely idempotent career-path seed data.
+-- ThirdBadge idempotent career-path seed data.
 -- Milestone 3 seed data; public career-path pages are implemented in Milestone 5.
 
 with career_path_seed (
@@ -205,5 +205,7 @@ select
   step_seed.practical_activity,
   step_seed.display_order
 from step_seed
-join public.career_paths on career_paths.slug = step_seed.path_slug
-left join public.certifications on certifications.slug = step_seed.certification_slug;
+join public.career_paths
+  on career_paths.slug = step_seed.path_slug
+left join public.certifications
+  on certifications.slug = step_seed.certification_slug;

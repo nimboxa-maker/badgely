@@ -25,7 +25,10 @@ const categoryRoutes: Record<string, string> = {
   "Project Management": "project-management",
 };
 
-const guidesByCertificationSlug: Record<string, Array<{ href: string; label: string }>> = {
+const guidesByCertificationSlug: Record<
+  string,
+  Array<{ href: string; label: string }>
+> = {
   "comptia-security-plus": [
     {
       href: "/guides/is-security-plus-worth-it",
@@ -68,7 +71,10 @@ const guidesByCertificationSlug: Record<string, Array<{ href: string; label: str
   ],
 };
 
-const categoryGuidesByCategory: Record<string, Array<{ href: string; label: string }>> = {
+const categoryGuidesByCategory: Record<
+  string,
+  Array<{ href: string; label: string }>
+> = {
   Cybersecurity: [
     {
       href: "/guides/best-cybersecurity-certifications",
@@ -85,6 +91,7 @@ const categoryGuidesByCategory: Record<string, Array<{ href: string; label: stri
 
 const getCertification = cache(async (slug: string) => {
   const supabase = await createClient();
+
   const { data } = await supabase
     .from("certifications")
     .select(
@@ -98,13 +105,16 @@ const getCertification = cache(async (slug: string) => {
 
 const getRelatedCareerPaths = cache(async (certificationId: string) => {
   const supabase = await createClient();
+
   const { data: memberships } = await supabase
     .from("career_path_steps")
     .select("career_path_id")
     .eq("certification_id", certificationId);
 
   const pathIds = [
-    ...new Set((memberships ?? []).map((membership) => membership.career_path_id)),
+    ...new Set(
+      (memberships ?? []).map((membership) => membership.career_path_id),
+    ),
   ];
 
   if (!pathIds.length) {
@@ -131,8 +141,12 @@ export async function generateMetadata({
     return {};
   }
 
-  const title = certification.seo_title ?? `${certification.name} | Badgely`;
-  const description = certification.seo_description ?? certification.short_summary;
+  const title =
+    certification.seo_title ?? `${certification.name} | ThirdBadge`;
+
+  const description =
+    certification.seo_description ?? certification.short_summary;
+
   const canonicalUrl = `${siteUrl}/certifications/${certification.slug}`;
 
   return {
@@ -144,7 +158,7 @@ export async function generateMetadata({
       description,
       url: canonicalUrl,
       type: "website",
-      siteName: "Badgely",
+      siteName: "ThirdBadge",
     },
     twitter: {
       card: "summary",
@@ -168,12 +182,17 @@ export default async function CertificationLayout({
   const provider = Array.isArray(certification.providers)
     ? certification.providers[0]?.name
     : certification.providers?.name;
+
   const pageUrl = `${siteUrl}/certifications/${certification.slug}`;
+
   const relatedCareerPaths = await getRelatedCareerPaths(certification.id);
+
   const categoryRoute = categoryRoutes[certification.category];
+
   const categoryHref = categoryRoute
     ? `/certifications/${categoryRoute}`
     : `/certifications?category=${encodeURIComponent(certification.category)}`;
+
   const guides = [
     ...(guidesByCertificationSlug[certification.slug] ?? []),
     ...(categoryGuidesByCategory[certification.category] ?? []),
@@ -188,7 +207,7 @@ export default async function CertificationLayout({
           {
             "@type": "ListItem",
             position: 1,
-            name: "Badgely",
+            name: "ThirdBadge",
             item: siteUrl,
           },
           {
@@ -214,7 +233,8 @@ export default async function CertificationLayout({
       {
         "@type": "EducationalOccupationalCredential",
         name: certification.name,
-        description: certification.seo_description ?? certification.short_summary,
+        description:
+          certification.seo_description ?? certification.short_summary,
         credentialCategory: "Professional certification",
         educationalLevel: certification.level,
         url: pageUrl,
@@ -233,8 +253,11 @@ export default async function CertificationLayout({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
       />
+
       {children}
 
       <div className="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
@@ -246,11 +269,12 @@ export default async function CertificationLayout({
             id="explore-more-heading"
             className="text-2xl font-bold tracking-tight text-slate-950"
           >
-            Keep exploring on Badgely
+            Keep exploring on ThirdBadge
           </h2>
+
           <p className="mt-2 max-w-3xl leading-7 text-slate-600">
-            Connect this certification to its broader technology area, career roadmaps, training,
-            and study resources.
+            Connect this certification to its broader technology area,
+            career roadmaps, training, and study resources.
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -260,8 +284,13 @@ export default async function CertificationLayout({
                 href={guide.href}
                 className="rounded-2xl border border-blue-200 bg-blue-50 p-4 transition hover:border-blue-400 hover:bg-blue-100"
               >
-                <p className="text-sm font-semibold text-blue-700">Badgely Guide</p>
-                <p className="mt-1 font-bold text-slate-950">{guide.label}</p>
+                <p className="text-sm font-semibold text-blue-700">
+                  ThirdBadge Guide
+                </p>
+
+                <p className="mt-1 font-bold text-slate-950">
+                  {guide.label}
+                </p>
               </Link>
             ))}
 
@@ -269,7 +298,10 @@ export default async function CertificationLayout({
               href={categoryHref}
               className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-300 hover:bg-blue-50"
             >
-              <p className="text-sm font-semibold text-blue-700">Certification category</p>
+              <p className="text-sm font-semibold text-blue-700">
+                Certification category
+              </p>
+
               <p className="mt-1 font-bold text-slate-950">
                 Browse {certification.category}
               </p>
@@ -282,8 +314,13 @@ export default async function CertificationLayout({
                   href={`/career-paths/${path.slug}`}
                   className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-300 hover:bg-blue-50"
                 >
-                  <p className="text-sm font-semibold text-blue-700">Related career roadmap</p>
-                  <p className="mt-1 font-bold text-slate-950">{path.name}</p>
+                  <p className="text-sm font-semibold text-blue-700">
+                    Related career roadmap
+                  </p>
+
+                  <p className="mt-1 font-bold text-slate-950">
+                    {path.name}
+                  </p>
                 </Link>
               ))
             ) : (
@@ -291,8 +328,13 @@ export default async function CertificationLayout({
                 href="/career-paths"
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-300 hover:bg-blue-50"
               >
-                <p className="text-sm font-semibold text-blue-700">Career roadmaps</p>
-                <p className="mt-1 font-bold text-slate-950">Explore IT career paths</p>
+                <p className="text-sm font-semibold text-blue-700">
+                  Career roadmaps
+                </p>
+
+                <p className="mt-1 font-bold text-slate-950">
+                  Explore IT career paths
+                </p>
               </Link>
             )}
 
@@ -300,16 +342,26 @@ export default async function CertificationLayout({
               href="/courses"
               className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-300 hover:bg-blue-50"
             >
-              <p className="text-sm font-semibold text-blue-700">Training</p>
-              <p className="mt-1 font-bold text-slate-950">Compare courses & providers</p>
+              <p className="text-sm font-semibold text-blue-700">
+                Training
+              </p>
+
+              <p className="mt-1 font-bold text-slate-950">
+                Compare courses & providers
+              </p>
             </Link>
 
             <Link
               href="/study-store"
               className="rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-300 hover:bg-blue-50"
             >
-              <p className="text-sm font-semibold text-blue-700">Study resources</p>
-              <p className="mt-1 font-bold text-slate-950">Find books & study material</p>
+              <p className="text-sm font-semibold text-blue-700">
+                Study resources
+              </p>
+
+              <p className="mt-1 font-bold text-slate-950">
+                Find books & study material
+              </p>
             </Link>
           </div>
         </section>

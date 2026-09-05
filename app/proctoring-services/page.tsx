@@ -17,12 +17,16 @@ import {
 } from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
-  title: "IT Proctoring Services | Badgely",
+  title: "IT Proctoring Services | ThirdBadge",
   description:
     "Find the testing and proctoring providers used by major IT certification programs, including Pearson VUE, PSI, PeopleCert, Certiport, Red Hat, and Prometric.",
 };
 
-type DeliveryMode = "Test center" | "Remote" | "Program dependent" | "Vendor testing station";
+type DeliveryMode =
+  | "Test center"
+  | "Remote"
+  | "Program dependent"
+  | "Vendor testing station";
 
 type CertificationMapping = {
   owner: string;
@@ -33,61 +37,321 @@ type CertificationMapping = {
 };
 
 const certificationMappings: CertificationMapping[] = [
-  { owner: "CompTIA", exams: "A+, Network+, Security+, Linux+, Cloud+, CySA+, PenTest+, Data+ and other CompTIA certifications", provider: "Pearson VUE / OnVUE", delivery: ["Test center", "Remote"] },
-  { owner: "Cisco", exams: "CCNA, CCNP written/core/concentration, DevNet, CyberOps and most written Cisco certification exams", provider: "Pearson VUE / OnVUE", delivery: ["Test center", "Remote"], note: "Cisco lab and practical exams follow separate delivery and scheduling rules." },
-  { owner: "Microsoft", exams: "Azure, Microsoft 365, Security, Power Platform and role-based Microsoft certification exams", provider: "Pearson VUE / OnVUE", delivery: ["Test center", "Remote"], note: "Microsoft Office Specialist and some academic/student exam scenarios use Certiport instead." },
-  { owner: "Amazon Web Services (AWS)", exams: "AWS Foundational, Associate, Professional and Specialty certification exams", provider: "Pearson VUE / OnVUE", delivery: ["Test center", "Remote"] },
-  { owner: "Google Cloud", exams: "Cloud Digital Leader, Associate and Professional Google Cloud certifications", provider: "Pearson VUE", delivery: ["Test center", "Remote"] },
-  { owner: "ISC2", exams: "CISSP, CC, CCSP, SSCP, CSSLP, CGRC and ISC2 concentration exams", provider: "Pearson VUE", delivery: ["Test center"], note: "ISC2 currently directs candidates to Pearson VUE testing centers for certification exams." },
-  { owner: "Salesforce", exams: "Salesforce Administrator, Architect, Consultant, Developer, Data, Tableau, Slack and other proctored certifications", provider: "Pearson VUE / OnVUE", delivery: ["Test center", "Remote"] },
-  { owner: "ServiceNow", exams: "ServiceNow University certification exams", provider: "Pearson VUE", delivery: ["Test center", "Remote"], note: "ServiceNow moved certification exam delivery from Kryterion/Webassessor to Pearson VUE." },
-  { owner: "Splunk", exams: "Splunk Core, Enterprise, Security and IT Service Intelligence certification exams", provider: "Pearson VUE / OnVUE", delivery: ["Test center", "Remote"] },
-  { owner: "IBM", exams: "IBM Professional Certification exams", provider: "Pearson VUE / OnVUE", delivery: ["Program dependent"], note: "Most IBM exams support online proctoring, while some remain test-center only." },
-  { owner: "Snowflake", exams: "SnowPro certification exams", provider: "Pearson VUE", delivery: ["Test center", "Remote"] },
-  { owner: "Check Point", exams: "CCSA, CCSE and other Check Point certification exams", provider: "Pearson VUE", delivery: ["Program dependent"] },
-  { owner: "Apple", exams: "Apple IT certification exams", provider: "Pearson VUE / OnVUE", delivery: ["Remote"] },
-  { owner: "ISACA", exams: "CISA, CISM, CRISC, CGEIT, CDPSE, CCOA, CCA, CCP and other ISACA credentialing exams", provider: "PSI", delivery: ["Test center", "Remote"] },
-  { owner: "Linux Foundation / CNCF", exams: "CKA, CKAD, CKS, LFCS, CNPE and other Linux Foundation performance-based certification exams", provider: "PSI", delivery: ["Remote"] },
-  { owner: "Databricks", exams: "Databricks Data Engineer, Data Analyst, Machine Learning and other certification exams", provider: "Kryterion / Webassessor", delivery: ["Remote"] },
-  { owner: "Mandiant Academy", exams: "Mandiant Incident Response and other applicable Mandiant Academy certification exams", provider: "Kryterion / Webassessor", delivery: ["Remote"] },
-  { owner: "PeopleCert / ITIL", exams: "ITIL 4 and other PeopleCert-managed certification exams", provider: "PeopleCert Online Proctoring / ExamShield", delivery: ["Remote", "Program dependent"], note: "Selected PeopleCert exams may also be available through approved delivery partners such as Prometric." },
-  { owner: "Microsoft Office Specialist", exams: "MOS Microsoft 365 Apps and supported Office certification exams", provider: "Certiport", delivery: ["Test center", "Program dependent"] },
-  { owner: "Adobe Certified Professional", exams: "Photoshop, Illustrator, Premiere Pro, Acrobat Pro and other supported Adobe certification exams", provider: "Certiport", delivery: ["Test center", "Program dependent"] },
-  { owner: "Red Hat", exams: "RHCSA, RHCE and Red Hat specialist/performance-based certification exams", provider: "Red Hat", delivery: ["Remote", "Vendor testing station", "Program dependent"], note: "Red Hat delivers its own performance-based exams remotely and through Red Hat or partner testing locations." },
-  { owner: "CIW and selected technology programs", exams: "CIW and other technology certification programs delivered through Prometric", provider: "Prometric / ProProctor", delivery: ["Test center", "Program dependent"] },
+  {
+    owner: "CompTIA",
+    exams:
+      "A+, Network+, Security+, Linux+, Cloud+, CySA+, PenTest+, Data+ and other CompTIA certifications",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Test center", "Remote"],
+  },
+  {
+    owner: "Cisco",
+    exams:
+      "CCNA, CCNP written/core/concentration, DevNet, CyberOps and most written Cisco certification exams",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Test center", "Remote"],
+    note:
+      "Cisco lab and practical exams follow separate delivery and scheduling rules.",
+  },
+  {
+    owner: "Microsoft",
+    exams:
+      "Azure, Microsoft 365, Security, Power Platform and role-based Microsoft certification exams",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Test center", "Remote"],
+    note:
+      "Microsoft Office Specialist and some academic/student exam scenarios use Certiport instead.",
+  },
+  {
+    owner: "Amazon Web Services (AWS)",
+    exams:
+      "AWS Foundational, Associate, Professional and Specialty certification exams",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Test center", "Remote"],
+  },
+  {
+    owner: "Google Cloud",
+    exams:
+      "Cloud Digital Leader, Associate and Professional Google Cloud certifications",
+    provider: "Pearson VUE",
+    delivery: ["Test center", "Remote"],
+  },
+  {
+    owner: "ISC2",
+    exams:
+      "CISSP, CC, CCSP, SSCP, CSSLP, CGRC and ISC2 concentration exams",
+    provider: "Pearson VUE",
+    delivery: ["Test center"],
+    note:
+      "ISC2 currently directs candidates to Pearson VUE testing centers for certification exams.",
+  },
+  {
+    owner: "Salesforce",
+    exams:
+      "Salesforce Administrator, Architect, Consultant, Developer, Data, Tableau, Slack and other proctored certifications",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Test center", "Remote"],
+  },
+  {
+    owner: "ServiceNow",
+    exams: "ServiceNow University certification exams",
+    provider: "Pearson VUE",
+    delivery: ["Test center", "Remote"],
+    note:
+      "ServiceNow moved certification exam delivery from Kryterion/Webassessor to Pearson VUE.",
+  },
+  {
+    owner: "Splunk",
+    exams:
+      "Splunk Core, Enterprise, Security and IT Service Intelligence certification exams",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Test center", "Remote"],
+  },
+  {
+    owner: "IBM",
+    exams: "IBM Professional Certification exams",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Program dependent"],
+    note:
+      "Most IBM exams support online proctoring, while some remain test-center only.",
+  },
+  {
+    owner: "Snowflake",
+    exams: "SnowPro certification exams",
+    provider: "Pearson VUE",
+    delivery: ["Test center", "Remote"],
+  },
+  {
+    owner: "Check Point",
+    exams: "CCSA, CCSE and other Check Point certification exams",
+    provider: "Pearson VUE",
+    delivery: ["Program dependent"],
+  },
+  {
+    owner: "Apple",
+    exams: "Apple IT certification exams",
+    provider: "Pearson VUE / OnVUE",
+    delivery: ["Remote"],
+  },
+  {
+    owner: "ISACA",
+    exams:
+      "CISA, CISM, CRISC, CGEIT, CDPSE, CCOA, CCA, CCP and other ISACA credentialing exams",
+    provider: "PSI",
+    delivery: ["Test center", "Remote"],
+  },
+  {
+    owner: "Linux Foundation / CNCF",
+    exams:
+      "CKA, CKAD, CKS, LFCS, CNPE and other Linux Foundation performance-based certification exams",
+    provider: "PSI",
+    delivery: ["Remote"],
+  },
+  {
+    owner: "Databricks",
+    exams:
+      "Databricks Data Engineer, Data Analyst, Machine Learning and other certification exams",
+    provider: "Kryterion / Webassessor",
+    delivery: ["Remote"],
+  },
+  {
+    owner: "Mandiant Academy",
+    exams:
+      "Mandiant Incident Response and other applicable Mandiant Academy certification exams",
+    provider: "Kryterion / Webassessor",
+    delivery: ["Remote"],
+  },
+  {
+    owner: "PeopleCert / ITIL",
+    exams:
+      "ITIL 4 and other PeopleCert-managed certification exams",
+    provider: "PeopleCert Online Proctoring / ExamShield",
+    delivery: ["Remote", "Program dependent"],
+    note:
+      "Selected PeopleCert exams may also be available through approved delivery partners such as Prometric.",
+  },
+  {
+    owner: "Microsoft Office Specialist",
+    exams:
+      "MOS Microsoft 365 Apps and supported Office certification exams",
+    provider: "Certiport",
+    delivery: ["Test center", "Program dependent"],
+  },
+  {
+    owner: "Adobe Certified Professional",
+    exams:
+      "Photoshop, Illustrator, Premiere Pro, Acrobat Pro and other supported Adobe certification exams",
+    provider: "Certiport",
+    delivery: ["Test center", "Program dependent"],
+  },
+  {
+    owner: "Red Hat",
+    exams:
+      "RHCSA, RHCE and Red Hat specialist/performance-based certification exams",
+    provider: "Red Hat",
+    delivery: [
+      "Remote",
+      "Vendor testing station",
+      "Program dependent",
+    ],
+    note:
+      "Red Hat delivers its own performance-based exams remotely and through Red Hat or partner testing locations.",
+  },
+  {
+    owner: "CIW and selected technology programs",
+    exams:
+      "CIW and other technology certification programs delivered through Prometric",
+    provider: "Prometric / ProProctor",
+    delivery: ["Test center", "Program dependent"],
+  },
 ];
 
 const providerLinks: Record<string, string> = {
-  "Pearson VUE / OnVUE": "https://www.pearsonvue.com/us/en/test-takers/onvue-online-proctoring.html",
-  "Pearson VUE": "https://www.pearsonvue.com/us/en/test-takers.html",
+  "Pearson VUE / OnVUE":
+    "https://www.pearsonvue.com/us/en/test-takers/onvue-online-proctoring.html",
+  "Pearson VUE":
+    "https://www.pearsonvue.com/us/en/test-takers.html",
   PSI: "https://www.psiexams.com/test-takers/",
-  "Kryterion / Webassessor": "https://www.kryterion.com/test-taker/",
-  "PeopleCert Online Proctoring / ExamShield": "https://www.peoplecert.org/Partners/digital-services/peoplecert-online-proctoring",
+  "Kryterion / Webassessor":
+    "https://www.kryterion.com/test-taker/",
+  "PeopleCert Online Proctoring / ExamShield":
+    "https://www.peoplecert.org/Partners/digital-services/peoplecert-online-proctoring",
   Certiport: "https://certiport.pearsonvue.com/",
-  "Red Hat": "https://www.redhat.com/en/services/certification/ways-to-test",
-  "Prometric / ProProctor": "https://www.prometric.com/exams/",
+  "Red Hat":
+    "https://www.redhat.com/en/services/certification/ways-to-test",
+  "Prometric / ProProctor":
+    "https://www.prometric.com/exams/",
 };
 
 const services = [
-  { name: "Pearson VUE", platform: "Pearson VUE test centers + OnVUE online proctoring", summary: "The largest delivery provider in the mainstream IT certification ecosystem. It administers exams for many major cloud, cybersecurity, networking, software and platform vendors.", examples: "CompTIA, Cisco, Microsoft, AWS, Google Cloud, ISC2, Salesforce, ServiceNow, Splunk, IBM, Snowflake, Check Point, Apple and many others.", modes: "In-person testing centers and OnVUE remote proctoring where the certification program permits it.", href: "https://www.pearsonvue.com/us/en/test-takers/onvue-online-proctoring.html" },
-  { name: "PSI", platform: "PSI test centers + PSI remote proctoring", summary: "A major high-stakes exam delivery provider used by certification organizations that manage their own exam registration but send candidates into PSI for scheduling and delivery.", examples: "ISACA certifications and Linux Foundation/CNCF certification exams.", modes: "Test-center and remote delivery depend on the certification program.", href: "https://www.psiexams.com/test-takers/" },
-  { name: "PeopleCert", platform: "PeopleCert Online Proctoring + ExamShield", summary: "PeopleCert owns and delivers major professional certification programs and operates its own online proctoring experience.", examples: "ITIL 4 and other PeopleCert-managed credentials.", modes: "Primarily online proctoring, with selected delivery-partner arrangements depending on the program.", href: "https://www.peoplecert.org/Partners/digital-services/peoplecert-online-proctoring" },
-  { name: "Certiport", platform: "Certiport Authorized Testing Centers and supported remote options", summary: "Pearson's education-focused certification delivery business, commonly used for classroom, academic and entry-level technology credentials.", examples: "Microsoft Office Specialist and Adobe Certified Professional.", modes: "Authorized testing centers and program-specific remote delivery.", href: "https://certiport.pearsonvue.com/" },
-  { name: "Red Hat", platform: "Red Hat Remote Exams + Red Hat testing stations", summary: "Red Hat directly delivers its hands-on certification exams instead of routing the core program through a general-purpose testing vendor.", examples: "RHCSA, RHCE and Red Hat specialist exams.", modes: "Remote exams, individual testing stations, classroom and selected onsite delivery.", href: "https://www.redhat.com/en/services/certification/ways-to-test" },
-  { name: "Prometric", platform: "Prometric test centers + ProProctor remote delivery", summary: "A global test-delivery company used by professional and technology programs. Its role varies by certification owner and exam.", examples: "CIW and selected PeopleCert/ITIL and other technology exam programs.", modes: "Test centers and ProProctor remote delivery where the program supports it.", href: "https://www.prometric.com/exams/" },
+  {
+    name: "Pearson VUE",
+    platform:
+      "Pearson VUE test centers + OnVUE online proctoring",
+    summary:
+      "The largest delivery provider in the mainstream IT certification ecosystem. It administers exams for many major cloud, cybersecurity, networking, software and platform vendors.",
+    examples:
+      "CompTIA, Cisco, Microsoft, AWS, Google Cloud, ISC2, Salesforce, ServiceNow, Splunk, IBM, Snowflake, Check Point, Apple and many others.",
+    modes:
+      "In-person testing centers and OnVUE remote proctoring where the certification program permits it.",
+    href:
+      "https://www.pearsonvue.com/us/en/test-takers/onvue-online-proctoring.html",
+  },
+  {
+    name: "PSI",
+    platform: "PSI test centers + PSI remote proctoring",
+    summary:
+      "A major high-stakes exam delivery provider used by certification organizations that manage their own exam registration but send candidates into PSI for scheduling and delivery.",
+    examples:
+      "ISACA certifications and Linux Foundation/CNCF certification exams.",
+    modes:
+      "Test-center and remote delivery depend on the certification program.",
+    href: "https://www.psiexams.com/test-takers/",
+  },
+  {
+    name: "PeopleCert",
+    platform:
+      "PeopleCert Online Proctoring + ExamShield",
+    summary:
+      "PeopleCert owns and delivers major professional certification programs and operates its own online proctoring experience.",
+    examples:
+      "ITIL 4 and other PeopleCert-managed credentials.",
+    modes:
+      "Primarily online proctoring, with selected delivery-partner arrangements depending on the program.",
+    href:
+      "https://www.peoplecert.org/Partners/digital-services/peoplecert-online-proctoring",
+  },
+  {
+    name: "Certiport",
+    platform:
+      "Certiport Authorized Testing Centers and supported remote options",
+    summary:
+      "Pearson's education-focused certification delivery business, commonly used for classroom, academic and entry-level technology credentials.",
+    examples:
+      "Microsoft Office Specialist and Adobe Certified Professional.",
+    modes:
+      "Authorized testing centers and program-specific remote delivery.",
+    href: "https://certiport.pearsonvue.com/",
+  },
+  {
+    name: "Red Hat",
+    platform:
+      "Red Hat Remote Exams + Red Hat testing stations",
+    summary:
+      "Red Hat directly delivers its hands-on certification exams instead of routing the core program through a general-purpose testing vendor.",
+    examples:
+      "RHCSA, RHCE and Red Hat specialist exams.",
+    modes:
+      "Remote exams, individual testing stations, classroom and selected onsite delivery.",
+    href:
+      "https://www.redhat.com/en/services/certification/ways-to-test",
+  },
+  {
+    name: "Prometric",
+    platform:
+      "Prometric test centers + ProProctor remote delivery",
+    summary:
+      "A global test-delivery company used by professional and technology programs. Its role varies by certification owner and exam.",
+    examples:
+      "CIW and selected PeopleCert/ITIL and other technology exam programs.",
+    modes:
+      "Test centers and ProProctor remote delivery where the program supports it.",
+    href: "https://www.prometric.com/exams/",
+  },
 ];
 
 const roles = [
-  { icon: Building2, title: "Exam owner / certification vendor", description: "Creates and governs the certification, exam objectives, eligibility rules, scoring policy and credential requirements.", example: "Example: CompTIA owns Security+; Cisco owns CCNA; ISACA owns CISA." },
-  { icon: Monitor, title: "Testing / proctoring provider", description: "Actually delivers the exam in a test center or through an approved remote-proctoring platform.", example: "Example: Pearson VUE delivers Security+ and CCNA; PSI delivers CISA." },
-  { icon: ShoppingCart, title: "Voucher seller / marketplace", description: "May sell an exam voucher or list an exam in a catalog without being the organization that administers the test.", example: "A voucher listing does not by itself identify the actual proctoring provider." },
+  {
+    icon: Building2,
+    title: "Exam owner / certification vendor",
+    description:
+      "Creates and governs the certification, exam objectives, eligibility rules, scoring policy and credential requirements.",
+    example:
+      "Example: CompTIA owns Security+; Cisco owns CCNA; ISACA owns CISA.",
+  },
+  {
+    icon: Monitor,
+    title: "Testing / proctoring provider",
+    description:
+      "Actually delivers the exam in a test center or through an approved remote-proctoring platform.",
+    example:
+      "Example: Pearson VUE delivers Security+ and CCNA; PSI delivers CISA.",
+  },
+  {
+    icon: ShoppingCart,
+    title: "Voucher seller / marketplace",
+    description:
+      "May sell an exam voucher or list an exam in a catalog without being the organization that administers the test.",
+    example:
+      "A voucher listing does not by itself identify the actual proctoring provider.",
+  },
 ];
 
 const heroExamples = [
-  { certification: "CompTIA Security+", exam: "SY0-701", provider: "Pearson VUE", mode: "OnVUE / test center" },
-  { certification: "Cisco CCNA", exam: "200-301", provider: "Pearson VUE", mode: "OnVUE / test center" },
-  { certification: "ISACA CISA", exam: "CISA Exam", provider: "PSI", mode: "Remote / test center" },
-  { certification: "Microsoft Azure", exam: "Role-based exams", provider: "Pearson VUE", mode: "Program dependent" },
+  {
+    certification: "CompTIA Security+",
+    exam: "SY0-701",
+    provider: "Pearson VUE",
+    mode: "OnVUE / test center",
+  },
+  {
+    certification: "Cisco CCNA",
+    exam: "200-301",
+    provider: "Pearson VUE",
+    mode: "OnVUE / test center",
+  },
+  {
+    certification: "ISACA CISA",
+    exam: "CISA Exam",
+    provider: "PSI",
+    mode: "Remote / test center",
+  },
+  {
+    certification: "Microsoft Azure",
+    exam: "Role-based exams",
+    provider: "Pearson VUE",
+    mode: "Program dependent",
+  },
 ];
 
 function deliveryIcon(mode: DeliveryMode) {
@@ -97,9 +361,15 @@ function deliveryIcon(mode: DeliveryMode) {
 }
 
 function deliveryBadgeClass(mode: DeliveryMode) {
-  if (mode === "Remote") return "bg-blue-50 text-blue-700 ring-blue-100";
-  if (mode === "Vendor testing station") return "bg-violet-50 text-violet-700 ring-violet-100";
-  if (mode === "Program dependent") return "bg-amber-50 text-amber-800 ring-amber-100";
+  if (mode === "Remote")
+    return "bg-blue-50 text-blue-700 ring-blue-100";
+
+  if (mode === "Vendor testing station")
+    return "bg-violet-50 text-violet-700 ring-violet-100";
+
+  if (mode === "Program dependent")
+    return "bg-amber-50 text-amber-800 ring-amber-100";
+
   return "bg-emerald-50 text-emerald-700 ring-emerald-100";
 }
 
@@ -109,22 +379,53 @@ export default function ProctoringServicesPage() {
       <MarketingHero
         aside={
           <HeroPanel>
-            <h2 className="text-xl font-bold text-white">Certifications and who delivers them</h2>
-            <p className="mt-1 text-sm text-slate-300">Examples of common IT exams and their testing providers.</p>
+            <h2 className="text-xl font-bold text-white">
+              Certifications and who delivers them
+            </h2>
+
+            <p className="mt-1 text-sm text-slate-300">
+              Examples of common IT exams and their testing
+              providers.
+            </p>
 
             <div className="mt-5 space-y-3">
               {heroExamples.map((item, index) => (
-                <HeroOption key={item.certification} className="flex items-center gap-4">
-                  <span className={`flex size-12 shrink-0 items-center justify-center rounded-full text-[10px] font-black text-white ${index === 0 ? "bg-red-600" : index === 1 ? "bg-sky-600" : index === 2 ? "bg-emerald-600" : "bg-blue-600"}`}>
+                <HeroOption
+                  key={item.certification}
+                  className="flex items-center gap-4"
+                >
+                  <span
+                    className={`flex size-12 shrink-0 items-center justify-center rounded-full text-[10px] font-black text-white ${
+                      index === 0
+                        ? "bg-red-600"
+                        : index === 1
+                          ? "bg-sky-600"
+                          : index === 2
+                            ? "bg-emerald-600"
+                            : "bg-blue-600"
+                    }`}
+                  >
                     {item.certification.split(" ")[0]}
                   </span>
+
                   <div className="min-w-0 flex-1">
-                    <p className="font-bold text-white">{item.certification}</p>
-                    <p className="mt-1 text-sm text-slate-300">{item.exam}</p>
+                    <p className="font-bold text-white">
+                      {item.certification}
+                    </p>
+
+                    <p className="mt-1 text-sm text-slate-300">
+                      {item.exam}
+                    </p>
                   </div>
+
                   <div className="text-right">
-                    <p className="font-bold text-white">{item.provider}</p>
-                    <p className="mt-1 text-xs text-slate-300">{item.mode}</p>
+                    <p className="font-bold text-white">
+                      {item.provider}
+                    </p>
+
+                    <p className="mt-1 text-xs text-slate-300">
+                      {item.mode}
+                    </p>
                   </div>
                 </HeroOption>
               ))}
@@ -132,52 +433,162 @@ export default function ProctoringServicesPage() {
           </HeroPanel>
         }
       >
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">Proctoring services</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">
+          Proctoring services
+        </p>
+
         <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           Know who actually delivers your
-          <span className="block bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 bg-clip-text text-transparent">certification exam.</span>
+          <span className="block bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 bg-clip-text text-transparent">
+            certification exam.
+          </span>
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">Certification vendors create the credential. Testing and proctoring providers deliver the exam experience. Badgely connects the two so you know what to expect.</p>
+
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+          Certification vendors create the credential. Testing and
+          proctoring providers deliver the exam experience.
+          ThirdBadge connects the two so you know what to expect.
+        </p>
+
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="#platforms" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">Explore testing providers <ArrowRight className="size-4" aria-hidden="true" /></a>
-          <a href="#mapping" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/25 bg-white/[0.03] px-5 py-3 font-semibold text-white transition hover:bg-white/10">See certification mapping</a>
+          <a
+            href="#platforms"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
+          >
+            Explore testing providers
+            <ArrowRight
+              className="size-4"
+              aria-hidden="true"
+            />
+          </a>
+
+          <a
+            href="#mapping"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/25 bg-white/[0.03] px-5 py-3 font-semibold text-white transition hover:bg-white/10"
+          >
+            See certification mapping
+          </a>
         </div>
+
         <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm text-slate-300">
-          <span className="inline-flex items-center gap-2"><ShieldCheck className="size-4 text-blue-300" /> Clear provider mapping</span>
-          <span className="inline-flex items-center gap-2"><CheckCircle2 className="size-4 text-blue-300" /> Verified relationships</span>
-          <span className="inline-flex items-center gap-2"><Globe2 className="size-4 text-blue-300" /> Remote and test-center options</span>
+          <span className="inline-flex items-center gap-2">
+            <ShieldCheck className="size-4 text-blue-300" />
+            Clear provider mapping
+          </span>
+
+          <span className="inline-flex items-center gap-2">
+            <CheckCircle2 className="size-4 text-blue-300" />
+            Verified relationships
+          </span>
+
+          <span className="inline-flex items-center gap-2">
+            <Globe2 className="size-4 text-blue-300" />
+            Remote and test-center options
+          </span>
         </div>
       </MarketingHero>
 
-      <section id="platforms" className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <section
+        id="platforms"
+        className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8"
+      >
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">Major testing partners</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Explore leading testing services</h2>
-          <p className="mt-4 leading-7 text-slate-600">These are the major delivery platforms you are likely to encounter while scheduling IT certification exams. Exact options can vary by exam, country, and program.</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+            Major testing partners
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            Explore leading testing services
+          </h2>
+
+          <p className="mt-4 leading-7 text-slate-600">
+            These are the major delivery platforms you are likely to
+            encounter while scheduling IT certification exams. Exact
+            options can vary by exam, country, and program.
+          </p>
         </div>
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
-            <Card key={service.name} className="flex h-full flex-col items-center text-center transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
-              <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700"><Monitor className="size-5" aria-hidden="true" /></span>
-              <p className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-blue-700">Testing service</p>
-              <h3 className="mt-2 text-2xl font-bold text-slate-950">{service.name}</h3>
-              <p className="mt-3 text-sm font-semibold text-slate-700">{service.platform}</p>
-              <p className="mt-4 leading-7 text-slate-600">{service.summary}</p>
-              <div className="mt-5 w-full rounded-xl bg-slate-50 p-4"><p className="text-sm font-semibold text-slate-900">IT programs</p><p className="mt-1 text-sm leading-6 text-slate-600">{service.examples}</p></div>
-              <p className="mt-4 text-sm leading-6 text-slate-600">{service.modes}</p>
-              <div className="mt-auto pt-5"><a href={service.href} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-4 py-2.5 font-semibold text-blue-700 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white">View details <ArrowRight className="size-4" aria-hidden="true" /></a></div>
+            <Card
+              key={service.name}
+              className="flex h-full flex-col items-center text-center transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+            >
+              <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                <Monitor
+                  className="size-5"
+                  aria-hidden="true"
+                />
+              </span>
+
+              <p className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-blue-700">
+                Testing service
+              </p>
+
+              <h3 className="mt-2 text-2xl font-bold text-slate-950">
+                {service.name}
+              </h3>
+
+              <p className="mt-3 text-sm font-semibold text-slate-700">
+                {service.platform}
+              </p>
+
+              <p className="mt-4 leading-7 text-slate-600">
+                {service.summary}
+              </p>
+
+              <div className="mt-5 w-full rounded-xl bg-slate-50 p-4">
+                <p className="text-sm font-semibold text-slate-900">
+                  IT programs
+                </p>
+
+                <p className="mt-1 text-sm leading-6 text-slate-600">
+                  {service.examples}
+                </p>
+              </div>
+
+              <p className="mt-4 text-sm leading-6 text-slate-600">
+                {service.modes}
+              </p>
+
+              <div className="mt-auto pt-5">
+                <a
+                  href={service.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-4 py-2.5 font-semibold text-blue-700 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
+                >
+                  View details
+                  <ArrowRight
+                    className="size-4"
+                    aria-hidden="true"
+                  />
+                </a>
+              </div>
             </Card>
           ))}
         </div>
       </section>
 
-      <section id="mapping" className="border-y border-slate-200 bg-slate-50">
+      <section
+        id="mapping"
+        className="border-y border-slate-200 bg-slate-50"
+      >
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-800 ring-1 ring-inset ring-blue-200">Certification mapping</span>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">IT certification owner → actual testing provider</h2>
-            <p className="mt-4 leading-7 text-slate-600">Use this directory to identify the exam-delivery platform before you buy a voucher, schedule an appointment, or prepare a computer for remote testing.</p>
+            <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-800 ring-1 ring-inset ring-blue-200">
+              Certification mapping
+            </span>
+
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              IT certification owner → actual testing provider
+            </h2>
+
+            <p className="mt-4 leading-7 text-slate-600">
+              Use this directory to identify the exam-delivery
+              platform before you buy a voucher, schedule an
+              appointment, or prepare a computer for remote testing.
+            </p>
           </div>
 
           <div className="mt-10 overflow-hidden rounded-[28px] border border-blue-100 bg-white shadow-xl shadow-slate-200/70">
@@ -185,43 +596,138 @@ export default function ProctoringServicesPage() {
               <table className="w-full min-w-[960px] border-collapse text-center">
                 <thead className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white">
                   <tr>
-                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">Certification owner</th>
-                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">Certification examples</th>
-                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">Testing provider</th>
-                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">Delivery options</th>
+                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                      Certification owner
+                    </th>
+
+                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                      Certification examples
+                    </th>
+
+                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                      Testing provider
+                    </th>
+
+                    <th className="px-6 py-5 text-xs font-bold uppercase tracking-[0.12em] text-blue-100">
+                      Delivery options
+                    </th>
                   </tr>
                 </thead>
+
                 <tbody className="divide-y divide-slate-200">
                   {certificationMappings.map((mapping) => (
-                    <tr key={`${mapping.owner}-${mapping.provider}`} className="align-middle odd:bg-white even:bg-slate-50/70 hover:bg-blue-50/70">
-                      <td className="px-6 py-6"><span className="inline-flex min-w-32 justify-center rounded-xl border border-blue-100 bg-blue-50 px-4 py-2.5 text-sm font-bold text-slate-950">{mapping.owner}</span></td>
-                      <td className="max-w-md px-6 py-6 text-sm leading-6 text-slate-600"><p className="font-medium text-slate-700">{mapping.exams}</p>{mapping.note ? <p className="mx-auto mt-3 max-w-sm rounded-xl border border-amber-100 bg-amber-50 px-3 py-2 text-xs font-medium leading-5 text-amber-900">{mapping.note}</p> : null}</td>
-                      <td className="px-6 py-6"><a href={providerLinks[mapping.provider]} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500">{mapping.provider}<ArrowRight className="size-3.5" aria-hidden="true" /></a></td>
-                      <td className="px-6 py-6"><div className="mx-auto flex max-w-xs flex-wrap justify-center gap-2">{mapping.delivery.map((mode) => { const Icon = deliveryIcon(mode); return <span key={mode} className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ring-inset ${deliveryBadgeClass(mode)}`}><Icon className="size-3.5" aria-hidden="true" />{mode}</span>; })}</div></td>
+                    <tr
+                      key={`${mapping.owner}-${mapping.provider}`}
+                      className="align-middle odd:bg-white even:bg-slate-50/70 hover:bg-blue-50/70"
+                    >
+                      <td className="px-6 py-6">
+                        <span className="inline-flex min-w-32 justify-center rounded-xl border border-blue-100 bg-blue-50 px-4 py-2.5 text-sm font-bold text-slate-950">
+                          {mapping.owner}
+                        </span>
+                      </td>
+
+                      <td className="max-w-md px-6 py-6 text-sm leading-6 text-slate-600">
+                        <p className="font-medium text-slate-700">
+                          {mapping.exams}
+                        </p>
+
+                        {mapping.note ? (
+                          <p className="mx-auto mt-3 max-w-sm rounded-xl border border-amber-100 bg-amber-50 px-3 py-2 text-xs font-medium leading-5 text-amber-900">
+                            {mapping.note}
+                          </p>
+                        ) : null}
+                      </td>
+
+                      <td className="px-6 py-6">
+                        <a
+                          href={providerLinks[mapping.provider]}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
+                        >
+                          {mapping.provider}
+                          <ArrowRight
+                            className="size-3.5"
+                            aria-hidden="true"
+                          />
+                        </a>
+                      </td>
+
+                      <td className="px-6 py-6">
+                        <div className="mx-auto flex max-w-xs flex-wrap justify-center gap-2">
+                          {mapping.delivery.map((mode) => {
+                            const Icon = deliveryIcon(mode);
+
+                            return (
+                              <span
+                                key={mode}
+                                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ring-inset ${deliveryBadgeClass(
+                                  mode,
+                                )}`}
+                              >
+                                <Icon
+                                  className="size-3.5"
+                                  aria-hidden="true"
+                                />
+                                {mode}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </div>
-          <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-6 text-slate-500">Testing relationships change, and individual exams within the same vendor may use different delivery rules.</p>
+
+          <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-6 text-slate-500">
+            Testing relationships change, and individual exams within
+            the same vendor may use different delivery rules.
+          </p>
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">How to read the ecosystem</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Three roles that are easy to confuse</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+            How to read the ecosystem
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            Three roles that are easy to confuse
+          </h2>
         </div>
+
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
-          {roles.map(({ icon: Icon, title, description, example }) => (
-            <Card key={title} className="flex h-full flex-col items-center text-center">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700"><Icon className="size-5" aria-hidden="true" /></span>
-              <h3 className="mt-5 text-xl font-bold text-slate-950">{title}</h3>
-              <p className="mt-3 leading-7 text-slate-600">{description}</p>
-              <p className="mt-4 w-full border-t border-slate-100 pt-4 text-sm font-medium text-slate-700">{example}</p>
-            </Card>
-          ))}
+          {roles.map(
+            ({ icon: Icon, title, description, example }) => (
+              <Card
+                key={title}
+                className="flex h-full flex-col items-center text-center"
+              >
+                <span className="flex size-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                  <Icon
+                    className="size-5"
+                    aria-hidden="true"
+                  />
+                </span>
+
+                <h3 className="mt-5 text-xl font-bold text-slate-950">
+                  {title}
+                </h3>
+
+                <p className="mt-3 leading-7 text-slate-600">
+                  {description}
+                </p>
+
+                <p className="mt-4 w-full border-t border-slate-100 pt-4 text-sm font-medium text-slate-700">
+                  {example}
+                </p>
+              </Card>
+            ),
+          )}
         </div>
       </section>
 
@@ -229,8 +735,32 @@ export default function ProctoringServicesPage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <Card className="border-blue-200">
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div><p className="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">Before exam day</p><h2 className="mt-2 text-2xl font-bold text-slate-950">Confirm the provider on the certification owner&apos;s official scheduling page.</h2><p className="mt-3 max-w-3xl leading-7 text-slate-600">Badgely shows the latest verified relationship we have, but testing providers, online availability, exam security rules, and regional options can change. Always verify the final delivery method before purchasing or scheduling.</p></div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800"><CheckCircle2 className="size-4" aria-hidden="true" />Directory updated for 2026</span>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-blue-700">
+                  Before exam day
+                </p>
+
+                <h2 className="mt-2 text-2xl font-bold text-slate-950">
+                  Confirm the provider on the certification
+                  owner&apos;s official scheduling page.
+                </h2>
+
+                <p className="mt-3 max-w-3xl leading-7 text-slate-600">
+                  ThirdBadge shows the latest verified relationship we
+                  have, but testing providers, online availability,
+                  exam security rules, and regional options can
+                  change. Always verify the final delivery method
+                  before purchasing or scheduling.
+                </p>
+              </div>
+
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800">
+                <CheckCircle2
+                  className="size-4"
+                  aria-hidden="true"
+                />
+                Directory updated for 2026
+              </span>
             </div>
           </Card>
         </div>

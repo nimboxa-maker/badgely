@@ -1,6 +1,6 @@
-# Badgely
+# ThirdBadge
 
-Badgely is an independent IT certification discovery, comparison, career-roadmap, and study-planning platform. It helps learners research certifications, compare options, save career paths, and build realistic study plans without implying provider endorsement.
+ThirdBadge is an independent IT certification discovery, comparison, career-roadmap, and study-planning platform. It helps learners research certifications, compare options, save career paths, and build realistic study plans without implying provider endorsement.
 
 ## Stack
 
@@ -45,7 +45,7 @@ Open `http://localhost:3000`.
 
 ## Environment variables
 
-Badgely currently requires only these application environment variables:
+ThirdBadge currently requires only these application environment variables:
 
 ```text
 NEXT_PUBLIC_SUPABASE_URL=
@@ -55,7 +55,7 @@ NEXT_PUBLIC_SITE_URL=
 
 For local development, set `NEXT_PUBLIC_SITE_URL=http://localhost:3000`.
 
-`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` are intentionally public browser configuration. Do not place secrets or privileged credentials in any `NEXT_PUBLIC_` variable. Badgely does not require a Supabase service-role key for normal application operation.
+`NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` are intentionally public browser configuration. Do not place secrets or privileged credentials in any `NEXT_PUBLIC_` variable. ThirdBadge does not require a Supabase service-role key for normal application operation.
 
 Never commit `.env.local` or any real credential.
 
@@ -136,7 +136,7 @@ No deployment secrets are stored in the workflow or repository.
 
 ## Vercel deployment
 
-Badgely is structured for Vercel's Next.js deployment flow.
+ThirdBadge is structured for Vercel's Next.js deployment flow.
 
 1. In Vercel, create a new project and import `nimboxa-maker/badgely` from GitHub.
 2. Keep the detected framework as Next.js and use the repository root as the project root.
@@ -157,7 +157,7 @@ NEXT_PUBLIC_SITE_URL
 
 ## SEO and error handling
 
-Badgely includes:
+ThirdBadge includes:
 
 - site-wide metadata defaults
 - metadata for public directory, comparison, certification, and career-path pages
@@ -169,11 +169,11 @@ Badgely includes:
 
 ## Content and legal guardrails
 
-Badgely uses original educational wording. Do not copy provider training materials, exam objectives, paid content, real exam questions, leaked questions, or exam dumps. Unknown or unverified official facts should display `Verify with official provider.`
+ThirdBadge uses original educational wording. Do not copy provider training materials, exam objectives, paid content, real exam questions, leaked questions, or exam dumps. Unknown or unverified official facts should display `Verify with official provider.`
 
 Global disclaimer:
 
-> Badgely is an independent educational resource and is not affiliated with, endorsed by, or sponsored by any certification provider. Certification names and logos may be trademarks of their respective owners.
+> ThirdBadge is an independent educational resource and is not affiliated with, endorsed by, or sponsored by any certification provider. Certification names and logos may be trademarks of their respective owners.
 
 ## Architecture and security notes
 

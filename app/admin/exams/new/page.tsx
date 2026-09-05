@@ -13,7 +13,9 @@ export default async function NewExamPage() {
     .order("name", { ascending: true });
 
   if (error) {
-    throw new Error("Unable to load certifications for exam creation.");
+    throw new Error(
+      "Unable to load certifications for exam creation.",
+    );
   }
 
   return (
@@ -30,18 +32,27 @@ export default async function NewExamPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
           Admin · Exams
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Add exam</h1>
+
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+          Add exam
+        </h1>
+
         <p className="mt-2 text-slate-600">
-          Add a verified exam record and connect it to the correct certification.
+          Add a verified exam record and connect it to the correct
+          certification.
         </p>
       </div>
 
       <Card className="mt-8">
         <form action={createExam} className="space-y-6">
           <div>
-            <label htmlFor="certificationId" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="certificationId"
+              className="text-sm font-semibold text-slate-700"
+            >
               Certification
             </label>
+
             <select
               id="certificationId"
               name="certificationId"
@@ -52,16 +63,24 @@ export default async function NewExamPage() {
               <option value="" disabled>
                 Select a certification
               </option>
+
               {(certifications ?? []).map((certification) => {
-                const provider = Array.isArray(certification.providers)
+                const provider = Array.isArray(
+                  certification.providers,
+                )
                   ? certification.providers[0]?.name
                   : certification.providers?.name;
 
                 return (
-                  <option key={certification.id} value={certification.id}>
+                  <option
+                    key={certification.id}
+                    value={certification.id}
+                  >
                     {provider ? `${provider} · ` : ""}
                     {certification.name}
-                    {certification.status === "Active" ? "" : ` (${certification.status})`}
+                    {certification.status === "Active"
+                      ? ""
+                      : ` (${certification.status})`}
                   </option>
                 );
               })}
@@ -70,23 +89,31 @@ export default async function NewExamPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="examName" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="examName"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Exam name
               </label>
+
               <input
                 id="examName"
                 name="examName"
                 type="text"
                 maxLength={200}
-                placeholder="Badgely Test Exam"
+                placeholder="ThirdBadge Test Exam"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
             <div>
-              <label htmlFor="examCode" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="examCode"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Exam code
               </label>
+
               <input
                 id="examCode"
                 name="examCode"
@@ -100,9 +127,13 @@ export default async function NewExamPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="numberOfExams" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="numberOfExams"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Number of exams
               </label>
+
               <input
                 id="numberOfExams"
                 name="numberOfExams"
@@ -114,9 +145,13 @@ export default async function NewExamPage() {
             </div>
 
             <div>
-              <label htmlFor="durationMinutes" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="durationMinutes"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Duration in minutes
               </label>
+
               <input
                 id="durationMinutes"
                 name="durationMinutes"
@@ -130,9 +165,13 @@ export default async function NewExamPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="questionCountText" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="questionCountText"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Question count
               </label>
+
               <input
                 id="questionCountText"
                 name="questionCountText"
@@ -144,9 +183,13 @@ export default async function NewExamPage() {
             </div>
 
             <div>
-              <label htmlFor="deliveryMethod" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="deliveryMethod"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Delivery method
               </label>
+
               <input
                 id="deliveryMethod"
                 name="deliveryMethod"
@@ -160,9 +203,13 @@ export default async function NewExamPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="priceText" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="priceText"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Price
               </label>
+
               <input
                 id="priceText"
                 name="priceText"
@@ -174,9 +221,13 @@ export default async function NewExamPage() {
             </div>
 
             <div>
-              <label htmlFor="lastVerifiedDate" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="lastVerifiedDate"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Last verified date
               </label>
+
               <input
                 id="lastVerifiedDate"
                 name="lastVerifiedDate"
@@ -187,9 +238,13 @@ export default async function NewExamPage() {
           </div>
 
           <div>
-            <label htmlFor="registrationUrl" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="registrationUrl"
+              className="text-sm font-semibold text-slate-700"
+            >
               Registration URL
             </label>
+
             <input
               id="registrationUrl"
               name="registrationUrl"
@@ -201,9 +256,13 @@ export default async function NewExamPage() {
           </div>
 
           <div>
-            <label htmlFor="notes" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="notes"
+              className="text-sm font-semibold text-slate-700"
+            >
               Notes
             </label>
+
             <textarea
               id="notes"
               name="notes"
@@ -221,6 +280,7 @@ export default async function NewExamPage() {
             >
               Cancel
             </Link>
+
             <button
               type="submit"
               className="min-h-11 rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"

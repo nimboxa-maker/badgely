@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookOpen, CheckCircle2, Route } from "lucide-react";
+import {
+  ArrowLeft,
+  BookOpen,
+  CheckCircle2,
+  Route,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/server";
@@ -43,14 +48,17 @@ async function getCareerPath(slug: string) {
   };
 }
 
-export async function generateMetadata({ params }: CareerPathDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: CareerPathDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const record = await getCareerPath(slug);
 
   if (!record) {
     return {
       title: "Career path not found",
-      description: "The requested Badgely career path could not be found.",
+      description:
+        "The requested ThirdBadge career path could not be found.",
     };
   }
 
@@ -58,11 +66,15 @@ export async function generateMetadata({ params }: CareerPathDetailPageProps): P
     title: record.careerPath.seo_title
       ? { absolute: record.careerPath.seo_title }
       : record.careerPath.name,
-    description: record.careerPath.seo_description ?? record.careerPath.short_summary,
+    description:
+      record.careerPath.seo_description ??
+      record.careerPath.short_summary,
   };
 }
 
-export default async function CareerPathDetailPage({ params }: CareerPathDetailPageProps) {
+export default async function CareerPathDetailPage({
+  params,
+}: CareerPathDetailPageProps) {
   const { slug } = await params;
   const record = await getCareerPath(slug);
 
@@ -89,8 +101,11 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
               Featured path
             </Badge>
           ) : null}
+
           {careerPath.audience_level ? (
-            <Badge className="bg-white/10 text-slate-100">{careerPath.audience_level}</Badge>
+            <Badge className="bg-white/10 text-slate-100">
+              {careerPath.audience_level}
+            </Badge>
           ) : null}
         </div>
 
@@ -109,31 +124,43 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:max-w-2xl">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-            <p className="text-sm font-semibold text-slate-400">Target role</p>
+            <p className="text-sm font-semibold text-slate-400">
+              Target role
+            </p>
+
             <p className="mt-1 font-semibold text-white">
-              {careerPath.target_role ?? "Role-focused progression"}
+              {careerPath.target_role ??
+                "Role-focused progression"}
             </p>
           </div>
+
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-            <p className="text-sm font-semibold text-slate-400">Estimated path time</p>
+            <p className="text-sm font-semibold text-slate-400">
+              Estimated path time
+            </p>
+
             <p className="mt-1 font-semibold text-white">
-              {careerPath.estimated_total_time_text ?? "Varies by experience and study pace"}
+              {careerPath.estimated_total_time_text ??
+                "Varies by experience and study pace"}
             </p>
           </div>
         </div>
-
-
       </header>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="space-y-8">
           <section aria-labelledby="overview-heading">
-            <h2 id="overview-heading" className="text-2xl font-bold tracking-tight text-slate-950">
+            <h2
+              id="overview-heading"
+              className="text-2xl font-bold tracking-tight text-slate-950"
+            >
               Path overview
             </h2>
+
             <Card className="mt-4">
               <p className="leading-7 text-slate-700">
-                {careerPath.full_summary ?? careerPath.short_summary}
+                {careerPath.full_summary ??
+                  careerPath.short_summary}
               </p>
             </Card>
           </section>
@@ -141,19 +168,28 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
           <section aria-labelledby="steps-heading">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <div>
-                <h2 id="steps-heading" className="text-2xl font-bold tracking-tight text-slate-950">
+                <h2
+                  id="steps-heading"
+                  className="text-2xl font-bold tracking-tight text-slate-950"
+                >
                   Step-by-step path
                 </h2>
+
                 <p className="mt-2 text-slate-600">
-                  Follow the sequence in order unless a step is marked optional.
+                  Follow the sequence in order unless a step is
+                  marked optional.
                 </p>
               </div>
+
               <Badge>{steps.length} steps</Badge>
             </div>
 
             <div className="mt-5 space-y-5">
               {steps.map((step) => (
-                <Card key={step.id} className="relative overflow-hidden">
+                <Card
+                  key={step.id}
+                  className="relative overflow-hidden"
+                >
                   <div className="flex gap-4">
                     <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-50 font-bold text-blue-700">
                       {step.step_number}
@@ -161,26 +197,45 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
 
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="text-lg font-bold text-slate-950">{step.title}</h3>
-                        {step.is_optional ? <Badge>Optional</Badge> : null}
-                        {step.practical_activity ? <Badge>Practical activity</Badge> : null}
+                        <h3 className="text-lg font-bold text-slate-950">
+                          {step.title}
+                        </h3>
+
+                        {step.is_optional ? (
+                          <Badge>Optional</Badge>
+                        ) : null}
+
+                        {step.practical_activity ? (
+                          <Badge>Practical activity</Badge>
+                        ) : null}
                       </div>
 
                       {step.explanation ? (
-                        <p className="mt-3 leading-7 text-slate-600">{step.explanation}</p>
+                        <p className="mt-3 leading-7 text-slate-600">
+                          {step.explanation}
+                        </p>
                       ) : null}
 
                       {step.certifications ? (
                         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
                           <div className="flex flex-wrap gap-2">
-                            <Badge>{step.certifications.category}</Badge>
-                            <Badge>{step.certifications.level}</Badge>
+                            <Badge>
+                              {step.certifications.category}
+                            </Badge>
+
+                            <Badge>
+                              {step.certifications.level}
+                            </Badge>
                           </div>
+
                           <Link
                             href={`/certifications/${step.certifications.slug}`}
                             className="mt-3 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
                           >
-                            <BookOpen className="size-4" aria-hidden="true" />
+                            <BookOpen
+                              className="size-4"
+                              aria-hidden="true"
+                            />
                             View {step.certifications.name}
                           </Link>
                         </div>
@@ -193,8 +248,12 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
                               className="mt-0.5 size-5 shrink-0 text-emerald-700"
                               aria-hidden="true"
                             />
+
                             <div>
-                              <p className="font-semibold text-emerald-950">Practical activity</p>
+                              <p className="font-semibold text-emerald-950">
+                                Practical activity
+                              </p>
+
                               <p className="mt-1 leading-6 text-emerald-900">
                                 {step.practical_activity}
                               </p>
@@ -209,7 +268,9 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
 
               {!steps.length ? (
                 <Card>
-                  <p className="text-slate-700">This career path does not have any steps yet.</p>
+                  <p className="text-slate-700">
+                    This career path does not have any steps yet.
+                  </p>
                 </Card>
               ) : null}
             </div>
@@ -218,18 +279,27 @@ export default async function CareerPathDetailPage({ params }: CareerPathDetailP
 
         <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
           <Card>
-            <h2 className="font-semibold text-slate-950">How to use this path</h2>
+            <h2 className="font-semibold text-slate-950">
+              How to use this path
+            </h2>
+
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Use the certifications as learning checkpoints and complete the practical activities
-              to reinforce the knowledge with hands-on work.
+              Use the certifications as learning checkpoints and
+              complete the practical activities to reinforce the
+              knowledge with hands-on work.
             </p>
           </Card>
 
           <Card>
-            <h2 className="font-semibold text-slate-950">Certification details can change</h2>
+            <h2 className="font-semibold text-slate-950">
+              Certification details can change
+            </h2>
+
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Always verify current exam requirements, pricing, prerequisites, and availability with
-              the official certification provider before making scheduling or purchasing decisions.
+              Always verify current exam requirements, pricing,
+              prerequisites, and availability with the official
+              certification provider before making scheduling or
+              purchasing decisions.
             </p>
           </Card>
         </aside>

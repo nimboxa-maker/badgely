@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     canonical: "/proctoring-services",
   },
   openGraph: {
-    title: "IT Certification Proctoring Services | Badgely",
+    title: "IT Certification Proctoring Services | ThirdBadge",
     description,
     url: "/proctoring-services",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "IT Certification Proctoring Services | Badgely",
+    title: "IT Certification Proctoring Services | ThirdBadge",
     description,
   },
 };

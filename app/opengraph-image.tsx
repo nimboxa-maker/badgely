@@ -1,10 +1,12 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Badgely — IT certifications, career paths, and study resources";
+export const alt = "ThirdBadge — Learn it. Earn it. Prove it.";
+
 export const size = {
   width: 1200,
   height: 630,
 };
+
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
@@ -17,7 +19,8 @@ export default function OpenGraphImage() {
           display: "flex",
           position: "relative",
           overflow: "hidden",
-          background: "linear-gradient(135deg, #020617 0%, #0f172a 42%, #0b3aa4 100%)",
+          background:
+            "linear-gradient(135deg, #020617 0%, #0f172a 42%, #0b3aa4 100%)",
           color: "white",
           fontFamily: "Arial, Helvetica, sans-serif",
         }}
@@ -33,6 +36,7 @@ export default function OpenGraphImage() {
             border: "2px solid rgba(96, 165, 250, 0.25)",
           }}
         />
+
         <div
           style={{
             position: "absolute",
@@ -44,6 +48,7 @@ export default function OpenGraphImage() {
             border: "2px solid rgba(147, 197, 253, 0.18)",
           }}
         />
+
         <div
           style={{
             position: "absolute",
@@ -65,7 +70,13 @@ export default function OpenGraphImage() {
             padding: "58px 70px 54px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 18,
+            }}
+          >
             <div
               style={{
                 width: 66,
@@ -76,18 +87,32 @@ export default function OpenGraphImage() {
                 justifyContent: "center",
                 background: "linear-gradient(145deg, #2563eb, #60a5fa)",
                 boxShadow: "0 16px 36px rgba(37, 99, 235, 0.35)",
-                fontSize: 36,
+                fontSize: 30,
                 fontWeight: 800,
               }}
             >
-              B
+              3B
             </div>
-            <div style={{ display: "flex", fontSize: 38, fontWeight: 800, letterSpacing: -1 }}>
-              Badgely
+
+            <div
+              style={{
+                display: "flex",
+                fontSize: 38,
+                fontWeight: 800,
+                letterSpacing: -1,
+              }}
+            >
+              ThirdBadge
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", maxWidth: 900 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              maxWidth: 900,
+            }}
+          >
             <div
               style={{
                 display: "flex",
@@ -98,8 +123,9 @@ export default function OpenGraphImage() {
                 color: "#93c5fd",
               }}
             >
-              Independent IT certification guidance
+              Learn it. Earn it. Prove it.
             </div>
+
             <div
               style={{
                 display: "flex",
@@ -110,8 +136,9 @@ export default function OpenGraphImage() {
                 letterSpacing: -2.5,
               }}
             >
-              Choose your next IT certification with clarity.
+              Turn certification goals into real capability.
             </div>
+
             <div
               style={{
                 display: "flex",
@@ -122,12 +149,19 @@ export default function OpenGraphImage() {
                 color: "#cbd5e1",
               }}
             >
-              Explore certifications, career roadmaps, exam details, courses, and study resources in one place.
+              Explore certifications, career paths, exam details, courses,
+              and study resources in one place.
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            {["Certifications", "Career Paths", "Study Resources"].map((label) => (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 14,
+            }}
+          >
+            {["Learn", "Earn", "Prove"].map((label) => (
               <div
                 key={label}
                 style={{

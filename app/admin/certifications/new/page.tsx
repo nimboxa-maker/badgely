@@ -13,7 +13,9 @@ export default async function NewCertificationPage() {
     .order("name", { ascending: true });
 
   if (error) {
-    throw new Error("Unable to load providers for certification creation.");
+    throw new Error(
+      "Unable to load providers for certification creation.",
+    );
   }
 
   return (
@@ -30,9 +32,14 @@ export default async function NewCertificationPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-600">
           Admin · Certifications
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Add certification</h1>
+
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+          Add certification
+        </h1>
+
         <p className="mt-2 text-slate-600">
-          Create a certification record using factual, original, and verifiable information.
+          Create a certification record using factual, original, and
+          verifiable information.
         </p>
       </div>
 
@@ -40,9 +47,13 @@ export default async function NewCertificationPage() {
         <form action={createCertification} className="space-y-6">
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="providerId" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="providerId"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Provider
               </label>
+
               <select
                 id="providerId"
                 name="providerId"
@@ -53,6 +64,7 @@ export default async function NewCertificationPage() {
                 <option value="" disabled>
                   Select a provider
                 </option>
+
                 {(providers ?? []).map((provider) => (
                   <option key={provider.id} value={provider.id}>
                     {provider.name}
@@ -63,9 +75,13 @@ export default async function NewCertificationPage() {
             </div>
 
             <div>
-              <label htmlFor="status" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="status"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Status
               </label>
+
               <select
                 id="status"
                 name="status"
@@ -73,7 +89,9 @@ export default async function NewCertificationPage() {
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
                 <option value="Active">Active</option>
-                <option value="Retiring Soon">Retiring Soon</option>
+                <option value="Retiring Soon">
+                  Retiring Soon
+                </option>
                 <option value="Retired">Retired</option>
               </select>
             </div>
@@ -81,24 +99,32 @@ export default async function NewCertificationPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="name" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="name"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Certification name
               </label>
+
               <input
                 id="name"
                 name="name"
                 type="text"
                 required
                 maxLength={160}
-                placeholder="Badgely Test Certification"
+                placeholder="ThirdBadge Test Certification"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
 
             <div>
-              <label htmlFor="slug" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="slug"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Slug
               </label>
+
               <input
                 id="slug"
                 name="slug"
@@ -106,9 +132,10 @@ export default async function NewCertificationPage() {
                 required
                 maxLength={160}
                 pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
-                placeholder="badgely-test-certification"
+                placeholder="thirdbadge-test-certification"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
+
               <p className="mt-1 text-xs text-slate-500">
                 Lowercase letters, numbers, and hyphens only.
               </p>
@@ -117,9 +144,13 @@ export default async function NewCertificationPage() {
 
           <div className="grid gap-5 sm:grid-cols-3">
             <div>
-              <label htmlFor="category" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="category"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Category
               </label>
+
               <input
                 id="category"
                 name="category"
@@ -132,9 +163,13 @@ export default async function NewCertificationPage() {
             </div>
 
             <div>
-              <label htmlFor="level" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="level"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Level
               </label>
+
               <input
                 id="level"
                 name="level"
@@ -147,25 +182,37 @@ export default async function NewCertificationPage() {
             </div>
 
             <div>
-              <label htmlFor="vendorType" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="vendorType"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Vendor type
               </label>
+
               <select
                 id="vendorType"
                 name="vendorType"
                 defaultValue="Vendor-neutral"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               >
-                <option value="Vendor-neutral">Vendor-neutral</option>
-                <option value="Vendor-specific">Vendor-specific</option>
+                <option value="Vendor-neutral">
+                  Vendor-neutral
+                </option>
+                <option value="Vendor-specific">
+                  Vendor-specific
+                </option>
               </select>
             </div>
           </div>
 
           <div>
-            <label htmlFor="shortSummary" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="shortSummary"
+              className="text-sm font-semibold text-slate-700"
+            >
               Short summary
             </label>
+
             <textarea
               id="shortSummary"
               name="shortSummary"
@@ -178,9 +225,13 @@ export default async function NewCertificationPage() {
           </div>
 
           <div>
-            <label htmlFor="fullSummary" className="text-sm font-semibold text-slate-700">
+            <label
+              htmlFor="fullSummary"
+              className="text-sm font-semibold text-slate-700"
+            >
               Full summary
             </label>
+
             <textarea
               id="fullSummary"
               name="fullSummary"
@@ -193,9 +244,13 @@ export default async function NewCertificationPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="targetJobRoles" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="targetJobRoles"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Target job roles
               </label>
+
               <input
                 id="targetJobRoles"
                 name="targetJobRoles"
@@ -204,7 +259,10 @@ export default async function NewCertificationPage() {
                 placeholder="SOC Analyst, Security Administrator"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
-              <p className="mt-1 text-xs text-slate-500">Separate multiple roles with commas.</p>
+
+              <p className="mt-1 text-xs text-slate-500">
+                Separate multiple roles with commas.
+              </p>
             </div>
 
             <div>
@@ -214,6 +272,7 @@ export default async function NewCertificationPage() {
               >
                 Recommended experience
               </label>
+
               <textarea
                 id="recommendedExperience"
                 name="recommendedExperience"
@@ -233,6 +292,7 @@ export default async function NewCertificationPage() {
               >
                 Official certification URL
               </label>
+
               <input
                 id="officialCertificationUrl"
                 name="officialCertificationUrl"
@@ -244,9 +304,13 @@ export default async function NewCertificationPage() {
             </div>
 
             <div>
-              <label htmlFor="lastVerifiedDate" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="lastVerifiedDate"
+                className="text-sm font-semibold text-slate-700"
+              >
                 Last verified date
               </label>
+
               <input
                 id="lastVerifiedDate"
                 name="lastVerifiedDate"
@@ -264,6 +328,7 @@ export default async function NewCertificationPage() {
               >
                 Minimum study hours
               </label>
+
               <input
                 id="estimatedStudyHoursMin"
                 name="estimatedStudyHoursMin"
@@ -281,6 +346,7 @@ export default async function NewCertificationPage() {
               >
                 Maximum study hours
               </label>
+
               <input
                 id="estimatedStudyHoursMax"
                 name="estimatedStudyHoursMax"
@@ -294,9 +360,13 @@ export default async function NewCertificationPage() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="seoTitle" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="seoTitle"
+                className="text-sm font-semibold text-slate-700"
+              >
                 SEO title
               </label>
+
               <input
                 id="seoTitle"
                 name="seoTitle"
@@ -307,9 +377,13 @@ export default async function NewCertificationPage() {
             </div>
 
             <div>
-              <label htmlFor="seoDescription" className="text-sm font-semibold text-slate-700">
+              <label
+                htmlFor="seoDescription"
+                className="text-sm font-semibold text-slate-700"
+              >
                 SEO description
               </label>
+
               <textarea
                 id="seoDescription"
                 name="seoDescription"
@@ -326,12 +400,15 @@ export default async function NewCertificationPage() {
               type="checkbox"
               className="mt-1 size-4 rounded border-slate-300"
             />
+
             <span>
               <span className="block text-sm font-semibold text-slate-900">
                 Featured certification
               </span>
+
               <span className="mt-1 block text-sm text-slate-600">
-                Featured records may receive priority placement in the public catalog.
+                Featured records may receive priority placement in
+                the public catalog.
               </span>
             </span>
           </label>
@@ -343,6 +420,7 @@ export default async function NewCertificationPage() {
             >
               Cancel
             </Link>
+
             <button
               type="submit"
               className="min-h-11 rounded-xl bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"

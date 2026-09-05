@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     canonical: "/courses",
   },
   openGraph: {
-    title: "IT Certification Courses & Training Providers | Badgely",
+    title: "IT Certification Courses & Training Providers | ThirdBadge",
     description,
     url: "/courses",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "IT Certification Courses & Training Providers | Badgely",
+    title: "IT Certification Courses & Training Providers | ThirdBadge",
     description,
   },
 };
