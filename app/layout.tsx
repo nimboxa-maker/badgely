@@ -45,7 +45,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "ThirdBadge",
   url: siteUrl,
-  logo: `${siteUrl}/brand/badgely-logo.png`,
+  logo: `${siteUrl}/brand/thirdbadge-logo.png`,
   description: siteDescription,
 };
 
