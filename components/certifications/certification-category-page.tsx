@@ -32,7 +32,7 @@ type CategoryCertification = {
   providers: { name: string } | { name: string }[] | null;
 };
 
-const productionSiteUrl = "https://badgely-alpha.vercel.app";
+const productionSiteUrl = "https://thirdbadge.com";
 
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? productionSiteUrl

@@ -16,7 +16,7 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://badgely-alpha.vercel.app";
+const siteUrl = "https://thirdbadge.com";
 const pageUrl = `${siteUrl}/guides/best-cloud-certifications`;
 
 const title =

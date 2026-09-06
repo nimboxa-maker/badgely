@@ -7,7 +7,7 @@ const siteDescription =
   "Learn it. Earn it. Prove it. Explore IT certifications, career paths, study resources, exams, requirements, costs, and renewal details in one place.";
 
 const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://badgely-alpha.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thirdbadge.com"
 ).replace(/\/$/, "");
 
 const socialImageUrl = `${siteUrl}/opengraph-image`;

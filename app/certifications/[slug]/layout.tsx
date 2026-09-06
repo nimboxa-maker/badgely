@@ -9,7 +9,7 @@ interface CertificationLayoutProps {
 }
 
 const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://badgely-alpha.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thirdbadge.com"
 ).replace(/\/$/, "");
 
 const categoryRoutes: Record<string, string> = {

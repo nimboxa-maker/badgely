@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { certificationCategories } from "@/lib/certification-categories";
 import type { Database } from "@/lib/supabase/database";
 
-const siteUrl = "https://badgely-alpha.vercel.app";
+const siteUrl = "https://thirdbadge.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
