@@ -249,7 +249,7 @@ export default function StudyStorePage() {
                       </span>
 
                       <div className="min-w-0 flex-1">
-                        <p className="line-clamp-1 font-bold text-white">
+                        <p className="line-clamp-2 leading-5 font-bold text-white">
                           {resource.title}
                         </p>
 
@@ -376,7 +376,10 @@ export default function StudyStorePage() {
 
                   {resource.official ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800">
-                      <BadgeCheck className="size-3.5" aria-hidden="true" />
+                      <BadgeCheck
+                        className="size-3.5"
+                        aria-hidden="true"
+                      />
                       Official
                     </span>
                   ) : null}
@@ -409,14 +412,18 @@ export default function StudyStorePage() {
                     href={resource.href}
                     target="_blank"
                     rel={
-                      "affiliate" in resource && resource.affiliate
+                      "affiliate" in resource &&
+                      resource.affiliate
                         ? "sponsored noopener noreferrer"
                         : "noopener noreferrer"
                     }
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
                   >
                     View at publisher
-                    <ExternalLink className="size-4" aria-hidden="true" />
+                    <ExternalLink
+                      className="size-4"
+                      aria-hidden="true"
+                    />
                   </a>
                 </div>
               </div>
@@ -452,7 +459,10 @@ export default function StudyStorePage() {
                 className="group h-full p-4 text-center transition hover:border-blue-200 hover:shadow-md"
               >
                 <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
-                  <Library className="size-5" aria-hidden="true" />
+                  <Library
+                    className="size-5"
+                    aria-hidden="true"
+                  />
                 </span>
 
                 <h3 className="mt-4 text-xl font-bold text-slate-950">
@@ -478,7 +488,10 @@ export default function StudyStorePage() {
                   className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
                 >
                   Browse publisher options
-                  <ArrowRight className="size-4" aria-hidden="true" />
+                  <ArrowRight
+                    className="size-4"
+                    aria-hidden="true"
+                  />
                 </a>
               </Card>
             ))}
@@ -519,10 +532,15 @@ export default function StudyStorePage() {
                     {publisher.mark}
                   </span>
 
-                  <Boxes className="size-5 text-white/75" aria-hidden="true" />
+                  <Boxes
+                    className="size-5 text-white/75"
+                    aria-hidden="true"
+                  />
                 </div>
 
-                <h3 className="mt-5 text-2xl font-bold">{publisher.name}</h3>
+                <h3 className="mt-5 text-2xl font-bold">
+                  {publisher.name}
+                </h3>
               </div>
 
               <div className="flex flex-1 flex-col p-5">
@@ -546,14 +564,18 @@ export default function StudyStorePage() {
                     href={publisher.href}
                     target="_blank"
                     rel={
-                      "affiliate" in publisher && publisher.affiliate
+                      "affiliate" in publisher &&
+                      publisher.affiliate
                         ? "sponsored noopener noreferrer"
                         : "noopener noreferrer"
                     }
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 font-semibold text-blue-800 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
                   >
                     Visit {publisher.name}
-                    <ExternalLink className="size-4" aria-hidden="true" />
+                    <ExternalLink
+                      className="size-4"
+                      aria-hidden="true"
+                    />
                   </a>
                 </div>
               </div>
@@ -575,24 +597,29 @@ export default function StudyStorePage() {
           </div>
 
           <div className="mt-9 grid gap-5 lg:grid-cols-3">
-            {storePrinciples.map(({ icon: Icon, title, description }) => (
-              <Card
-                key={title}
-                className="flex h-full flex-col items-center text-center"
-              >
-                <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
+            {storePrinciples.map(
+              ({ icon: Icon, title, description }) => (
+                <Card
+                  key={title}
+                  className="flex h-full flex-col items-center text-center"
+                >
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm">
+                    <Icon
+                      className="size-5"
+                      aria-hidden="true"
+                    />
+                  </span>
 
-                <h3 className="mt-5 text-xl font-bold text-slate-950">
-                  {title}
-                </h3>
+                  <h3 className="mt-5 text-xl font-bold text-slate-950">
+                    {title}
+                  </h3>
 
-                <p className="mt-3 leading-7 text-slate-600">
-                  {description}
-                </p>
-              </Card>
-            ))}
+                  <p className="mt-3 leading-7 text-slate-600">
+                    {description}
+                  </p>
+                </Card>
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -601,7 +628,10 @@ export default function StudyStorePage() {
         <Card className="overflow-hidden border-amber-200 bg-amber-50 p-0">
           <div className="grid gap-0 lg:grid-cols-[auto_1fr]">
             <div className="flex items-center justify-center bg-amber-100 p-6 text-amber-800 lg:w-28">
-              <GraduationCap className="size-9" aria-hidden="true" />
+              <GraduationCap
+                className="size-9"
+                aria-hidden="true"
+              />
             </div>
 
             <div className="p-6 sm:p-8">
