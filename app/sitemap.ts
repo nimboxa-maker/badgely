@@ -43,6 +43,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/about`,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${siteUrl}/terms`,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
+      url: `${siteUrl}/privacy`,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
+      url: `${siteUrl}/cookie-settings`,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
+      url: `${siteUrl}/sitemap`,
+      changeFrequency: "weekly",
+      priority: 0.5,
+    },
+    {
       url: `${siteUrl}/guides/is-security-plus-worth-it`,
       changeFrequency: "monthly",
       priority: 0.85,
@@ -74,27 +99,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const categoryRoutes: MetadataRoute.Sitemap = certificationCategories.map((category) => ({
-    url: `${siteUrl}/certifications/${category.slug}`,
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
+  const categoryRoutes: MetadataRoute.Sitemap =
+    certificationCategories.map((category) => ({
+      url: `${siteUrl}/certifications/${category.slug}`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
 
   const fallbackRoutes = [...staticRoutes, ...categoryRoutes];
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabasePublishableKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  const supabasePublishableKey =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
   if (!supabaseUrl || !supabasePublishableKey) {
     return fallbackRoutes;
   }
 
   try {
-    const supabase = createClient<Database>(supabaseUrl, supabasePublishableKey, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
+    const supabase = createClient<Database>(
+      supabaseUrl,
+      supabasePublishableKey,
+      {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+        },
       },
-    });
+    );
 
     const [certificationsResult, careerPathsResult] = await Promise.all([
       supabase
@@ -102,23 +134,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         .select("slug, updated_at")
         .eq("status", "Active")
         .order("slug"),
-      supabase.from("career_paths").select("slug, updated_at").order("slug"),
+
+      supabase
+        .from("career_paths")
+        .select("slug, updated_at")
+        .order("slug"),
     ]);
 
     if (certificationsResult.error || careerPathsResult.error) {
       return fallbackRoutes;
     }
 
-    const certificationRoutes: MetadataRoute.Sitemap = (certificationsResult.data ?? []).map(
-      (certification) => ({
-        url: `${siteUrl}/certifications/${certification.slug}`,
-        ...(certification.updated_at ? { lastModified: certification.updated_at } : {}),
-        changeFrequency: "weekly",
-        priority: 0.8,
-      }),
-    );
+    const certificationRoutes: MetadataRoute.Sitemap = (
+      certificationsResult.data ?? []
+    ).map((certification) => ({
+      url: `${siteUrl}/certifications/${certification.slug}`,
+      ...(certification.updated_at
+        ? { lastModified: certification.updated_at }
+        : {}),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
 
-    const careerPathRoutes: MetadataRoute.Sitemap = (careerPathsResult.data ?? []).map((path) => ({
+    const careerPathRoutes: MetadataRoute.Sitemap = (
+      careerPathsResult.data ?? []
+    ).map((path) => ({
       url: `${siteUrl}/career-paths/${path.slug}`,
       ...(path.updated_at ? { lastModified: path.updated_at } : {}),
       changeFrequency: "weekly",
