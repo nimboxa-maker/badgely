@@ -9,7 +9,6 @@ import {
   Library,
   ShieldCheck,
   ShoppingBag,
-  Sparkles,
   Star,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -218,6 +217,7 @@ export default function StudyStorePage() {
                 <h2 className="text-xl font-bold text-white">
                   Featured resources
                 </h2>
+
                 <p className="mt-1 text-sm text-slate-300">
                   Top picks to help you prepare.
                 </p>
@@ -252,6 +252,7 @@ export default function StudyStorePage() {
                         <p className="line-clamp-1 font-bold text-white">
                           {resource.title}
                         </p>
+
                         <p className="mt-1 text-sm text-slate-300">
                           {resource.publisher}
                         </p>
@@ -280,9 +281,8 @@ export default function StudyStorePage() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-          Discover official guides, study books, practice material,
-          and trusted publishers without searching every storefront
-          separately.
+          Discover official guides, study books, practice material, and trusted
+          publishers without searching every storefront separately.
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -291,10 +291,7 @@ export default function StudyStorePage() {
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
           >
             Shop study resources
-            <ArrowRight
-              className="size-4"
-              aria-hidden="true"
-            />
+            <ArrowRight className="size-4" aria-hidden="true" />
           </a>
 
           <a
@@ -337,9 +334,8 @@ export default function StudyStorePage() {
           </h2>
 
           <p className="mt-4 leading-7 text-slate-600">
-            A curated starting shelf from established IT publishers.
-            Pricing and availability remain with the external
-            publisher and may change.
+            A curated starting shelf from established IT publishers. Pricing
+            and availability remain with the external publisher and may change.
           </p>
         </div>
 
@@ -355,16 +351,14 @@ export default function StudyStorePage() {
                 >
                   <div className="flex items-center justify-between gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80">
                     <span>ThirdBadge pick</span>
-                    <BookOpen
-                      className="size-4"
-                      aria-hidden="true"
-                    />
+                    <BookOpen className="size-4" aria-hidden="true" />
                   </div>
 
                   <div>
                     <p className="text-3xl font-black tracking-tight">
                       {resource.cover}
                     </p>
+
                     <p className="mt-2 text-sm font-semibold text-white/80">
                       Study resource
                     </p>
@@ -382,10 +376,7 @@ export default function StudyStorePage() {
 
                   {resource.official ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800">
-                      <BadgeCheck
-                        className="size-3.5"
-                        aria-hidden="true"
-                      />
+                      <BadgeCheck className="size-3.5" aria-hidden="true" />
                       Official
                     </span>
                   ) : null}
@@ -418,18 +409,14 @@ export default function StudyStorePage() {
                     href={resource.href}
                     target="_blank"
                     rel={
-                      "affiliate" in resource &&
-                      resource.affiliate
+                      "affiliate" in resource && resource.affiliate
                         ? "sponsored noopener noreferrer"
                         : "noopener noreferrer"
                     }
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
                   >
                     View at publisher
-                    <ExternalLink
-                      className="size-4"
-                      aria-hidden="true"
-                    />
+                    <ExternalLink className="size-4" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -453,8 +440,8 @@ export default function StudyStorePage() {
             </h2>
 
             <p className="mt-4 leading-7 text-slate-600">
-              See which established publishers cover the
-              certification or technical area you are working toward.
+              See which established publishers cover the certification or
+              technical area you are working toward.
             </p>
           </div>
 
@@ -465,10 +452,7 @@ export default function StudyStorePage() {
                 className="group h-full p-4 text-center transition hover:border-blue-200 hover:shadow-md"
               >
                 <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
-                  <Library
-                    className="size-5"
-                    aria-hidden="true"
-                  />
+                  <Library className="size-5" aria-hidden="true" />
                 </span>
 
                 <h3 className="mt-4 text-xl font-bold text-slate-950">
@@ -494,10 +478,7 @@ export default function StudyStorePage() {
                   className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
                 >
                   Browse publisher options
-                  <ArrowRight
-                    className="size-4"
-                    aria-hidden="true"
-                  />
+                  <ArrowRight className="size-4" aria-hidden="true" />
                 </a>
               </Card>
             ))}
@@ -515,14 +496,12 @@ export default function StudyStorePage() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            One storefront directory. Many trusted learning
-            publishers.
+            One storefront directory. Many trusted learning publishers.
           </h2>
 
           <p className="mt-4 leading-7 text-slate-600">
-            Each publisher keeps a clear identity, specialty list, and
-            direct outbound link rather than being blended into one
-            anonymous catalog.
+            Each publisher keeps a clear identity, specialty list, and direct
+            outbound link rather than being blended into one anonymous catalog.
           </p>
         </div>
 
@@ -540,15 +519,10 @@ export default function StudyStorePage() {
                     {publisher.mark}
                   </span>
 
-                  <Boxes
-                    className="size-5 text-white/75"
-                    aria-hidden="true"
-                  />
+                  <Boxes className="size-5 text-white/75" aria-hidden="true" />
                 </div>
 
-                <h3 className="mt-5 text-2xl font-bold">
-                  {publisher.name}
-                </h3>
+                <h3 className="mt-5 text-2xl font-bold">{publisher.name}</h3>
               </div>
 
               <div className="flex flex-1 flex-col p-5">
@@ -572,18 +546,14 @@ export default function StudyStorePage() {
                     href={publisher.href}
                     target="_blank"
                     rel={
-                      "affiliate" in publisher &&
-                      publisher.affiliate
+                      "affiliate" in publisher && publisher.affiliate
                         ? "sponsored noopener noreferrer"
                         : "noopener noreferrer"
                     }
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 font-semibold text-blue-800 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
                   >
                     Visit {publisher.name}
-                    <ExternalLink
-                      className="size-4"
-                      aria-hidden="true"
-                    />
+                    <ExternalLink className="size-4" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -600,35 +570,29 @@ export default function StudyStorePage() {
             </p>
 
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              A study marketplace should help you choose, not just
-              sell.
+              A study marketplace should help you choose, not just sell.
             </h2>
           </div>
 
           <div className="mt-9 grid gap-5 lg:grid-cols-3">
-            {storePrinciples.map(
-              ({ icon: Icon, title, description }) => (
-                <Card
-                  key={title}
-                  className="flex h-full flex-col items-center text-center"
-                >
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm">
-                    <Icon
-                      className="size-5"
-                      aria-hidden="true"
-                    />
-                  </span>
+            {storePrinciples.map(({ icon: Icon, title, description }) => (
+              <Card
+                key={title}
+                className="flex h-full flex-col items-center text-center"
+              >
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm">
+                  <Icon className="size-5" aria-hidden="true" />
+                </span>
 
-                  <h3 className="mt-5 text-xl font-bold text-slate-950">
-                    {title}
-                  </h3>
+                <h3 className="mt-5 text-xl font-bold text-slate-950">
+                  {title}
+                </h3>
 
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {description}
-                  </p>
-                </Card>
-              ),
-            )}
+                <p className="mt-3 leading-7 text-slate-600">
+                  {description}
+                </p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -637,10 +601,7 @@ export default function StudyStorePage() {
         <Card className="overflow-hidden border-amber-200 bg-amber-50 p-0">
           <div className="grid gap-0 lg:grid-cols-[auto_1fr]">
             <div className="flex items-center justify-center bg-amber-100 p-6 text-amber-800 lg:w-28">
-              <GraduationCap
-                className="size-9"
-                aria-hidden="true"
-              />
+              <GraduationCap className="size-9" aria-hidden="true" />
             </div>
 
             <div className="p-6 sm:p-8">
@@ -653,12 +614,11 @@ export default function StudyStorePage() {
               </h2>
 
               <p className="mt-3 max-w-4xl leading-7 text-slate-700">
-                ThirdBadge may use affiliate links for some shopping
-                resources. If you purchase through an eligible
-                affiliate link, ThirdBadge may receive a commission at
-                no additional cost to you. A publisher&apos;s inclusion
-                does not mean it paid for placement, and affiliate
-                status does not determine whether a resource is
+                ThirdBadge may use affiliate links for some shopping resources.
+                If you purchase through an eligible affiliate link, ThirdBadge
+                may receive a commission at no additional cost to you. A
+                publisher&apos;s inclusion does not mean it paid for placement,
+                and affiliate status does not determine whether a resource is
                 recommended.
               </p>
             </div>
