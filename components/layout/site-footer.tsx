@@ -3,11 +3,16 @@ import Link from "next/link";
 
 const topLinks = [
   { href: "/certifications", label: "Certifications" },
-  { href: "/career-paths", label: "Career Paths" },
-  { href: "/guides", label: "Guides" },
+  { href: "/recertification", label: "Recertification" },
+  { href: "/free-resources", label: "Free Resources" },
   { href: "/proctoring-services", label: "Proctoring Services" },
   { href: "/study-store", label: "Study Store" },
   { href: "/courses", label: "Courses" },
+];
+
+const discoveryLinks = [
+  { href: "/career-paths", label: "Career Paths" },
+  { href: "/guides", label: "Guides" },
 ];
 
 const companyLinks = [
@@ -53,6 +58,23 @@ export function SiteFooter() {
               className="flex flex-wrap justify-center gap-x-5 gap-y-2"
             >
               {topLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-blue-100 transition hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="mx-auto my-4 h-px max-w-3xl bg-white/15" />
+
+            <nav
+              aria-label="Footer discovery navigation"
+              className="flex flex-wrap justify-center gap-x-5 gap-y-2"
+            >
+              {discoveryLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

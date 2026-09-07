@@ -5,6 +5,22 @@ import type { Database } from "@/lib/supabase/database";
 
 const siteUrl = "https://thirdbadge.com";
 
+const recertificationRoutes = [
+  "/recertification",
+  "/recertification/comptia",
+  "/recertification/cisco",
+  "/recertification/microsoft",
+  "/recertification/aws",
+  "/recertification/isc2",
+  "/recertification/isaca",
+  "/recertification/pmi",
+  "/recertification/giac",
+  "/recertification/red-hat",
+  "/recertification/google-cloud",
+  "/recertification/renewal-glossary",
+  "/recertification/request-provider",
+];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -18,9 +34,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: `${siteUrl}/recertification`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/free-resources`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${siteUrl}/career-paths`,
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${siteUrl}/proctoring-services`,
@@ -40,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${siteUrl}/guides`,
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${siteUrl}/about`,
@@ -99,6 +125,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const additionalRecertificationRoutes: MetadataRoute.Sitemap =
+    recertificationRoutes
+      .filter((route) => route !== "/recertification")
+      .map((route) => ({
+        url: `${siteUrl}${route}`,
+        changeFrequency: "monthly",
+        priority:
+          route === "/recertification/renewal-glossary"
+            ? 0.75
+            : route === "/recertification/request-provider"
+              ? 0.5
+              : 0.8,
+      }));
+
   const categoryRoutes: MetadataRoute.Sitemap =
     certificationCategories.map((category) => ({
       url: `${siteUrl}/certifications/${category.slug}`,
@@ -106,7 +146,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
 
-  const fallbackRoutes = [...staticRoutes, ...categoryRoutes];
+  const fallbackRoutes = [
+    ...staticRoutes,
+    ...additionalRecertificationRoutes,
+    ...categoryRoutes,
+  ];
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabasePublishableKey =
@@ -167,6 +211,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [
       ...staticRoutes,
+      ...additionalRecertificationRoutes,
       ...categoryRoutes,
       ...certificationRoutes,
       ...careerPathRoutes,
