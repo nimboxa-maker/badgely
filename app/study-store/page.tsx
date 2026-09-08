@@ -5,11 +5,14 @@ import {
   BookOpen,
   Boxes,
   ExternalLink,
+  FileQuestion,
   GraduationCap,
   Library,
   ShieldCheck,
   ShoppingBag,
   Star,
+  Ticket,
+  Video,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -22,8 +25,291 @@ import {
 export const metadata: Metadata = {
   title: "Study Store | ThirdBadge",
   description:
-    "Browse curated IT certification books, study guides, practice resources, and learning material from trusted publishers and training providers.",
+    "Browse curated IT certification books, practice exams, labs, video training, exam vouchers, and learning resources from trusted publishers and providers.",
 };
+
+const studyCategories = [
+  {
+    title: "Books & Study Guides",
+    description:
+      "Official certification guides, study books, exam references, eBooks, and structured self-study material.",
+    icon: BookOpen,
+    href: "#books-study-guides",
+    examples: "Cisco Press • Sybex • Pearson • O'Reilly",
+    accent: "bg-blue-50 text-blue-700",
+  },
+  {
+    title: "Practice Exams",
+    description:
+      "Practice questions, exam simulations, assessment tools, and readiness checks for certification preparation.",
+    icon: FileQuestion,
+    href: "#practice-exams",
+    examples: "MeasureUp • Boson • Tutorials Dojo • CompTIA",
+    accent: "bg-violet-50 text-violet-700",
+  },
+  {
+    title: "Labs & Simulators",
+    description:
+      "Hands-on labs, virtual environments, network simulators, sandboxes, and practical technical exercises.",
+    icon: Boxes,
+    href: "#labs-simulators",
+    examples: "Packet Tracer • NetSim • TryHackMe • HTB Academy",
+    accent: "bg-emerald-50 text-emerald-700",
+  },
+  {
+    title: "Video Training",
+    description:
+      "Instructor-led and self-paced video courses covering certification objectives and practical IT skills.",
+    icon: Video,
+    href: "#video-training",
+    examples: "CBT Nuggets • Pluralsight • LinkedIn Learning • Udemy",
+    accent: "bg-orange-50 text-orange-700",
+  },
+  {
+    title: "Exam Vouchers",
+    description:
+      "Find official or authorized exam-purchase options and certification voucher providers.",
+    icon: Ticket,
+    href: "#exam-vouchers",
+    examples: "Pearson VUE • Certiport • Cisco • Microsoft",
+    accent: "bg-cyan-50 text-cyan-700",
+  },
+];
+
+const bookSources = [
+  {
+    name: "Cisco Press",
+    label: "Official Cisco publishing",
+    mark: "CP",
+    description:
+      "Cisco Press publishes certification-focused books, official cert guides, command references, and networking study resources.",
+    bestFor: "CCNA • CCNP • CyberOps • Networking",
+    href: "https://www.ciscopress.com/store/",
+    accent: "from-blue-700 to-sky-500",
+  },
+  {
+    name: "Wiley / Sybex",
+    label: "Certification study guides",
+    mark: "SY",
+    description:
+      "Sybex offers certification study guides, practice-focused books, and official or authorized resources across major IT credentials.",
+    bestFor: "CompTIA • ISC2 • AWS • Microsoft",
+    href:
+      "https://www.wiley.com/en-us/grow/teach-learn/student-resources/exam-guides/sybex/",
+    accent: "from-violet-700 to-fuchsia-500",
+  },
+  {
+    name: "Pearson IT Certification",
+    label: "Professional IT publishing",
+    mark: "PIT",
+    description:
+      "Pearson IT Certification publishes certification books, exam-preparation material, reference guides, and professional technology resources.",
+    bestFor: "Networking • Security • Cloud • Professional IT",
+    href: "https://www.pearsonitcertification.com/store/",
+    accent: "from-indigo-700 to-blue-500",
+  },
+  {
+    name: "O'Reilly",
+    label: "Technical book library",
+    mark: "OR",
+    description:
+      "O'Reilly provides a large technical book catalog covering IT, cloud, security, Linux, DevOps, programming, infrastructure, data, and emerging technologies.",
+    bestFor: "Linux • Cloud • DevOps • Programming",
+    href: "https://www.oreilly.com/products/books-videos.html",
+    accent: "from-rose-700 to-red-500",
+  },
+];
+
+const practiceExamSources = [
+  {
+    name: "MeasureUp",
+    label: "Certification practice tests",
+    mark: "MU",
+    description:
+      "Practice tests with learning and exam-simulation modes, detailed explanations, progress reporting, and certification-focused assessments.",
+    bestFor: "Microsoft • Cisco • CompTIA • ISACA • IT certifications",
+    href: "https://www.measureup.com/",
+    accent: "from-violet-700 to-purple-500",
+    button: "Browse practice tests",
+  },
+  {
+    name: "Boson ExSim-Max",
+    label: "Exam simulation",
+    mark: "BX",
+    description:
+      "Exam simulations designed around certification topics, question styles, difficulty, timing, detailed explanations, and performance reports.",
+    bestFor: "CCNA • CISSP • Security+ • Network+ • A+",
+    href: "https://www.boson.com/exsim-max-practice-exams/",
+    accent: "from-blue-800 to-indigo-500",
+    button: "Browse exam simulations",
+  },
+  {
+    name: "Tutorials Dojo",
+    label: "Cloud practice exams",
+    mark: "TD",
+    description:
+      "A dedicated practice-exam catalog with a strong focus on AWS and other cloud certification preparation.",
+    bestFor: "AWS • Azure • Google Cloud • Cloud certifications",
+    href:
+      "https://portal.tutorialsdojo.com/product-category/practice-exams/",
+    accent: "from-orange-600 to-amber-400",
+    button: "Browse practice exams",
+  },
+  {
+    name: "CompTIA CertMaster Practice",
+    label: "Official CompTIA exam prep",
+    mark: "CT",
+    description:
+      "CompTIA's official adaptive practice product helps identify knowledge gaps and includes timed exam-preparation assessments.",
+    bestFor: "A+ • Network+ • Security+ • CySA+ • CompTIA",
+    href: "https://www.comptia.org/training/",
+    accent: "from-emerald-700 to-teal-500",
+    button: "Explore CompTIA training",
+  },
+];
+
+const labSources = [
+  {
+    name: "Cisco Packet Tracer",
+    label: "Network simulation",
+    mark: "PT",
+    description:
+      "Cisco's network simulation environment lets learners build virtual network topologies and practice networking concepts without physical lab equipment.",
+    bestFor: "CCNA • Networking • Cisco fundamentals",
+    href: "https://www.netacad.com/resources/lab-downloads?courseLang=en-US",
+    accent: "from-sky-700 to-blue-500",
+    button: "Explore Packet Tracer",
+  },
+  {
+    name: "Boson NetSim",
+    label: "Cisco certification labs",
+    mark: "NS",
+    description:
+      "A browser-based Cisco network simulator with guided lab scenarios designed for certification preparation and practical networking experience.",
+    bestFor: "CCNA • CCNP ENCOR • Cisco networking",
+    href: "https://boson.com/netsim-cisco-network-simulator/",
+    accent: "from-blue-800 to-indigo-600",
+    button: "Browse NetSim labs",
+  },
+  {
+    name: "TryHackMe",
+    label: "Cybersecurity labs",
+    mark: "THM",
+    description:
+      "Interactive cybersecurity learning with browser-based exercises, guided learning paths, challenges, and hands-on technical practice.",
+    bestFor: "Cybersecurity • SOC • Security fundamentals",
+    href: "https://tryhackme.com/",
+    accent: "from-red-700 to-rose-500",
+    button: "Explore labs",
+  },
+  {
+    name: "Hack The Box Academy",
+    label: "Guided security labs",
+    mark: "HTB",
+    description:
+      "Guided cybersecurity training with interactive exercises, skills assessments, learning paths, and browser-based lab environments.",
+    bestFor: "Cybersecurity • Defensive security • Security skills",
+    href: "https://academy.hackthebox.com/",
+    accent: "from-emerald-800 to-green-500",
+    button: "Explore Academy",
+  },
+];
+
+const videoTrainingSources = [
+  {
+    name: "CBT Nuggets",
+    label: "IT certification video training",
+    mark: "CBT",
+    description:
+      "On-demand IT training built around certification goals, with expert-led videos, learning paths, labs, and supporting exam-preparation resources.",
+    bestFor: "Cisco • CompTIA • Microsoft • Linux • Security",
+    href: "https://www.cbtnuggets.com/certification-playlist",
+    accent: "from-orange-600 to-amber-400",
+    button: "Browse certification training",
+  },
+  {
+    name: "Pluralsight",
+    label: "Technology certification prep",
+    mark: "PS",
+    description:
+      "Expert-led technology courses and structured certification paths supported by assessments, labs, and certification-preparation resources.",
+    bestFor: "AWS • Microsoft • CompTIA • ISC2 • Google Cloud",
+    href: "https://www.pluralsight.com/product/cert-prep",
+    accent: "from-fuchsia-700 to-pink-500",
+    button: "Explore certification prep",
+  },
+  {
+    name: "LinkedIn Learning",
+    label: "Certification preparation",
+    mark: "LI",
+    description:
+      "Expert-led courses and learning paths covering technical certification preparation across major vendors and professional technology topics.",
+    bestFor: "Cisco • CompTIA • AWS • Microsoft • ISC2",
+    href: "https://www.linkedin.com/learning/topics/certification-preparation",
+    accent: "from-sky-700 to-blue-500",
+    button: "Browse certification courses",
+  },
+  {
+    name: "Udemy",
+    label: "IT certification courses",
+    mark: "UD",
+    description:
+      "A large marketplace of instructor-led, self-paced IT certification courses covering entry-level through advanced technology credentials.",
+    bestFor: "Cloud • CompTIA • Cisco • Security • IT skills",
+    href: "https://www.udemy.com/courses/it-and-software/it-certification/",
+    accent: "from-violet-800 to-purple-500",
+    button: "Browse IT certification courses",
+  },
+];
+
+const examVoucherSources = [
+  {
+    name: "Pearson VUE Voucher Store",
+    label: "Multi-vendor voucher store",
+    mark: "PV",
+    description:
+      "Pearson VUE's voucher store provides exam-voucher purchasing options for a range of technology certification programs.",
+    bestFor:
+      "Microsoft • Google Cloud • LPI • Palo Alto • IBM • Salesforce",
+    href: "https://us-voucherstore.pearsonvue.com/shop/exam-vouchers",
+    accent: "from-cyan-700 to-blue-500",
+    button: "Browse exam vouchers",
+  },
+  {
+    name: "Certiport Store",
+    label: "Individual exam vouchers",
+    mark: "CP",
+    description:
+      "Certiport provides exam vouchers and selected certification products directly to individual customers in the United States.",
+    bestFor: "Microsoft • Cisco CCST • IT Specialist • PMI • Unity",
+    href:
+      "https://store.certiport.com/shop/certiport-products?facetValueFilter=tenant~content-type%3Aexam-vouchers",
+    accent: "from-teal-700 to-cyan-500",
+    button: "Browse Certiport vouchers",
+  },
+  {
+    name: "Cisco Exam Vouchers",
+    label: "Official Cisco voucher store",
+    mark: "CS",
+    description:
+      "Cisco's official voucher store provides exam-voucher purchase options for supported Cisco certification exams.",
+    bestFor: "CCNA • CCNP • CyberOps • Cisco Specialist",
+    href: "https://u.cisco.com/store/exam-voucher",
+    accent: "from-blue-800 to-sky-500",
+    button: "Browse Cisco vouchers",
+  },
+  {
+    name: "Microsoft Exam Vouchers",
+    label: "Official Pearson VUE ordering",
+    mark: "MS",
+    description:
+      "Pearson VUE provides an official Microsoft voucher-ordering process. Microsoft Office Specialist vouchers are handled separately through Certiport.",
+    bestFor: "Microsoft certification exams",
+    href: "https://www.pearsonvue.com/us/en/microsoft/vouchers.html",
+    accent: "from-indigo-700 to-blue-500",
+    button: "Review Microsoft vouchers",
+  },
+];
 
 const publishers = [
   {
@@ -69,7 +355,7 @@ const publishers = [
     description:
       "A broad technology learning library covering books, courses, hands-on learning, certification preparation, and emerging IT skills.",
     specialties: ["Linux", "Cloud", "Kubernetes", "Programming"],
-    href: "https://www.oreilly.com/",
+    href: "https://www.oreilly.com/products/books-videos.html",
     accent: "from-rose-700 to-red-500",
   },
   {
@@ -106,8 +392,7 @@ const featuredResources = [
     formats: "Print + eBook",
     description:
       "A Sybex Security+ study guide with exam-focused review material and practice-question support for SY0-701 preparation.",
-    href:
-      "https://www.wiley.com/en-us/shop/sybex-study-guide-c-4052",
+    href: "https://www.wiley.com/en-us/shop/sybex-study-guide-c-4052",
     cover: "SEC+",
     accent: "from-violet-700 via-purple-600 to-fuchsia-500",
     official: false,
@@ -134,8 +419,7 @@ const featuredResources = [
     formats: "Print + eBook",
     description:
       "A current two-volume A+ study-guide set aligned to the 220-1201 and 220-1202 Core exams.",
-    href:
-      "https://www.wiley.com/en-us/shop/sybex-study-guide-c-4052",
+    href: "https://www.wiley.com/en-us/shop/sybex-study-guide-c-4052",
     cover: "A+",
     accent: "from-cyan-700 via-sky-600 to-blue-500",
     official: false,
@@ -215,29 +499,23 @@ export default function StudyStorePage() {
 
               <div>
                 <h2 className="text-xl font-bold text-white">
-                  Featured resources
+                  Shop by resource type
                 </h2>
-
                 <p className="mt-1 text-sm text-slate-300">
-                  Top picks to help you prepare.
+                  Start with what you need to prepare.
                 </p>
               </div>
             </div>
 
             <div className="mt-5 space-y-3">
-              {featuredResources
-                .slice(0, 3)
-                .map((resource, index) => (
-                  <a
-                    key={resource.title}
-                    href={resource.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
+              {studyCategories.slice(0, 3).map((category, index) => {
+                const Icon = category.icon;
+
+                return (
+                  <a key={category.title} href={category.href}>
                     <HeroOption className="flex items-center gap-4">
                       <span
-                        className={`flex size-12 shrink-0 items-center justify-center rounded-2xl text-xs font-black text-white ${
+                        className={`flex size-12 shrink-0 items-center justify-center rounded-2xl text-white ${
                           index === 0
                             ? "bg-blue-600"
                             : index === 1
@@ -245,16 +523,15 @@ export default function StudyStorePage() {
                               : "bg-emerald-600"
                         }`}
                       >
-                        {resource.cover}
+                        <Icon className="size-5" aria-hidden="true" />
                       </span>
 
                       <div className="min-w-0 flex-1">
-                        <p className="line-clamp-2 leading-5 font-bold text-white">
-                          {resource.title}
+                        <p className="font-bold text-white">
+                          {category.title}
                         </p>
-
-                        <p className="mt-1 text-sm text-slate-300">
-                          {resource.publisher}
+                        <p className="mt-1 line-clamp-1 text-sm text-slate-300">
+                          {category.examples}
                         </p>
                       </div>
 
@@ -264,7 +541,8 @@ export default function StudyStorePage() {
                       />
                     </HeroOption>
                   </a>
-                ))}
+                );
+              })}
             </div>
           </HeroPanel>
         }
@@ -274,31 +552,31 @@ export default function StudyStorePage() {
         </p>
 
         <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          Find study resources
+          Find the right resource
           <span className="block bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 bg-clip-text text-transparent">
-            that fit your certification goal.
+            for the way you study.
           </span>
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-          Discover official guides, study books, practice material, and trusted
-          publishers without searching every storefront separately.
+          Browse books, practice exams, labs, video training, and exam vouchers
+          organized around your certification goals.
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
-            href="#featured-resources"
+            href="#shop-by-category"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
           >
-            Shop study resources
+            Shop by category
             <ArrowRight className="size-4" aria-hidden="true" />
           </a>
 
           <a
-            href="#publishers"
+            href="#featured-resources"
             className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/25 bg-white/[0.03] px-5 py-3 font-semibold text-white transition hover:bg-white/10"
           >
-            Explore publishers
+            View featured resources
           </a>
         </div>
 
@@ -321,12 +599,462 @@ export default function StudyStorePage() {
       </MarketingHero>
 
       <section
+        id="shop-by-category"
+        className="border-b border-slate-200 bg-slate-50"
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+              Shop by category
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              Start with the kind of study resource you need.
+            </h2>
+
+            <p className="mt-4 leading-7 text-slate-600">
+              ThirdBadge organizes study products by purpose so you can compare
+              resources without digging through unrelated storefronts.
+            </p>
+          </div>
+
+          <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
+            {studyCategories.map((category) => {
+              const Icon = category.icon;
+
+              return (
+                <a
+                  key={category.title}
+                  href={category.href}
+                  className="group block h-full rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700"
+                >
+                  <Card className="flex h-full flex-col items-center text-center transition group-hover:-translate-y-1 group-hover:border-blue-200 group-hover:shadow-lg">
+                    <span
+                      className={`flex size-14 items-center justify-center rounded-2xl ${category.accent}`}
+                    >
+                      <Icon className="size-6" aria-hidden="true" />
+                    </span>
+
+                    <h3 className="mt-5 text-lg font-bold text-slate-950">
+                      {category.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      {category.description}
+                    </p>
+
+                    <div className="mt-auto pt-5">
+                      <p className="text-xs font-semibold leading-5 text-slate-500">
+                        {category.examples}
+                      </p>
+
+                      <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                        Browse category
+                        <ArrowRight
+                          className="size-4 transition group-hover:translate-x-1"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </div>
+                  </Card>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="books-study-guides"
+        className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
+      >
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
+            Books & Study Guides
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            Start with established certification publishers.
+          </h2>
+
+          <p className="mt-4 leading-7 text-slate-600">
+            Browse official certification guides, study books, references, and
+            structured self-study material from recognized IT publishers.
+          </p>
+        </div>
+
+        <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {bookSources.map((source) => (
+            <Card
+              key={source.name}
+              className="flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
+            >
+              <div
+                className={`flex min-h-[220px] flex-col items-center justify-center bg-gradient-to-r ${source.accent} p-5 text-white`}
+              >
+                <span className="flex size-16 items-center justify-center rounded-2xl bg-white/15 text-base font-black tracking-wide ring-1 ring-inset ring-white/20">
+                  {source.mark}
+                </span>
+
+                <p className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
+                  {source.label}
+                </p>
+
+                <h3 className="mt-2 text-center text-2xl font-bold">
+                  {source.name}
+                </h3>
+              </div>
+
+              <div className="flex flex-1 flex-col p-5 text-center">
+                <p className="leading-7 text-slate-600">
+                  {source.description}
+                </p>
+
+                <div className="mt-5 rounded-xl bg-slate-50 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                    Best for
+                  </p>
+                  <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
+                    {source.bestFor}
+                  </p>
+                </div>
+
+                <div className="mt-auto pt-6">
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-500"
+                  >
+                    Browse books
+                    <ExternalLink className="size-4" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="practice-exams"
+        className="border-y border-slate-200 bg-violet-50/40"
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-violet-700">
+              Practice Exams
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              Test your readiness before exam day.
+            </h2>
+
+            <p className="mt-4 leading-7 text-slate-600">
+              Explore practice tests, question banks, assessment tools, and exam
+              simulations from established certification-preparation providers.
+            </p>
+          </div>
+
+          <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {practiceExamSources.map((source) => (
+              <Card
+                key={source.name}
+                className="flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-1 hover:border-violet-200 hover:shadow-xl"
+              >
+                <div
+                  className={`flex min-h-[220px] flex-col items-center justify-center bg-gradient-to-r ${source.accent} p-5 text-white`}
+                >
+                  <span className="flex size-16 items-center justify-center rounded-2xl bg-white/15 text-base font-black tracking-wide ring-1 ring-inset ring-white/20">
+                    {source.mark}
+                  </span>
+
+                  <p className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
+                    {source.label}
+                  </p>
+
+                  <h3 className="mt-2 text-center text-2xl font-bold">
+                    {source.name}
+                  </h3>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5 text-center">
+                  <p className="leading-7 text-slate-600">
+                    {source.description}
+                  </p>
+
+                  <div className="mt-5 rounded-xl bg-slate-50 p-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      Best for
+                    </p>
+                    <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
+                      {source.bestFor}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto pt-6">
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-4 py-3 font-semibold text-white transition hover:bg-violet-500"
+                    >
+                      {source.button}
+                      <ExternalLink className="size-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="labs-simulators"
+        className="border-b border-slate-200 bg-emerald-50/40"
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
+              Labs & Simulators
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              Turn certification knowledge into practical skill.
+            </h2>
+
+            <p className="mt-4 leading-7 text-slate-600">
+              Explore network simulators and guided lab platforms that let you
+              practice technical concepts in controlled learning environments.
+            </p>
+          </div>
+
+          <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {labSources.map((source) => (
+              <Card
+                key={source.name}
+                className="flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl"
+              >
+                <div
+                  className={`flex min-h-[220px] flex-col items-center justify-center bg-gradient-to-r ${source.accent} p-5 text-white`}
+                >
+                  <span className="flex size-16 items-center justify-center rounded-2xl bg-white/15 text-sm font-black tracking-wide ring-1 ring-inset ring-white/20">
+                    {source.mark}
+                  </span>
+
+                  <p className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
+                    {source.label}
+                  </p>
+
+                  <h3 className="mt-2 text-center text-2xl font-bold">
+                    {source.name}
+                  </h3>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5 text-center">
+                  <p className="leading-7 text-slate-600">
+                    {source.description}
+                  </p>
+
+                  <div className="mt-5 rounded-xl bg-slate-50 p-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      Best for
+                    </p>
+                    <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
+                      {source.bestFor}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto pt-6">
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white transition hover:bg-emerald-500"
+                    >
+                      {source.button}
+                      <ExternalLink className="size-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="video-training"
+        className="border-b border-slate-200 bg-orange-50/40"
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange-700">
+              Video Training
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              Learn from instructors at your own pace.
+            </h2>
+
+            <p className="mt-4 leading-7 text-slate-600">
+              Explore structured certification courses, expert-led video
+              lessons, and learning paths from established technology-training
+              platforms.
+            </p>
+          </div>
+
+          <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {videoTrainingSources.map((source) => (
+              <Card
+                key={source.name}
+                className="flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl"
+              >
+                <div
+                  className={`flex min-h-[220px] flex-col items-center justify-center bg-gradient-to-r ${source.accent} p-5 text-white`}
+                >
+                  <span className="flex size-16 items-center justify-center rounded-2xl bg-white/15 text-sm font-black tracking-wide ring-1 ring-inset ring-white/20">
+                    {source.mark}
+                  </span>
+
+                  <p className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
+                    {source.label}
+                  </p>
+
+                  <h3 className="mt-2 text-center text-2xl font-bold">
+                    {source.name}
+                  </h3>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5 text-center">
+                  <p className="leading-7 text-slate-600">
+                    {source.description}
+                  </p>
+
+                  <div className="mt-5 rounded-xl bg-slate-50 p-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      Best for
+                    </p>
+                    <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
+                      {source.bestFor}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto pt-6">
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 font-semibold text-white transition hover:bg-orange-500"
+                    >
+                      {source.button}
+                      <ExternalLink className="size-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="exam-vouchers"
+        className="border-b border-slate-200 bg-cyan-50/40"
+      >
+        <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-700">
+              Exam Vouchers
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              Find approved ways to purchase your exam.
+            </h2>
+
+            <p className="mt-4 leading-7 text-slate-600">
+              Review official and authorized voucher channels before purchasing.
+              Voucher availability, eligibility, region, expiration, and
+              redemption rules vary by certification program.
+            </p>
+          </div>
+
+          <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {examVoucherSources.map((source) => (
+              <Card
+                key={source.name}
+                className="flex h-full flex-col overflow-hidden p-0 transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl"
+              >
+                <div
+                  className={`flex min-h-[220px] flex-col items-center justify-center bg-gradient-to-r ${source.accent} p-5 text-white`}
+                >
+                  <span className="flex size-16 items-center justify-center rounded-2xl bg-white/15 text-sm font-black tracking-wide ring-1 ring-inset ring-white/20">
+                    {source.mark}
+                  </span>
+
+                  <p className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
+                    {source.label}
+                  </p>
+
+                  <h3 className="mt-2 text-center text-2xl font-bold">
+                    {source.name}
+                  </h3>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5 text-center">
+                  <p className="leading-7 text-slate-600">
+                    {source.description}
+                  </p>
+
+                  <div className="mt-5 rounded-xl bg-slate-50 p-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      Best for
+                    </p>
+
+                    <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
+                      {source.bestFor}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto pt-6">
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-cyan-700 px-4 py-3 font-semibold text-white transition hover:bg-cyan-600"
+                    >
+                      {source.button}
+                      <ExternalLink className="size-4" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-cyan-200 bg-white p-5 text-center shadow-sm">
+            <p className="font-semibold text-slate-950">
+              Voucher seller ≠ exam delivery provider
+            </p>
+
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Buying a voucher does not necessarily mean that company will
+              proctor or deliver your exam. Always confirm the certification
+              provider, testing provider, redemption rules, region, and
+              expiration date before purchasing.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
         id="featured-resources"
         className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-            Popular study resources
+            Featured books
           </p>
 
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
@@ -358,7 +1086,6 @@ export default function StudyStorePage() {
                     <p className="text-3xl font-black tracking-tight">
                       {resource.cover}
                     </p>
-
                     <p className="mt-2 text-sm font-semibold text-white/80">
                       Study resource
                     </p>
@@ -376,10 +1103,7 @@ export default function StudyStorePage() {
 
                   {resource.official ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800">
-                      <BadgeCheck
-                        className="size-3.5"
-                        aria-hidden="true"
-                      />
+                      <BadgeCheck className="size-3.5" aria-hidden="true" />
                       Official
                     </span>
                   ) : null}
@@ -411,19 +1135,11 @@ export default function StudyStorePage() {
                   <a
                     href={resource.href}
                     target="_blank"
-                    rel={
-                      "affiliate" in resource &&
-                      resource.affiliate
-                        ? "sponsored noopener noreferrer"
-                        : "noopener noreferrer"
-                    }
+                    rel="noopener noreferrer"
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
                   >
                     View at publisher
-                    <ExternalLink
-                      className="size-4"
-                      aria-hidden="true"
-                    />
+                    <ExternalLink className="size-4" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -459,10 +1175,7 @@ export default function StudyStorePage() {
                 className="group h-full p-4 text-center transition hover:border-blue-200 hover:shadow-md"
               >
                 <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition group-hover:bg-blue-600 group-hover:text-white">
-                  <Library
-                    className="size-5"
-                    aria-hidden="true"
-                  />
+                  <Library className="size-5" aria-hidden="true" />
                 </span>
 
                 <h3 className="mt-4 text-xl font-bold text-slate-950">
@@ -488,10 +1201,7 @@ export default function StudyStorePage() {
                   className="mt-4 inline-flex items-center justify-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
                 >
                   Browse publisher options
-                  <ArrowRight
-                    className="size-4"
-                    aria-hidden="true"
-                  />
+                  <ArrowRight className="size-4" aria-hidden="true" />
                 </a>
               </Card>
             ))}
@@ -563,19 +1273,11 @@ export default function StudyStorePage() {
                   <a
                     href={publisher.href}
                     target="_blank"
-                    rel={
-                      "affiliate" in publisher &&
-                      publisher.affiliate
-                        ? "sponsored noopener noreferrer"
-                        : "noopener noreferrer"
-                    }
+                    rel="noopener noreferrer"
                     className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 font-semibold text-blue-800 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white"
                   >
                     Visit {publisher.name}
-                    <ExternalLink
-                      className="size-4"
-                      aria-hidden="true"
-                    />
+                    <ExternalLink className="size-4" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -597,29 +1299,24 @@ export default function StudyStorePage() {
           </div>
 
           <div className="mt-9 grid gap-5 lg:grid-cols-3">
-            {storePrinciples.map(
-              ({ icon: Icon, title, description }) => (
-                <Card
-                  key={title}
-                  className="flex h-full flex-col items-center text-center"
-                >
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm">
-                    <Icon
-                      className="size-5"
-                      aria-hidden="true"
-                    />
-                  </span>
+            {storePrinciples.map(({ icon: Icon, title, description }) => (
+              <Card
+                key={title}
+                className="flex h-full flex-col items-center text-center"
+              >
+                <span className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-sm">
+                  <Icon className="size-5" aria-hidden="true" />
+                </span>
 
-                  <h3 className="mt-5 text-xl font-bold text-slate-950">
-                    {title}
-                  </h3>
+                <h3 className="mt-5 text-xl font-bold text-slate-950">
+                  {title}
+                </h3>
 
-                  <p className="mt-3 leading-7 text-slate-600">
-                    {description}
-                  </p>
-                </Card>
-              ),
-            )}
+                <p className="mt-3 leading-7 text-slate-600">
+                  {description}
+                </p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -628,10 +1325,7 @@ export default function StudyStorePage() {
         <Card className="overflow-hidden border-amber-200 bg-amber-50 p-0">
           <div className="grid gap-0 lg:grid-cols-[auto_1fr]">
             <div className="flex items-center justify-center bg-amber-100 p-6 text-amber-800 lg:w-28">
-              <GraduationCap
-                className="size-9"
-                aria-hidden="true"
-              />
+              <GraduationCap className="size-9" aria-hidden="true" />
             </div>
 
             <div className="p-6 sm:p-8">
