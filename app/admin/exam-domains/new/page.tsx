@@ -103,7 +103,7 @@ export default async function NewExamDomainPage() {
                 required
                 minLength={2}
                 maxLength={200}
-                placeholder="ThirdBadge Test Domain"
+                placeholder="AimToCert Test Domain"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>

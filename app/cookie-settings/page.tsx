@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Cookie Settings | ThirdBadge",
+  title: "Cookie Settings | AimToCert",
   description:
-    "Learn how ThirdBadge uses essential cookies and how to manage cookies in your browser.",
+    "Learn how AimToCert uses essential cookies and how to manage cookies in your browser.",
 };
 
 export default function CookieSettingsPage() {
@@ -21,7 +21,7 @@ export default function CookieSettingsPage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-blue-100">
-            ThirdBadge is designed to use as little tracking as possible. We do
+            AimToCert is designed to use as little tracking as possible. We do
             not currently use advertising or behavioral-tracking cookies on our
             website.
           </p>
@@ -36,7 +36,7 @@ export default function CookieSettingsPage() {
         <div className="space-y-10">
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
             <p className="text-sm font-semibold uppercase tracking-wide text-emerald-800">
-              Current ThirdBadge setting
+              Current AimToCert setting
             </p>
 
             <h2 className="mt-2 text-2xl font-bold text-slate-950">
@@ -44,7 +44,7 @@ export default function CookieSettingsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge does not currently use optional advertising,
+              AimToCert does not currently use optional advertising,
               behavioral profiling, or marketing cookies on its own website.
             </p>
           </div>
@@ -64,7 +64,7 @@ export default function CookieSettingsPage() {
               They may support functions such as security, page delivery,
               session handling, fraud prevention, or other technical
               operations. Because these cookies may be necessary for the site
-              to work, they generally cannot be disabled through a ThirdBadge
+              to work, they generally cannot be disabled through a AimToCert
               preference control.
             </p>
           </div>
@@ -80,7 +80,7 @@ export default function CookieSettingsPage() {
                   <p className="font-bold text-slate-950">Analytics</p>
 
                   <p className="mt-1 text-sm leading-6 text-slate-600">
-                    ThirdBadge does not currently use optional analytics
+                    AimToCert does not currently use optional analytics
                     cookies.
                   </p>
                 </div>
@@ -105,7 +105,7 @@ export default function CookieSettingsPage() {
                   </p>
 
                   <p className="mt-1 text-sm leading-6 text-slate-600">
-                    ThirdBadge does not currently use advertising or
+                    AimToCert does not currently use advertising or
                     behavioral-tracking cookies on its own website.
                   </p>
                 </div>
@@ -123,7 +123,7 @@ export default function CookieSettingsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge may contain affiliate links or links to external
+              AimToCert may contain affiliate links or links to external
               certification providers, course platforms, testing providers,
               marketplaces, or other third-party websites.
             </p>
@@ -131,7 +131,7 @@ export default function CookieSettingsPage() {
             <p className="mt-4 text-base leading-7 text-slate-700">
               When you click an external link, the destination website may use
               its own cookies or tracking technologies. Those cookies are
-              controlled by the third party, not by ThirdBadge.
+              controlled by the third party, not by AimToCert.
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
@@ -162,7 +162,7 @@ export default function CookieSettingsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              If ThirdBadge introduces optional analytics, advertising,
+              If AimToCert introduces optional analytics, advertising,
               personalization, or other non-essential cookies in the future,
               this page and our Privacy Policy will be updated.
             </p>
@@ -179,21 +179,21 @@ export default function CookieSettingsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              If you have a question about ThirdBadge&apos;s cookie practices,
+              If you have a question about AimToCert&apos;s cookie practices,
               contact:
             </p>
 
             <a
-              href="mailto:team@thirdbadge.com"
+              href="mailto:team@AimToCert.com"
               className="mt-4 inline-flex text-base font-semibold text-blue-700 hover:text-blue-900"
             >
-              team@thirdbadge.com
+              team@AimToCert.com
             </a>
           </div>
 
           <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6">
             <p className="text-sm leading-6 text-slate-700">
-              ThirdBadge&apos;s current approach is simple: use only the
+              AimToCert&apos;s current approach is simple: use only the
               technical functionality needed to operate the site and avoid
               optional tracking unless a future feature genuinely requires it.
             </p>

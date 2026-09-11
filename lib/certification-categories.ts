@@ -11,7 +11,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "Cybersecurity",
     slug: "cybersecurity",
-    title: "Cybersecurity Certifications & Career Credentials | ThirdBadge",
+    title: "Cybersecurity Certifications & Career Credentials | AimToCert",
     description:
       "Explore cybersecurity certifications for beginners through advanced professionals, including security operations, penetration testing, cloud security, GRC, and leadership credentials.",
     eyebrow: "Cybersecurity certifications",
@@ -21,7 +21,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "Cloud",
     slug: "cloud",
-    title: "Cloud Certifications for AWS, Azure & Google Cloud | ThirdBadge",
+    title: "Cloud Certifications for AWS, Azure & Google Cloud | AimToCert",
     description:
       "Explore cloud certifications across AWS, Microsoft Azure, Google Cloud, and vendor-neutral cloud skills, from fundamentals through advanced architecture.",
     eyebrow: "Cloud certifications",
@@ -31,7 +31,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "Networking",
     slug: "networking",
-    title: "Networking Certifications & Network Career Credentials | ThirdBadge",
+    title: "Networking Certifications & Network Career Credentials | AimToCert",
     description:
       "Explore networking certifications for entry-level through associate professionals, including Cisco and vendor-neutral networking credentials.",
     eyebrow: "Networking certifications",
@@ -41,7 +41,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "DevOps",
     slug: "devops",
-    title: "DevOps Certifications for Linux, Kubernetes & IaC | ThirdBadge",
+    title: "DevOps Certifications for Linux, Kubernetes & IaC | AimToCert",
     description:
       "Explore DevOps certifications covering Linux administration, Kubernetes, infrastructure as code, automation, and cloud-native operations.",
     eyebrow: "DevOps certifications",
@@ -51,7 +51,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "Data",
     slug: "data",
-    title: "Data Certifications for Analytics & Database Skills | ThirdBadge",
+    title: "Data Certifications for Analytics & Database Skills | AimToCert",
     description:
       "Explore data certifications covering analytics, data concepts, database administration, and practical data-focused IT skills.",
     eyebrow: "Data certifications",
@@ -61,7 +61,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "GRC and Audit",
     slug: "grc-and-audit",
-    title: "GRC & IT Audit Certifications | ThirdBadge",
+    title: "GRC & IT Audit Certifications | AimToCert",
     description:
       "Explore governance, risk, compliance, and IT audit certifications for security management, risk professionals, auditors, and GRC career paths.",
     eyebrow: "GRC and IT audit certifications",
@@ -71,7 +71,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "IT Support",
     slug: "it-support",
-    title: "IT Support Certifications for Beginners | ThirdBadge",
+    title: "IT Support Certifications for Beginners | AimToCert",
     description:
       "Explore entry-level IT support certifications covering hardware, software, troubleshooting, security, and foundational technology skills.",
     eyebrow: "IT support certifications",
@@ -81,7 +81,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "Linux",
     slug: "linux",
-    title: "Linux Certifications & Linux Administration Credentials | ThirdBadge",
+    title: "Linux Certifications & Linux Administration Credentials | AimToCert",
     description:
       "Explore Linux certifications covering system administration, command-line skills, security, troubleshooting, and Linux operations.",
     eyebrow: "Linux certifications",
@@ -91,7 +91,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "Infrastructure",
     slug: "infrastructure",
-    title: "IT Infrastructure Certifications | ThirdBadge",
+    title: "IT Infrastructure Certifications | AimToCert",
     description:
       "Explore IT infrastructure certifications covering servers, systems operations, hardware, storage, security, and enterprise infrastructure skills.",
     eyebrow: "Infrastructure certifications",
@@ -101,7 +101,7 @@ export const certificationCategories: CertificationCategory[] = [
   {
     name: "Project Management",
     slug: "project-management",
-    title: "IT Project Management Certifications | ThirdBadge",
+    title: "IT Project Management Certifications | AimToCert",
     description:
       "Explore project management certifications for IT professionals, from foundational project skills through advanced professional project management credentials.",
     eyebrow: "Project management certifications",

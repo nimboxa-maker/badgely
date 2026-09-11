@@ -21,20 +21,20 @@ const description =
   "Practical IT certification guides that help you decide what to pursue, how certifications compare, and where each credential fits in a career path.";
 
 export const metadata: Metadata = {
-  title: "IT Certification Guides | ThirdBadge",
+  title: "IT Certification Guides | AimToCert",
   description,
   alternates: {
     canonical: "/guides",
   },
   openGraph: {
-    title: "IT Certification Guides | ThirdBadge",
+    title: "IT Certification Guides | AimToCert",
     description,
     url: "/guides",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IT Certification Guides | ThirdBadge",
+    title: "IT Certification Guides | AimToCert",
     description,
   },
 };
@@ -91,7 +91,7 @@ export default function GuidesPage() {
         }
       >
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-300">
-          ThirdBadge Guides
+          AimToCert Guides
         </p>
 
         <h1 className="mt-5 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
@@ -114,7 +114,7 @@ export default function GuidesPage() {
 
           <span className="inline-flex items-center gap-2">
             <BookOpen className="size-4 text-blue-300" />
-            Connected to ThirdBadge data
+            Connected to AimToCert data
           </span>
         </div>
       </MarketingHero>

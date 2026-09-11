@@ -17,11 +17,11 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://thirdbadge.com";
+const siteUrl = "https://AimToCert.com";
 const pageUrl = `${siteUrl}/guides/cissp-vs-cism`;
 
 const title =
-  "CISSP vs CISM: Which Should You Choose in 2026? | ThirdBadge";
+  "CISSP vs CISM: Which Should You Choose in 2026? | AimToCert";
 
 const description =
   "Compare ISC2 CISSP and ISACA CISM in 2026. See differences in security breadth, management focus, experience requirements, exam format, study time, and career fit.";
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description,
     url: pageUrl,
     type: "article",
-    siteName: "ThirdBadge",
+    siteName: "AimToCert",
   },
   twitter: {
     card: "summary_large_image",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 const comparison = [
-  ["ThirdBadge level", "Advanced", "Advanced"],
+  ["AimToCert level", "Advanced", "Advanced"],
   ["Provider", "ISC2", "ISACA"],
   ["Vendor focus", "Vendor-neutral", "Vendor-neutral"],
   [
@@ -67,7 +67,7 @@ const comparison = [
     "150 multiple-choice questions",
   ],
   [
-    "ThirdBadge study estimate",
+    "AimToCert study estimate",
     "120–200 hours",
     "100–160 hours",
   ],
@@ -82,7 +82,7 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 1,
-          name: "ThirdBadge",
+          name: "AimToCert",
           item: siteUrl,
         },
         {
@@ -108,12 +108,12 @@ const structuredData = {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       publisher: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       about: [
@@ -184,7 +184,7 @@ export default function CisspVsCismGuide() {
       >
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-blue-500/15 text-blue-100 ring-1 ring-inset ring-blue-400/30">
-            ThirdBadge Guide
+            AimToCert Guide
           </Badge>
 
           <Badge className="bg-white/10 text-slate-100">
@@ -211,7 +211,7 @@ export default function CisspVsCismGuide() {
         </p>
 
         <p className="mt-5 text-sm text-slate-400">
-          Reviewed against ThirdBadge certification data verified
+          Reviewed against AimToCert certification data verified
           September 1, 2026.
         </p>
       </MarketingHero>
@@ -459,7 +459,7 @@ export default function CisspVsCismGuide() {
 
                     <div className="flex justify-between gap-4">
                       <dt className="text-slate-500">
-                        ThirdBadge study estimate
+                        AimToCert study estimate
                       </dt>
                       <dd className="font-semibold text-slate-900">
                         120–200 hours
@@ -516,7 +516,7 @@ export default function CisspVsCismGuide() {
 
                     <div className="flex justify-between gap-4">
                       <dt className="text-slate-500">
-                        ThirdBadge study estimate
+                        AimToCert study estimate
                       </dt>
                       <dd className="font-semibold text-slate-900">
                         100–160 hours
@@ -620,10 +620,10 @@ export default function CisspVsCismGuide() {
               </div>
 
               <p className="mt-3 leading-7 text-slate-600">
-                ThirdBadge&apos;s current GRC and IT Audit roadmap
+                AimToCert&apos;s current GRC and IT Audit roadmap
                 includes CISM as an advanced step. CISSP is broader and
                 may fit several senior security directions even when it
-                is not a named step in a specific ThirdBadge roadmap.
+                is not a named step in a specific AimToCert roadmap.
               </p>
 
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -689,7 +689,7 @@ export default function CisspVsCismGuide() {
                 id="next-step"
                 className="mt-2 text-3xl font-bold tracking-tight"
               >
-                Compare the full ThirdBadge certification records
+                Compare the full AimToCert certification records
               </h2>
 
               <p className="mt-3 max-w-2xl leading-7 text-slate-300">
@@ -756,7 +756,7 @@ export default function CisspVsCismGuide() {
 
             <Card className="p-5">
               <h2 className="font-bold text-slate-950">
-                Related ThirdBadge pages
+                Related AimToCert pages
               </h2>
 
               <div className="mt-4 space-y-3 text-sm">
@@ -785,7 +785,7 @@ export default function CisspVsCismGuide() {
                   href="/guides"
                   className="block font-semibold text-blue-700 hover:text-blue-600"
                 >
-                  All ThirdBadge Guides
+                  All AimToCert Guides
                 </Link>
               </div>
             </Card>

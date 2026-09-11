@@ -128,7 +128,7 @@ export async function generateMetadata({
     return {
       title: "Certification not found",
       description:
-        "The requested certification could not be found in the ThirdBadge catalog.",
+        "The requested certification could not be found in the AimToCert catalog.",
     };
   }
 
@@ -597,7 +597,7 @@ export default async function CertificationDetailPage({
             <h2 className="font-semibold">Independent resource</h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              ThirdBadge is an independent educational resource and is
+              AimToCert is an independent educational resource and is
               not affiliated with, endorsed by, or sponsored by any
               certification provider. Certification names and logos may
               be trademarks of their respective owners.

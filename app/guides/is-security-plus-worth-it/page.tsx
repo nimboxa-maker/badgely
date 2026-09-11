@@ -17,11 +17,11 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://thirdbadge.com";
+const siteUrl = "https://AimToCert.com";
 const pageUrl = `${siteUrl}/guides/is-security-plus-worth-it`;
 
 const title =
-  "Is CompTIA Security+ Worth It in 2026? | ThirdBadge";
+  "Is CompTIA Security+ Worth It in 2026? | AimToCert";
 
 const description =
   "See who CompTIA Security+ fits in 2026, when it may not be the right first certification, what SY0-701 covers, how long to study, and where it can lead next.";
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description,
     url: pageUrl,
     type: "article",
-    siteName: "ThirdBadge",
+    siteName: "AimToCert",
   },
   twitter: {
     card: "summary_large_image",
@@ -70,7 +70,7 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 1,
-          name: "ThirdBadge",
+          name: "AimToCert",
           item: siteUrl,
         },
         {
@@ -96,12 +96,12 @@ const structuredData = {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       publisher: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       about: {
@@ -155,7 +155,7 @@ export default function SecurityPlusWorthItGuide() {
 
               <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4">
                 <p className="text-sm text-slate-300">
-                  ThirdBadge study estimate
+                  AimToCert study estimate
                 </p>
                 <p className="mt-1 font-bold text-white">
                   60–120 hours
@@ -167,7 +167,7 @@ export default function SecurityPlusWorthItGuide() {
       >
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-blue-500/15 text-blue-100 ring-1 ring-inset ring-blue-400/30">
-            ThirdBadge Guide
+            AimToCert Guide
           </Badge>
 
           <Badge className="bg-white/10 text-slate-100">
@@ -189,7 +189,7 @@ export default function SecurityPlusWorthItGuide() {
         </p>
 
         <p className="mt-5 text-sm text-slate-400">
-          Reviewed against ThirdBadge certification data verified
+          Reviewed against AimToCert certification data verified
           September 1, 2026.
         </p>
       </MarketingHero>
@@ -210,7 +210,7 @@ export default function SecurityPlusWorthItGuide() {
                   Security+ is a good fit for many people moving from
                   general IT into cybersecurity because it covers a
                   broad set of foundational security skills without
-                  tying them to one vendor. ThirdBadge classifies it as
+                  tying them to one vendor. AimToCert classifies it as
                   a foundational, vendor-neutral certification. That
                   makes it useful as a bridge into security-focused
                   roles, but earning the credential by itself does not
@@ -375,7 +375,7 @@ export default function SecurityPlusWorthItGuide() {
 
                   <div>
                     <p className="text-xl font-bold text-slate-950">
-                      ThirdBadge estimate: 60–120 hours
+                      AimToCert estimate: 60–120 hours
                     </p>
 
                     <p className="mt-2 leading-7 text-slate-600">
@@ -400,7 +400,7 @@ export default function SecurityPlusWorthItGuide() {
               </h2>
 
               <p className="mt-3 leading-7 text-slate-600">
-                In ThirdBadge&apos;s current roadmap data, Security+
+                In AimToCert&apos;s current roadmap data, Security+
                 appears in four different career paths. That is a useful
                 signal of its breadth: the same foundation can support
                 technical, cloud, offensive-security, and governance
@@ -580,7 +580,7 @@ export default function SecurityPlusWorthItGuide() {
                   href="/guides"
                   className="flex items-center justify-between gap-3 font-semibold text-blue-700 hover:text-blue-600"
                 >
-                  More ThirdBadge Guides
+                  More AimToCert Guides
                   <ArrowRight
                     className="size-4"
                     aria-hidden="true"
@@ -623,7 +623,7 @@ export default function SecurityPlusWorthItGuide() {
               </div>
 
               <p className="mt-2">
-                ThirdBadge is not CompTIA and does not issue the
+                AimToCert is not CompTIA and does not issue the
                 Security+ certification.
               </p>
             </div>

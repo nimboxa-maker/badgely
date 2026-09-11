@@ -28,7 +28,7 @@ export default function NotFoundPage() {
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-2.5 font-semibold text-white hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
-            Back to ThirdBadge
+            Back to AimToCert
           </Link>
 
           <Link

@@ -22,7 +22,7 @@ import {
 } from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
-  title: "Courses | ThirdBadge",
+  title: "Courses | AimToCert",
   description:
     "Compare self-paced IT certification courses, instructor-led training, bootcamps, official vendor training, and free learning resources.",
 };
@@ -656,7 +656,7 @@ export default function CoursesPage() {
             </h2>
 
             <p className="mt-4 leading-7 text-slate-600">
-              ThirdBadge organizes training by format so you can quickly
+              AimToCert organizes training by format so you can quickly
               distinguish flexible self-study from live instruction,
               accelerated bootcamps, official vendor learning, and free
               resources.
@@ -1156,7 +1156,7 @@ export default function CoursesPage() {
           </h2>
 
           <p className="mt-4 leading-7 text-slate-600">
-            Different learners need different tools. ThirdBadge helps you
+            Different learners need different tools. AimToCert helps you
             identify what each learning platform actually provides.
           </p>
         </div>
@@ -1258,7 +1258,7 @@ export default function CoursesPage() {
           </h2>
 
           <p className="mt-4 leading-7 text-slate-600">
-            ThirdBadge helps you discover the platform. Enrollment, pricing,
+            AimToCert helps you discover the platform. Enrollment, pricing,
             subscriptions, refunds, and access remain with the external
             training provider.
           </p>
@@ -1368,7 +1368,7 @@ export default function CoursesPage() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-3xl leading-7 text-slate-600">
-            ThirdBadge is independent from the course providers listed here.
+            AimToCert is independent from the course providers listed here.
             Course availability, pricing, subscriptions, and certification
             alignment may change, so always verify details with the training
             provider before enrolling.
@@ -1382,7 +1382,7 @@ export default function CoursesPage() {
 
             <p className="mt-2 text-sm leading-6 text-amber-800">
               Some links on this page are affiliate links. If you use one of
-              these links to make a qualifying purchase, ThirdBadge may earn a
+              these links to make a qualifying purchase, AimToCert may earn a
               commission at no additional cost to you.
             </p>
           </div>

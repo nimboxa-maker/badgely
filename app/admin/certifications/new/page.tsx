@@ -112,7 +112,7 @@ export default async function NewCertificationPage() {
                 type="text"
                 required
                 maxLength={160}
-                placeholder="ThirdBadge Test Certification"
+                placeholder="AimToCert Test Certification"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
             </div>
@@ -132,7 +132,7 @@ export default async function NewCertificationPage() {
                 required
                 maxLength={160}
                 pattern="[a-z0-9]+(?:-[a-z0-9]+)*"
-                placeholder="thirdbadge-test-certification"
+                placeholder="AimToCert-test-certification"
                 className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-950 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               />
 

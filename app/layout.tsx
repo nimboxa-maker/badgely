@@ -4,37 +4,48 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
 const siteDescription =
-  "Learn it. Earn it. Prove it. Explore IT certifications, career paths, study resources, exams, requirements, costs, and renewal details in one place.";
+  "Your guide to the world of certifications. Explore IT certifications, career paths, study resources, exams, requirements, costs, and renewal details in one place.";
 
 const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thirdbadge.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aimtocert.com"
 ).replace(/\/$/, "");
 
 const socialImageUrl = `${siteUrl}/opengraph-image`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: "ThirdBadge",
-  title: "ThirdBadge | Learn it. Earn it. Prove it.",
+
+  applicationName: "AimToCert",
+
+  title: "AimToCert | Your guide to the world of certifications.",
+
   description: siteDescription,
+
+  icons: {
+    icon: "/brand/AimToCert-icon.png",
+    shortcut: "/brand/AimToCert-icon.png",
+    apple: "/brand/AimToCert-icon.png",
+  },
+
   openGraph: {
     type: "website",
-    siteName: "ThirdBadge",
+    siteName: "AimToCert",
     url: siteUrl,
-    title: "ThirdBadge | Learn it. Earn it. Prove it.",
+    title: "AimToCert | Your guide to the world of certifications.",
     description: siteDescription,
     images: [
       {
         url: socialImageUrl,
         width: 1200,
         height: 630,
-        alt: "ThirdBadge — Learn it. Earn it. Prove it.",
+        alt: "AimToCert — Your guide to the world of certifications.",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "ThirdBadge | Learn it. Earn it. Prove it.",
+    title: "AimToCert | Your guide to the world of certifications.",
     description: siteDescription,
     images: [socialImageUrl],
   },
@@ -43,16 +54,16 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "ThirdBadge",
+  name: "AimToCert",
   url: siteUrl,
-  logo: `${siteUrl}/brand/thirdbadge-logo.png`,
+  logo: `${siteUrl}/brand/AimToCert-logo-v2.png`,
   description: siteDescription,
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "ThirdBadge",
+  name: "AimToCert",
   url: siteUrl,
   description: siteDescription,
   potentialAction: {
@@ -64,7 +75,9 @@ const websiteSchema = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <head>

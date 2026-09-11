@@ -230,12 +230,12 @@ export async function generateMetadata({
 
   if (!info) {
     return {
-      title: "Recertification | ThirdBadge",
+      title: "Recertification | AimToCert",
     };
   }
 
   return {
-    title: `${info.name} Recertification & Renewal | ThirdBadge`,
+    title: `${info.name} Recertification & Renewal | AimToCert`,
     description: `Understand ${info.name} certification renewal, recertification, maintenance requirements, timelines, and official renewal resources.`,
   };
 }
@@ -453,7 +453,7 @@ export default async function VendorRecertificationPage({
               </h2>
 
               <p className="mt-2 text-slate-700">
-                Return to the ThirdBadge Recertification directory.
+                Return to the AimToCert Recertification directory.
               </p>
             </div>
 

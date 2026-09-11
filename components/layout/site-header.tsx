@@ -18,11 +18,11 @@ export function SiteHeader() {
         <Link
           href="/"
           className="inline-flex items-center rounded-lg focus-visible:outline-2 focus-visible:outline-white"
-          aria-label="ThirdBadge home"
+          aria-label="AimToCert home"
         >
           <Image
-            src="/brand/thirdbadge-logo.png"
-            alt="ThirdBadge — Learn It | Earn It | Prove It"
+            src="/brand/AimToCert-logo-v2.png"
+            alt="AimToCert — Your guide to the world of certifications"
             width={260}
             height={87}
             priority

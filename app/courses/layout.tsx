@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     canonical: "/courses",
   },
   openGraph: {
-    title: "IT Certification Courses & Training Providers | ThirdBadge",
+    title: "IT Certification Courses & Training Providers | AimToCert",
     description,
     url: "/courses",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "IT Certification Courses & Training Providers | ThirdBadge",
+    title: "IT Certification Courses & Training Providers | AimToCert",
     description,
   },
 };

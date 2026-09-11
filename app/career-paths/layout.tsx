@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     canonical: "/career-paths",
   },
   openGraph: {
-    title: "IT Career Paths & Certification Roadmaps | ThirdBadge",
+    title: "IT Career Paths & Certification Roadmaps | AimToCert",
     description,
     url: "/career-paths",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "IT Career Paths & Certification Roadmaps | ThirdBadge",
+    title: "IT Career Paths & Certification Roadmaps | AimToCert",
     description,
   },
 };

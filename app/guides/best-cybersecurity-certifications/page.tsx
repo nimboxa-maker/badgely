@@ -17,11 +17,11 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://thirdbadge.com";
+const siteUrl = "https://AimToCert.com";
 const pageUrl = `${siteUrl}/guides/best-cybersecurity-certifications`;
 
 const title =
-  "Best Cybersecurity Certifications in 2026 | ThirdBadge";
+  "Best Cybersecurity Certifications in 2026 | AimToCert";
 
 const description =
   "Explore cybersecurity certifications by career goal in 2026, from beginner foundations and SOC work to penetration testing, cloud security, and advanced security leadership.";
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description,
     url: pageUrl,
     type: "article",
-    siteName: "ThirdBadge",
+    siteName: "AimToCert",
   },
   twitter: {
     card: "summary_large_image",
@@ -171,7 +171,7 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 1,
-          name: "ThirdBadge",
+          name: "AimToCert",
           item: siteUrl,
         },
         {
@@ -197,12 +197,12 @@ const structuredData = {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       publisher: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       about: {
@@ -238,7 +238,7 @@ export default function BestCybersecurityCertificationsGuide() {
             <p className="mt-3 leading-7 text-slate-300">
               A beginner, SOC analyst, penetration tester, cloud
               security engineer, and security architect should not all
-              choose the same credential. ThirdBadge groups the options
+              choose the same credential. AimToCert groups the options
               by career goal instead of forcing a universal ranking.
             </p>
 
@@ -254,7 +254,7 @@ export default function BestCybersecurityCertificationsGuide() {
 
               <div className="rounded-2xl border border-white/10 bg-white/[0.055] p-4">
                 <p className="text-sm text-slate-300">
-                  ThirdBadge approach
+                  AimToCert approach
                 </p>
                 <p className="mt-1 font-bold text-white">
                   Best by goal
@@ -266,7 +266,7 @@ export default function BestCybersecurityCertificationsGuide() {
       >
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-blue-500/15 text-blue-100 ring-1 ring-inset ring-blue-400/30">
-            ThirdBadge Guide
+            AimToCert Guide
           </Badge>
 
           <Badge className="bg-white/10 text-slate-100">
@@ -289,7 +289,7 @@ export default function BestCybersecurityCertificationsGuide() {
         </p>
 
         <p className="mt-5 text-sm text-slate-400">
-          Reviewed against ThirdBadge certification data verified
+          Reviewed against AimToCert certification data verified
           September 1, 2026.
         </p>
       </MarketingHero>
@@ -308,13 +308,13 @@ export default function BestCybersecurityCertificationsGuide() {
                   id="method"
                   className="text-3xl font-bold tracking-tight text-slate-950"
                 >
-                  How ThirdBadge uses the word “best”
+                  How AimToCert uses the word “best”
                 </h2>
               </div>
 
               <Card className="mt-4 p-6">
                 <p className="leading-8 text-slate-700">
-                  This is not a prestige ranking. ThirdBadge looks at
+                  This is not a prestige ranking. AimToCert looks at
                   certification level, recommended experience, vendor
                   scope, target job roles, subject-matter focus, and how
                   naturally a credential fits a learner&apos;s next
@@ -571,7 +571,7 @@ export default function BestCybersecurityCertificationsGuide() {
 
               <p className="mt-3 max-w-2xl leading-7 text-slate-300">
                 Certifications are most useful when they support a
-                clear next step. Use ThirdBadge&apos;s career roadmaps
+                clear next step. Use AimToCert&apos;s career roadmaps
                 to connect credentials with the skills and direction
                 you actually want to build.
               </p>

@@ -1,4 +1,4 @@
-const HOST = "thirdbadge.com";
+const HOST = "AimToCert.com";
 const SITE_URL = `https://${HOST}`;
 const KEY = "a7a15100683f42d6993e98aee8b00051";
 const KEY_LOCATION = `${SITE_URL}/${KEY}.txt`;

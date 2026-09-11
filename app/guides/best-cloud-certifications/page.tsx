@@ -16,11 +16,11 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://thirdbadge.com";
+const siteUrl = "https://AimToCert.com";
 const pageUrl = `${siteUrl}/guides/best-cloud-certifications`;
 
 const title =
-  "Best Cloud Certifications in 2026 by Career Goal | ThirdBadge";
+  "Best Cloud Certifications in 2026 by Career Goal | AimToCert";
 
 const description =
   "Explore cloud certifications for beginners, cloud engineers, architects, operations, and hybrid-cloud networking across AWS, Azure, Google Cloud, and CompTIA.";
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description,
     url: pageUrl,
     type: "article",
-    siteName: "ThirdBadge",
+    siteName: "AimToCert",
   },
   twitter: {
     card: "summary_large_image",
@@ -129,7 +129,7 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 1,
-          name: "ThirdBadge",
+          name: "AimToCert",
           item: siteUrl,
         },
         {
@@ -155,12 +155,12 @@ const structuredData = {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       publisher: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       about: {
@@ -216,7 +216,7 @@ export default function BestCloudCertificationsGuide() {
             <p className="mt-3 leading-7 text-slate-300">
               Beginners may need cloud fundamentals first. Engineers
               need hands-on operations skills. Architects need deeper
-              design experience. ThirdBadge organizes the options by
+              design experience. AimToCert organizes the options by
               goal instead of pretending one credential fits everyone.
             </p>
 
@@ -244,7 +244,7 @@ export default function BestCloudCertificationsGuide() {
       >
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-blue-500/15 text-blue-100 ring-1 ring-inset ring-blue-400/30">
-            ThirdBadge Guide
+            AimToCert Guide
           </Badge>
 
           <Badge className="bg-white/10 text-slate-100">
@@ -270,7 +270,7 @@ export default function BestCloudCertificationsGuide() {
         </p>
 
         <p className="mt-5 text-sm text-slate-400">
-          Based on ThirdBadge certification data verified September 1,
+          Based on AimToCert certification data verified September 1,
           2026.
         </p>
       </MarketingHero>
@@ -295,7 +295,7 @@ export default function BestCloudCertificationsGuide() {
 
               <Card className="mt-4 p-6">
                 <p className="leading-8 text-slate-700">
-                  ThirdBadge does not rank these certifications by
+                  AimToCert does not rank these certifications by
                   prestige, salary, or popularity. “Best” means the
                   credential may be a strong fit for a particular
                   starting point or career goal based on its level,
@@ -473,7 +473,7 @@ export default function BestCloudCertificationsGuide() {
 
               <p className="mt-3 max-w-2xl leading-7 text-slate-300">
                 Certification choice makes more sense when it is tied
-                to the job you want. Use ThirdBadge&apos;s Cloud
+                to the job you want. Use AimToCert&apos;s Cloud
                 Engineer roadmap to see how certifications can fit
                 alongside broader skills and experience.
               </p>
@@ -556,7 +556,7 @@ export default function BestCloudCertificationsGuide() {
               href="/guides"
               className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
             >
-              ← Back to ThirdBadge Guides
+              ← Back to AimToCert Guides
             </Link>
           </aside>
         </div>
@@ -586,7 +586,7 @@ function CertificationCard({
       </p>
 
       <p className="mt-4 text-sm font-semibold text-slate-500">
-        ThirdBadge study estimate: {certification.study}
+        AimToCert study estimate: {certification.study}
       </p>
 
       <Link

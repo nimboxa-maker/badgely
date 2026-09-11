@@ -223,7 +223,7 @@ export default async function AdminPage() {
           <p className="mt-2 max-w-3xl text-slate-600">
             Signed in as{" "}
             {profile.display_name || "an administrator"}.
-            Manage ThirdBadge catalog content and keep
+            Manage AimToCert catalog content and keep
             verification data current.
           </p>
         </div>

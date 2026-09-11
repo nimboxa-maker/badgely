@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | ThirdBadge",
+  title: "Privacy Policy | AimToCert",
   description:
-    "Learn how ThirdBadge approaches privacy, limited technical data, email communications, cookies, and third-party services.",
+    "Learn how AimToCert approaches privacy, limited technical data, email communications, cookies, and third-party services.",
 };
 
 export default function PrivacyPage() {
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-blue-100">
-            ThirdBadge is designed to be a low-data website. We do not
+            AimToCert is designed to be a low-data website. We do not
             intentionally collect or maintain user profiles or personal
             information simply because someone visits the site.
           </p>
@@ -40,13 +40,13 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge is intended to provide educational information about
+              AimToCert is intended to provide educational information about
               IT certifications without requiring visitors to provide personal
               information.
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              You can browse ThirdBadge without creating a profile, submitting
+              You can browse AimToCert without creating a profile, submitting
               personal information, or providing us with your name or email
               address.
             </p>
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge does not currently intend to collect or maintain user
+              AimToCert does not currently intend to collect or maintain user
               profiles, mailing lists, payment information, demographic
               profiles, browsing histories tied to individual users, or other
               personal information for marketing purposes.
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              If you contact ThirdBadge by email, we will receive the email
+              If you contact AimToCert by email, we will receive the email
               address you use and any information you choose to include in your
               message.
             </p>
@@ -91,7 +91,7 @@ export default function PrivacyPage() {
 
             <p className="mt-4 text-base leading-7 text-slate-700">
               Like most websites, the infrastructure used to host and protect
-              ThirdBadge may automatically process limited technical
+              AimToCert may automatically process limited technical
               information when a visitor requests a page.
             </p>
 
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge does not currently intend to use advertising or
+              AimToCert does not currently intend to use advertising or
               behavioral-tracking cookies on its own website.
             </p>
 
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              If ThirdBadge later introduces optional analytics, advertising,
+              If AimToCert later introduces optional analytics, advertising,
               or other non-essential cookies, this policy and the Cookie
               Settings page will be updated accordingly.
             </p>
@@ -144,7 +144,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge may contain affiliate links to third-party websites,
+              AimToCert may contain affiliate links to third-party websites,
               courses, products, certification providers, or other services.
             </p>
 
@@ -155,7 +155,7 @@ export default function PrivacyPage() {
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge does not control the privacy practices, cookies, or
+              AimToCert does not control the privacy practices, cookies, or
               technologies used by third-party websites.
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge may rely on third-party companies for services such as
+              AimToCert may rely on third-party companies for services such as
               website hosting, security, domain services, email, database
               infrastructure, or other technical functions.
             </p>
@@ -184,7 +184,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge does not sell personal information to advertisers,
+              AimToCert does not sell personal information to advertisers,
               data brokers, or other third parties.
             </p>
           </div>
@@ -195,7 +195,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              Because ThirdBadge does not currently intend to maintain user
+              Because AimToCert does not currently intend to maintain user
               profiles or personal-data databases, we do not maintain a general
               user-data retention program.
             </p>
@@ -213,8 +213,8 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge contains links to external websites. Once you leave
-              ThirdBadge, the privacy policy and terms of the destination
+              AimToCert contains links to external websites. Once you leave
+              AimToCert, the privacy policy and terms of the destination
               website apply.
             </p>
 
@@ -230,7 +230,7 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge may add new features or services in the future. If our
+              AimToCert may add new features or services in the future. If our
               data practices materially change, this Privacy Policy will be
               updated to explain those changes.
             </p>
@@ -252,16 +252,16 @@ export default function PrivacyPage() {
             </p>
 
             <a
-              href="mailto:team@thirdbadge.com"
+              href="mailto:team@AimToCert.com"
               className="mt-4 inline-flex text-base font-semibold text-blue-700 hover:text-blue-900"
             >
-              team@thirdbadge.com
+              team@AimToCert.com
             </a>
           </div>
 
           <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6">
             <p className="text-sm leading-6 text-slate-700">
-              ThirdBadge&apos;s current goal is to minimize the amount of
+              AimToCert&apos;s current goal is to minimize the amount of
               personal information it handles. If the website later introduces
               accounts, analytics, newsletters, payments, or other features
               that change that approach, this policy will be updated before

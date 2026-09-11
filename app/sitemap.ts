@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { certificationCategories } from "@/lib/certification-categories";
 import type { Database } from "@/lib/supabase/database";
 
-const siteUrl = "https://thirdbadge.com";
+const siteUrl = "https://AimToCert.com";
 
 const recertificationRoutes = [
   "/recertification",

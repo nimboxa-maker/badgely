@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "ThirdBadge — Learn it. Earn it. Prove it.";
+export const alt = "AimToCert — Your guide to the world of certifications.";
 
 export const size = {
   width: 1200,
@@ -102,7 +102,7 @@ export default function OpenGraphImage() {
                 letterSpacing: -1,
               }}
             >
-              ThirdBadge
+              AimToCert
             </div>
           </div>
 
@@ -123,7 +123,7 @@ export default function OpenGraphImage() {
                 color: "#93c5fd",
               }}
             >
-              Learn it. Earn it. Prove it.
+              Your guide to the world of certifications.
             </div>
 
             <div

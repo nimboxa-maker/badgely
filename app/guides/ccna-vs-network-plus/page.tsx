@@ -16,11 +16,11 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://thirdbadge.com";
+const siteUrl = "https://AimToCert.com";
 const pageUrl = `${siteUrl}/guides/ccna-vs-network-plus`;
 
 const title =
-  "CCNA vs Network+: Which Should You Choose in 2026? | ThirdBadge";
+  "CCNA vs Network+: Which Should You Choose in 2026? | AimToCert";
 
 const description =
   "Compare Cisco CCNA and CompTIA Network+ in 2026. See the key differences in depth, vendor focus, exam format, study time, and which networking certification fits your goal.";
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description,
     url: pageUrl,
     type: "article",
-    siteName: "ThirdBadge",
+    siteName: "AimToCert",
   },
   twitter: {
     card: "summary_large_image",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 const comparison = [
-  ["ThirdBadge level", "Foundational", "Associate"],
+  ["AimToCert level", "Foundational", "Associate"],
   ["Vendor focus", "Vendor-neutral", "Cisco-specific"],
   ["Current exam", "N10-009", "200-301 CCNA v1.1"],
   ["Exam duration", "90 minutes", "120 minutes"],
@@ -56,7 +56,7 @@ const comparison = [
     "Cisco does not publish a fixed count",
   ],
   [
-    "ThirdBadge study estimate",
+    "AimToCert study estimate",
     "70–120 hours",
     "80–140 hours",
   ],
@@ -76,7 +76,7 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 1,
-          name: "ThirdBadge",
+          name: "AimToCert",
           item: siteUrl,
         },
         {
@@ -102,12 +102,12 @@ const structuredData = {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       publisher: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       about: [
@@ -175,7 +175,7 @@ export default function CcnaVsNetworkPlusGuide() {
       >
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-blue-500/15 text-blue-100 ring-1 ring-inset ring-blue-400/30">
-            ThirdBadge Guide
+            AimToCert Guide
           </Badge>
 
           <Badge className="bg-white/10 text-slate-100">
@@ -202,7 +202,7 @@ export default function CcnaVsNetworkPlusGuide() {
         </p>
 
         <p className="mt-5 text-sm text-slate-400">
-          Reviewed against ThirdBadge certification data verified
+          Reviewed against AimToCert certification data verified
           September 1, 2026.
         </p>
       </MarketingHero>
@@ -366,7 +366,7 @@ export default function CcnaVsNetworkPlusGuide() {
                   as IP connectivity, network access, routing and
                   switching, Cisco-oriented configuration concepts,
                   security fundamentals, and automation. That is why
-                  ThirdBadge classifies Network+ as foundational and
+                  AimToCert classifies Network+ as foundational and
                   CCNA as associate level.
                 </p>
               </Card>
@@ -606,7 +606,7 @@ export default function CcnaVsNetworkPlusGuide() {
 
                     <p className="mt-2 leading-7 text-slate-600">
                       Compare the broader set of active networking
-                      credentials in ThirdBadge.
+                      credentials in AimToCert.
                     </p>
 
                     <p className="mt-4 inline-flex items-center gap-1 font-semibold text-blue-700">
@@ -637,7 +637,7 @@ export default function CcnaVsNetworkPlusGuide() {
               </h2>
 
               <p className="mt-3 max-w-2xl leading-7 text-slate-300">
-                ThirdBadge&apos;s certification pages include exam
+                AimToCert&apos;s certification pages include exam
                 details, study estimates, official resources, renewal
                 information, and related career links so you can make
                 the decision with the full context.
@@ -720,7 +720,7 @@ export default function CcnaVsNetworkPlusGuide() {
                   href="/guides"
                   className="block text-blue-700 hover:text-blue-600"
                 >
-                  All ThirdBadge Guides
+                  All AimToCert Guides
                 </Link>
 
                 <Link
@@ -747,10 +747,10 @@ export default function CcnaVsNetworkPlusGuide() {
             </Card>
 
             <p className="px-1 text-xs leading-5 text-slate-500">
-              ThirdBadge is an independent educational resource.
+              AimToCert is an independent educational resource.
               Certification names may be trademarks of their respective
               owners, and provider inclusion does not imply endorsement
-              of ThirdBadge.
+              of AimToCert.
             </p>
           </aside>
         </div>

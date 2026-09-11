@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions | ThirdBadge",
+  title: "Terms and Conditions | AimToCert",
   description:
-    "Review the terms and conditions that govern use of the ThirdBadge website and its educational certification resources.",
+    "Review the terms and conditions that govern use of the AimToCert website and its educational certification resources.",
 };
 
 export default function TermsPage() {
@@ -21,7 +21,7 @@ export default function TermsPage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-blue-100">
-            These Terms and Conditions explain the rules for using ThirdBadge
+            These Terms and Conditions explain the rules for using AimToCert
             and the information, resources, and services available through this
             website.
           </p>
@@ -40,7 +40,7 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              By accessing or using ThirdBadge, you agree to these Terms and
+              By accessing or using AimToCert, you agree to these Terms and
               Conditions. If you do not agree with these terms, you should not
               use the website.
             </p>
@@ -52,14 +52,14 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge is an independent educational resource designed to
+              AimToCert is an independent educational resource designed to
               help users research and understand IT certifications, career
               paths, study resources, exam providers, testing options, renewal
               requirements, and related topics.
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              Information on ThirdBadge is provided for general educational and
+              Information on AimToCert is provided for general educational and
               informational purposes only. It should not be treated as official
               guidance from any certification provider, testing organization,
               employer, school, or government agency.
@@ -72,7 +72,7 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              We work to keep ThirdBadge useful and accurate, but certification
+              We work to keep AimToCert useful and accurate, but certification
               programs change frequently. Exam numbers, prices, prerequisites,
               testing providers, renewal requirements, policies, and other
               details may change without notice.
@@ -92,7 +92,7 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge does not guarantee that use of the website, study
+              AimToCert does not guarantee that use of the website, study
               resources, courses, guides, or recommendations will result in
               passing an exam, earning a certification, receiving employment,
               receiving a promotion, or achieving any other professional or
@@ -106,10 +106,10 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge may link to websites, products, courses, testing
+              AimToCert may link to websites, products, courses, testing
               providers, certification vendors, marketplaces, and other
               third-party services. These third parties operate independently
-              from ThirdBadge.
+              from AimToCert.
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
@@ -125,14 +125,14 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              Some links on ThirdBadge may be affiliate links. If you make a
-              qualifying purchase through one of those links, ThirdBadge may
+              Some links on AimToCert may be affiliate links. If you make a
+              qualifying purchase through one of those links, AimToCert may
               receive a commission at no additional cost to you.
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
               Affiliate relationships do not change the price you pay unless a
-              third-party provider specifically states otherwise. ThirdBadge
+              third-party provider specifically states otherwise. AimToCert
               aims to clearly identify commercial relationships where
               appropriate.
             </p>
@@ -146,7 +146,7 @@ export default function TermsPage() {
             <p className="mt-4 text-base leading-7 text-slate-700">
               Unless otherwise stated, the original written content, website
               design, branding, organization, and other original materials on
-              ThirdBadge are owned by or licensed to ThirdBadge and may not be
+              AimToCert are owned by or licensed to AimToCert and may not be
               copied, reproduced, republished, or redistributed without
               permission, except where allowed by law.
             </p>
@@ -154,7 +154,7 @@ export default function TermsPage() {
             <p className="mt-4 text-base leading-7 text-slate-700">
               Certification names, exam names, product names, logos, trademarks,
               and other third-party intellectual property belong to their
-              respective owners. Their appearance on ThirdBadge does not imply
+              respective owners. Their appearance on AimToCert does not imply
               endorsement or sponsorship.
             </p>
           </div>
@@ -165,7 +165,7 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              You agree not to misuse ThirdBadge, interfere with the website,
+              You agree not to misuse AimToCert, interfere with the website,
               attempt unauthorized access, distribute malicious software, use
               automated systems in a way that disrupts the service, or use the
               website for unlawful purposes.
@@ -179,7 +179,7 @@ export default function TermsPage() {
 
             <p className="mt-4 text-base leading-7 text-slate-700">
               We may update, change, suspend, or discontinue any part of
-              ThirdBadge at any time. We do not guarantee that the website or
+              AimToCert at any time. We do not guarantee that the website or
               any particular feature will always be available or error-free.
             </p>
           </div>
@@ -190,11 +190,11 @@ export default function TermsPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              To the fullest extent permitted by applicable law, ThirdBadge and
+              To the fullest extent permitted by applicable law, AimToCert and
               its operators will not be liable for losses or damages resulting
               from reliance on information presented on the website, use of
               third-party services, interruptions in website availability, or
-              decisions made based on ThirdBadge content.
+              decisions made based on AimToCert content.
             </p>
           </div>
 
@@ -210,7 +210,7 @@ export default function TermsPage() {
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              Continued use of ThirdBadge after updated terms are posted means
+              Continued use of AimToCert after updated terms are posted means
               you accept the revised terms.
             </p>
           </div>
@@ -225,17 +225,17 @@ export default function TermsPage() {
             </p>
 
             <a
-              href="mailto:team@thirdbadge.com"
+              href="mailto:team@AimToCert.com"
               className="mt-4 inline-flex text-base font-semibold text-blue-700 hover:text-blue-900"
             >
-              team@thirdbadge.com
+              team@AimToCert.com
             </a>
           </div>
 
           <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6">
             <p className="text-sm leading-6 text-slate-700">
               These terms are intended to provide clear website-use rules for
-              ThirdBadge. They are not a substitute for legal advice tailored
+              AimToCert. They are not a substitute for legal advice tailored
               to a specific business or jurisdiction.
             </p>
 

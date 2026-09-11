@@ -21,7 +21,7 @@ import {
 } from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
-  title: "IT Certification Recertification & Renewal | ThirdBadge",
+  title: "IT Certification Recertification & Renewal | AimToCert",
   description:
     "Understand IT certification renewal, recertification, continuing education, CPE and CE requirements, renewal fees, and expiration timelines.",
 };
@@ -273,7 +273,7 @@ export default function RecertificationPage() {
           </h2>
 
           <p className="mt-4 leading-7 text-slate-600">
-            Certification renewal varies by provider. ThirdBadge helps you
+            Certification renewal varies by provider. AimToCert helps you
             understand what to check before your credential approaches
             expiration.
           </p>
@@ -385,7 +385,7 @@ export default function RecertificationPage() {
                 </h3>
 
                 <p className="mt-4 leading-7 text-slate-600">
-                  ThirdBadge is continuing to expand its recertification
+                  AimToCert is continuing to expand its recertification
                   coverage. Tell us which certification provider you would like
                   to see added next.
                 </p>
@@ -451,7 +451,7 @@ export default function RecertificationPage() {
               </h2>
 
               <p className="mt-3 max-w-3xl leading-7 text-slate-700">
-                ThirdBadge provides independent educational guidance. Always
+                AimToCert provides independent educational guidance. Always
                 confirm renewal deadlines, fees, accepted activities, and
                 certification-specific requirements with the official
                 certification provider before taking action.

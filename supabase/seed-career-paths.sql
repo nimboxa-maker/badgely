@@ -1,4 +1,4 @@
--- ThirdBadge idempotent career-path seed data.
+-- AimToCert idempotent career-path seed data.
 -- Milestone 3 seed data; public career-path pages are implemented in Milestone 5.
 
 with career_path_seed (

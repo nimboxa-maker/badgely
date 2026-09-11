@@ -16,11 +16,11 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://thirdbadge.com";
+const siteUrl = "https://AimToCert.com";
 const pageUrl = `${siteUrl}/guides/security-plus-vs-sscp`;
 
 const title =
-  "Security+ vs SSCP: Which Should You Choose in 2026? | ThirdBadge";
+  "Security+ vs SSCP: Which Should You Choose in 2026? | AimToCert";
 
 const description =
   "Compare CompTIA Security+ and ISC2 SSCP in 2026. See differences in experience requirements, exam format, study time, career fit, and which certification matches your stage.";
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description,
     url: pageUrl,
     type: "article",
-    siteName: "ThirdBadge",
+    siteName: "AimToCert",
   },
   twitter: {
     card: "summary_large_image",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 const comparison = [
-  ["ThirdBadge level", "Foundational", "Intermediate"],
+  ["AimToCert level", "Foundational", "Intermediate"],
   ["Vendor focus", "Vendor-neutral", "Vendor-neutral"],
   ["Current exam", "SY0-701", "SSCP"],
   ["Exam duration", "90 minutes", "120 minutes"],
@@ -58,7 +58,7 @@ const comparison = [
     "One year of qualifying experience for full certification",
   ],
   [
-    "ThirdBadge study estimate",
+    "AimToCert study estimate",
     "60–120 hours",
     "80–140 hours",
   ],
@@ -78,7 +78,7 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 1,
-          name: "ThirdBadge",
+          name: "AimToCert",
           item: siteUrl,
         },
         {
@@ -105,12 +105,12 @@ const structuredData = {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       publisher: {
         "@type": "Organization",
-        name: "ThirdBadge",
+        name: "AimToCert",
         url: siteUrl,
       },
       about: [
@@ -179,7 +179,7 @@ export default function SecurityPlusVsSscpGuide() {
       >
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-blue-500/15 text-blue-100 ring-1 ring-inset ring-blue-400/30">
-            ThirdBadge Guide
+            AimToCert Guide
           </Badge>
 
           <Badge className="bg-white/10 text-slate-100">
@@ -205,7 +205,7 @@ export default function SecurityPlusVsSscpGuide() {
         </p>
 
         <p className="mt-5 text-sm text-slate-400">
-          Reviewed against ThirdBadge certification data verified
+          Reviewed against AimToCert certification data verified
           September 1, 2026.
         </p>
       </MarketingHero>
@@ -537,7 +537,7 @@ export default function SecurityPlusVsSscpGuide() {
                   </p>
 
                   <p className="mt-3 leading-7 text-slate-600">
-                    ThirdBadge&apos;s estimate reflects a broad
+                    AimToCert&apos;s estimate reflects a broad
                     foundational exam. Learners who still need
                     networking and systems fundamentals may need
                     additional preparation time.
@@ -554,7 +554,7 @@ export default function SecurityPlusVsSscpGuide() {
                   </p>
 
                   <p className="mt-3 leading-7 text-slate-600">
-                    ThirdBadge&apos;s estimate assumes the learner
+                    AimToCert&apos;s estimate assumes the learner
                     already has some operational security context. SSCP
                     is experience-oriented, so practice matters as much
                     as reviewing definitions.
@@ -603,7 +603,7 @@ export default function SecurityPlusVsSscpGuide() {
 
               <p className="mt-3 leading-7 text-slate-600">
                 Use the certification comparison as one part of a
-                larger plan. ThirdBadge&apos;s cybersecurity roadmaps
+                larger plan. AimToCert&apos;s cybersecurity roadmaps
                 can help you see where foundational and intermediate
                 credentials fit alongside hands-on skills.
               </p>
@@ -655,7 +655,7 @@ export default function SecurityPlusVsSscpGuide() {
                 id="next-step"
                 className="mt-2 text-3xl font-bold tracking-tight"
               >
-                Review Security+ and SSCP in ThirdBadge
+                Review Security+ and SSCP in AimToCert
               </h2>
 
               <p className="mt-3 max-w-2xl leading-7 text-slate-300">
@@ -719,7 +719,7 @@ export default function SecurityPlusVsSscpGuide() {
 
             <Card className="p-5">
               <h2 className="font-bold text-slate-950">
-                Related ThirdBadge pages
+                Related AimToCert pages
               </h2>
 
               <nav
@@ -744,7 +744,7 @@ export default function SecurityPlusVsSscpGuide() {
                   href="/guides"
                   className="block text-blue-700 hover:text-blue-600"
                 >
-                  All ThirdBadge Guides
+                  All AimToCert Guides
                 </Link>
               </nav>
             </Card>

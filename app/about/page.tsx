@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Us | ThirdBadge",
+  title: "About Us | AimToCert",
   description:
-    "Learn about ThirdBadge and our mission to help people discover, understand, and pursue IT certifications with confidence.",
+    "Learn about AimToCert and our mission to help people discover, understand, and pursue IT certifications with confidence.",
 };
 
 export default function AboutPage() {
@@ -13,15 +13,15 @@ export default function AboutPage() {
       <section className="bg-[linear-gradient(135deg,#0b2d77_0%,#123fb8_55%,#153d9d_100%)] text-white">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-200">
-            About ThirdBadge
+            About AimToCert
           </p>
 
           <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-            Learn it. Earn it. Prove it.
+            Your guide to the world of certifications.
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-blue-100">
-            ThirdBadge is an independent educational resource built to make the
+            AimToCert is an independent educational resource built to make the
             IT certification journey easier to understand, easier to plan, and
             easier to navigate.
           </p>
@@ -32,7 +32,7 @@ export default function AboutPage() {
         <div className="space-y-10">
           <div>
             <h2 className="text-2xl font-bold text-slate-950">
-              Why ThirdBadge exists
+              Why AimToCert exists
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
@@ -40,7 +40,7 @@ export default function AboutPage() {
               have to search across multiple websites to understand exam
               requirements, costs, certification paths, study resources,
               renewal policies, testing providers, and career options.
-              ThirdBadge brings that information together in one place so
+              AimToCert brings that information together in one place so
               learners can spend less time searching and more time moving
               forward.
             </p>
@@ -105,7 +105,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              ThirdBadge is not a certification provider and does not issue
+              AimToCert is not a certification provider and does not issue
               credentials. We are an independent educational platform designed
               to organize useful certification information and help users make
               informed decisions.
@@ -127,14 +127,14 @@ export default function AboutPage() {
 
             <p className="mt-3 text-base leading-7 text-slate-700">
               We welcome feedback, corrections, suggestions, and questions that
-              can help make ThirdBadge more useful.
+              can help make AimToCert more useful.
             </p>
 
             <a
-              href="mailto:team@thirdbadge.com"
+              href="mailto:team@AimToCert.com"
               className="mt-5 inline-flex rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-800"
             >
-              team@thirdbadge.com
+              team@AimToCert.com
             </a>
 
             <div className="mt-5">

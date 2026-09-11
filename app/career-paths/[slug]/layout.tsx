@@ -9,7 +9,7 @@ interface CareerPathLayoutProps {
 }
 
 const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thirdbadge.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://AimToCert.com"
 ).replace(/\/$/, "");
 
 const categoryRoutes: Record<string, string> = {
@@ -63,7 +63,7 @@ export async function generateMetadata({
 
   const { careerPath } = record;
   const title =
-    careerPath.seo_title ?? `${careerPath.name} Career Path | ThirdBadge`;
+    careerPath.seo_title ?? `${careerPath.name} Career Path | AimToCert`;
   const description =
     careerPath.seo_description ?? careerPath.short_summary;
   const canonicalUrl = `${siteUrl}/career-paths/${careerPath.slug}`;
@@ -77,7 +77,7 @@ export async function generateMetadata({
       description,
       url: canonicalUrl,
       type: "website",
-      siteName: "ThirdBadge",
+      siteName: "AimToCert",
     },
     twitter: {
       card: "summary",
@@ -144,7 +144,7 @@ export default async function CareerPathLayout({
           {
             "@type": "ListItem",
             position: 1,
-            name: "ThirdBadge",
+            name: "AimToCert",
             item: siteUrl,
           },
           {

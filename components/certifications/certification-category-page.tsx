@@ -32,7 +32,7 @@ type CategoryCertification = {
   providers: { name: string } | { name: string }[] | null;
 };
 
-const productionSiteUrl = "https://thirdbadge.com";
+const productionSiteUrl = "https://AimToCert.com";
 
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? productionSiteUrl
@@ -102,7 +102,7 @@ export async function CertificationCategoryPage({
           {
             "@type": "ListItem",
             position: 1,
-            name: "ThirdBadge",
+            name: "AimToCert",
             item: siteUrl,
           },
           {
@@ -157,7 +157,7 @@ export async function CertificationCategoryPage({
             </h2>
 
             <p className="mt-1 text-sm text-slate-300">
-              A quick view of the credentials currently in ThirdBadge.
+              A quick view of the credentials currently in AimToCert.
             </p>
 
             <div className="mt-5 space-y-3">

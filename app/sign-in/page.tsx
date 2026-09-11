@@ -20,7 +20,7 @@ export default async function SignInPage({
           </p>
 
           <h1 className="text-3xl font-bold tracking-tight">
-            ThirdBadge Admin Sign In
+            AimToCert Admin Sign In
           </h1>
 
           <p className="text-sm leading-6 text-slate-600">

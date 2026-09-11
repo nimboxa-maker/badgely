@@ -1,4 +1,4 @@
--- ThirdBadge idempotent seed data.
+-- AimToCert idempotent seed data.
 -- Milestone 3: providers and certification catalog.
 
 insert into public.providers (

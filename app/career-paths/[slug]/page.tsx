@@ -58,7 +58,7 @@ export async function generateMetadata({
     return {
       title: "Career path not found",
       description:
-        "The requested ThirdBadge career path could not be found.",
+        "The requested AimToCert career path could not be found.",
     };
   }
 

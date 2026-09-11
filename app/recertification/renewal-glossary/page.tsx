@@ -15,7 +15,7 @@ import {
 import { Card } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Certification Renewal Terms Explained | ThirdBadge",
+  title: "Certification Renewal Terms Explained | AimToCert",
   description:
     "Understand common certification renewal terms including CE, CEU, CPE, PDU, recertification, renewal windows, maintenance fees, and certification cycles.",
 };
@@ -211,7 +211,7 @@ export default function RenewalGlossaryPage() {
             </h2>
 
             <p className="mt-2 text-slate-700">
-              Return to the ThirdBadge Recertification directory and select
+              Return to the AimToCert Recertification directory and select
               your certification provider.
             </p>
           </div>

@@ -9,7 +9,7 @@ interface CertificationLayoutProps {
 }
 
 const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thirdbadge.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://AimToCert.com"
 ).replace(/\/$/, "");
 
 const categoryRoutes: Record<string, string> = {
@@ -142,7 +142,7 @@ export async function generateMetadata({
   }
 
   const title =
-    certification.seo_title ?? `${certification.name} | ThirdBadge`;
+    certification.seo_title ?? `${certification.name} | AimToCert`;
 
   const description =
     certification.seo_description ?? certification.short_summary;
@@ -158,7 +158,7 @@ export async function generateMetadata({
       description,
       url: canonicalUrl,
       type: "website",
-      siteName: "ThirdBadge",
+      siteName: "AimToCert",
     },
     twitter: {
       card: "summary",
@@ -207,7 +207,7 @@ export default async function CertificationLayout({
           {
             "@type": "ListItem",
             position: 1,
-            name: "ThirdBadge",
+            name: "AimToCert",
             item: siteUrl,
           },
           {
@@ -269,7 +269,7 @@ export default async function CertificationLayout({
             id="explore-more-heading"
             className="text-2xl font-bold tracking-tight text-slate-950"
           >
-            Keep exploring on ThirdBadge
+            Keep exploring on AimToCert
           </h2>
 
           <p className="mt-2 max-w-3xl leading-7 text-slate-600">
@@ -285,7 +285,7 @@ export default async function CertificationLayout({
                 className="rounded-2xl border border-blue-200 bg-blue-50 p-4 transition hover:border-blue-400 hover:bg-blue-100"
               >
                 <p className="text-sm font-semibold text-blue-700">
-                  ThirdBadge Guide
+                  AimToCert Guide
                 </p>
 
                 <p className="mt-1 font-bold text-slate-950">

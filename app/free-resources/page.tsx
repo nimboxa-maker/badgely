@@ -30,7 +30,7 @@ import {
 } from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
-  title: "Free IT Certification Resources | ThirdBadge",
+  title: "Free IT Certification Resources | AimToCert",
   description:
     "Find free IT certification training, official vendor learning, practice tests, labs, study tools, videos, and certification communities.",
 };
@@ -676,7 +676,7 @@ export default function FreeResourcesPage() {
               <p className="mt-3 leading-7 text-slate-700">
                 Many certification providers offer free learning resources
                 while still charging for the certification exam itself.
-                ThirdBadge separates study resources from exam costs so you
+                AimToCert separates study resources from exam costs so you
                 know what is actually free.
               </p>
             </div>

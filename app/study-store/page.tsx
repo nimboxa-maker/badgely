@@ -23,7 +23,7 @@ import {
 } from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
-  title: "Study Store | ThirdBadge",
+  title: "Study Store | AimToCert",
   description:
     "Browse curated IT certification books, practice exams, labs, video training, exam vouchers, and learning resources from trusted publishers and providers.",
 };
@@ -476,13 +476,13 @@ const storePrinciples = [
     icon: ShieldCheck,
     title: "Publisher transparency",
     description:
-      "Every card tells you who publishes or sells the resource before you leave ThirdBadge, so the destination is never a surprise.",
+      "Every card tells you who publishes or sells the resource before you leave AimToCert, so the destination is never a surprise.",
   },
   {
     icon: ShoppingBag,
     title: "Buy from the source",
     description:
-      "ThirdBadge helps you discover the resource. Purchases, pricing, fulfillment, returns, and subscriptions stay with the external publisher or seller.",
+      "AimToCert helps you discover the resource. Purchases, pricing, fulfillment, returns, and subscriptions stay with the external publisher or seller.",
   },
 ];
 
@@ -613,7 +613,7 @@ export default function StudyStorePage() {
             </h2>
 
             <p className="mt-4 leading-7 text-slate-600">
-              ThirdBadge organizes study products by purpose so you can compare
+              AimToCert organizes study products by purpose so you can compare
               resources without digging through unrelated storefronts.
             </p>
           </div>
@@ -1078,7 +1078,7 @@ export default function StudyStorePage() {
                   className={`relative mx-auto flex aspect-[3/4] w-full max-w-[210px] flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${resource.accent} p-5 text-white shadow-lg`}
                 >
                   <div className="flex items-center justify-between gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80">
-                    <span>ThirdBadge pick</span>
+                    <span>AimToCert pick</span>
                     <BookOpen className="size-4" aria-hidden="true" />
                   </div>
 
@@ -1290,7 +1290,7 @@ export default function StudyStorePage() {
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-700">
-              The ThirdBadge difference
+              The AimToCert difference
             </p>
 
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
@@ -1334,12 +1334,12 @@ export default function StudyStorePage() {
               </p>
 
               <h2 className="mt-2 text-xl font-bold text-slate-950">
-                ThirdBadge may earn from qualifying purchases.
+                AimToCert may earn from qualifying purchases.
               </h2>
 
               <p className="mt-3 max-w-4xl leading-7 text-slate-700">
-                ThirdBadge may use affiliate links for some shopping resources.
-                If you purchase through an eligible affiliate link, ThirdBadge
+                AimToCert may use affiliate links for some shopping resources.
+                If you purchase through an eligible affiliate link, AimToCert
                 may receive a commission at no additional cost to you. A
                 publisher&apos;s inclusion does not mean it paid for placement,
                 and affiliate status does not determine whether a resource is

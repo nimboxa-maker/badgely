@@ -17,7 +17,7 @@ const discoveryLinks = [
 
 const companyLinks = [
   { href: "/about", label: "About Us" },
-  { href: "mailto:team@thirdbadge.com", label: "Contact Us" },
+  { href: "mailto:team@AimToCert.com", label: "Contact Us" },
   { href: "/terms", label: "Terms and Conditions" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/cookie-settings", label: "Cookie Settings" },
@@ -39,12 +39,12 @@ export function SiteFooter() {
           <div className="flex justify-center lg:justify-start">
             <Link
               href="/"
-              aria-label="ThirdBadge home"
+              aria-label="AimToCert home"
               className="inline-flex rounded-lg focus-visible:outline-2 focus-visible:outline-white"
             >
               <Image
-                src="/brand/thirdbadge-logo.png"
-                alt="ThirdBadge — Learn It | Earn It | Prove It"
+                src="/brand/AimToCert-logo-v2.png"
+                alt="AimToCert — Your guide to the world of certifications."
                 width={260}
                 height={87}
                 className="h-16 w-auto rounded-md"
@@ -121,10 +121,10 @@ export function SiteFooter() {
             </div>
 
             <a
-              href="mailto:team@thirdbadge.com"
+              href="mailto:team@AimToCert.com"
               className="text-sm font-medium text-blue-100 transition hover:text-white"
             >
-              team@thirdbadge.com
+              team@AimToCert.com
             </a>
           </div>
         </div>
@@ -132,16 +132,16 @@ export function SiteFooter() {
         <div className="mt-7 border-t border-white/15 pt-5">
           <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
             <p className="text-xs text-blue-100">
-              © 2026 ThirdBadge. All rights reserved.
+              © 2026 AimToCert. All rights reserved.
             </p>
 
             <p className="text-xs font-medium text-blue-100">
-              Learn It | Earn It | Prove It
+              Your guide to the world of certifications
             </p>
           </div>
 
           <p className="mx-auto mt-4 max-w-4xl text-center text-xs leading-5 text-blue-100">
-            ThirdBadge is an independent educational resource and is not
+            AimToCert is an independent educational resource and is not
             affiliated with, endorsed by, or sponsored by any certification
             provider. Certification names and logos may be trademarks of their
             respective owners.

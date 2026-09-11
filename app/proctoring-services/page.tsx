@@ -17,7 +17,7 @@ import {
 } from "@/components/layout/marketing-hero";
 
 export const metadata: Metadata = {
-  title: "IT Proctoring Services | ThirdBadge",
+  title: "IT Proctoring Services | AimToCert",
   description:
     "Find the testing and proctoring providers used by major IT certification programs, including Pearson VUE, PSI, PeopleCert, Certiport, Red Hat, and Prometric.",
 };
@@ -447,7 +447,7 @@ export default function ProctoringServicesPage() {
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
           Certification vendors create the credential. Testing and
           proctoring providers deliver the exam experience.
-          ThirdBadge connects the two so you know what to expect.
+          AimToCert connects the two so you know what to expect.
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -746,7 +746,7 @@ export default function ProctoringServicesPage() {
                 </h2>
 
                 <p className="mt-3 max-w-3xl leading-7 text-slate-600">
-                  ThirdBadge shows the latest verified relationship we
+                  AimToCert shows the latest verified relationship we
                   have, but testing providers, online availability,
                   exam security rules, and regional options can
                   change. Always verify the final delivery method
