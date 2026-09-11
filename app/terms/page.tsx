@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Review the terms and conditions that govern use of the AimToCert website and its educational certification resources.";
+
 export const metadata: Metadata = {
   title: "Terms and Conditions | AimToCert",
-  description:
-    "Review the terms and conditions that govern use of the AimToCert website and its educational certification resources.",
+  description,
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: "Terms and Conditions | AimToCert",
+    description,
+    url: "/terms",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms and Conditions | AimToCert",
+    description,
+  },
 };
 
 export default function TermsPage() {

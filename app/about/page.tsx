@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Learn about AimToCert and our mission to help people discover, understand, and pursue IT certifications with confidence.";
+
 export const metadata: Metadata = {
-  title: "About Us | AimToCert",
-  description:
-    "Learn about AimToCert and our mission to help people discover, understand, and pursue IT certifications with confidence.",
+  title: "About AimToCert | IT Certification Guidance",
+  description,
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About AimToCert | IT Certification Guidance",
+    description,
+    url: "/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About AimToCert | IT Certification Guidance",
+    description,
+  },
 };
 
 export default function AboutPage() {

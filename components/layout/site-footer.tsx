@@ -18,6 +18,7 @@ const discoveryLinks = [
 const companyLinks = [
   { href: "/about", label: "About Us" },
   { href: "mailto:team@AimToCert.com", label: "Contact Us" },
+  { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
   { href: "/terms", label: "Terms and Conditions" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/cookie-settings", label: "Cookie Settings" },

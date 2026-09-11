@@ -5,6 +5,22 @@ export const metadata: Metadata = {
   title: "Cookie Settings | AimToCert",
   description:
     "Learn how AimToCert uses essential cookies and how to manage cookies in your browser.",
+  alternates: {
+    canonical: "/cookie-settings",
+  },
+  openGraph: {
+    title: "Cookie Settings | AimToCert",
+    description:
+      "Learn how AimToCert uses essential cookies and how to manage cookies in your browser.",
+    url: "/cookie-settings",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cookie Settings | AimToCert",
+    description:
+      "Learn how AimToCert uses essential cookies and how to manage cookies in your browser.",
+  },
 };
 
 export default function CookieSettingsPage() {
@@ -64,7 +80,7 @@ export default function CookieSettingsPage() {
               They may support functions such as security, page delivery,
               session handling, fraud prevention, or other technical
               operations. Because these cookies may be necessary for the site
-              to work, they generally cannot be disabled through a AimToCert
+              to work, they generally cannot be disabled through an AimToCert
               preference control.
             </p>
           </div>

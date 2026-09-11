@@ -4,6 +4,8 @@ const description =
   "Find the testing and proctoring providers used by major IT certification programs, including Pearson VUE, PSI, PeopleCert, Certiport, Red Hat, and Prometric.";
 
 export const metadata: Metadata = {
+  title: "IT Certification Proctoring Services | AimToCert",
+  description,
   alternates: {
     canonical: "/proctoring-services",
   },
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "IT Certification Proctoring Services | AimToCert",
     description,
   },

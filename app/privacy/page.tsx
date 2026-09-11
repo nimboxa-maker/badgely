@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const description =
+  "Learn how AimToCert approaches privacy, limited technical data, email communications, cookies, and third-party services.";
+
 export const metadata: Metadata = {
   title: "Privacy Policy | AimToCert",
-  description:
-    "Learn how AimToCert approaches privacy, limited technical data, email communications, cookies, and third-party services.",
+  description,
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | AimToCert",
+    description,
+    url: "/privacy",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | AimToCert",
+    description,
+  },
 };
 
 export default function PrivacyPage() {
@@ -40,8 +56,8 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              AimToCert is intended to provide educational information about
-              IT certifications without requiring visitors to provide personal
+              AimToCert is intended to provide educational information about IT
+              certifications without requiring visitors to provide personal
               information.
             </p>
 
@@ -91,8 +107,8 @@ export default function PrivacyPage() {
 
             <p className="mt-4 text-base leading-7 text-slate-700">
               Like most websites, the infrastructure used to host and protect
-              AimToCert may automatically process limited technical
-              information when a visitor requests a page.
+              AimToCert may automatically process limited technical information
+              when a visitor requests a page.
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
@@ -102,16 +118,14 @@ export default function PrivacyPage() {
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              This technical processing may be necessary to deliver the
-              website, detect abuse, maintain security, diagnose technical
-              problems, and operate the service reliably.
+              This technical processing may be necessary to deliver the website,
+              detect abuse, maintain security, diagnose technical problems, and
+              operate the service reliably.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-slate-950">
-              5. Cookies
-            </h2>
+            <h2 className="text-2xl font-bold text-slate-950">5. Cookies</h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
               AimToCert does not currently intend to use advertising or
@@ -125,9 +139,9 @@ export default function PrivacyPage() {
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              If AimToCert later introduces optional analytics, advertising,
-              or other non-essential cookies, this policy and the Cookie
-              Settings page will be updated accordingly.
+              If AimToCert later introduces optional analytics, advertising, or
+              other non-essential cookies, this policy and the Cookie Settings
+              page will be updated accordingly.
             </p>
 
             <Link
@@ -184,8 +198,8 @@ export default function PrivacyPage() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
-              AimToCert does not sell personal information to advertisers,
-              data brokers, or other third parties.
+              AimToCert does not sell personal information to advertisers, data
+              brokers, or other third parties.
             </p>
           </div>
 
@@ -214,8 +228,8 @@ export default function PrivacyPage() {
 
             <p className="mt-4 text-base leading-7 text-slate-700">
               AimToCert contains links to external websites. Once you leave
-              AimToCert, the privacy policy and terms of the destination
-              website apply.
+              AimToCert, the privacy policy and terms of the destination website
+              apply.
             </p>
 
             <p className="mt-4 text-base leading-7 text-slate-700">
@@ -263,9 +277,9 @@ export default function PrivacyPage() {
             <p className="text-sm leading-6 text-slate-700">
               AimToCert&apos;s current goal is to minimize the amount of
               personal information it handles. If the website later introduces
-              accounts, analytics, newsletters, payments, or other features
-              that change that approach, this policy will be updated before
-              those practices are represented as part of the service.
+              accounts, analytics, newsletters, payments, or other features that
+              change that approach, this policy will be updated before those
+              practices are represented as part of the service.
             </p>
 
             <Link

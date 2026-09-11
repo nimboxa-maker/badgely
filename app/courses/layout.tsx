@@ -4,6 +4,8 @@ const description =
   "Compare IT certification courses, training platforms, labs, and official learning resources from trusted providers.";
 
 export const metadata: Metadata = {
+  title: "IT Certification Courses & Training Providers | AimToCert",
+  description,
   alternates: {
     canonical: "/courses",
   },
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "IT Certification Courses & Training Providers | AimToCert",
     description,
   },

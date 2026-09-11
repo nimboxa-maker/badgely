@@ -20,10 +20,26 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
+const description =
+  "Understand IT certification renewal, recertification, continuing education, CPE and CE requirements, renewal fees, and expiration timelines.";
+
 export const metadata: Metadata = {
   title: "IT Certification Recertification & Renewal | AimToCert",
-  description:
-    "Understand IT certification renewal, recertification, continuing education, CPE and CE requirements, renewal fees, and expiration timelines.",
+  description,
+  alternates: {
+    canonical: "/recertification",
+  },
+  openGraph: {
+    title: "IT Certification Recertification & Renewal | AimToCert",
+    description,
+    url: "/recertification",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IT Certification Recertification & Renewal | AimToCert",
+    description,
+  },
 };
 
 const providers = [

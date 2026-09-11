@@ -29,10 +29,26 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
+const description =
+  "Find free IT certification training, official vendor learning, practice tests, labs, study tools, videos, and certification communities.";
+
 export const metadata: Metadata = {
   title: "Free IT Certification Resources | AimToCert",
-  description:
-    "Find free IT certification training, official vendor learning, practice tests, labs, study tools, videos, and certification communities.",
+  description,
+  alternates: {
+    canonical: "/free-resources",
+  },
+  openGraph: {
+    title: "Free IT Certification Resources | AimToCert",
+    description,
+    url: "/free-resources",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free IT Certification Resources | AimToCert",
+    description,
+  },
 };
 
 type Resource = {
@@ -345,13 +361,9 @@ function ResourceCard({
         </p>
       ) : null}
 
-      <h3 className="mt-2 text-xl font-bold text-slate-950">
-        {name}
-      </h3>
+      <h3 className="mt-2 text-xl font-bold text-slate-950">{name}</h3>
 
-      <p className="mt-4 leading-7 text-slate-600">
-        {description}
-      </p>
+      <p className="mt-4 leading-7 text-slate-600">{description}</p>
 
       <div className="mt-auto pt-6">
         <a
@@ -397,10 +409,7 @@ export default function FreeResourcesPage() {
               <a href="#official-training" className="block">
                 <HeroOption className="flex items-center gap-4">
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                    <GraduationCap
-                      className="size-5"
-                      aria-hidden="true"
-                    />
+                    <GraduationCap className="size-5" aria-hidden="true" />
                   </span>
 
                   <div className="flex-1">
@@ -423,16 +432,11 @@ export default function FreeResourcesPage() {
               <a href="#practice" className="block">
                 <HeroOption className="flex items-center gap-4">
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-violet-600 text-white">
-                    <CheckCircle2
-                      className="size-5"
-                      aria-hidden="true"
-                    />
+                    <CheckCircle2 className="size-5" aria-hidden="true" />
                   </span>
 
                   <div className="flex-1">
-                    <p className="font-bold text-white">
-                      Practice and review
-                    </p>
+                    <p className="font-bold text-white">Practice and review</p>
 
                     <p className="mt-1 text-sm text-slate-300">
                       Test your understanding before exam day.
@@ -449,16 +453,11 @@ export default function FreeResourcesPage() {
               <a href="#labs" className="block">
                 <HeroOption className="flex items-center gap-4">
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-white">
-                    <FlaskConical
-                      className="size-5"
-                      aria-hidden="true"
-                    />
+                    <FlaskConical className="size-5" aria-hidden="true" />
                   </span>
 
                   <div className="flex-1">
-                    <p className="font-bold text-white">
-                      Labs and tools
-                    </p>
+                    <p className="font-bold text-white">Labs and tools</p>
 
                     <p className="mt-1 text-sm text-slate-300">
                       Turn certification knowledge into practical skills.
@@ -607,10 +606,7 @@ export default function FreeResourcesPage() {
         </div>
       </section>
 
-      <section
-        id="labs"
-        className="border-y border-slate-200 bg-blue-50/50"
-      >
+      <section id="labs" className="border-y border-slate-200 bg-blue-50/50">
         <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
@@ -676,8 +672,8 @@ export default function FreeResourcesPage() {
               <p className="mt-3 leading-7 text-slate-700">
                 Many certification providers offer free learning resources
                 while still charging for the certification exam itself.
-                AimToCert separates study resources from exam costs so you
-                know what is actually free.
+                AimToCert separates study resources from exam costs so you know
+                what is actually free.
               </p>
             </div>
           </div>
