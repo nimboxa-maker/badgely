@@ -15,6 +15,10 @@ interface CareerPathDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aimtocert.com"
+).replace(/\/$/, "");
+
 async function getCareerPath(slug: string) {
   const supabase = await createClient();
 
@@ -56,19 +60,47 @@ export async function generateMetadata({
 
   if (!record) {
     return {
-      title: "Career path not found",
+      title: "Career path not found | AimToCert",
       description:
         "The requested AimToCert career path could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
+  const pageUrl = `${siteUrl}/career-paths/${record.careerPath.slug}`;
+
+  const title =
+    record.careerPath.seo_title ??
+    `${record.careerPath.name} Career Path | AimToCert`;
+
+  const description =
+    record.careerPath.seo_description ??
+    record.careerPath.short_summary ??
+    `Explore the ${record.careerPath.name} career path, including recommended certifications, practical steps, and progression guidance.`;
+
   return {
-    title: record.careerPath.seo_title
-      ? { absolute: record.careerPath.seo_title }
-      : record.careerPath.name,
-    description:
-      record.careerPath.seo_description ??
-      record.careerPath.short_summary,
+    title: {
+      absolute: title,
+    },
+    description,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: pageUrl,
+      type: "website",
+      siteName: "AimToCert",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -84,8 +116,69 @@ export default async function CareerPathDetailPage({
 
   const { careerPath, steps } = record;
 
+  const pageUrl = `${siteUrl}/career-paths/${careerPath.slug}`;
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Career Paths",
+            item: `${siteUrl}/career-paths`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: careerPath.name,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        name: `${careerPath.name} Career Path`,
+        description:
+          careerPath.full_summary ?? careerPath.short_summary,
+        url: pageUrl,
+        numberOfItems: steps.length,
+        itemListOrder: "https://schema.org/ItemListOrderAscending",
+        itemListElement: steps.map((step, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: step.title,
+          ...(step.explanation
+            ? {
+                description: step.explanation,
+              }
+            : {}),
+          ...(step.certifications
+            ? {
+                item: `${siteUrl}/certifications/${step.certifications.slug}`,
+              }
+            : {}),
+        })),
+      },
+    ],
+  };
+
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <Link
         href="/career-paths"
         className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
