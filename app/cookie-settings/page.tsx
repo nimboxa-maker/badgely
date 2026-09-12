@@ -200,10 +200,10 @@ export default function CookieSettingsPage() {
             </p>
 
             <a
-              href="mailto:team@AimToCert.com"
+              href="mailto:nimboxa@gmail.com"
               className="mt-4 inline-flex text-base font-semibold text-blue-700 hover:text-blue-900"
             >
-              team@AimToCert.com
+              nimboxa@gmail.com
             </a>
           </div>
 

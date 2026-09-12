@@ -16,7 +16,7 @@ const discoveryLinks = [
 
 const companyLinks = [
   { href: "/about", label: "About Us" },
-  { href: "mailto:team@AimToCert.com", label: "Contact Us" },
+  { href: "mailto:nimboxa@gmail.com", label: "Contact Us" },
   { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
   { href: "/terms", label: "Terms and Conditions" },
   { href: "/privacy", label: "Privacy Policy" },
@@ -121,10 +121,10 @@ export function SiteFooter() {
             </div>
 
             <a
-              href="mailto:team@AimToCert.com"
+              href="mailto:nimboxa@gmail.com"
               className="text-sm font-medium text-blue-100 transition hover:text-white"
             >
-              team@AimToCert.com
+              nimboxa@gmail.com
             </a>
           </div>
         </div>

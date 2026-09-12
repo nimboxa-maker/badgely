@@ -293,7 +293,7 @@ export default async function SitemapPage() {
 
             <li>
               <a
-                href="mailto:team@AimToCert.com"
+                href="mailto:nimboxa@gmail.com"
                 className="text-blue-700 hover:text-blue-900 hover:underline"
               >
                 Contact Us

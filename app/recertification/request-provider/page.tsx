@@ -198,7 +198,7 @@ export default function RequestProviderPage() {
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
-            href="mailto:team@AimToCert.com?subject=Recertification%20Provider%20Request"
+            href="mailto:nimboxa@gmail.com?subject=Recertification%20Provider%20Request"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500"
           >
             <Mail className="size-4" aria-hidden="true" />
@@ -312,7 +312,7 @@ export default function RequestProviderPage() {
                 </div>
 
                 <a
-                  href="mailto:team@AimToCert.com?subject=Recertification%20Provider%20Request"
+                  href="mailto:nimboxa@gmail.com?subject=Recertification%20Provider%20Request"
                   className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800 sm:w-auto"
                 >
                   <Mail className="size-4" aria-hidden="true" />

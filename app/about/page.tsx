@@ -147,10 +147,10 @@ export default function AboutPage() {
             </p>
 
             <a
-              href="mailto:team@AimToCert.com"
+              href="mailto:nimboxa@gmail.com"
               className="mt-5 inline-flex rounded-xl bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-800"
             >
-              team@AimToCert.com
+              nimboxa@gmail.com
             </a>
 
             <div className="mt-5">
