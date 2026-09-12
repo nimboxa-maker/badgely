@@ -8,6 +8,10 @@ import { createClient } from "@/lib/supabase/server";
 
 const VERIFY_TEXT = "Verify with official provider.";
 
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aimtocert.com"
+).replace(/\/$/, "");
+
 interface CertificationPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -126,19 +130,47 @@ export async function generateMetadata({
 
   if (!record) {
     return {
-      title: "Certification not found",
+      title: "Certification not found | AimToCert",
       description:
         "The requested certification could not be found in the AimToCert catalog.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
+  const pageUrl = `${siteUrl}/certifications/${record.certification.slug}`;
+
+  const title =
+    record.certification.seo_title ??
+    `${record.certification.name} Certification | AimToCert`;
+
+  const description =
+    record.certification.seo_description ??
+    record.certification.short_summary ??
+    `Explore the ${record.certification.name} certification, including exam details, study resources, recommended experience, renewal information, and related certifications.`;
+
   return {
-    title: record.certification.seo_title
-      ? { absolute: record.certification.seo_title }
-      : record.certification.name,
-    description:
-      record.certification.seo_description ??
-      record.certification.short_summary,
+    title: {
+      absolute: title,
+    },
+    description,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: pageUrl,
+      type: "website",
+      siteName: "AimToCert",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
