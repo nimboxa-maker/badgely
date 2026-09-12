@@ -5,16 +5,25 @@ import { getCertificationCategory } from "@/lib/certification-categories";
 const category = getCertificationCategory("networking")!;
 
 export const metadata: Metadata = {
-  title: { absolute: category.title },
+  title: {
+    absolute: category.title,
+  },
   description: category.description,
-  alternates: { canonical: `/certifications/${category.slug}` },
+  alternates: {
+    canonical: `/certifications/${category.slug}`,
+  },
   openGraph: {
     title: category.title,
     description: category.description,
     url: `/certifications/${category.slug}`,
     type: "website",
+    siteName: "AimToCert",
   },
-  twitter: { card: "summary", title: category.title, description: category.description },
+  twitter: {
+    card: "summary_large_image",
+    title: category.title,
+    description: category.description,
+  },
 };
 
 export default function NetworkingCertificationsPage() {
