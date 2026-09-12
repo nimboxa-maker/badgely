@@ -10,10 +10,6 @@ const topLinks = [
   { href: "/courses", label: "Courses" },
 ];
 
-const discoveryLinks = [
-  { href: "/career-paths", label: "Career Paths" },
-];
-
 const companyLinks = [
   { href: "/about", label: "About Us" },
   { href: "mailto:nimboxa@gmail.com", label: "Contact Us" },
@@ -58,23 +54,6 @@ export function SiteFooter() {
               className="flex flex-wrap justify-center gap-x-5 gap-y-2"
             >
               {topLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-blue-100 transition hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="mx-auto my-4 h-px max-w-3xl bg-white/15" />
-
-            <nav
-              aria-label="Footer discovery navigation"
-              className="flex flex-wrap justify-center gap-x-5 gap-y-2"
-            >
-              {discoveryLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
