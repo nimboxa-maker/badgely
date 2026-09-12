@@ -25,6 +25,10 @@ type VendorInfo = {
   officialLabel: string;
 };
 
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aimtocert.com"
+).replace(/\/$/, "");
+
 const vendors: Record<string, VendorInfo> = {
   comptia: {
     name: "CompTIA",
@@ -230,13 +234,42 @@ export async function generateMetadata({
 
   if (!info) {
     return {
-      title: "Recertification | AimToCert",
+      title: {
+        absolute: "Recertification Provider Not Found | AimToCert",
+      },
+      description:
+        "The requested certification renewal provider could not be found on AimToCert.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
+  const pageUrl = `${siteUrl}/recertification/${vendor}`;
+  const title = `${info.name} Recertification & Renewal | AimToCert`;
+  const description = `Understand ${info.name} certification renewal, recertification, maintenance requirements, timelines, and official renewal resources.`;
+
   return {
-    title: `${info.name} Recertification & Renewal | AimToCert`,
-    description: `Understand ${info.name} certification renewal, recertification, maintenance requirements, timelines, and official renewal resources.`,
+    title: {
+      absolute: title,
+    },
+    description,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: pageUrl,
+      type: "website",
+      siteName: "AimToCert",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -256,8 +289,68 @@ export default async function VendorRecertificationPage({
     notFound();
   }
 
+  const pageUrl = `${siteUrl}/recertification/${vendor}`;
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Recertification",
+            item: `${siteUrl}/recertification`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: `${info.name} Certification Renewal`,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: `${info.name} Recertification & Renewal`,
+        description: info.overview,
+        isPartOf: {
+          "@type": "WebSite",
+          name: "AimToCert",
+          url: siteUrl,
+        },
+        about: {
+          "@type": "Organization",
+          name: info.name,
+          sameAs: info.officialUrl,
+        },
+        mainEntity: {
+          "@type": "Thing",
+          name: `${info.name} Certification Renewal`,
+          description: info.renewalSummary,
+        },
+      },
+    ],
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+
       <section className="border-b border-slate-200 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_360px] lg:px-8 lg:py-20">
           <div>
