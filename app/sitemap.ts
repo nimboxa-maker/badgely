@@ -115,6 +115,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.85,
     },
     {
+      url: `${siteUrl}/guides/security-plus-vs-cysa-plus`,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${siteUrl}/guides/cissp-vs-cism`,
       changeFrequency: "monthly",
       priority: 0.85,

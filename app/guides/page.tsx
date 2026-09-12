@@ -50,22 +50,22 @@ export default function GuidesPage() {
             </p>
 
             <h2 className="mt-3 text-2xl font-bold text-white">
-              Is CompTIA Security+ worth it in 2026?
+              Security+ vs CySA+: Which should you choose?
             </h2>
 
             <p className="mt-3 text-sm leading-6 text-slate-300">
-              See who Security+ fits, when it may not be the right first
-              step, what the current exam looks like, and where it can
-              lead next.
+              Compare foundational cybersecurity breadth with deeper
+              defensive security analysis, SOC, vulnerability management,
+              and incident response skills.
             </p>
 
             <Link
-              href="/guides/is-security-plus-worth-it"
+              href="/guides/security-plus-vs-cysa-plus"
               className="mt-5 block"
             >
               <HeroOption className="flex items-center gap-4">
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                  <ShieldCheck
+                  <Scale
                     className="size-5"
                     aria-hidden="true"
                   />
@@ -73,11 +73,11 @@ export default function GuidesPage() {
 
                 <div className="flex-1">
                   <p className="font-bold text-white">
-                    Read the Security+ guide
+                    Read the Security+ vs CySA+ guide
                   </p>
 
                   <p className="mt-1 text-sm text-slate-300">
-                    A decision guide, not just exam facts.
+                    Foundation versus defensive specialization.
                   </p>
                 </div>
 
@@ -137,6 +137,41 @@ export default function GuidesPage() {
         </div>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <Card className="p-6">
+            <div className="flex items-center gap-3">
+              <span className="flex size-11 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
+                <Scale
+                  className="size-5"
+                  aria-hidden="true"
+                />
+              </span>
+
+              <div>
+                <p className="text-sm font-semibold text-blue-700">
+                  Cybersecurity comparison
+                </p>
+
+                <h3 className="text-xl font-bold text-slate-950">
+                  Security+ vs CySA+: Which should you choose?
+                </h3>
+              </div>
+            </div>
+
+            <p className="mt-4 leading-7 text-slate-600">
+              Compare broad cybersecurity fundamentals with deeper
+              defensive security analysis, SOC operations, vulnerability
+              management, and incident response.
+            </p>
+
+            <Link
+              href="/guides/security-plus-vs-cysa-plus"
+              className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-600"
+            >
+              Read comparison
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </Card>
+
           <Card className="p-6">
             <div className="flex items-center gap-3">
               <span className="flex size-11 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
