@@ -20,24 +20,35 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aimtocert.com"
+).replace(/\/$/, "");
+
+const pageUrl = `${siteUrl}/recertification`;
+
+const title = "IT Certification Recertification & Renewal | AimToCert";
+
 const description =
   "Understand IT certification renewal, recertification, continuing education, CPE and CE requirements, renewal fees, and expiration timelines.";
 
 export const metadata: Metadata = {
-  title: "IT Certification Recertification & Renewal | AimToCert",
+  title: {
+    absolute: title,
+  },
   description,
   alternates: {
-    canonical: "/recertification",
+    canonical: pageUrl,
   },
   openGraph: {
-    title: "IT Certification Recertification & Renewal | AimToCert",
+    title,
     description,
-    url: "/recertification",
+    url: pageUrl,
     type: "website",
+    siteName: "AimToCert",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IT Certification Recertification & Renewal | AimToCert",
+    title,
     description,
   },
 };
@@ -153,8 +164,62 @@ const renewalQuestions = [
 ];
 
 export default function RecertificationPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Recertification",
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: title,
+        description,
+        isPartOf: {
+          "@type": "WebSite",
+          name: "AimToCert",
+          url: siteUrl,
+        },
+        mainEntity: {
+          "@type": "ItemList",
+          name: "Certification Recertification Providers",
+          numberOfItems: providers.length,
+          itemListOrder: "https://schema.org/ItemListOrderAscending",
+          itemListElement: providers.map((provider, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: `${provider.name} Certification Renewal`,
+            url: `${siteUrl}/recertification/${provider.slug}`,
+          })),
+        },
+      },
+    ],
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+
       <MarketingHero
         aside={
           <HeroPanel>
