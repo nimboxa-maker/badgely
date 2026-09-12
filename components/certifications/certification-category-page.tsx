@@ -32,7 +32,7 @@ type CategoryCertification = {
   providers: { name: string } | { name: string }[] | null;
 };
 
-const productionSiteUrl = "https://AimToCert.com";
+const productionSiteUrl = "https://www.aimtocert.com";
 
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ?? productionSiteUrl
@@ -145,7 +145,7 @@ export async function CertificationCategoryPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }}
       />
 
