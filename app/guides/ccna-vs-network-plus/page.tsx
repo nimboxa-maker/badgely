@@ -16,7 +16,10 @@ import {
   MarketingHero,
 } from "@/components/layout/marketing-hero";
 
-const siteUrl = "https://AimToCert.com";
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aimtocert.com"
+).replace(/\/$/, "");
+
 const pageUrl = `${siteUrl}/guides/ccna-vs-network-plus`;
 
 const title =
