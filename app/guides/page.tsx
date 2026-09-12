@@ -18,23 +18,23 @@ import {
 } from "@/components/layout/marketing-hero";
 
 const description =
-  "Practical IT certification guides that help you decide what to pursue, how certifications compare, and where each credential fits in a career path.";
+  "Explore practical IT certification guides, comparisons, career paths, and advice to help you choose the right certifications for your IT career.";
 
 export const metadata: Metadata = {
-  title: "IT Certification Guides | AimToCert",
+  title: "IT Certification Guides & Comparisons | AimToCert",
   description,
   alternates: {
     canonical: "/guides",
   },
   openGraph: {
-    title: "IT Certification Guides | AimToCert",
+    title: "IT Certification Guides & Comparisons | AimToCert",
     description,
     url: "/guides",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IT Certification Guides | AimToCert",
+    title: "IT Certification Guides & Comparisons | AimToCert",
     description,
   },
 };
