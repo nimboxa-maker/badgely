@@ -555,10 +555,10 @@ export default function BestCloudCertificationsGuide() {
             </Card>
 
             <Link
-              href="/guides"
+              href="/certifications"
               className="inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-600"
             >
-              ← Back to AimToCert Guides
+              ← Back to certifications
             </Link>
           </aside>
         </div>
@@ -601,3 +601,4 @@ function CertificationCard({
     </Card>
   );
 }
+

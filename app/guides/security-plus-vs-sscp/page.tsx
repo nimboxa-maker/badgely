@@ -743,10 +743,10 @@ export default function SecurityPlusVsSscpGuide() {
                 </Link>
 
                 <Link
-                  href="/guides"
+                  href="/certifications"
                   className="block text-blue-700 hover:text-blue-600"
                 >
-                  All AimToCert Guides
+                  Browse certifications
                 </Link>
               </nav>
             </Card>
@@ -756,3 +756,4 @@ export default function SecurityPlusVsSscpGuide() {
     </main>
   );
 }
+

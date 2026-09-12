@@ -580,10 +580,10 @@ export default function SecurityPlusWorthItGuide() {
                 </Link>
 
                 <Link
-                  href="/guides"
+                  href="/certifications"
                   className="flex items-center justify-between gap-3 font-semibold text-blue-700 hover:text-blue-600"
                 >
-                  More AimToCert Guides
+                  Browse certifications
                   <ArrowRight
                     className="size-4"
                     aria-hidden="true"

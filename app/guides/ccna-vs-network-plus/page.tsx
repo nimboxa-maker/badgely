@@ -720,10 +720,10 @@ export default function CcnaVsNetworkPlusGuide() {
 
               <div className="mt-4 space-y-3 text-sm font-semibold">
                 <Link
-                  href="/guides"
+                  href="/certifications"
                   className="block text-blue-700 hover:text-blue-600"
                 >
-                  All AimToCert Guides
+                  Browse certifications
                 </Link>
 
                 <Link

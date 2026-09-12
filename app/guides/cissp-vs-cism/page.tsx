@@ -784,10 +784,10 @@ export default function CisspVsCismGuide() {
                 </Link>
 
                 <Link
-                  href="/guides"
+                  href="/certifications"
                   className="block font-semibold text-blue-700 hover:text-blue-600"
                 >
-                  All AimToCert Guides
+                  Browse certifications
                 </Link>
               </div>
             </Card>
@@ -797,3 +797,4 @@ export default function CisspVsCismGuide() {
     </main>
   );
 }
+

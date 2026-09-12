@@ -12,7 +12,6 @@ const topLinks = [
 
 const discoveryLinks = [
   { href: "/career-paths", label: "Career Paths" },
-  { href: "/guides", label: "Guides" },
 ];
 
 const companyLinks = [
