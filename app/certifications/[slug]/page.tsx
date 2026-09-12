@@ -221,8 +221,66 @@ export default async function CertificationDetailPage({
   const relatedName = (id: string) =>
     relatedCertifications.find((related) => related.id === id) ?? null;
 
+  const pageUrl = `${siteUrl}/certifications/${certification.slug}`;
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Certifications",
+            item: `${siteUrl}/certifications`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: certification.name,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        name: certification.name,
+        description:
+          certification.full_summary ?? certification.short_summary,
+        url: pageUrl,
+        credentialCategory: "Certification",
+        ...(provider?.name
+          ? {
+              recognizedBy: {
+                "@type": "Organization",
+                name: provider.name,
+              },
+            }
+          : {}),
+        ...(domains.length
+          ? {
+              competencyRequired: domains.map((domain) => domain.domain_name),
+            }
+          : {}),
+      },
+    ],
+  };
+
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <Link
         href="/certifications"
         className="text-sm font-semibold text-blue-700 hover:text-blue-600"
