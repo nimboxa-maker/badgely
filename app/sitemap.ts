@@ -20,7 +20,6 @@ const recertificationRoutes = [
   "/recertification/red-hat",
   "/recertification/google-cloud",
   "/recertification/renewal-glossary",
-  "/recertification/request-provider",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -139,11 +138,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${siteUrl}${route}`,
         changeFrequency: "monthly",
         priority:
-          route === "/recertification/renewal-glossary"
-            ? 0.75
-            : route === "/recertification/request-provider"
-              ? 0.5
-              : 0.8,
+          route === "/recertification/renewal-glossary" ? 0.75 : 0.8,
       }));
 
   const categoryRoutes: MetadataRoute.Sitemap =
