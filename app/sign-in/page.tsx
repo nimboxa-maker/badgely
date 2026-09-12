@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import { signIn } from "@/app/auth/actions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+  title: "Admin Sign In | AimToCert",
+  description: "Authorized AimToCert administrators only.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 type SignInPageProps = {
   searchParams: Promise<{ error?: string; message?: string }>;
