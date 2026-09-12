@@ -14,10 +14,37 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aimtocert.com"
+).replace(/\/$/, "");
+
+const pageUrl = `${siteUrl}/recertification/renewal-glossary`;
+
+const title = "Certification Renewal Terms Explained | AimToCert";
+
+const description =
+  "Understand common certification renewal terms including CE, CEU, CPE, PDU, recertification, renewal windows, maintenance fees, and certification cycles.";
+
 export const metadata: Metadata = {
-  title: "Certification Renewal Terms Explained | AimToCert",
-  description:
-    "Understand common certification renewal terms including CE, CEU, CPE, PDU, recertification, renewal windows, maintenance fees, and certification cycles.",
+  title: {
+    absolute: title,
+  },
+  description,
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title,
+    description,
+    url: pageUrl,
+    type: "website",
+    siteName: "AimToCert",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 const terms = [
@@ -94,8 +121,58 @@ const terms = [
 ];
 
 export default function RenewalGlossaryPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Recertification",
+            item: `${siteUrl}/recertification`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Renewal Glossary",
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "DefinedTermSet",
+        "@id": `${pageUrl}#glossary`,
+        name: "Certification Renewal Glossary",
+        description,
+        url: pageUrl,
+        hasDefinedTerm: terms.map((item) => ({
+          "@type": "DefinedTerm",
+          name: item.term,
+          alternateName: item.fullName,
+          description: item.description,
+          inDefinedTermSet: `${pageUrl}#glossary`,
+        })),
+      },
+    ],
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+
       <section className="border-b border-slate-200 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white">
         <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <Link
